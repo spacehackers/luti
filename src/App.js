@@ -22,7 +22,6 @@ import Hls from "hls.js"
 
 const bounds = all_locs[0]
 
-const loc = all_locs[0]
 const url = base_url + all_vid_names[1]
 
 export default class App extends React.Component {
@@ -48,42 +47,49 @@ export default class App extends React.Component {
       layers: [base.Empty]
     })
 
-    let video_overlay = L.videoOverlay(url, loc, vid_config).addTo(map)
-    let video = video_overlay.getElement()
+    var all_vids = []
+    all_vid_names.forEach((filename, key) => {
+      if (!all_locs[key]) return
 
-    // video = document.createElement("video")
+      let loc = all_locs[key]
+      let url = `${base_url}${filename}`
 
-    // setTimeout(() => {
-    // let video = document.querySelector("#video0")
+      let video_overlay = L.videoOverlay(url, loc, vid_config).addTo(map)
+      let video = video_overlay.getElement()
 
-    console.log("🌺", video)
-    let key = 0
-    let all_hls = []
+      // video = document.createElement("video")
 
-    video.id = "video" + key.toString()
+      // setTimeout(() => {
+      // let video = document.querySelector("#video0")
 
-    if (Hls.isSupported()) {
-      all_hls[key] = new Hls(hls_config)
-      all_hls[key].loadSource(url)
-      all_hls[key].attachMedia(video)
-      all_hls[key].on(Hls.Events.MANIFEST_PARSED, function() {
-        video.muted = true
-        video.loop = true
-        video.autoplay = true
-      })
-    }
-    // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
-    // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
-    // This is using the built-in support of the plain video element, without using hls.js.
-    // Note: it would be more normal to wait on the 'canplay' event below however on Safari (where you are most likely to find built-in HLS support) the video.src URL must be on the user-driven
-    // white-list before a 'canplay' event will be emitted; the last video event that can be reliably listened-for when the URL is not on the white-list is 'loadedmetadata'.
-    else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = url
-      video.addEventListener("loadedmetadata", function() {
-        video.play()
-      })
-    }
-    // }, 1000)
+      console.log("🌺", video)
+      let all_hls = []
+
+      video.id = "video" + key.toString()
+
+      if (Hls.isSupported()) {
+        all_hls[key] = new Hls(hls_config)
+        all_hls[key].loadSource(url)
+        all_hls[key].attachMedia(video)
+        all_hls[key].on(Hls.Events.MANIFEST_PARSED, function() {
+          video.muted = true
+          video.loop = true
+          video.autoplay = true
+        })
+      }
+      // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+      // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
+      // This is using the built-in support of the plain video element, without using hls.js.
+      // Note: it would be more normal to wait on the 'canplay' event below however on Safari (where you are most likely to find built-in HLS support) the video.src URL must be on the user-driven
+      // white-list before a 'canplay' event will be emitted; the last video event that can be reliably listened-for when the URL is not on the white-list is 'loadedmetadata'.
+      else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = url
+        video.addEventListener("loadedmetadata", function() {
+          video.play()
+        })
+      }
+      // }, 1000)
+    })
   }
 
   render() {
