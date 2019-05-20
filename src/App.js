@@ -41,7 +41,9 @@ export default class App extends React.Component {
       minZoom: init_zoom - 1,
       maxZoom: init_zoom + 4,
       // center: [y, x],
-      center: center,
+      center: [img_height + img_height / 3, img_width + img_width / 2].map(e =>
+        Math.floor(e)
+      ),
       zoom: init_zoom,
 
       layers: [base.Empty]

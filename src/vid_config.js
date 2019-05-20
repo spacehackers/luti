@@ -67,4 +67,4 @@ export const all_vid_names = [
 
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer.m3u8"
 ]
-export const init_zoom = -1
+export const init_zoom = 0
