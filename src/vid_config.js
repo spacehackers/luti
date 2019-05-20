@@ -1,4 +1,3 @@
-export const style = { height: "80vh", width: "75vw" }
 export const center = [0, 0]
 export const base_url = "https://s3.amazonaws.com/lifeundertheice/"
 
@@ -17,9 +16,23 @@ export const vid_config = {
 export const img_height = 1080
 export const img_width = 1920
 
+export const style = { height: img_height + "px", width: img_width + "px" }
+
 export const overlap = 10
 
 export const rows = 5 // square grid number of rows/columns
+
+export const all_locs = []
+let x = img_width
+let y = x * (img_height / img_width)
+for (let i = 0; i < rows; i++) {
+  for (let j = 0; j < rows; j++) {
+    all_locs.push([
+      [i * y - overlap, j * x - overlap],
+      [(i + 1) * y + overlap, (j + 1) * x + overlap]
+    ])
+  }
+}
 
 export const all_vid_names = [
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer.m3u8",
