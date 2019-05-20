@@ -1,6 +1,8 @@
 export const center = [0, 0]
 export const base_url = "https://s3.amazonaws.com/lifeundertheice/"
 
+export const init_zoom = 0.5
+
 export const hls_config = {
   capLevelToPlayerSize: true,
   maxBufferSize: 30,
@@ -67,4 +69,3 @@ export const all_vid_names = [
 
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer.m3u8"
 ]
-export const init_zoom = 0

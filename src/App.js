@@ -36,20 +36,26 @@ export default class App extends React.Component {
       Empty: L.tileLayer("")
     }
 
-    var map = L.map("map", {
+    let map = L.map("map", {
       crs: L.CRS.Simple,
       minZoom: init_zoom - 1,
       maxZoom: init_zoom + 4,
       // center: [y, x],
-      center: [img_height + img_height / 3, img_width + img_width / 2].map(e =>
-        Math.floor(e)
+      center: [img_height + img_height / 2.1, img_width + img_width / 1.9].map(
+        e => Math.floor(e)
       ),
       zoom: init_zoom,
 
       layers: [base.Empty]
     })
 
+    map.on("dragend", () => {
+      console.log(map.getBounds())
+      console.log(map.getPixelBounds())
+    })
+
     var all_vids = []
+    console.log(all_locs)
     all_vid_names.forEach((filename, key) => {
       if (!all_locs[key]) return
 
@@ -61,7 +67,6 @@ export default class App extends React.Component {
 
       // video = document.createElement("video")
 
-      // setTimeout(() => {
       // let video = document.querySelector("#video0")
 
       console.log("🌺", video)
