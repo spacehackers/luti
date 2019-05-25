@@ -1,11 +1,11 @@
 body {
   margin: 0;
   background-color: #dcdedd;
+  overflow: hidden;
 }
 html,
 body,
 #map {
-  height: 100%;
   background-color: #dcdedd;
   /*
   background-color: SEASHELL;
@@ -27,11 +27,11 @@ body,
   display: none;
 }
 
-ul {
+/* ul {
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
-}
+} */
 
 video {
 }
