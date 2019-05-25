@@ -4,7 +4,7 @@ import { Map } from "react-leaflet"
 import L from "leaflet"
 import Hls from "hls.js"
 
-import "./App.css"
+import "./App.scss"
 
 import {
   hls_config,

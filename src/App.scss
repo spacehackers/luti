@@ -1,3 +1,5 @@
+$luti_background: #dcdedd;
+
 body {
   margin: 0;
   background-color: #dcdedd;
@@ -6,14 +8,7 @@ body {
 html,
 body,
 #map {
-  /*
-  background-color: LIGHTGOLDENRODYELLOW
-  background: LIGHTYELLOW;
-  background: MIDNIGHTBLUE;
-  */
-  background-color: SEASHELL;
-  background-color: #dcdedd;
-  background: DARKMAGENTA;
+  background-color: $luti_background;
 }
 
 .leaflet-control-container {
