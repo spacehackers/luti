@@ -6,7 +6,6 @@ body {
 html,
 body,
 #map {
-  background-color: #dcdedd;
   /*
   background-color: LIGHTGOLDENRODYELLOW
   background: LIGHTYELLOW;
@@ -14,6 +13,7 @@ body,
   background: DARKMAGENTA;
   */
   background-color: SEASHELL;
+  background-color: #dcdedd;
 }
 
 .leaflet-control-container {
