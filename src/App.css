@@ -8,12 +8,12 @@ body,
 #map {
   background-color: #dcdedd;
   /*
-  background-color: SEASHELL;
   background-color: LIGHTGOLDENRODYELLOW
   background: LIGHTYELLOW;
-  background: DARKMAGENTA;
   background: MIDNIGHTBLUE;
-  /* background-color: DARKSLATEGRAY; */
+  background: DARKMAGENTA;
+  */
+  background-color: SEASHELL;
 }
 
 .leaflet-control-container {
