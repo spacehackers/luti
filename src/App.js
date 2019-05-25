@@ -18,7 +18,8 @@ import {
   center,
   init_zoom,
   style,
-  all_locs
+  all_locs,
+  map_bounds
 } from "./vid_config"
 
 const bounds = all_locs[0]
@@ -35,17 +36,24 @@ export default class App extends React.Component {
       Empty: L.tileLayer("")
     }
 
+    const center = [
+      img_height + img_height / 2.1,
+      img_width + img_width / 1.9
+    ].map(e => Math.floor(e))
+
     let map = L.map("map", {
       crs: L.CRS.Simple,
       minZoom: init_zoom - 1,
       maxZoom: init_zoom + 4,
       // center: [y, x],
-      center: [img_height + img_height / 2.1, img_width + img_width / 1.9].map(
-        e => Math.floor(e)
-      ),
+      center: center,
       zoom: init_zoom,
       keyboardPanDelta: 500,
-      layers: [base.Empty]
+      layers: [base.Empty],
+      inertia: true,
+      inertiaDeceleration: 100,
+      maxBounds: map_bounds,
+      maxBoundsViscosity: 1.0
     })
 
     map.on("dragend", () => {

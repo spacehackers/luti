@@ -23,6 +23,7 @@ export const style = { height: img_height + "px", width: img_width + "px" }
 export const overlap = 10
 
 export const rows = 5 // square grid number of rows/columns
+export const map_bounds = [[0, 0], [rows * img_height, rows * img_width]]
 
 export const all_locs = []
 let x = img_width
