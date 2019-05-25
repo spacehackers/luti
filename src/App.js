@@ -2,6 +2,10 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { Map } from "react-leaflet"
 import L from "leaflet"
+import Hls from "hls.js"
+
+import "./App.css"
+
 import {
   hls_config,
   vid_config,
@@ -17,9 +21,6 @@ import {
   all_locs
 } from "./vid_config"
 
-import Hls from "hls.js"
-// const Hls = window.Hls
-
 const bounds = all_locs[0]
 
 const url = base_url + all_vid_names[1]
@@ -30,8 +31,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("🌺 componentDidMount")
-
     var base = {
       Empty: L.tileLayer("")
     }
@@ -45,7 +44,7 @@ export default class App extends React.Component {
         e => Math.floor(e)
       ),
       zoom: init_zoom,
-
+      keyboardPanDelta: 500,
       layers: [base.Empty]
     })
 
@@ -69,7 +68,6 @@ export default class App extends React.Component {
 
       // let video = document.querySelector("#video0")
 
-      console.log("🌺", video)
       let all_hls = []
 
       video.id = "video" + key.toString()
