@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 import { Map } from "react-leaflet"
 import L from "leaflet"
 import Hls from "hls.js"
+import Luti from "./luti"
 
 import "./App.scss"
 
@@ -19,16 +20,23 @@ import {
   init_zoom,
   style,
   all_locs,
-  map_bounds
+  map_bounds,
+  min_zoom,
+  max_zoom
 } from "./vid_config"
 
 const bounds = all_locs[0]
 
 const url = base_url + all_vid_names[1]
 
+let luti = new Luti()
+let loaded = []
+
 export default class App extends React.Component {
   constructor(props) {
     super(props)
+
+    // this.load_next = this.load_next.bind(this)
   }
 
   componentDidMount() {
@@ -36,73 +44,91 @@ export default class App extends React.Component {
       Empty: L.tileLayer("")
     }
 
-    const center = [
-      img_height + img_height / 2.1,
-      img_width + img_width / 1.9
-    ].map(e => Math.floor(e))
-
     let map = L.map("map", {
       crs: L.CRS.Simple,
-      minZoom: init_zoom - 1,
-      maxZoom: init_zoom + 4,
+      minZoom: min_zoom, // -1
+      maxZoom: max_zoom,
       // center: [y, x],
       center: center,
       zoom: init_zoom,
       keyboardPanDelta: 500,
       layers: [base.Empty],
-      inertia: true,
-      inertiaDeceleration: 100,
+      // inertia: true,
+      // inertiaDeceleration: 100,
       maxBounds: map_bounds,
       maxBoundsViscosity: 1.0
     })
 
+    console.log("center", center)
+    console.log("url", url)
+    this.load_next(map)
+
     map.on("dragend", () => {
-      console.log(map.getBounds())
-      console.log(map.getPixelBounds())
+      let viewport_bounds = map.getBounds()
+      console.log(
+        "🌏",
+        [viewport_bounds._southWest.lat, viewport_bounds._southWest.lng],
+        [viewport_bounds._northEast.lat, viewport_bounds._northEast.lng]
+      )
+
+      // this.load_next(map)
     })
 
-    var all_vids = []
-    console.log(all_locs)
-    all_vid_names.forEach((filename, key) => {
-      if (!all_locs[key]) return
+    // var all_vids = []
+    // console.log(all_locs)
+    // all_vid_names.forEach((filename, key) => {
+    //   if (!all_locs[key]) return
+    //
+    //   let loc = all_locs[key]
+    //   let url = `${base_url}${filename}`
+    //
+    //   let video_overlay = L.videoOverlay(url, loc, vid_config).addTo(map)
+    //   let video = video_overlay.getElement()
+    //
+    //   // let all_hls = []
+    //   luti.load_vid(video, bounds, url)
+    // })
+  }
 
-      let loc = all_locs[key]
+  load_next(map) {
+    // let map_center = map.getCenter() // this doesn't work, isn ot viewport center
+    // need to pass viewport_bounds to getBounds
+    let viewport_bounds = map.getBounds()
+    console.log(viewport_bounds)
+
+    console.log("🌺 viewport_bounds", viewport_bounds)
+
+    let all_current_bounds = luti.get_all_bounds(viewport_bounds)
+    console.log("🐼 current_bounds", all_current_bounds)
+    console.log(all_current_bounds.length)
+    // ok
+
+    all_current_bounds.forEach(b => {
+      console.log("------->>>", b)
+      if (this.is_loaded(b)) {
+        return
+      }
+
+      let filename = luti.get_vid()
       let url = `${base_url}${filename}`
 
-      let video_overlay = L.videoOverlay(url, loc, vid_config).addTo(map)
+      let video_overlay = L.videoOverlay(url, bounds, vid_config).addTo(map)
       let video = video_overlay.getElement()
-
-      // video = document.createElement("video")
-
-      // let video = document.querySelector("#video0")
-
-      let all_hls = []
-
-      video.id = "video" + key.toString()
-
-      if (Hls.isSupported()) {
-        all_hls[key] = new Hls(hls_config)
-        all_hls[key].loadSource(url)
-        all_hls[key].attachMedia(video)
-        all_hls[key].on(Hls.Events.MANIFEST_PARSED, function() {
-          video.muted = true
-          video.loop = true
-          video.autoplay = true
-        })
-      }
-      // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
-      // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
-      // This is using the built-in support of the plain video element, without using hls.js.
-      // Note: it would be more normal to wait on the 'canplay' event below however on Safari (where you are most likely to find built-in HLS support) the video.src URL must be on the user-driven
-      // white-list before a 'canplay' event will be emitted; the last video event that can be reliably listened-for when the URL is not on the white-list is 'loadedmetadata'.
-      else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = url
-        video.addEventListener("loadedmetadata", function() {
-          video.play()
-        })
-      }
-      // }, 1000)
+      let id = "video" + loaded.length
+      luti.load_vid(id, video, bounds, url)
     })
+  }
+
+  is_loaded(bounds) {
+    return false
+
+    console.log("is_loaded", bounds)
+    console.log("loaded", loaded)
+    if (loaded.map(b => b.toString()).indexOf(bounds.toString()) === -1) {
+      console.log("false")
+      return false
+    }
+    return true
   }
 
   render() {

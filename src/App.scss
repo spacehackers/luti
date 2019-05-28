@@ -8,7 +8,11 @@ body {
 html,
 body,
 #map {
+  height: calc(20 * 1080px); // matches rows in js
+  width: calc(20 * 1920px);
   background-color: $luti_background;
+  background-color: darkmagenta;
+  background-color: #33d4dc;
 }
 
 .leaflet-control-container {
