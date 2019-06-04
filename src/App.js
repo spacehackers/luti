@@ -94,7 +94,6 @@ export default class App extends React.Component {
     // let map_center = map.getCenter() // this doesn't work, isn ot viewport center
     // need to pass viewport_bounds to getBounds
     let viewport_bounds = map.getBounds()
-    console.log(viewport_bounds)
 
     console.log("🌺 viewport_bounds", viewport_bounds)
 

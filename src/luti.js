@@ -88,47 +88,66 @@ class Luti {
   }
 
   get_all_bounds(viewport_bounds) {
+    // return all_locs
     // return a list of all viewort adjacent bounds
+    // change this to choose bounds from all_locs
 
     console.log("viewport_bounds", viewport_bounds._southWest)
+    console.log("all_locs", all_locs)
 
-    const [y1, x1] = [
+    const [min_y, min_x] = [
       viewport_bounds._southWest.lat,
       viewport_bounds._southWest.lng
     ]
-    const [y2, x2] = [
+    const [max_y, max_x] = [
       viewport_bounds._northEast.lat,
       viewport_bounds._northEast.lng
     ]
 
-    console.log("✅", y1, x1, y2, x2)
+    console.log("✅", min_y, min_x, max_y, max_x)
     console.log("center", center)
 
-    const min_x = img_width * Math.floor(x1 / img_width) // - img_width
-    const max_x = img_width * Math.ceil(x2 / img_width) // + img_width
-
-    const min_y = img_height * Math.floor(y1 / img_height) // - img_height
-    const max_y = img_height * Math.ceil(y2 / img_height) // + img_width
-
-    console.log("🔥", min_x, min_y, max_x, max_y)
+    // const min_x = img_width * Math.floor(x1 / img_width) // - img_width
+    // const max_x = img_width * Math.ceil(x2 / img_width) // + img_width
+    //
+    // const min_y = img_height * Math.floor(y1 / img_height) // - img_height
+    // const max_y = img_height * Math.ceil(y2 / img_height) // + img_width
+    //
+    // console.log("🔥", min_x, min_y, max_x, max_y)
 
     let bounds, offset, bounds_shifted
     let all_bounds = []
 
-    for (let i = min_x; i <= max_x; i += img_width) {
-      if (i > max_x) return
+    // which all_locs overlap with the corners of this viewport
+    all_locs.forEach(bounds => {
+      let [y1, x1, y2, x2] = bounds
+      console.log("✅", min_y, min_x, max_y, max_x)
 
-      for (let j = min_y; j <= max_y; j += img_height) {
-        if (j > max_y) return
-
-        bounds = [[j, i], [j + img_height, i + img_width]]
-        bounds_shifted = this.overlap_shift(bounds)
-        console.log("bounds", bounds.toString())
-        console.log("bounds_shifted", bounds_shifted.toString())
-        console.log("adding ")
-        all_bounds.push(bounds_shifted)
+      console.log("try: ", y1, x1, y2, x2)
+      if (
+        ((x1 < min_x && x2 > min_x) || min_x < x1 < max_x) &&
+        ((y1 < min_y && y2 > min_y) || min_y < y1 < max_y)
+      ) {
+        // these bounds overlap the viewport
+        console.log("pushing ", bounds)
+        all_bounds.push(bounds)
       }
-    }
+    })
+
+    // for (let i = min_x; i <= max_x; i += img_width) {
+    //   if (i > max_x) return
+    //
+    //   for (let j = min_y; j <= max_y; j += img_height) {
+    //     if (j > max_y) return
+    //
+    //     bounds = [[j, i], [j + img_height, i + img_width]]
+    //     bounds_shifted = this.overlap_shift(bounds)
+    //     console.log("bounds", bounds.toString())
+    //     console.log("bounds_shifted", bounds_shifted.toString())
+    //     console.log("adding ")
+    //     all_bounds.push(bounds_shifted)
+    //   }
+    // }
 
     console.log("all_bounds", all_bounds, all_bounds.length)
     return all_bounds

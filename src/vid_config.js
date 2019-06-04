@@ -5,7 +5,7 @@ export const style = { height: img_height + "px", width: img_width + "px" }
 
 export const overlap = 10
 
-export const rows = 20 // square grid number of rows/columns
+export const rows = 5 // square grid number of rows/columns
 export const map_bounds = [[0, 0], [rows * img_height, rows * img_width]]
 console.log("map_bounds", map_bounds)
 
@@ -34,7 +34,9 @@ export const all_locs = []
 let x = img_width
 let y = x * (img_height / img_width)
 for (let i = 0; i < rows; i++) {
+  if (i > rows) break
   for (let j = 0; j < rows; j++) {
+    if (j > rows) break
     all_locs.push([
       [i * y - overlap, j * x - overlap],
       [(i + 1) * y + overlap, (j + 1) * x + overlap]
