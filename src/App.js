@@ -31,43 +31,44 @@ export default class App extends React.Component {
     super(props)
   }
 
-  componentDidMount() {
-    var base = {
-      Empty: L.tileLayer("")
+  is_overlap(bounds, loc) {
+    // console.log("checking", bounds, loc)
+
+    const [x_min, y_min] = [bounds._southWest.lng, bounds._southWest.lat]
+    const [x_max, y_max] = [bounds._northEast.lng, bounds._northEast.lat]
+    const [x1, y1, x2, y2] = [].concat.apply([], loc)
+
+    console.log("checking")
+    console.log(" x_min, y_min, ", x_min, y_min)
+    console.log(" x_max, y_max", x_max, y_max)
+    console.log("x1, y1", x1, y1)
+    console.log(" x2, y2", x2, y2)
+
+    if (
+      ((x_min < x1 && x1 < x_max) ||
+        (x_min < x2 && x2 < x_max) ||
+        (x1 < x_min && x2 > x_max)) &&
+      ((y_min < y1 && y1 < y_max) ||
+        (y_min < y2 && y2 < y_max) ||
+        (y1 < y_min && y2 > y_max))
+    ) {
+      return true
     }
 
-    const center = [
-      img_height + img_height / 2.1,
-      img_width + img_width / 1.9
-    ].map(e => Math.floor(e))
+    return false
+  }
 
-    let map = L.map("map", {
-      crs: L.CRS.Simple,
-      minZoom: init_zoom - 1,
-      maxZoom: init_zoom + 4,
-      // center: [y, x],
-      center: center,
-      zoom: init_zoom,
-      keyboardPanDelta: 500,
-      layers: [base.Empty],
-      inertia: true,
-      inertiaDeceleration: 100,
-      maxBounds: map_bounds,
-      maxBoundsViscosity: 1.0
-    })
-
-    map.on("dragend", () => {
-      console.log(map.getBounds())
-      console.log(map.getPixelBounds())
-    })
-
-    var all_vids = []
-    console.log(all_locs)
+  load(map) {
     all_vid_names.forEach((filename, key) => {
       if (!all_locs[key]) return
 
       let loc = all_locs[key]
+      let bounds = map.getBounds()
+      if (!this.is_overlap(bounds, loc)) return
+
       let url = `${base_url}${filename}`
+
+      console.log("loading", loc, url)
 
       let video_overlay = L.videoOverlay(url, loc, vid_config).addTo(map)
       let video = video_overlay.getElement()
@@ -102,6 +103,51 @@ export default class App extends React.Component {
         })
       }
       // }, 1000)
+    })
+  }
+
+  componentDidMount() {
+    var base = {
+      Empty: L.tileLayer("")
+    }
+
+    const center = [
+      img_height + img_height / 2.1,
+      img_width + img_width / 1.9
+    ].map(e => Math.floor(e))
+
+    let map = L.map("map", {
+      crs: L.CRS.Simple,
+      minZoom: init_zoom - 4,
+      maxZoom: init_zoom + 4,
+      // center: [y, x],
+      center: center,
+      zoom: init_zoom,
+      keyboardPanDelta: 500,
+      layers: [base.Empty],
+      inertia: true,
+      inertiaDeceleration: 100,
+      maxBounds: map_bounds,
+      maxBoundsViscosity: 1.0
+    })
+
+    this.load(map)
+
+    map.on("dragend", () => {
+      let bounds = map.getBounds()
+
+      console.log(map.getBounds())
+
+      this.load(map)
+
+      all_vid_names.forEach((filename, key) => {
+        if (!all_locs[key]) return
+        let loc = all_locs[key]
+
+        if (this.is_overlap(bounds, loc)) {
+          console.log("🌺")
+        }
+      })
     })
   }
 
