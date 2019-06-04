@@ -15,14 +15,12 @@ import {
   img_height,
   base_url,
   all_vid_names,
-  center,
+  init_center,
   init_zoom,
   style,
   all_locs,
   map_bounds
 } from "./vid_config"
-
-const bounds = all_locs[0]
 
 const url = base_url + all_vid_names[1]
 let loaded = []
@@ -32,99 +30,44 @@ export default class App extends React.Component {
     super(props)
   }
 
-  is_visible(bounds, loc) {
-    // console.log("checking", bounds, loc)
-
-    const [x_min, y_min] = [bounds._southWest.lng, bounds._southWest.lat]
-    const [x_max, y_max] = [bounds._northEast.lng, bounds._northEast.lat]
-    const [x1, y1, x2, y2] = [].concat.apply([], loc)
-
-    const y_extra = 0
-    const x_extra = 0
-
-    if (
-      ((x_min - x_extra < x1 && x1 < x_max + x_extra) ||
-        (x_min - x_extra < x2 && x2 < x_max + x_extra) ||
-        (x1 > x_min - x_extra && x2 < x_max + x_extra)) &&
-      ((y_min - y_extra < y1 && y1 < y_max + y_extra) ||
-        (y_min - y_extra < y2 && y2 < y_max + y_extra) ||
-        (y1 > y_min - y_extra && y2 < y_max + y_extra))
-    ) {
-      return true
-    }
-  }
-  //
-  // console.log("🐠 nope")
-  // console.log(" x_min, y_min, ", x_min, y_min)
-  // console.log(" x_max, y_max", x_max, y_max)
-  // console.log("x1, y1", x1, y1)
-  // console.log(" x2, y2", x2, y2)
-
-  componentDidMount() {
-    var base = {
-      Empty: L.tileLayer("")
-    }
-
+  setup_map() {
     let map = L.map("map", {
       crs: L.CRS.Simple,
       minZoom: init_zoom - 4,
       maxZoom: init_zoom + 4,
       // center: [y, x],
-      center: center,
+      center: init_center,
       zoom: init_zoom,
       keyboardPanDelta: 500,
-      layers: [base.Empty],
+      layers: L.tileLayer("")
       // inertia: true,
       // inertiaDeceleration: 100,
-      maxBounds: map_bounds,
-      maxBoundsViscosity: 1.0
+      // maxBounds: map_bounds,
+      // maxBoundsViscosity: 1.0
     })
 
-    this.load(map)
+    return map
+  }
 
-    // map click
-    function onMapClick(e) {
+  componentDidMount() {
+    console.log(all_locs.join("\n"))
+
+    let map = this.setup_map()
+
+    this.load_vids(map)
+
+    // just for the wtf of it all
+    L.marker(L.latLng([0, 0])).addTo(map)
+    L.marker(L.latLng(init_center)).addTo(map)
+    L.marker(L.latLng([rows * img_height, rows * img_width])).addTo(map)
+
+    map.on("click", e => {
       console.log("You clicked the map at", e.latlng)
-    }
-    map.on("click", onMapClick)
-
-    let w = map.getBounds().getEast() - map.getBounds().getWest()
-    let h = map.getBounds().getNorth() - map.getBounds().getSouth()
-
-    alert(w + " x " + h)
-
-    map.on("dragend", function onDragEnd() {
-      let w = map.getBounds().getEast() - map.getBounds().getWest()
-      let h = map.getBounds().getNorth() - map.getBounds().getSouth()
-
-      alert(
-        "center:" +
-          map.getCenter() +
-          "\n" +
-          "width:" +
-          w +
-          "\n" +
-          "height:" +
-          h +
-          "\n" +
-          "size in pixels:" +
-          map.getSize() +
-          " pixel bounds" +
-          map.getPixelBounds() +
-          this.loaded.length +
-          " total videos loaded"
-      )
-
-      this.load(map)
     })
 
-    // map.on("dragend", () => {
-    //   let bounds = map.getBounds()
-    //
-    //   console.log(map.getBounds())
-    //
-    //   this.load(map)
-    // })
+    map.on("dragend", () => {
+      this.load_vids(map)
+    })
   }
 
   is_loaded(loc) {
@@ -145,29 +88,64 @@ export default class App extends React.Component {
     return `${base_url}${filename}`
   }
 
-  load(map) {
+  is_visible(loc, center) {
+    // console.log("checking", bounds, loc)
+
+    const [x1, y1, x2, y2] = [].concat.apply([], loc) // corner bounds of loc
+
+    // const [x_min, y_min] = [bounds._southWest.lng, bounds._southWest.lat]
+    // const [x_max, y_max] = [bounds._northEast.lng, bounds._northEast.lat]
+    // if (
+    //   ((x_min - x_extra < x1 && x1 < x_max + x_extra) ||
+    //     (x_min - x_extra < x2 && x2 < x_max + x_extra) ||
+    //     (x1 > x_min - x_extra && x2 < x_max + x_extra)) &&
+    //   ((y_min - y_extra < y1 && y1 < y_max + y_extra) ||
+    //     (y_min - y_extra < y2 && y2 < y_max + y_extra) ||
+    //     (y1 > y_min - y_extra && y2 < y_max + y_extra))
+    // ) {
+
+    const y_extra = 0
+    const x_extra = 0
+    // const x_extra = 1.5 * img_width  // amount past the visible window
+    // const y_extra = 1.5 * img_height
+
+    const [center_y, center_x] = [center.lat, center.lng]
+
+    // const [x_min, y_min] = [bounds._southWest.lng, bounds._southWest.lat]
+    // const [x_max, y_max] = [bounds._northEast.lng, bounds._northEast.lat]
+
+    const x_min = center_x - img_width
+    const x_max = center_x + img_width
+    const y_min = center_y - img_height
+    const y_max = center_y + img_height
+
+    // do the corner bounds of this loc overlap the visible window...
+    if (
+      ((x_min - x_extra < x1 && x1 < x_max + x_extra) ||
+        (x_min - x_extra < x2 && x2 < x_max + x_extra) ||
+        (x1 > x_min - x_extra && x2 < x_max + x_extra)) &&
+      ((y_min - y_extra < y1 && y1 < y_max + y_extra) ||
+        (y_min - y_extra < y2 && y2 < y_max + y_extra) ||
+        (y1 > y_min - y_extra && y2 < y_max + y_extra))
+    ) {
+      return true
+    }
+
+    return false
+  }
+
+  load_vids(map) {
     all_locs.forEach((loc, key) => {
-      let bounds = map.getBounds()
+      if (this.is_loaded(loc)) return
 
-      if (this.is_loaded(loc)) {
-        console.log("🍄 already loaded, moving along... ")
-        return
-      }
-
-      console.log("loading new critter ")
-
-      if (!this.is_visible(bounds, loc)) return
+      let center = map.getCenter()
+      if (!this.is_visible(loc, center)) return
 
       let url = this.get_vid()
       let video_overlay = L.videoOverlay(url, loc, vid_config).addTo(map)
       let video = video_overlay.getElement()
 
-      console.log("🐙 loading", loc, url)
-      console.log("cneter", center)
-      console.log("bounds", bounds)
-
       // video = document.createElement("video")
-
       // let video = document.querySelector("#video0")
 
       let all_hls = []
