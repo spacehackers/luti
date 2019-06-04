@@ -74,8 +74,8 @@ export default class App extends React.Component {
       zoom: init_zoom,
       keyboardPanDelta: 500,
       layers: [base.Empty],
-      inertia: true,
-      inertiaDeceleration: 100,
+      // inertia: true,
+      // inertiaDeceleration: 100,
       maxBounds: map_bounds,
       maxBoundsViscosity: 1.0
     })
