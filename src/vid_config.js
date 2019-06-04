@@ -1,7 +1,7 @@
 export const img_height = 1080
 export const img_width = 1920
 
-export const rows = 5 // square grid number of rows/columns
+export const rows = 10 // square grid number of rows/columns
 export const map_bounds = [[0, 0], [rows * img_height, rows * img_width]]
 
 export const init_center = [
@@ -31,13 +31,11 @@ export const overlap = 10
 
 // builds a list of loc bounds that make a grid based on rows
 export const all_locs = []
-let x = img_width
-let y = x * (img_height / img_width)
 for (let i = 0; i < rows; i++) {
   for (let j = 0; j < rows; j++) {
     all_locs.push([
-      [i * y - overlap, j * x - overlap],
-      [(i + 1) * y + overlap, (j + 1) * x + overlap]
+      [i * img_height - overlap, j * img_width - overlap],
+      [(i + 1) * img_height + overlap, (j + 1) * img_width + overlap]
     ])
   }
 }
