@@ -39,8 +39,8 @@ export default class App extends React.Component {
     const [x_max, y_max] = [bounds._northEast.lng, bounds._northEast.lat]
     const [x1, y1, x2, y2] = [].concat.apply([], loc)
 
-    const y_extra = img_height
-    const x_extra = img_width
+    const y_extra = 0
+    const x_extra = 0
 
     if (
       ((x_min - x_extra < x1 && x1 < x_max + x_extra) ||
@@ -88,32 +88,43 @@ export default class App extends React.Component {
     }
     map.on("click", onMapClick)
 
-    // map.on("dragend", function onDragEnd() {
-    //   let w = map.getBounds().getEast() - map.getBounds().getWest()
-    //   let h = map.getBounds().getNorth() - map.getBounds().getSouth()
-    //
-    //   console.log(
-    //     "center:" +
-    //       map.getCenter() +
-    //       "\n" +
-    //       "width:" +
-    //       w +
-    //       "\n" +
-    //       "height:" +
-    //       h +
-    //       "\n" +
-    //       "size in pixels:" +
-    //       map.getSize()
-    //   )
-    // })
+    let w = map.getBounds().getEast() - map.getBounds().getWest()
+    let h = map.getBounds().getNorth() - map.getBounds().getSouth()
 
-    map.on("dragend", () => {
-      let bounds = map.getBounds()
+    alert(w + " x " + h)
 
-      console.log(map.getBounds())
+    map.on("dragend", function onDragEnd() {
+      let w = map.getBounds().getEast() - map.getBounds().getWest()
+      let h = map.getBounds().getNorth() - map.getBounds().getSouth()
+
+      alert(
+        "center:" +
+          map.getCenter() +
+          "\n" +
+          "width:" +
+          w +
+          "\n" +
+          "height:" +
+          h +
+          "\n" +
+          "size in pixels:" +
+          map.getSize() +
+          " pixel bounds" +
+          map.getPixelBounds() +
+          this.loaded.length +
+          " total videos loaded"
+      )
 
       this.load(map)
     })
+
+    // map.on("dragend", () => {
+    //   let bounds = map.getBounds()
+    //
+    //   console.log(map.getBounds())
+    //
+    //   this.load(map)
+    // })
   }
 
   is_loaded(loc) {
