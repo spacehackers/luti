@@ -25,25 +25,49 @@ import {
 const bounds = all_locs[0]
 
 const url = base_url + all_vid_names[1]
+let loaded = []
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
   }
 
+  is_visible(bounds, loc) {
+    // console.log("checking", bounds, loc)
+
+    const [x_min, y_min] = [bounds._southWest.lng, bounds._southWest.lat]
+    const [x_max, y_max] = [bounds._northEast.lng, bounds._northEast.lat]
+    const [x1, y1, x2, y2] = [].concat.apply([], loc)
+
+    const y_extra = img_height
+    const x_extra = img_width
+
+    if (
+      ((x_min - x_extra < x1 && x1 < x_max + x_extra) ||
+        (x_min - x_extra < x2 && x2 < x_max + x_extra) ||
+        (x1 > x_min - x_extra && x2 < x_max + x_extra)) &&
+      ((y_min - y_extra < y1 && y1 < y_max + y_extra) ||
+        (y_min - y_extra < y2 && y2 < y_max + y_extra) ||
+        (y1 > y_min - y_extra && y2 < y_max + y_extra))
+    ) {
+      return true
+    }
+  }
+  //
+  // console.log("🐠 nope")
+  // console.log(" x_min, y_min, ", x_min, y_min)
+  // console.log(" x_max, y_max", x_max, y_max)
+  // console.log("x1, y1", x1, y1)
+  // console.log(" x2, y2", x2, y2)
+
   componentDidMount() {
     var base = {
       Empty: L.tileLayer("")
     }
 
-    const center = [
-      img_height + img_height / 2.1,
-      img_width + img_width / 1.9
-    ].map(e => Math.floor(e))
-
     let map = L.map("map", {
       crs: L.CRS.Simple,
-      minZoom: init_zoom - 1,
+      minZoom: init_zoom - 4,
       maxZoom: init_zoom + 4,
       // center: [y, x],
       center: center,
@@ -56,21 +80,80 @@ export default class App extends React.Component {
       maxBoundsViscosity: 1.0
     })
 
+    this.load(map)
+
+    // map click
+    function onMapClick(e) {
+      console.log("You clicked the map at", e.latlng)
+    }
+    map.on("click", onMapClick)
+
+    // map.on("dragend", function onDragEnd() {
+    //   let w = map.getBounds().getEast() - map.getBounds().getWest()
+    //   let h = map.getBounds().getNorth() - map.getBounds().getSouth()
+    //
+    //   console.log(
+    //     "center:" +
+    //       map.getCenter() +
+    //       "\n" +
+    //       "width:" +
+    //       w +
+    //       "\n" +
+    //       "height:" +
+    //       h +
+    //       "\n" +
+    //       "size in pixels:" +
+    //       map.getSize()
+    //   )
+    // })
+
     map.on("dragend", () => {
+      let bounds = map.getBounds()
+
       console.log(map.getBounds())
-      console.log(map.getPixelBounds())
+
+      this.load(map)
     })
+  }
 
-    var all_vids = []
-    console.log(all_locs)
-    all_vid_names.forEach((filename, key) => {
-      if (!all_locs[key]) return
+  is_loaded(loc) {
+    console.log("is_loaded?", loc.toString())
+    console.log("loaded", loaded)
+    if (loaded.indexOf(loc.toString()) === -1) {
+      console.log(false)
+      return false
+    }
+    console.log(true)
+    return true
+  }
 
-      let loc = all_locs[key]
-      let url = `${base_url}${filename}`
+  get_vid() {
+    // random video
+    const filename =
+      all_vid_names[Math.floor(Math.random() * all_vid_names.length)]
+    return `${base_url}${filename}`
+  }
 
+  load(map) {
+    all_locs.forEach((loc, key) => {
+      let bounds = map.getBounds()
+
+      if (this.is_loaded(loc)) {
+        console.log("🍄 already loaded, moving along... ")
+        return
+      }
+
+      console.log("loading new critter ")
+
+      if (!this.is_visible(bounds, loc)) return
+
+      let url = this.get_vid()
       let video_overlay = L.videoOverlay(url, loc, vid_config).addTo(map)
       let video = video_overlay.getElement()
+
+      console.log("🐙 loading", loc, url)
+      console.log("cneter", center)
+      console.log("bounds", bounds)
 
       // video = document.createElement("video")
 
@@ -102,6 +185,9 @@ export default class App extends React.Component {
         })
       }
       // }, 1000)
+
+      loaded.push(loc.toString())
+      console.log(loaded)
     })
   }
 
