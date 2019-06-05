@@ -1,12 +1,11 @@
 export const img_height = 1080
 export const img_width = 1920
 
-export const rows = 10 // square grid number of rows/columns
-export const map_bounds = [[0, 0], [rows * img_height, rows * img_width]]
+export const rows = 10 // square grid number of rows/columns, change in css too!
 
 export const init_center = [
-  (rows / 2) * img_height,
-  (rows / 2) * img_width
+  (rows * img_height) / 2 + img_height / 2,
+  (rows * img_width) / 2 + img_height / 2
 ].map(e => Math.ceil(e))
 
 export const base_url = "https://s3.amazonaws.com/lifeundertheice/"

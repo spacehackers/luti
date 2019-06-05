@@ -1,4 +1,7 @@
 $luti_background: #dcdedd;
+$rows: 10;
+$img_width: 1920px;
+$img_height: 1080px;
 
 body {
   margin: 0;
@@ -9,6 +12,11 @@ html,
 body,
 #map {
   background-color: $luti_background;
+}
+
+#map {
+  height: calc($rows * $img_width);
+  width: calc($rows * $img_width);
 }
 
 .leaflet-control-container {

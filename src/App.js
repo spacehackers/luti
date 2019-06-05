@@ -18,12 +18,12 @@ import {
   init_center,
   init_zoom,
   style,
-  all_locs,
-  map_bounds
+  all_locs
 } from "./vid_config"
 
 const url = base_url + all_vid_names[1]
 let loaded = []
+const map_bounds = [[0, 0], [rows * img_height, rows * img_width]]
 
 export default class App extends React.Component {
   constructor(props) {
@@ -35,8 +35,7 @@ export default class App extends React.Component {
       crs: L.CRS.Simple,
       minZoom: init_zoom - 4,
       maxZoom: init_zoom + 4,
-      // center: [y, x],
-      center: init_center,
+      center: init_center, // init_center,
       zoom: init_zoom,
       keyboardPanDelta: 500,
       layers: L.tileLayer("")
@@ -46,23 +45,40 @@ export default class App extends React.Component {
       // maxBoundsViscosity: 1.0
     })
 
+    // let opening_bounds = [
+    //   [init_center[0] - img_height, init_center[1] - img_width],
+    //   [init_center[0] + img_height, init_center[1] + img_width]
+    // ]
+    // map.setView(init_center, 0)
+    // map.fitBounds(opening_bounds, 0)
+
     return map
   }
 
   componentDidMount() {
-    console.log(all_locs.join("\n"))
+    // console.log(all_locs.join("\n"))
 
     let map = this.setup_map()
 
     this.load_vids(map)
 
     // just for the wtf of it all
-    L.marker(L.latLng([0, 0])).addTo(map)
-    L.marker(L.latLng(init_center)).addTo(map)
-    L.marker(L.latLng([rows * img_height, rows * img_width])).addTo(map)
+    L.marker(L.latLng([0, 0]))
+      .addTo(map)
+      .bindPopup("0,0")
+
+    L.marker(L.latLng(init_center))
+      .addTo(map)
+      .bindPopup(`${init_center}`)
+    L.marker(L.latLng(map_bounds[1]))
+      .addTo(map)
+      .bindPopup(`${map_bounds[1]}`)
 
     map.on("click", e => {
       console.log("You clicked the map at", e.latlng)
+      console.log("bounds", map.getBounds())
+      console.log("center", map.getCenter())
+      console.log(`${loaded.length} videos are loaded`)
     })
 
     map.on("dragend", () => {
@@ -71,13 +87,9 @@ export default class App extends React.Component {
   }
 
   is_loaded(loc) {
-    console.log("is_loaded?", loc.toString())
-    console.log("loaded", loaded)
     if (loaded.indexOf(loc.toString()) === -1) {
-      console.log(false)
       return false
     }
-    console.log(true)
     return true
   }
 
@@ -88,10 +100,12 @@ export default class App extends React.Component {
     return `${base_url}${filename}`
   }
 
-  is_visible(loc, center) {
+  is_visible(map, loc) {
+    let center = map.getCenter()
+
     // console.log("checking", bounds, loc)
 
-    const [x1, y1, x2, y2] = [].concat.apply([], loc) // corner bounds of loc
+    const [y1, x1, y2, x2] = [].concat.apply([], loc) // corner bounds of loc
 
     // const [x_min, y_min] = [bounds._southWest.lng, bounds._southWest.lat]
     // const [x_max, y_max] = [bounds._northEast.lng, bounds._northEast.lat]
@@ -120,17 +134,21 @@ export default class App extends React.Component {
     const y_max = center_y + img_height
 
     // do the corner bounds of this loc overlap the visible window...
+    // some bug in here.
     if (
-      ((x_min - x_extra < x1 && x1 < x_max + x_extra) ||
-        (x_min - x_extra < x2 && x2 < x_max + x_extra) ||
-        (x1 > x_min - x_extra && x2 < x_max + x_extra)) &&
+      ((x_min - x_extra < x1 && x1 < x_max + x_extra) || // x_min < x1 < x_max
+      (x_min - x_extra < x2 && x2 < x_max + x_extra) || // x_min < x2 < x_max
+        (x1 > x_min - x_extra && x2 < x_max + x_extra)) && // x1 > x_min && x2 < x_max
       ((y_min - y_extra < y1 && y1 < y_max + y_extra) ||
         (y_min - y_extra < y2 && y2 < y_max + y_extra) ||
         (y1 > y_min - y_extra && y2 < y_max + y_extra))
     ) {
+      console.log("is_visible", loc.toString())
+      console.log("center", center)
+      console.log(map.getBounds())
       return true
     }
-
+    console.log("not visible: ", loc.toString())
     return false
   }
 
@@ -138,8 +156,7 @@ export default class App extends React.Component {
     all_locs.forEach((loc, key) => {
       if (this.is_loaded(loc)) return
 
-      let center = map.getCenter()
-      if (!this.is_visible(loc, center)) return
+      if (!this.is_visible(map, loc)) return
 
       let url = this.get_vid()
       let video_overlay = L.videoOverlay(url, loc, vid_config).addTo(map)
