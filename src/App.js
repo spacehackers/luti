@@ -24,7 +24,6 @@ import {
 const url = base_url + all_vid_names[1]
 const map_bounds = [[0, 0], [rows * img_height, rows * img_width]]
 let loaded = []
-let window_w, window_h
 
 export default class App extends React.Component {
   constructor(props) {
@@ -58,11 +57,6 @@ export default class App extends React.Component {
 
   componentDidMount() {
     // console.log(all_locs.join("\n"))
-
-    window_w = window.innerWidth
-    window_h = window.innerWidth // #todo add orientation change handler
-
-    alert(window_w + " x " + window_h)
 
     let map = this.setup_map()
 
@@ -134,10 +128,10 @@ export default class App extends React.Component {
     // const [x_min, y_min] = [bounds._southWest.lng, bounds._southWest.lat]
     // const [x_max, y_max] = [bounds._northEast.lng, bounds._northEast.lat]
 
-    const x_min = center_x - window_w
-    const x_max = center_x + window_w
-    const y_min = center_y - window_h
-    const y_max = center_y + window_h
+    const x_min = center_x - img_width
+    const x_max = center_x + img_width
+    const y_min = center_y - img_height
+    const y_max = center_y + img_height
 
     // do the corner bounds of this loc overlap the visible window...
     // some bug in here.
