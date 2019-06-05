@@ -3,14 +3,11 @@ export const img_width = 1920
 
 export const rows = 10 // square grid number of rows/columns, change in css too!
 
-export const init_center = [
-  (rows * img_height) / 2 + img_height / 2,
-  (rows * img_width) / 2 + img_height / 2
-].map(e => Math.ceil(e))
+export const init_center = [5980, 10567]
 
 export const base_url = "https://s3.amazonaws.com/lifeundertheice/"
 
-export const init_zoom = -1
+export const init_zoom = 0
 
 export const hls_config = {
   capLevelToPlayerSize: true,
