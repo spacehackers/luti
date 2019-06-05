@@ -38,11 +38,11 @@ export default class App extends React.Component {
       center: init_center, // init_center,
       zoom: init_zoom,
       keyboardPanDelta: 500,
-      layers: L.tileLayer("")
+      layers: L.tileLayer(""),
       // inertia: true,
       // inertiaDeceleration: 100,
-      // maxBounds: map_bounds,
-      // maxBoundsViscosity: 1.0
+      maxBounds: map_bounds,
+      maxBoundsViscosity: 1.0
     })
 
     // let opening_bounds = [
