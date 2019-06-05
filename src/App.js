@@ -23,7 +23,8 @@ import {
 
 const url = base_url + all_vid_names[1]
 const map_bounds = [[0, 0], [rows * img_height, rows * img_width]]
-let loaded = []
+let loaded_locs = []
+let loaded_vids = []
 
 export default class App extends React.Component {
   constructor(props) {
@@ -78,7 +79,8 @@ export default class App extends React.Component {
       console.log("You clicked the map at", e.latlng)
       console.log("bounds", map.getBounds())
       console.log("center", map.getCenter())
-      console.log(`${loaded.length} videos are loaded`)
+      console.log(`${loaded_locs.length} videos are loaded`)
+      console.log(loaded_vids)
     })
 
     map.on("dragend", () => {
@@ -87,7 +89,7 @@ export default class App extends React.Component {
   }
 
   is_loaded(loc) {
-    if (loaded.indexOf(loc.toString()) === -1) {
+    if (loaded_locs.indexOf(loc.toString()) === -1) {
       return false
     }
     return true
@@ -152,11 +154,33 @@ export default class App extends React.Component {
     return false
   }
 
+  manage_loaded_vids(video_id, action) {
+    console.log("manage_loaded_vids " + video_id)
+    let video = document.querySelector(video_id)
+
+    if (action === "pause") {
+      console.log("pausing " + video_id)
+      video.pause()
+    } else {
+      console.log("playing " + video_id)
+      video.play()
+    }
+    console.log(video)
+  }
+
   load_vids(map) {
     all_locs.forEach((loc, key) => {
-      if (this.is_loaded(loc)) return
-
       if (!this.is_visible(map, loc)) return
+
+      if (this.is_loaded(loc)) {
+        if (this.is_visible(map, loc)) {
+          // loc is loaded but not visible
+          this.manage_loaded_vids("#video" + key, "play")
+        } else {
+          this.manage_loaded_vids("#video" + key, "pause")
+        }
+        return
+      }
 
       let url = this.get_vid()
       let video_overlay = L.videoOverlay(url, loc, vid_config).addTo(map)
@@ -190,10 +214,13 @@ export default class App extends React.Component {
           video.play()
         })
       }
-      // }, 1000)
 
-      loaded.push(loc.toString())
-      console.log(loaded)
+      loaded_locs.push(loc.toString())
+      loaded_vids.push(video.id)
+      console.log(loaded_locs)
+      console.log(loaded_vids)
+
+      // }, 1000)
     })
   }
 
