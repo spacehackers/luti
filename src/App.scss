@@ -15,8 +15,8 @@ body,
 }
 
 #map {
-  height: calc($rows * $img_width);
-  width: calc($rows * $img_width);
+  height: $rows * $img_width;
+  width: $rows * $img_width;
 }
 
 .leaflet-control-container {
