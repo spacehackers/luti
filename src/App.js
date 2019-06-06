@@ -58,7 +58,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    alert("hell0z")
     // console.log(all_locs.join("\n"))
 
     let map = this.setup_map()
@@ -82,6 +81,7 @@ export default class App extends React.Component {
       console.log("bounds", map.getBounds())
       console.log("center", map.getCenter())
       console.log(`${loaded_locs.length} videos are loaded`)
+      console.log(`${playing_vids.length} videos are playing`)
       console.log(loaded_vids)
     })
 
@@ -111,41 +111,26 @@ export default class App extends React.Component {
 
     const [y1, x1, y2, x2] = [].concat.apply([], loc) // corner bounds of loc
 
-    // const [x_min, y_min] = [bounds._southWest.lng, bounds._southWest.lat]
-    // const [x_max, y_max] = [bounds._northEast.lng, bounds._northEast.lat]
-    // if (
-    //   ((x_min - x_extra < x1 && x1 < x_max + x_extra) ||
-    //     (x_min - x_extra < x2 && x2 < x_max + x_extra) ||
-    //     (x1 > x_min - x_extra && x2 < x_max + x_extra)) &&
-    //   ((y_min - y_extra < y1 && y1 < y_max + y_extra) ||
-    //     (y_min - y_extra < y2 && y2 < y_max + y_extra) ||
-    //     (y1 > y_min - y_extra && y2 < y_max + y_extra))
-    // ) {
-
-    const y_extra = 0
-    const x_extra = 0
-    // const x_extra = 1.5 * img_width  // amount past the visible window
-    // const y_extra = 1.5 * img_height
-
     const [center_y, center_x] = [center.lat, center.lng]
 
+    // let bounds = map.getBounds()
     // const [x_min, y_min] = [bounds._southWest.lng, bounds._southWest.lat]
     // const [x_max, y_max] = [bounds._northEast.lng, bounds._northEast.lat]
 
-    const x_min = center_x - img_width
-    const x_max = center_x + img_width
+    const x_min = center_x - img_width / 2
+    const x_max = center_x + img_width / 2
     const y_min = center_y - img_height
     const y_max = center_y + img_height
 
     // do the corner bounds of this loc overlap the visible window...
     // some bug in here.
     if (
-      ((x_min - x_extra < x1 && x1 < x_max + x_extra) || // x_min < x1 < x_max
-      (x_min - x_extra < x2 && x2 < x_max + x_extra) || // x_min < x2 < x_max
-        (x1 > x_min - x_extra && x2 < x_max + x_extra)) && // x1 > x_min && x2 < x_max
-      ((y_min - y_extra < y1 && y1 < y_max + y_extra) ||
-        (y_min - y_extra < y2 && y2 < y_max + y_extra) ||
-        (y1 > y_min - y_extra && y2 < y_max + y_extra))
+      ((x_min < x1 && x1 < x_max) || // x_min < x1 < x_max
+      (x_min < x2 && x2 < x_max) || // x_min < x2 < x_max
+        (x1 > x_min && x2 < x_max)) && // x1 > x_min && x2 < x_max
+      ((y_min < y1 && y1 < y_max) ||
+        (y_min < y2 && y2 < y_max) ||
+        (y1 > y_min && y2 < y_max))
     ) {
       console.log("is_visible", loc.toString())
       console.log("center", center)
@@ -156,38 +141,43 @@ export default class App extends React.Component {
   }
 
   manage_loaded_vids(video_id, action) {
-    console.log("manage_loaded_vids " + video_id)
-    let video = document.querySelector(video_id)
+    let video = document.querySelector("#" + video_id)
 
+    console.log("manage_loaded_vids", video_id, action, playing_vids)
     if (action === "pause") {
-      console.log("pausing " + video_id)
-      if (playing_vids.indexOf(video_id) > -1) {
+      if (playing_vids.indexOf(video_id) >= 0) {
         // video is playing
+        console.log("video is playing ")
         video.pause()
         playing_vids.splice(playing_vids.indexOf(video_id), 1)
+        console.log("playing_vids updated")
+        console.log(playing_vids)
       }
     } else {
       if (playing_vids.indexOf(video_id) === -1) {
+        console.log("video is paused")
+
         // video is paused
         video.play()
         playing_vids.push(video_id)
+        console.log("playing_vids updated")
+        console.log(playing_vids)
       }
     }
-    console.log(video)
   }
 
   load_vids(map) {
     all_locs.forEach((loc, key) => {
-      if (!this.is_visible(map, loc)) return
-
       if (this.is_loaded(loc)) {
         if (this.is_visible(map, loc)) {
           // loc is loaded but not visible
-          this.manage_loaded_vids("#video" + key, "play")
+          this.manage_loaded_vids("video" + key, "play")
         } else {
-          this.manage_loaded_vids("#video" + key, "pause")
+          this.manage_loaded_vids("video" + key, "pause")
         }
         return
+      } else {
+        if (!this.is_visible(map, loc)) return
       }
 
       let url = this.get_vid()
