@@ -25,6 +25,7 @@ const url = base_url + all_vid_names[1]
 const map_bounds = [[0, 0], [rows * img_height, rows * img_width]]
 let loaded_locs = []
 let loaded_vids = []
+let playing_vids = []
 
 export default class App extends React.Component {
   constructor(props) {
@@ -57,7 +58,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    alert("hello")
+    alert("hell0z")
     // console.log(all_locs.join("\n"))
 
     let map = this.setup_map()
@@ -151,7 +152,6 @@ export default class App extends React.Component {
       console.log(map.getBounds())
       return true
     }
-    console.log("not visible: ", loc.toString())
     return false
   }
 
@@ -161,10 +161,17 @@ export default class App extends React.Component {
 
     if (action === "pause") {
       console.log("pausing " + video_id)
-      video.pause()
+      if (playing_vids.indexOf(video_id) > -1) {
+        // video is playing
+        video.pause()
+        playing_vids.splice(playing_vids.indexOf(video_id), 1)
+      }
     } else {
-      console.log("playing " + video_id)
-      video.play()
+      if (playing_vids.indexOf(video_id) === -1) {
+        // video is paused
+        video.play()
+        playing_vids.push(video_id)
+      }
     }
     console.log(video)
   }
@@ -218,6 +225,7 @@ export default class App extends React.Component {
 
       loaded_locs.push(loc.toString())
       loaded_vids.push(video.id)
+      playing_vids.push(video.id)
       console.log(loaded_locs)
       console.log(loaded_vids)
 
