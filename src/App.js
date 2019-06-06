@@ -26,6 +26,7 @@ const map_bounds = [[0, 0], [rows * img_height, rows * img_width]]
 let loaded_locs = []
 let loaded_vids = []
 let playing_vids = []
+let all_hls = []
 
 export default class App extends React.Component {
   constructor(props) {
@@ -62,7 +63,7 @@ export default class App extends React.Component {
 
     let map = this.setup_map()
 
-    this.load_vids(map)
+    this.load_all_vids(map)
 
     // // just for the wtf of it all
     // L.marker(L.latLng([0, 0]))
@@ -86,7 +87,7 @@ export default class App extends React.Component {
     })
 
     map.on("dragend", () => {
-      this.load_vids(map)
+      this.load_all_vids(map)
     })
   }
 
@@ -142,6 +143,7 @@ export default class App extends React.Component {
 
   manage_loaded_vids(video_id, action) {
     let video = document.querySelector("#" + video_id)
+    let key = video_id.substring(5)
 
     console.log("manage_loaded_vids", video_id, action, playing_vids)
     if (action === "pause") {
@@ -149,6 +151,8 @@ export default class App extends React.Component {
         // video is playing
         console.log("video is playing ")
         video.pause()
+        // video.style.display = "none"
+        // element.parentNode.removeChild(element)
         playing_vids.splice(playing_vids.indexOf(video_id), 1)
         console.log("playing_vids updated")
         console.log(playing_vids)
@@ -158,6 +162,7 @@ export default class App extends React.Component {
         console.log("video is paused")
 
         // video is paused
+        // video.style.display = "relative"
         video.play()
         playing_vids.push(video_id)
         console.log("playing_vids updated")
@@ -166,7 +171,45 @@ export default class App extends React.Component {
     }
   }
 
-  load_vids(map) {
+  load_vid(loc, map, key) {
+    let url = this.get_vid()
+    let video_overlay = L.videoOverlay(url, loc, vid_config).addTo(map)
+    let video = video_overlay.getElement()
+
+    // video = document.createElement("video")
+    // let video = document.querySelector("#video0")
+    video.id = "video" + key
+
+    if (Hls.isSupported()) {
+      all_hls[key] = new Hls(hls_config)
+      all_hls[key].loadSource(url)
+      all_hls[key].attachMedia(video)
+      all_hls[key].on(Hls.Events.MANIFEST_PARSED, function() {
+        video.muted = true
+        video.loop = true
+        video.autoplay = true
+      })
+    }
+    // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+    // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
+    // This is using the built-in support of the plain video element, without using hls.js.
+    // Note: it would be more normal to wait on the 'canplay' event below however on Safari (where you are most likely to find built-in HLS support) the video.src URL must be on the user-driven
+    // white-list before a 'canplay' event will be emitted; the last video event that can be reliably listened-for when the URL is not on the white-list is 'loadedmetadata'.
+    else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = url
+      video.addEventListener("loadedmetadata", function() {
+        video.play()
+      })
+    }
+
+    loaded_locs.push(loc.toString())
+    loaded_vids.push(video.id)
+    playing_vids.push(video.id)
+    console.log(loaded_locs)
+    console.log(loaded_vids)
+  }
+
+  load_all_vids(map) {
     all_locs.forEach((loc, key) => {
       if (this.is_loaded(loc)) {
         if (this.is_visible(map, loc)) {
@@ -180,46 +223,7 @@ export default class App extends React.Component {
         if (!this.is_visible(map, loc)) return
       }
 
-      let url = this.get_vid()
-      let video_overlay = L.videoOverlay(url, loc, vid_config).addTo(map)
-      let video = video_overlay.getElement()
-
-      // video = document.createElement("video")
-      // let video = document.querySelector("#video0")
-
-      let all_hls = []
-
-      video.id = "video" + key.toString()
-
-      if (Hls.isSupported()) {
-        all_hls[key] = new Hls(hls_config)
-        all_hls[key].loadSource(url)
-        all_hls[key].attachMedia(video)
-        all_hls[key].on(Hls.Events.MANIFEST_PARSED, function() {
-          video.muted = true
-          video.loop = true
-          video.autoplay = true
-        })
-      }
-      // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
-      // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
-      // This is using the built-in support of the plain video element, without using hls.js.
-      // Note: it would be more normal to wait on the 'canplay' event below however on Safari (where you are most likely to find built-in HLS support) the video.src URL must be on the user-driven
-      // white-list before a 'canplay' event will be emitted; the last video event that can be reliably listened-for when the URL is not on the white-list is 'loadedmetadata'.
-      else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = url
-        video.addEventListener("loadedmetadata", function() {
-          video.play()
-        })
-      }
-
-      loaded_locs.push(loc.toString())
-      loaded_vids.push(video.id)
-      playing_vids.push(video.id)
-      console.log(loaded_locs)
-      console.log(loaded_vids)
-
-      // }, 1000)
+      this.load_vid(loc, map, key)
     })
   }
 
