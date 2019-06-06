@@ -36,8 +36,8 @@ export default class App extends React.Component {
   setup_map() {
     let map = L.map("map", {
       crs: L.CRS.Simple,
-      minZoom: init_zoom - 4,
-      maxZoom: init_zoom + 4,
+      minZoom: init_zoom - 1,
+      maxZoom: init_zoom + 1,
       center: init_center, // init_center,
       zoom: init_zoom,
       keyboardPanDelta: 500,

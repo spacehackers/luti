@@ -44,31 +44,20 @@ export const all_vid_names = [
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_Beginning.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_40x_TwoSpirals_02.m3u8",
-
+  "112118_CanadaGlacierCryoconite2_NikonE200_10x_Ciliate.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_Beginning.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_40x_TwoSpirals_02.m3u8",
-
+  "112118_CanadaGlacierCryoconite2_NikonE200_10x_Ciliate.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_Beginning.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_40x_TwoSpirals_02.m3u8",
-
+  "112118_CanadaGlacierCryoconite2_NikonE200_10x_Ciliate.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_Beginning.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_40x_TwoSpirals_02.m3u8",
-
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_Beginning.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_40x_TwoSpirals_02.m3u8",
-
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_Beginning.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_40x_TwoSpirals_02.m3u8",
-
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer.m3u8"
+  "112118_CanadaGlacierCryoconite2_NikonE200_10x_Ciliate.m3u8"
 ]
