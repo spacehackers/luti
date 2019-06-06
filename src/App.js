@@ -57,6 +57,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    alert("hello")
     // console.log(all_locs.join("\n"))
 
     let map = this.setup_map()
