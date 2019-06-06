@@ -27,20 +27,23 @@ let loaded_locs = []
 let loaded_vids = []
 let playing_vids = []
 let all_hls = []
+let map
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
+
+    this.handle_key_press = this.handle_key_press.bind(this)
   }
 
   setup_map() {
-    let map = L.map("map", {
+    map = L.map("map", {
       crs: L.CRS.Simple,
       minZoom: init_zoom - 1,
       maxZoom: init_zoom + 1,
       center: init_center, // init_center,
       zoom: init_zoom,
-      keyboardPanDelta: 500,
+      keyboardPanDelta: 300,
       layers: L.tileLayer(""),
       // inertia: true,
       // inertiaDeceleration: 100,
@@ -54,16 +57,20 @@ export default class App extends React.Component {
     // ]
     // map.setView(init_center, 0)
     // map.fitBounds(opening_bounds, 0)
+  }
 
-    return map
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handle_key_press, false)
   }
 
   componentDidMount() {
     // console.log(all_locs.join("\n"))
 
-    let map = this.setup_map()
+    this.setup_map()
 
-    this.load_all_vids(map)
+    this.load_all_vids()
+
+    document.addEventListener("keydown", this.handle_key_press, false)
 
     // // just for the wtf of it all
     // L.marker(L.latLng([0, 0]))
@@ -87,8 +94,14 @@ export default class App extends React.Component {
     })
 
     map.on("dragend", () => {
-      this.load_all_vids(map)
+      this.load_all_vids()
     })
+  }
+
+  handle_key_press(e) {
+    if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) {
+      this.load_all_vids()
+    }
   }
 
   is_loaded(loc) {
@@ -209,7 +222,7 @@ export default class App extends React.Component {
     console.log(loaded_vids)
   }
 
-  load_all_vids(map) {
+  load_all_vids() {
     all_locs.forEach((loc, key) => {
       if (this.is_loaded(loc)) {
         if (this.is_visible(map, loc)) {
