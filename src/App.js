@@ -68,7 +68,7 @@ export default class App extends React.Component {
 
     this.setup_map()
 
-    this.load_all_vids()
+    // this.load_all_vids()
 
     document.addEventListener("keydown", this.handle_key_press, false)
 
