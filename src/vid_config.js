@@ -26,8 +26,7 @@ export const vid_config = {
 
 export const style = { height: img_height + "px", width: img_width + "px" }
 
-export const overlap = 10
-
+const overlap = 10
 // builds a list of loc bounds that make a grid based on rows
 export const all_locs = []
 for (let i = 0; i < rows; i++) {

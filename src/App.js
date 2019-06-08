@@ -1,6 +1,4 @@
 import React from "react"
-import ReactDOM from "react-dom"
-import { Map } from "react-leaflet"
 import L from "leaflet"
 import Hls from "hls.js"
 
@@ -10,7 +8,6 @@ import {
   hls_config,
   vid_config,
   rows,
-  overlap,
   img_width,
   img_height,
   base_url,
@@ -21,7 +18,6 @@ import {
   all_locs
 } from "./vid_config"
 
-const url = base_url + all_vid_names[1]
 const map_bounds = [[0, 0], [rows * img_height, rows * img_width]]
 let loaded_locs = []
 let loaded_vids = []
@@ -131,6 +127,17 @@ export default class App extends React.Component {
     // const [x_min, y_min] = [bounds._southWest.lng, bounds._southWest.lat]
     // const [x_max, y_max] = [bounds._northEast.lng, bounds._northEast.lat]
 
+    // #todo use visible map width/height to define x/y min/max
+    // var width = map.getBounds().getEast() - map.getBounds().getWest();
+    // var height = map.getBounds().getNorth() - map.getBounds().getSouth();
+    //
+    // alert (
+    //     'center:' + map.getCenter() +'\n'+
+    //     'width:' + width +'\n'+
+    //     'height:' + height +'\n'+
+    //     'size in pixels:' + map.getSize()
+    // )});
+    //
     const x_min = center_x - img_width / 2
     const x_max = center_x + img_width / 2
     const y_min = center_y - img_height
@@ -156,7 +163,7 @@ export default class App extends React.Component {
 
   manage_loaded_vids(video_id, action) {
     let video = document.querySelector("#" + video_id)
-    let key = video_id.substring(5)
+    // let key = video_id.substring(5)
 
     console.log("manage_loaded_vids", video_id, action, playing_vids)
     if (action === "pause") {
