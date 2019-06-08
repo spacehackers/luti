@@ -1,6 +1,7 @@
 import React from "react"
 import L from "leaflet"
 import Hls from "hls.js"
+import Sound from "./Sound.js"
 
 import "./App.scss"
 
@@ -29,6 +30,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      center: {lat :0, lng: 0}
+    };
     this.handle_key_press = this.handle_key_press.bind(this)
   }
 
@@ -84,6 +88,7 @@ export default class App extends React.Component {
       console.log("You clicked the map at", e.latlng)
       console.log("bounds", map.getBounds())
       console.log("center", map.getCenter())
+      this.setState({center: map.getCenter()});
       console.log(`${loaded_locs.length} videos are loaded`)
       console.log(`${playing_vids.length} videos are playing`)
       console.log(loaded_vids)
@@ -155,6 +160,7 @@ export default class App extends React.Component {
     ) {
       console.log("is_visible", loc.toString())
       console.log("center", center)
+      this.setState({center: map.getCenter()});
       console.log(map.getBounds())
       return true
     }
@@ -248,6 +254,9 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <div style={style} id="map" />
+    return <div>
+      <div style={style} id="map" />
+      <Sound center_lat={this.state.center.lat} center_lng={this.state.center.lng} />
+    </div>
   }
 }
