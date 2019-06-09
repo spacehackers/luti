@@ -38,25 +38,28 @@ for (let i = 0; i < rows; i++) {
   }
 }
 
+// the commented out ones didn't seem to want to become public, try again later #todo
 export const all_vid_names = [
+  "111718_LakeBonneySnowOutflowDirt_NikonE200_100x_Bacteria_02.m3u8",
+  // "111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_Bacteria_01.m3u8",
+  "111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_Bacteria_02.m3u8",
+  "111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_Bacteria_04.m3u8",
+  "111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_GreenCircle.m3u8",
+  "112018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotiferTun_01.m3u8",
+  "112018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_02.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_Beginning.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End.m3u8",
+  // "112118_CanadaGlacierCryoconite1_NikonE200_40x_Spiral_02.m3u8",
   "112118_CanadaGlacierCryoconite1_NikonE200_40x_TwoSpirals_02.m3u8",
+  // "112118_CanadaGlacierCryoconite2_NikonE200_100x_Bacteria_01.m3u8",
+  // "112118_CanadaGlacierCryoconite2_NikonE200_100x_Tail.m3u8",
   "112118_CanadaGlacierCryoconite2_NikonE200_10x_Ciliate.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_Beginning.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_40x_TwoSpirals_02.m3u8",
-  "112118_CanadaGlacierCryoconite2_NikonE200_10x_Ciliate.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_Beginning.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_40x_TwoSpirals_02.m3u8",
-  "112118_CanadaGlacierCryoconite2_NikonE200_10x_Ciliate.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_Beginning.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End.m3u8",
-  "112118_CanadaGlacierCryoconite1_NikonE200_40x_TwoSpirals_02.m3u8",
-  "112118_CanadaGlacierCryoconite2_NikonE200_10x_Ciliate.m3u8"
+  // "112118_CanadaGlacierCryoconite2_NikonE200_40x_CiliateThing.m3u8",
+  // "112118_CanadaGlacierCryoconite2_NikonE200_40x_Ciliate_02.m3u8",
+  "112218_LowerCanadaGlacierStream_NikonE200_10x_Tardigrade.m3u8",
+  "112218_LowerCanadaGlacierStream_NikonE200_40x_Ciliate_01.m3u8",
+  "112218_LowerCanadaGlacierStream_NikonE200_40x_Ciliate_02.m3u8",
+  "112218_LowerCanadaGlacierStream_NikonE200_40x_TardigradeWakingUp.m3u8",
+  "112218_LowerCanadaGlacierStream_NikonE200_40x_Tardigrade_02.m3u8"
 ]
