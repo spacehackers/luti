@@ -1,4 +1,5 @@
 import React from "react"
+import { Chart } from "chart.js"
 import L from "leaflet"
 import Hls from "hls.js"
 import Sound from "./Sound.js"
@@ -26,6 +27,7 @@ let loaded_vids = []
 let playing_vids = []
 let all_hls = []
 let map
+let chart;
 
 export default class App extends React.Component {
   constructor(props) {
@@ -35,9 +37,72 @@ export default class App extends React.Component {
       center: { lat: 0, lng: 0 }
     }
     this.handle_key_press = this.handle_key_press.bind(this)
+    this.soundChange = data => {
+      if(!chart) {
+        return;
+      }
+      chart.data.datasets[0].data = data;
+      chart.update();
+    };
   }
 
   setup_map() {
+    L.Control.SoundDebug = L.Control.extend({
+        onAdd: function(map) {
+          let soundDebugDiv = L.DomUtil.create('canvas');
+
+          soundDebugDiv.style.width = '200px';
+          soundDebugDiv.style.height = '100px';
+          soundDebugDiv.style.border = '1px solid black';
+          soundDebugDiv.style.backgroundColor = 'white';
+
+          var ctx = soundDebugDiv.getContext('2d');
+          Chart.scaleService.updateScaleDefaults('linear', {
+              ticks: {
+                min: 0
+              }
+          });
+          chart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: [1,2,3,4],
+                datasets: [{
+                    label: "Sound levels",
+                    data: [0, 0, 0, 0],
+                    backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)'
+                    ]
+                }]
+              },
+
+              // Configuration options go here
+              options: {
+                responsive: false,
+                scales: {
+                  yAxes: [{
+                      ticks: {
+                        beginAtZero: true
+                      }
+                  }]
+                }
+              }
+          });
+
+          return soundDebugDiv;
+        },
+
+        onRemove: function(map) {
+          // Nothing to do here
+        }
+    });
+
+    L.control.soundDebug = function(opts) {
+      return new L.Control.SoundDebug(opts);
+    }
+
     map = L.map("map", {
       crs: L.CRS.Simple,
       zoomSnap: 0,
@@ -53,6 +118,8 @@ export default class App extends React.Component {
       maxBounds: map_bounds,
       maxBoundsViscosity: 1.0
     })
+    L.control.soundDebug({ position: 'topleft' }).addTo(map);
+
 
     // let opening_bounds = [
     //   [init_center[0] - img_height, init_center[1] - img_width],
@@ -279,6 +346,7 @@ export default class App extends React.Component {
         <Sound
           center_lat={this.state.center.lat}
           center_lng={this.state.center.lng}
+          onChange={this.soundChange}
         />
       </div>
     )
