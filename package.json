@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chart.js": "^2.8.0",
     "hls.js": "0.8.8",
     "howler": "^2.1.2",
     "leaflet": "^1.4.0",
