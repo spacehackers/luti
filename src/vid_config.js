@@ -1,6 +1,8 @@
 export const img_height = 1080
 export const img_width = 1920
 
+export const opening_bounds = [[5390, 9590], [6490, 11530]]
+
 export const rows = 10 // square grid number of rows/columns, change in css too!
 
 export const init_center = [
@@ -27,7 +29,7 @@ export const vid_config = {
 export const style = { height: img_height + "px", width: img_width + "px" }
 
 const overlap = 10
-// builds a list of loc bounds that make a grid based on rows
+// builds a list of loc bounds that make a grid based on rows, with small overlaps
 export const all_locs = []
 for (let i = 0; i < rows; i++) {
   for (let j = 0; j < rows; j++) {

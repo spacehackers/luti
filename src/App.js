@@ -16,7 +16,8 @@ import {
   init_center,
   init_zoom,
   style,
-  all_locs
+  all_locs,
+  opening_bounds
 } from "./vid_config"
 
 const map_bounds = [[0, 0], [rows * img_height, rows * img_width]]
@@ -70,7 +71,8 @@ export default class App extends React.Component {
 
     this.setup_map()
 
-    // this.load_all_vids()
+    const opening_index = this.get_key_at_loc(all_locs, opening_bounds)
+    this.load_vid(opening_bounds, map, opening_index)
 
     document.addEventListener("keydown", this.handle_key_press, false)
 
@@ -235,6 +237,21 @@ export default class App extends React.Component {
     playing_vids.push(video.id)
     console.log(loaded_locs)
     console.log(loaded_vids)
+  }
+
+  get_key_at_loc(all_locs, bounds) {
+    for (var i = 0; i < all_locs.length; i++) {
+      // each item is like: [x1,y1][x2,y2]
+      if (
+        all_locs[i][0][0] == bounds[0][0] &&
+        all_locs[i][0][1] == bounds[0][1] &&
+        all_locs[i][1][0] == bounds[1][0] &&
+        all_locs[i][1][1] == bounds[1][1]
+      ) {
+        return i // Found it
+      }
+    }
+    return -1 // Not found
   }
 
   load_all_vids() {
