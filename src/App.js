@@ -31,15 +31,17 @@ export default class App extends React.Component {
     super(props)
 
     this.state = {
-      center: {lat :0, lng: 0}
-    };
+      center: { lat: 0, lng: 0 }
+    }
     this.handle_key_press = this.handle_key_press.bind(this)
   }
 
   setup_map() {
     map = L.map("map", {
       crs: L.CRS.Simple,
-      minZoom: init_zoom - 1,
+      zoomSnap: 0,
+      zoomDelta: 0.25,
+      minZoom: init_zoom,
       maxZoom: init_zoom + 1,
       center: init_center, // init_center,
       zoom: init_zoom,
@@ -88,7 +90,7 @@ export default class App extends React.Component {
       console.log("You clicked the map at", e.latlng)
       console.log("bounds", map.getBounds())
       console.log("center", map.getCenter())
-      this.setState({center: map.getCenter()});
+      this.setState({ center: map.getCenter() })
       console.log(`${loaded_locs.length} videos are loaded`)
       console.log(`${playing_vids.length} videos are playing`)
       console.log(loaded_vids)
@@ -160,7 +162,7 @@ export default class App extends React.Component {
     ) {
       console.log("is_visible", loc.toString())
       console.log("center", center)
-      this.setState({center: map.getCenter()});
+      this.setState({ center: map.getCenter() })
       console.log(map.getBounds())
       return true
     }
@@ -254,9 +256,14 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <div>
-      <div style={style} id="map" />
-      <Sound center_lat={this.state.center.lat} center_lng={this.state.center.lng} />
-    </div>
+    return (
+      <div>
+        <div style={style} id="map" />
+        <Sound
+          center_lat={this.state.center.lat}
+          center_lng={this.state.center.lng}
+        />
+      </div>
+    )
   }
 }
