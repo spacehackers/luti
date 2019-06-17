@@ -39,8 +39,9 @@ export default class App extends React.Component {
     this.state = {
       center: { lat: 0, lng: 0 }
     }
-    this.handle_key_press = throttle(this.handle_key_press.bind(this), 100)
-    this.load_all_vids = throttle(this.load_all_vids, 100)
+    this.load_all_vids = throttle(this.load_all_vids.bind(this), 50)
+    this.handle_key_press = this.handle_key_press.bind(this)
+    // this.load_all_vids = this.load_all_vids.bind(this)
 
     this.soundChange = data => {
       if (!chart) {
@@ -148,8 +149,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    // console.log(all_locs.join("\n"))
-
     this.setup_map()
 
     const opening_index = this.get_key_at_loc(all_locs, opening_bounds)
@@ -228,10 +227,10 @@ export default class App extends React.Component {
     //     'size in pixels:' + map.getSize()
     // )});
     //
-    const x_min = center_x - img_width / 2
-    const x_max = center_x + img_width / 2
-    const y_min = center_y - img_height
-    const y_max = center_y + img_height
+    const x_min = Math.floor(center_x - img_width)
+    const x_max = Math.floor(center_x + img_width)
+    const y_min = Math.floor(center_y - img_height / 2)
+    const y_max = Math.floor(center_y + img_height / 2)
 
     // do the corner bounds of this loc overlap the visible window...
     // some bug in here.
@@ -243,10 +242,7 @@ export default class App extends React.Component {
         (y_min < y2 && y2 < y_max) ||
         (y1 > y_min && y2 < y_max))
     ) {
-      console.log("is_visible", loc.toString())
-      console.log("center", center)
       this.setState({ center: map.getCenter() })
-      console.log(map.getBounds())
       return true
     }
     return false
@@ -256,28 +252,19 @@ export default class App extends React.Component {
     let video = document.querySelector("#" + video_id)
     // let key = video_id.substring(5)
 
-    console.log("manage_loaded_vids", video_id, action, playing_vids)
+    console.log("manage_loaded_vids", video_id, action)
     if (action === "pause") {
       if (playing_vids.indexOf(video_id) >= 0) {
         // video is playing
-        console.log("video is playing ")
-        video.pause()
-        // video.style.display = "none"
-        // element.parentNode.removeChild(element)
+        console.log("pausing ", video_id)
         playing_vids.splice(playing_vids.indexOf(video_id), 1)
-        console.log("playing_vids updated")
-        console.log(playing_vids)
+        video.pause()
       }
     } else {
       if (playing_vids.indexOf(video_id) === -1) {
-        console.log("video is paused")
-
-        // video is paused
-        // video.style.display = "relative"
-        video.play()
+        console.log("playing ", video_id)
         playing_vids.push(video_id)
-        console.log("playing_vids updated")
-        console.log(playing_vids)
+        video.play()
       }
     }
   }
@@ -316,8 +303,6 @@ export default class App extends React.Component {
     loaded_locs.push(loc.toString())
     loaded_vids.push(video.id)
     playing_vids.push(video.id)
-    console.log(loaded_locs)
-    console.log(loaded_vids)
   }
 
   get_key_at_loc(all_locs, bounds) {
