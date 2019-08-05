@@ -341,11 +341,11 @@ export default class App extends React.Component {
     return (
       <div>
         <div style={style} id="map" />
-        <Sound
+        {/* <Sound
           center_lat={this.state.center.lat}
           center_lng={this.state.center.lng}
           onChange={this.soundChange}
-        />
+        /> */}
       </div>
     );
   }
