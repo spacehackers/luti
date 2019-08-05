@@ -1,11 +1,11 @@
-import React from "react"
-import { Chart } from "chart.js"
-import L from "leaflet"
-import Hls from "hls.js"
-import Sound from "./Sound.js"
-import { throttle } from "lodash"
+import React from "react";
+import { Chart } from "chart.js";
+import L from "leaflet";
+import Hls from "hls.js";
+import Sound from "./Sound.js";
+import { throttle } from "lodash";
 
-import "./App.scss"
+import "./App.scss";
 
 import {
   hls_config,
@@ -20,54 +20,54 @@ import {
   style,
   all_locs,
   opening_bounds
-} from "./vid_config"
+} from "./vid_config";
 
-const debug = true
+const debug = false;
 
-const map_bounds = [[0, 0], [rows * img_height, rows * img_width]]
-let loaded_locs = []
-let loaded_vids = []
-let playing_vids = []
-let all_hls = []
-let map
-let chart
+const map_bounds = [[0, 0], [rows * img_height, rows * img_width]];
+let loaded_locs = [];
+let loaded_vids = [];
+let playing_vids = [];
+let all_hls = [];
+let map;
+let chart;
 
 export default class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       center: { lat: 0, lng: 0 }
-    }
-    this.load_all_vids = throttle(this.load_all_vids.bind(this), 50)
-    this.handle_key_press = this.handle_key_press.bind(this)
+    };
+    this.load_all_vids = throttle(this.load_all_vids.bind(this), 50);
+    this.handle_key_press = this.handle_key_press.bind(this);
     // this.load_all_vids = this.load_all_vids.bind(this)
 
     this.soundChange = data => {
       if (!chart) {
-        return
+        return;
       }
-      chart.data.datasets[0].data = data
-      chart.update()
-    }
+      chart.data.datasets[0].data = data;
+      chart.update();
+    };
   }
 
   setup_sound_debug() {
     L.Control.SoundDebug = L.Control.extend({
       onAdd: function(map) {
-        let soundDebugDiv = L.DomUtil.create("canvas")
+        let soundDebugDiv = L.DomUtil.create("canvas");
 
-        soundDebugDiv.style.width = "200px"
-        soundDebugDiv.style.height = "100px"
-        soundDebugDiv.style.border = "1px solid black"
-        soundDebugDiv.style.backgroundColor = "white"
+        soundDebugDiv.style.width = "200px";
+        soundDebugDiv.style.height = "100px";
+        soundDebugDiv.style.border = "1px solid black";
+        soundDebugDiv.style.backgroundColor = "white";
 
-        var ctx = soundDebugDiv.getContext("2d")
+        var ctx = soundDebugDiv.getContext("2d");
         Chart.scaleService.updateScaleDefaults("linear", {
           ticks: {
             min: 0
           }
-        })
+        });
         chart = new Chart(ctx, {
           type: "bar",
           data: {
@@ -99,19 +99,19 @@ export default class App extends React.Component {
               ]
             }
           }
-        })
+        });
 
-        return soundDebugDiv
+        return soundDebugDiv;
       },
 
       onRemove: function(map) {
         // Nothing to do here
       }
-    })
+    });
 
     L.control.soundDebug = function(opts) {
-      return new L.Control.SoundDebug(opts)
-    }
+      return new L.Control.SoundDebug(opts);
+    };
   }
 
   setup_map() {
@@ -129,11 +129,11 @@ export default class App extends React.Component {
       // inertiaDeceleration: 100,
       maxBounds: map_bounds,
       maxBoundsViscosity: 1.0
-    })
+    });
 
     if (debug) {
-      this.setup_sound_debug()
-      L.control.soundDebug({ position: "topleft" }).addTo(map)
+      this.setup_sound_debug();
+      L.control.soundDebug({ position: "topleft" }).addTo(map);
     }
 
     // let opening_bounds = [
@@ -145,16 +145,16 @@ export default class App extends React.Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.handle_key_press, false)
+    document.removeEventListener("keydown", this.handle_key_press, false);
   }
 
   componentDidMount() {
-    this.setup_map()
+    this.setup_map();
 
-    const opening_index = this.get_key_at_loc(all_locs, opening_bounds)
-    this.load_vid(opening_bounds, map, opening_index)
+    const opening_index = this.get_key_at_loc(all_locs, opening_bounds);
+    this.load_vid(opening_bounds, map, opening_index);
 
-    document.addEventListener("keydown", this.handle_key_press, false)
+    document.addEventListener("keydown", this.handle_key_press, false);
 
     // // just for the wtf of it all
     // L.marker(L.latLng([0, 0]))
@@ -169,48 +169,48 @@ export default class App extends React.Component {
     //   .bindPopup(`${map_bounds[1]}`)
 
     map.on("click", e => {
-      console.log("You clicked the map at", e.latlng)
-      console.log("bounds", map.getBounds())
-      console.log("center", map.getCenter())
-      this.setState({ center: map.getCenter() })
-      console.log(`${loaded_locs.length} videos are loaded`)
-      console.log(`${playing_vids.length} videos are playing`)
-      console.log(loaded_vids)
-    })
+      console.log("You clicked the map at", e.latlng);
+      console.log("bounds", map.getBounds());
+      console.log("center", map.getCenter());
+      this.setState({ center: map.getCenter() });
+      console.log(`${loaded_locs.length} videos are loaded`);
+      console.log(`${playing_vids.length} videos are playing`);
+      console.log(loaded_vids);
+    });
 
     map.on("dragend", () => {
-      this.load_all_vids()
-    })
+      this.load_all_vids();
+    });
   }
 
   handle_key_press(e) {
     if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) {
-      this.load_all_vids()
+      this.load_all_vids();
     }
   }
 
   is_loaded(loc) {
     if (loaded_locs.indexOf(loc.toString()) === -1) {
-      return false
+      return false;
     }
-    return true
+    return true;
   }
 
   get_vid() {
     // random video
     const filename =
-      all_vid_names[Math.floor(Math.random() * all_vid_names.length)]
-    return `${base_url}${filename}`
+      all_vid_names[Math.floor(Math.random() * all_vid_names.length)];
+    return `${base_url}${filename}`;
   }
 
   is_visible(map, loc) {
-    let center = map.getCenter()
+    let center = map.getCenter();
 
     // console.log("checking", bounds, loc)
 
-    const [y1, x1, y2, x2] = [].concat.apply([], loc) // corner bounds of loc
+    const [y1, x1, y2, x2] = [].concat.apply([], loc); // corner bounds of loc
 
-    const [center_y, center_x] = [center.lat, center.lng]
+    const [center_y, center_x] = [center.lat, center.lng];
 
     // let bounds = map.getBounds()
     // const [x_min, y_min] = [bounds._southWest.lng, bounds._southWest.lat]
@@ -227,10 +227,10 @@ export default class App extends React.Component {
     //     'size in pixels:' + map.getSize()
     // )});
     //
-    const x_min = Math.floor(center_x - img_width)
-    const x_max = Math.floor(center_x + img_width)
-    const y_min = Math.floor(center_y - img_height / 2)
-    const y_max = Math.floor(center_y + img_height / 2)
+    const x_min = Math.floor(center_x - img_width);
+    const x_max = Math.floor(center_x + img_width);
+    const y_min = Math.floor(center_y - img_height / 2);
+    const y_max = Math.floor(center_y + img_height / 2);
 
     // do the corner bounds of this loc overlap the visible window...
     // some bug in here.
@@ -242,82 +242,81 @@ export default class App extends React.Component {
         (y_min < y2 && y2 < y_max) ||
         (y1 > y_min && y2 < y_max))
     ) {
-      this.setState({ center: map.getCenter() })
-      return true
+      this.setState({ center: map.getCenter() });
+      return true;
     }
-    return false
+    return false;
   }
 
   manage_loaded_vids(video_id, action) {
-    let video = document.querySelector("#" + video_id)
+    let video = document.querySelector("#" + video_id);
     // let key = video_id.substring(5)
 
-    console.log("manage_loaded_vids", video_id, action)
+    console.log("manage_loaded_vids", video_id, action);
     if (action === "pause") {
       if (playing_vids.indexOf(video_id) >= 0) {
         // video is playing
-        console.log("pausing ", video_id)
-        playing_vids.splice(playing_vids.indexOf(video_id), 1)
-        video.pause()
+        console.log("pausing ", video_id);
+        playing_vids.splice(playing_vids.indexOf(video_id), 1);
+        video.pause();
       }
     } else {
       if (playing_vids.indexOf(video_id) === -1) {
-        console.log("playing ", video_id)
-        playing_vids.push(video_id)
-        video.play()
+        console.log("playing ", video_id);
+        playing_vids.push(video_id);
+        video.play();
       }
     }
   }
 
   load_vid(loc, map, key) {
-    let url = this.get_vid()
-    let video_overlay = L.videoOverlay(url, loc, vid_config).addTo(map)
-    let video = video_overlay.getElement()
+    let url = this.get_vid();
+    let video_overlay = L.videoOverlay(url, loc, vid_config).addTo(map);
+    let video = video_overlay.getElement();
 
     // video = document.createElement("video")
     // let video = document.querySelector("#video0")
-    video.id = "video" + key
+    video.id = "video" + key;
 
     if (Hls.isSupported()) {
-      all_hls[key] = new Hls(hls_config)
-      all_hls[key].loadSource(url)
-      all_hls[key].attachMedia(video)
+      all_hls[key] = new Hls(hls_config);
+      all_hls[key].loadSource(url);
+      all_hls[key].attachMedia(video);
       all_hls[key].on(Hls.Events.MANIFEST_PARSED, function() {
-        video.muted = true
-        video.loop = true
-        video.autoplay = true
-      })
-    }
-    // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
-    // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
-    // This is using the built-in support of the plain video element, without using hls.js.
-    // Note: it would be more normal to wait on the 'canplay' event below however on Safari (where you are most likely to find built-in HLS support) the video.src URL must be on the user-driven
-    // white-list before a 'canplay' event will be emitted; the last video event that can be reliably listened-for when the URL is not on the white-list is 'loadedmetadata'.
-    else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = url
+        video.muted = true;
+        video.loop = true;
+        video.autoplay = true;
+      });
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+      // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
+      // This is using the built-in support of the plain video element, without using hls.js.
+      // Note: it would be more normal to wait on the 'canplay' event below however on Safari (where you are most likely to find built-in HLS support) the video.src URL must be on the user-driven
+      // white-list before a 'canplay' event will be emitted; the last video event that can be reliably listened-for when the URL is not on the white-list is 'loadedmetadata'.
+      video.src = url;
       video.addEventListener("loadedmetadata", function() {
-        video.play()
-      })
+        video.play();
+      });
     }
 
-    loaded_locs.push(loc.toString())
-    loaded_vids.push(video.id)
-    playing_vids.push(video.id)
+    loaded_locs.push(loc.toString());
+    loaded_vids.push(video.id);
+    playing_vids.push(video.id);
   }
 
   get_key_at_loc(all_locs, bounds) {
     for (var i = 0; i < all_locs.length; i++) {
       // each item is like: [x1,y1][x2,y2]
       if (
-        all_locs[i][0][0] == bounds[0][0] &&
-        all_locs[i][0][1] == bounds[0][1] &&
-        all_locs[i][1][0] == bounds[1][0] &&
-        all_locs[i][1][1] == bounds[1][1]
+        all_locs[i][0][0] === bounds[0][0] &&
+        all_locs[i][0][1] === bounds[0][1] &&
+        all_locs[i][1][0] === bounds[1][0] &&
+        all_locs[i][1][1] === bounds[1][1]
       ) {
-        return i // Found it
+        return i; // Found it
       }
     }
-    return -1 // Not found
+    return -1; // Not found
   }
 
   load_all_vids() {
@@ -325,17 +324,17 @@ export default class App extends React.Component {
       if (this.is_loaded(loc)) {
         if (this.is_visible(map, loc)) {
           // loc is loaded but not visible
-          this.manage_loaded_vids("video" + key, "play")
+          this.manage_loaded_vids("video" + key, "play");
         } else {
-          this.manage_loaded_vids("video" + key, "pause")
+          this.manage_loaded_vids("video" + key, "pause");
         }
-        return
+        return;
       } else {
-        if (!this.is_visible(map, loc)) return
+        if (!this.is_visible(map, loc)) return;
       }
 
-      this.load_vid(loc, map, key)
-    })
+      this.load_vid(loc, map, key);
+    });
   }
 
   render() {
@@ -348,6 +347,6 @@ export default class App extends React.Component {
           onChange={this.soundChange}
         />
       </div>
-    )
+    );
   }
 }
