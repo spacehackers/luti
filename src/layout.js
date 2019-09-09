@@ -1,182 +1,432 @@
 export default [
-  // const layout = [
-  ["112718_ErebusSeaIceHole_NikonE200_40x_Circle07", "0", "0"],
-  ["Blank", "1", "0"],
-  ["111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_04", "2", "0"],
-  ["Blank", "3", "0"],
-  ["112218_LowerCanadaGlacierStream_NikonE200_10x_Tardigrade", "4", "0"],
-  ["123018_CanadaGlacierCryoconite1_NikonE200_40x_Circle_edit", "5", "0"],
-  ["Blank", "6", "0"],
-  ["112718_ErebusSeaIceHole_NikonE200_40x_DiatomDead", "7", "0"],
-  ["Blank", "8", "0"],
-  ["Blank", "0", "1"],
-  ["112118_CanadaGlacierCryoconite2_NikonE200_40x_CiliateThing", "1", "1"],
-  ["113018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_07", "2", "1"],
-  ["Blank", "3", "1"],
-  [
-    "111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_Bacteria_02",
-    "4",
-    "1"
-  ],
-  ["Blank", "5", "1"],
-  ["120318_LakeHoareSoil_NikonE200_10x_Nematode_01", "6", "1"],
-  [
-    "111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_Bacteria_01",
-    "7",
-    "1"
-  ],
-  ["112718_ErebusSeaIceHole_NikonE200_40x_Circle_01", "8", "1"],
-  ["113018_JettySeafloor_NikonE200_40x_DiatomChain_01", "0", "2"],
-  ["113018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_05", "1", "2"],
-  ["Blank", "2", "2"],
-  ["112218_LowerCanadaGlacierStream_NikonE200_40x_Ciliate_02", "3", "2"],
-  ["Blank", "4", "2"],
-  ["112718_JettySeaIceCeiling_NikonE200_40x_RedBubbles_01", "5", "2"],
-  ["112018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotiferTun_01", "6", "2"],
-  ["Blank", "7", "2"],
-  ["111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_14", "8", "2"],
-  ["111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_17", "0", "3"],
-  ["Blank", "1", "3"],
-  ["010519_JettySeafloor_NikonE200_10x_TriangleDiatom_edit", "2", "3"],
-  ["123018_JettySeafloor_NikonE200_Diatom_02_edit", "3", "3"],
-  [
-    "123018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_01_edit",
-    "4",
-    "3"
-  ],
-  ["Blank", "5", "3"],
-  ["Blank", "6", "3"],
-  ["112718_ErebusSeaIceHole_NikonE200_40x_Circle_04", "7", "3"],
-  ["Blank", "8", "3"],
-  ["Blank", "0", "4"],
-  [
-    "112218_LowerCanadaGlacierStream_NikonE200_40x_TardigradeWakingUp",
-    "1",
-    "4"
-  ],
-  ["120118_JettySeaIceCeiling_NikonE200_10x_DiatomStructure_01", "2", "4"],
-  ["112118_CanadaGlacierCryoconite2_NikonE200_100x_Tail", "3", "4"],
-  ["Blank", "4", "4"],
-  ["112718_ErebusSeaIceHole_NikonE200_40x_Circle_02", "5", "4"],
-  [
-    "111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_Bacteria_04",
-    "6",
-    "4"
-  ],
-  ["Blank", "7", "4"],
-  ["120118_LowerCanadaGlacierStream_NikonE200_10x_Tardigrade_02", "8", "4"],
-  ["113018_JettySeafloor_NikonE200_40x_Circle", "0", "5"],
-  ["Blank", "1", "5"],
-  ["Blank", "2", "5"],
-  ["120318_LakeHoareSoil_NikonE200_10x_Nematode_02", "3", "5"],
-  ["112718_ErebusSeaIceHole_NikonE200_40x_DiatomChain_03", "4", "5"],
-  ["Blank", "5", "5"],
-  ["112118_CanadaGlacierCryoconite2_NikonE200_100x_Bacteria_01", "6", "5"],
-  ["113018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_02", "7", "5"],
-  ["Blank", "8", "5"],
-  ["Blank", "0", "6"],
-  ["110418_JettySeafloor_NikonE200_10x_DiatomsRectangles", "1", "6"],
-  ["112718_ErebusSeaIceHole_NikonE200_40x_Circle_05", "2", "6"],
-  ["111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12", "3", "6"],
-  ["Blank", "4", "6"],
-  ["042519_LakeBonneyMicrobialMat_NikonE200_10x_BF_PinkRotifer_edit", "5", "6"],
-  ["112918_JettySeafloor_NikonE200_40x_Circle_01", "6", "6"],
-  ["Blank", "7", "6"],
-  ["112118_CanadaGlacierCryoconite1_NikonE200_40x_TwoSpirals_02", "8", "6"],
-  ["051319_LakeBonneyMicrobialMat_20x_BF_PinkRotifer_01_edit", "0", "7"],
-  ["Blank", "1", "7"],
-  [
-    "123018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_04_edit",
-    "2",
-    "7"
-  ],
-  ["Blank", "3", "7"],
-  ["112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End", "4", "7"],
-  ["112718_ErebusSeaIceHole_NikonE200_40x_DiatomSkinny", "5", "7"],
-  ["Blank", "6", "7"],
-  [
-    "123018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_03_edit",
-    "7",
-    "7"
-  ],
-  ["Blank", "8", "7"],
-  ["Blank", "0", "8"],
-  ["051319_LakeBonneyMicrobialMat_4x_BF_2Nematodes_edit", "1", "8"],
-  ["Blank", "2", "8"],
-  ["112718_JettySeaIceCeiling_NikonE200_40x_TwoCircles", "3", "8"],
-  ["Blank", "4", "8"],
-  ["112718_JettySeaIceCeiling_NikonE200_40x_Chain", "5", "8"],
-  ["112118_CanadaGlacierCryoconite2_NikonE200_10x_Ciliate", "6", "8"],
-  ["Blank", "7", "8"],
-  ["110418_JettySeafloor_NikonE200_10x_Diatoms", "8", "8"],
-  ["111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_05", "0", "9"],
-  ["Blank", "1", "9"],
-  ["112118_CanadaGlacierCryoconite2_NikonE200_40x_Ciliate_02", "2", "9"],
-  ["112818_JettySeafloor_NikonE200_40x_Stars", "3", "9"],
-  ["111118_DaytonsWallSeafloor_OlympusCKX41_10x_TriangleOblong", "4", "9"],
-  [
-    "111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_GreenCircle",
-    "5",
-    "9"
-  ],
-  ["Blank", "6", "9"],
-  ["112718_ErebusSeaIceHole_NikonE200_40x_Circle_06", "7", "9"],
-  ["Blank", "8", "9"],
-  ["Blank", "0", "10"],
-  ["123018_CanadaGlacierCryoconite1_NikonE200_40x_Spiral_edit", "1", "10"],
-  ["Blank", "2", "10"],
-  ["Blank", "3", "10"],
-  ["Blank", "4", "10"],
-  [
-    "123018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_05_edit",
-    "5",
-    "10"
-  ],
-  ["112718_ErebusSeaIceHole_NikonE200_40x_DiatomChain_01", "6", "10"],
-  ["Blank", "7", "10"],
-  ["112218_LowerCanadaGlacierStream_NikonE200_40x_Tardigrade_02", "8", "10"],
-  ["110718_JettySeafloor_OlympusCKX41_40x_DiatomRectangle", "0", "11"],
-  ["Blank", "1", "11"],
-  ["111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_09", "2", "11"],
-  ["112918_JettySeafloor_NikonSMZ1000_4x_Ostracod_02", "3", "11"],
-  ["112918_JettySeafloor_NikonE200_10x_HornedBlob", "4", "11"],
-  ["Blank", "5", "11"],
-  ["Blank", "6", "11"],
-  ["112718_ErebusSeaIceHole_NikonE200_40x_Circle_03", "7", "11"],
-  ["Blank", "8", "11"],
-  ["Blank", "0", "12"],
-  ["112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer", "1", "12"],
-  ["042919_LakeBonneyMicrobialMat_NikonE200_40x_BF_Nostoc", "2", "12"],
-  ["Blank", "3", "12"],
-  ["112718_ErebusSeaIceHole_NikonE200_40x_Circle_02", "4", "12"],
-  ["112718_JettySeaIceCeiling_NikonE200_10x_DiatomTrafficJam_01", "5", "12"],
-  ["113018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_06", "6", "12"],
-  ["Blank", "7", "12"],
-  ["112218_LowerCanadaGlacierStream_NikonE200_40x_Ciliate_01", "8", "12"],
-  [
-    "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_Beginning",
-    "0",
-    "13"
-  ],
-  ["Blank", "1", "13"],
-  ["Blank", "2", "13"],
-  ["112118_CanadaGlacierCryoconite1_NikonE200_40x_Spiral_02", "3", "13"],
-  ["Blank", "4", "13"],
-  ["Blank", "5", "13"],
-  ["Blank", "6", "13"],
-  ["111718_LakeBonneySnowOutflowDirt_NikonE200_100x_Bacteria_02", "7", "13"],
-  ["Blank", "8", "13"],
-  ["Blank", "0", "14"],
-  ["Blank", "1", "14"],
-  ["113018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_01", "2", "14"],
-  ["Blank", "3", "14"],
-  ["112718_JettySeaIceCeiling_NikonE200_40x_RedBubbles_02", "4", "14"],
-  ["112018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_02", "5", "14"],
-  ["112918_JettySeafloor_NikonE200_40x_Diatom_01", "6", "14"],
-  ["Blank", "7", "14"],
-  [
-    "123018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_02_edit",
-    "8",
-    "14"
-  ]
+  {
+    filename: '112718_ErebusSeaIceHole_NikonE200_40x_Circle07',
+    x: '0',
+    y: '0'
+  },
+  { filename: 'Blank', x: '1', y: '0' },
+  {
+    filename: '111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_04',
+    x: '2',
+    y: '0'
+  },
+  { filename: 'Blank', x: '3', y: '0' },
+  {
+    filename: '112218_LowerCanadaGlacierStream_NikonE200_10x_Tardigrade',
+    x: '4',
+    y: '0'
+  },
+  {
+    filename: '123018_CanadaGlacierCryoconite1_NikonE200_40x_Circle_edit',
+    x: '5',
+    y: '0'
+  },
+  { filename: 'Blank', x: '6', y: '0' },
+  {
+    filename: '112718_ErebusSeaIceHole_NikonE200_40x_DiatomDead',
+    x: '7',
+    y: '0'
+  },
+  { filename: 'Blank', x: '8', y: '0' },
+  { filename: 'Blank', x: '0', y: '1' },
+  {
+    filename: '112118_CanadaGlacierCryoconite2_NikonE200_40x_CiliateThing',
+    x: '1',
+    y: '1'
+  },
+  {
+    filename: '113018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_07',
+    x: '2',
+    y: '1'
+  },
+  { filename: 'Blank', x: '3', y: '1' },
+  {
+    filename:
+      '111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_Bacteria_02',
+    x: '4',
+    y: '1'
+  },
+  { filename: 'Blank', x: '5', y: '1' },
+  {
+    filename: '120318_LakeHoareSoil_NikonE200_10x_Nematode_01',
+    x: '6',
+    y: '1'
+  },
+  {
+    filename:
+      '111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_Bacteria_01',
+    x: '7',
+    y: '1'
+  },
+  {
+    filename: '112718_ErebusSeaIceHole_NikonE200_40x_Circle_01',
+    x: '8',
+    y: '1'
+  },
+  {
+    filename: '113018_JettySeafloor_NikonE200_40x_DiatomChain_01',
+    x: '0',
+    y: '2'
+  },
+  {
+    filename: '113018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_05',
+    x: '1',
+    y: '2'
+  },
+  { filename: 'Blank', x: '2', y: '2' },
+  {
+    filename: '112218_LowerCanadaGlacierStream_NikonE200_40x_Ciliate_02',
+    x: '3',
+    y: '2'
+  },
+  { filename: 'Blank', x: '4', y: '2' },
+  {
+    filename: '112718_JettySeaIceCeiling_NikonE200_40x_RedBubbles_01',
+    x: '5',
+    y: '2'
+  },
+  {
+    filename: '112018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotiferTun_01',
+    x: '6',
+    y: '2'
+  },
+  { filename: 'Blank', x: '7', y: '2' },
+  {
+    filename: '111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_14',
+    x: '8',
+    y: '2'
+  },
+  {
+    filename: '111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_17',
+    x: '0',
+    y: '3'
+  },
+  { filename: 'Blank', x: '1', y: '3' },
+  {
+    filename: '010519_JettySeafloor_NikonE200_10x_TriangleDiatom_edit',
+    x: '2',
+    y: '3'
+  },
+  { filename: '123018_JettySeafloor_NikonE200_Diatom_02_edit', x: '3', y: '3' },
+  {
+    filename:
+      '123018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_01_edit',
+    x: '4',
+    y: '3'
+  },
+  { filename: 'Blank', x: '5', y: '3' },
+  { filename: 'Blank', x: '6', y: '3' },
+  {
+    filename: '112718_ErebusSeaIceHole_NikonE200_40x_Circle_04',
+    x: '7',
+    y: '3'
+  },
+  { filename: 'Blank', x: '8', y: '3' },
+  { filename: 'Blank', x: '0', y: '4' },
+  {
+    filename:
+      '112218_LowerCanadaGlacierStream_NikonE200_40x_TardigradeWakingUp',
+    x: '1',
+    y: '4'
+  },
+  {
+    filename: '120118_JettySeaIceCeiling_NikonE200_10x_DiatomStructure_01',
+    x: '2',
+    y: '4'
+  },
+  {
+    filename: '112118_CanadaGlacierCryoconite2_NikonE200_100x_Tail',
+    x: '3',
+    y: '4'
+  },
+  { filename: 'Blank', x: '4', y: '4' },
+  {
+    filename: '112718_ErebusSeaIceHole_NikonE200_40x_Circle_02',
+    x: '5',
+    y: '4'
+  },
+  {
+    filename:
+      '111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_Bacteria_04',
+    x: '6',
+    y: '4'
+  },
+  { filename: 'Blank', x: '7', y: '4' },
+  {
+    filename: '120118_LowerCanadaGlacierStream_NikonE200_10x_Tardigrade_02',
+    x: '8',
+    y: '4'
+  },
+  { filename: '113018_JettySeafloor_NikonE200_40x_Circle', x: '0', y: '5' },
+  { filename: 'Blank', x: '1', y: '5' },
+  { filename: 'Blank', x: '2', y: '5' },
+  {
+    filename: '120318_LakeHoareSoil_NikonE200_10x_Nematode_02',
+    x: '3',
+    y: '5'
+  },
+  {
+    filename: '112718_ErebusSeaIceHole_NikonE200_40x_DiatomChain_03',
+    x: '4',
+    y: '5'
+  },
+  { filename: 'Blank', x: '5', y: '5' },
+  {
+    filename: '112118_CanadaGlacierCryoconite2_NikonE200_100x_Bacteria_01',
+    x: '6',
+    y: '5'
+  },
+  {
+    filename: '113018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_02',
+    x: '7',
+    y: '5'
+  },
+  { filename: 'Blank', x: '8', y: '5' },
+  { filename: 'Blank', x: '0', y: '6' },
+  {
+    filename: '110418_JettySeafloor_NikonE200_10x_DiatomsRectangles',
+    x: '1',
+    y: '6'
+  },
+  {
+    filename: '112718_ErebusSeaIceHole_NikonE200_40x_Circle_05',
+    x: '2',
+    y: '6'
+  },
+  {
+    filename: '111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12',
+    x: '3',
+    y: '6'
+  },
+  { filename: 'Blank', x: '4', y: '6' },
+  {
+    filename: '042519_LakeBonneyMicrobialMat_NikonE200_10x_BF_PinkRotifer_edit',
+    x: '5',
+    y: '6'
+  },
+  { filename: '112918_JettySeafloor_NikonE200_40x_Circle_01', x: '6', y: '6' },
+  { filename: 'Blank', x: '7', y: '6' },
+  {
+    filename: '112118_CanadaGlacierCryoconite1_NikonE200_40x_TwoSpirals_02',
+    x: '8',
+    y: '6'
+  },
+  {
+    filename: '051319_LakeBonneyMicrobialMat_20x_BF_PinkRotifer_01_edit',
+    x: '0',
+    y: '7'
+  },
+  { filename: 'Blank', x: '1', y: '7' },
+  {
+    filename:
+      '123018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_04_edit',
+    x: '2',
+    y: '7'
+  },
+  { filename: 'Blank', x: '3', y: '7' },
+  {
+    filename: '112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End',
+    x: '4',
+    y: '7'
+  },
+  {
+    filename: '112718_ErebusSeaIceHole_NikonE200_40x_DiatomSkinny',
+    x: '5',
+    y: '7'
+  },
+  { filename: 'Blank', x: '6', y: '7' },
+  {
+    filename:
+      '123018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_03_edit',
+    x: '7',
+    y: '7'
+  },
+  { filename: 'Blank', x: '8', y: '7' },
+  { filename: 'Blank', x: '0', y: '8' },
+  {
+    filename: '051319_LakeBonneyMicrobialMat_4x_BF_2Nematodes_edit',
+    x: '1',
+    y: '8'
+  },
+  { filename: 'Blank', x: '2', y: '8' },
+  {
+    filename: '112718_JettySeaIceCeiling_NikonE200_40x_TwoCircles',
+    x: '3',
+    y: '8'
+  },
+  { filename: 'Blank', x: '4', y: '8' },
+  { filename: '112718_JettySeaIceCeiling_NikonE200_40x_Chain', x: '5', y: '8' },
+  {
+    filename: '112118_CanadaGlacierCryoconite2_NikonE200_10x_Ciliate',
+    x: '6',
+    y: '8'
+  },
+  { filename: 'Blank', x: '7', y: '8' },
+  { filename: '110418_JettySeafloor_NikonE200_10x_Diatoms', x: '8', y: '8' },
+  {
+    filename: '111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_05',
+    x: '0',
+    y: '9'
+  },
+  { filename: 'Blank', x: '1', y: '9' },
+  {
+    filename: '112118_CanadaGlacierCryoconite2_NikonE200_40x_Ciliate_02',
+    x: '2',
+    y: '9'
+  },
+  { filename: '112818_JettySeafloor_NikonE200_40x_Stars', x: '3', y: '9' },
+  {
+    filename: '111118_DaytonsWallSeafloor_OlympusCKX41_10x_TriangleOblong',
+    x: '4',
+    y: '9'
+  },
+  {
+    filename:
+      '111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_GreenCircle',
+    x: '5',
+    y: '9'
+  },
+  { filename: 'Blank', x: '6', y: '9' },
+  {
+    filename: '112718_ErebusSeaIceHole_NikonE200_40x_Circle_06',
+    x: '7',
+    y: '9'
+  },
+  { filename: 'Blank', x: '8', y: '9' },
+  { filename: 'Blank', x: '0', y: '10' },
+  {
+    filename: '123018_CanadaGlacierCryoconite1_NikonE200_40x_Spiral_edit',
+    x: '1',
+    y: '10'
+  },
+  { filename: 'Blank', x: '2', y: '10' },
+  { filename: 'Blank', x: '3', y: '10' },
+  { filename: 'Blank', x: '4', y: '10' },
+  {
+    filename:
+      '123018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_05_edit',
+    x: '5',
+    y: '10'
+  },
+  {
+    filename: '112718_ErebusSeaIceHole_NikonE200_40x_DiatomChain_01',
+    x: '6',
+    y: '10'
+  },
+  { filename: 'Blank', x: '7', y: '10' },
+  {
+    filename: '112218_LowerCanadaGlacierStream_NikonE200_40x_Tardigrade_02',
+    x: '8',
+    y: '10'
+  },
+  {
+    filename: '110718_JettySeafloor_OlympusCKX41_40x_DiatomRectangle',
+    x: '0',
+    y: '11'
+  },
+  { filename: 'Blank', x: '1', y: '11' },
+  {
+    filename: '111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_09',
+    x: '2',
+    y: '11'
+  },
+  {
+    filename: '112918_JettySeafloor_NikonSMZ1000_4x_Ostracod_02',
+    x: '3',
+    y: '11'
+  },
+  {
+    filename: '112918_JettySeafloor_NikonE200_10x_HornedBlob',
+    x: '4',
+    y: '11'
+  },
+  { filename: 'Blank', x: '5', y: '11' },
+  { filename: 'Blank', x: '6', y: '11' },
+  {
+    filename: '112718_ErebusSeaIceHole_NikonE200_40x_Circle_03',
+    x: '7',
+    y: '11'
+  },
+  { filename: 'Blank', x: '8', y: '11' },
+  { filename: 'Blank', x: '0', y: '12' },
+  {
+    filename: '112118_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer',
+    x: '1',
+    y: '12'
+  },
+  {
+    filename: '042919_LakeBonneyMicrobialMat_NikonE200_40x_BF_Nostoc',
+    x: '2',
+    y: '12'
+  },
+  { filename: 'Blank', x: '3', y: '12' },
+  {
+    filename: '112718_ErebusSeaIceHole_NikonE200_40x_Circle_02',
+    x: '4',
+    y: '12'
+  },
+  {
+    filename: '112718_JettySeaIceCeiling_NikonE200_10x_DiatomTrafficJam_01',
+    x: '5',
+    y: '12'
+  },
+  {
+    filename: '113018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_06',
+    x: '6',
+    y: '12'
+  },
+  { filename: 'Blank', x: '7', y: '12' },
+  {
+    filename: '112218_LowerCanadaGlacierStream_NikonE200_40x_Ciliate_01',
+    x: '8',
+    y: '12'
+  },
+  {
+    filename:
+      '112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_Beginning',
+    x: '0',
+    y: '13'
+  },
+  { filename: 'Blank', x: '1', y: '13' },
+  { filename: 'Blank', x: '2', y: '13' },
+  {
+    filename: '112118_CanadaGlacierCryoconite1_NikonE200_40x_Spiral_02',
+    x: '3',
+    y: '13'
+  },
+  { filename: 'Blank', x: '4', y: '13' },
+  { filename: 'Blank', x: '5', y: '13' },
+  { filename: 'Blank', x: '6', y: '13' },
+  {
+    filename: '111718_LakeBonneySnowOutflowDirt_NikonE200_100x_Bacteria_02',
+    x: '7',
+    y: '13'
+  },
+  { filename: 'Blank', x: '8', y: '13' },
+  { filename: 'Blank', x: '0', y: '14' },
+  { filename: 'Blank', x: '1', y: '14' },
+  {
+    filename: '113018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_01',
+    x: '2',
+    y: '14'
+  },
+  { filename: 'Blank', x: '3', y: '14' },
+  {
+    filename: '112718_JettySeaIceCeiling_NikonE200_40x_RedBubbles_02',
+    x: '4',
+    y: '14'
+  },
+  {
+    filename: '112018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_02',
+    x: '5',
+    y: '14'
+  },
+  { filename: '112918_JettySeafloor_NikonE200_40x_Diatom_01', x: '6', y: '14' },
+  { filename: 'Blank', x: '7', y: '14' },
+  {
+    filename:
+      '123018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_02_edit',
+    x: '8',
+    y: '14'
+  }
 ];
