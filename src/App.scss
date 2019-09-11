@@ -14,9 +14,9 @@ body,
   background-color: $luti_background;
 }
 
-#map {
-  height: $rows * $img_width;
-  width: $rows * $img_width;
+#map, .leaflet-container {
+  height: $img_height;
+  width: $img_width;
 }
 
 .leaflet-control-container {
