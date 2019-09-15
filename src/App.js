@@ -1,11 +1,12 @@
-import React from 'react';
-import { Map } from 'react-leaflet';
-import L from 'leaflet';
-import Videos from './Videos';
+import React from "react";
+import { Map } from "react-leaflet";
+import L from "leaflet";
+import Videos from "./Videos";
+import Menu from "./Menu";
 
-import './App.scss';
+import "./App.scss";
 
-import video_layout from './layout';
+import video_layout from "./layout";
 
 import {
   x_count,
@@ -13,7 +14,7 @@ import {
   img_width,
   img_height,
   init_zoom
-} from './vid_config';
+} from "./vid_config";
 
 const map_bounds = [[0, 0], [x_count * img_width, y_count * img_height]];
 const init_center = [
@@ -40,22 +41,25 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Map
-        key="map"
-        crs={L.CRS.Simple}
-        zoomSnap={0}
-        zoomDelta={0.25}
-        minZoom={init_zoom}
-        maxZoom={init_zoom + 1}
-        center={init_center}
-        zoom={init_zoom}
-        keyboardPanDelta={300}
-        onMove={this.onMove}
-        maxBounds={map_bounds}
-        ref={this.onMapLoad}
-      >
-        <Videos videoLayout={video_layout} bounds={this.state.bounds} />
-      </Map>
+      <React.Fragment>
+        <Map
+          key="map"
+          crs={L.CRS.Simple}
+          zoomSnap={0}
+          zoomDelta={0.25}
+          minZoom={init_zoom}
+          maxZoom={init_zoom + 1}
+          center={init_center}
+          zoom={init_zoom}
+          keyboardPanDelta={300}
+          onMove={this.onMove}
+          maxBounds={map_bounds}
+          ref={this.onMapLoad}
+        >
+          <Menu />
+          <Videos videoLayout={video_layout} bounds={this.state.bounds} />
+        </Map>
+      </React.Fragment>
     );
   }
 }

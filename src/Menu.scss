@@ -1,0 +1,51 @@
+$color_selected: #666666;
+$color: #999999;
+
+@mixin center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu_container {
+  display: flex;
+  // justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fff;
+  color: #000;
+  height: 30px;
+  width: 100vw;
+  z-index: 500;
+  color: $color_selected;
+  text-transform: uppercase;
+
+  > div {
+    flex: 1;
+    white-space: nowrap;
+  }
+}
+
+.home {
+  @include center;
+}
+
+.selected {
+  font-weight: bold;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  div {
+    padding: 0 24px;
+    flex-wrap: nowrap;
+
+    @media all and (max-width: 900px) {
+      padding: 0 8px;
+    }
+  }
+}
