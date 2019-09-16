@@ -3,15 +3,19 @@ $color: #999999;
 
 nav {
   padding: 5px 20px;
-  background: #fff;
 }
 
 .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   margin: 0;
   padding: 0;
   list-style-type: none;
   z-index: 500;
   text-align: center;
+  background: #fff;
 }
 
 a {
