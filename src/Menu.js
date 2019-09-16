@@ -14,7 +14,8 @@ export default class Menu extends React.Component {
     super();
 
     this.state = {
-      selected: "home"
+      selected: "home",
+      menuOpen: false
     };
 
     this.handleMenuClick = this.handleMenuClick.bind(this);
@@ -23,8 +24,10 @@ export default class Menu extends React.Component {
   handleMenuClick(e, slug) {
     e.preventDefault();
 
-    console.log(slug);
-    this.setState({ selected: slug });
+    const menuOpen =
+      slug === "home" ? !this.state.menuOpen : this.state.menuOpen;
+
+    this.setState({ selected: slug, menuOpen: menuOpen });
   }
 
   render() {
@@ -38,6 +41,8 @@ export default class Menu extends React.Component {
               copy={menuItem.copy}
               selected={this.state.selected === menuItem.slug}
               onMenuClick={this.handleMenuClick}
+              menuOpen={this.state.menuOpen}
+              menuData={menuData}
             />
           ))}
         </ul>
