@@ -14,27 +14,15 @@ body,
   background-color: $luti_background;
 }
 
-#map, .leaflet-container {
+#map,
+.leaflet-container {
   height: $img_height;
   width: $img_width;
 }
 
 .leaflet-control-container {
-  /* display: none; */
+  display: none;
 }
 .leaflet-control-attribution {
   display: none;
-}
-
-#critters {
-  display: none;
-}
-
-/* ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-} */
-
-video {
 }
