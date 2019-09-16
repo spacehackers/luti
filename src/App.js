@@ -41,23 +41,25 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Map
-        key="map"
-        crs={L.CRS.Simple}
-        zoomSnap={0}
-        zoomDelta={0.25}
-        minZoom={init_zoom}
-        maxZoom={init_zoom + 1}
-        center={init_center}
-        zoom={init_zoom}
-        keyboardPanDelta={300}
-        onMove={this.onMove}
-        maxBounds={map_bounds}
-        ref={this.onMapLoad}
-      >
+      <React.Fragment>
         <Menu />
-        <Videos videoLayout={video_layout} bounds={this.state.bounds} />
-      </Map>
+        <Map
+          key="map"
+          crs={L.CRS.Simple}
+          zoomSnap={0}
+          zoomDelta={0.25}
+          minZoom={init_zoom}
+          maxZoom={init_zoom + 1}
+          center={init_center}
+          zoom={init_zoom}
+          keyboardPanDelta={300}
+          onMove={this.onMove}
+          maxBounds={map_bounds}
+          ref={this.onMapLoad}
+        >
+          <Videos videoLayout={video_layout} bounds={this.state.bounds} />
+        </Map>
+      </React.Fragment>
     );
   }
 }
