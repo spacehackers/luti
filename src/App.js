@@ -16,6 +16,15 @@ import {
   init_zoom
 } from "./vid_config";
 
+import WebFont from "webfontloader";
+
+WebFont.load({
+  typekit: {
+    id: "ikz3unr"
+  },
+  timeout: 2000
+});
+
 const map_bounds = [[0, 0], [x_count * img_width, y_count * img_height]];
 const init_center = [
   Math.ceil(map_bounds[1][0] / 2 + img_width / 2),
