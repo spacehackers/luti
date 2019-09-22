@@ -2,25 +2,40 @@ $color_selected: #666666;
 $color: #999999;
 
 nav {
-  padding: 5px 5px;
   background: #fff;
+  font-family: "antarctican-headline", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: uppercase;
+
+  .wf-loading & {
+    display: none;
+  }
 }
 
 .menu {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  z-index: 500;
   text-align: center;
-  font-family: antarctican-headline, sans-serif;
-  font-style: normal;
-  text-transform: uppercase;
+  z-index: 500; // for the map
+}
+
+.menu li {
+  width: 100%;
+  font-size: 16px;
+  padding: 6px;
+  white-space: nowrap;
+
+  &.hidden {
+    display: none;
+  }
 }
 
 a {
   color: $color;
+  font-size: 22px;
   text-decoration: none;
-  font-weight: normal;
 
   .selected & {
     color: $color_selected;
@@ -31,15 +46,4 @@ a {
 a.hover {
   color: $color_selected;
   text-decoration: underline;
-}
-
-.menu li {
-  width: 100%;
-  font-size: 16px;
-  padding: 5px 5px;
-  white-space: nowrap;
-
-  &.hidden {
-    display: none;
-  }
 }
