@@ -1,12 +1,15 @@
 import React from "react";
+import classNames from "classnames";
+import { CSSTransition } from "react-transition-group";
 
-import MenuItem from "./MenuItem";
 import "./Menu.scss";
 
+const TRANSITION_SPEED = 200;
+
 const menuData = [
-  { slug: "home", copy: "Life Under the Ice" },
-  { slug: "about", copy: "About the Project" },
-  { slug: "thanks", copy: "Acknowledgements" }
+  { slug: "home", content: "Life Under the Ice" },
+  { slug: "about", content: "About the Project" },
+  { slug: "thanks", content: "Acknowledgements" }
 ];
 
 export default class Menu extends React.Component {
@@ -15,37 +18,57 @@ export default class Menu extends React.Component {
 
     this.state = {
       selected: "home",
-      menuOpen: false
+      open: false
     };
-
-    this.handleMenuClick = this.handleMenuClick.bind(this);
   }
 
   handleMenuClick(e, slug) {
     e.preventDefault();
+    const open = slug === "home" ? !this.state.open : this.state.open;
 
-    const menuOpen =
-      slug === "home" ? !this.state.menuOpen : this.state.menuOpen;
+    this.setState({ selected: slug, open: open }, console.log(this.state));
+  }
 
-    this.setState({ selected: slug, menuOpen: menuOpen });
+  hidden(slug) {
+    if (this.state.open || slug === "home") return;
+
+    return true;
+  }
+
+  renderItem(menuItem, key) {
+    const { slug, content } = menuItem;
+    const selected = this.state.selected === slug;
+
+    console.log(slug, selected);
+
+    return (
+      <li
+        key={key}
+        className={classNames({
+          selected: selected,
+          hidden: this.hidden(slug)
+        })}
+      >
+        <a
+          href="#"
+          onClick={e => {
+            this.handleMenuClick(e, slug);
+          }}
+        >
+          {content}
+        </a>
+      </li>
+    );
   }
 
   render() {
     return (
       <nav>
-        <ul className="menu">
-          {menuData.map((menuItem, key) => (
-            <MenuItem
-              key={key}
-              slug={menuItem.slug}
-              copy={menuItem.copy}
-              selected={this.state.selected === menuItem.slug}
-              onMenuClick={this.handleMenuClick}
-              menuOpen={this.state.menuOpen}
-              menuData={menuData}
-            />
-          ))}
-        </ul>
+        <CSSTransition in={this.state.open} timeout={TRANSITION_SPEED}>
+          <ul className="menu">
+            {menuData.map((menuItem, key) => this.renderItem(menuItem, key))}
+          </ul>
+        </CSSTransition>
       </nav>
     );
   }
