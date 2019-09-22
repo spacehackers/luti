@@ -22,7 +22,7 @@ WebFont.load({
   typekit: {
     id: "ikz3unr"
   },
-  timeout: 2000
+  timeout: 3000
 });
 
 const map_bounds = [[0, 0], [x_count * img_width, y_count * img_height]];

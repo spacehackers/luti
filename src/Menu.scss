@@ -1,12 +1,23 @@
 $color_selected: #666666;
 $color: #999999;
+$speed: 100ms;
 
-nav {
-  background: #fff;
+.nav {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  margin: 0;
+}
+
+.menu {
   font-family: "antarctican-headline", sans-serif;
   font-weight: 500;
   font-style: normal;
   text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
+  z-index: 500; // for the map
 
   .wf-loading & {
     opacity: 0;
@@ -14,26 +25,44 @@ nav {
 
   .wf-active & {
     opacity: 1;
-    transition: opacity 0.5s linear;
+  }
+
+  &.enter li + li {
+    opacity: 0;
+  }
+
+  &.enter.enter-active li + li {
+    opacity: 1;
+    transition: all $speed linear;
+  }
+
+  &.enter-done li + li {
+    opacity: 1;
+  }
+
+  &.exit li + li {
+    opacity: 1;
+  }
+
+  &.exit-active li + li {
+    opacity: 0;
+    transition: all $speed linear;
+  }
+
+  &.exit-done li + li {
+    opacity: 0;
   }
 }
 
-.menu {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  text-align: center;
-  z-index: 500; // for the map
-}
-
 .menu li {
+  background: #fff;
+
   width: 100%;
   font-size: 16px;
-  padding: 6px;
   white-space: nowrap;
 
   &.hidden {
-    display: none;
+    opacity: 0;
   }
 }
 
