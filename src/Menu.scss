@@ -9,7 +9,12 @@ nav {
   text-transform: uppercase;
 
   .wf-loading & {
-    display: none;
+    opacity: 0;
+  }
+
+  .wf-active & {
+    opacity: 1;
+    transition: opacity 0.5s linear;
   }
 }
 
