@@ -1,12 +1,15 @@
-import React from "react";
-import { Map } from "react-leaflet";
-import L from "leaflet";
-import Videos from "./Videos";
-import Menu from "./Menu";
+import React from 'react';
+import { Map } from 'react-leaflet';
+import L from 'leaflet';
+import WebFont from 'webfontloader';
 
-import "./App.scss";
+import Videos from './Videos';
+import Menu from './Menu';
 
-import video_layout from "./layout";
+import './App.scss';
+
+import video_layout from './layout';
+// import video_layout from './debug_layout';
 
 import {
   x_count,
@@ -14,18 +17,19 @@ import {
   img_width,
   img_height,
   init_zoom
-} from "./vid_config";
-
-import WebFont from "webfontloader";
+} from './vid_config';
 
 WebFont.load({
   typekit: {
-    id: "ikz3unr"
+    id: 'ikz3unr'
   },
   timeout: 2000
 });
 
-const map_bounds = [[0, 0], [x_count * img_width, y_count * img_height]];
+const map_bounds = [
+  [0, 0],
+  [x_count(video_layout) * img_width, y_count(video_layout) * img_height]
+];
 const init_center = [
   Math.ceil(map_bounds[1][0] / 2 + img_width / 2),
   Math.ceil(map_bounds[1][1] / 2 + img_height / 2)
