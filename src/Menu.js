@@ -26,7 +26,7 @@ export default class Menu extends React.Component {
     e.preventDefault();
     const open = slug === "home" ? !this.state.open : this.state.open;
 
-    this.setState({ selected: slug, open: open }, console.log(this.state));
+    this.setState({ selected: slug, open: open });
   }
 
   hidden(slug) {
@@ -38,8 +38,6 @@ export default class Menu extends React.Component {
   renderItem(menuItem, key) {
     const { slug, content } = menuItem;
     const selected = this.state.selected === slug;
-
-    console.log(slug, selected);
 
     return (
       <li
