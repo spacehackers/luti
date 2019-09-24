@@ -30,7 +30,9 @@ export const hls_config = {
 export const vid_config = {
   muted: true,
   autoplay: true,
-  loop: true
+  playsinline: true,
+  loop: true,
+  controls: true
 };
 
 export const style = { height: `${img_height}px`, width: `${img_width}px` };
