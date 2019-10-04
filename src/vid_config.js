@@ -17,7 +17,7 @@ export const init_center = video_layout =>
 
 export const base_url = 'https://lifeundertheice.s3.amazonaws.com/';
 
-export const init_zoom = -1;
+export const init_zoom = -0.6;
 
 export const hls_config = {
   debug: false,
