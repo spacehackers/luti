@@ -28,7 +28,10 @@ WebFont.load({
 
 const map_bounds = [
   [0, 0],
-  [x_count(video_layout) * img_width, y_count(video_layout) * img_height]
+  [
+    (x_count(video_layout) - 0.55) * img_width,
+    (y_count(video_layout) + 1.55) * img_height
+  ]
 ];
 const init_center = (() => {
   const init_video = video_layout.filter(x => x.init_position)[0] || {

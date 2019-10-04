@@ -58,8 +58,11 @@ export default class Videos extends React.Component {
           m3u8={`${base_url}${vid.filename}.m3u8`}
           id={id}
           key={id}
+          xy={[vid.x, vid.y]}
           bounds={xy_to_bounds(vid.x, vid.y)}
           debug={false}
+          showVideoName={false}
+          debugColor="#f00"
           indexFunc={this.index}
           visible={visible}
           {...vid_config}

@@ -106,7 +106,11 @@ export default class Video extends React.Component {
   }
 
   render() {
-    const text = L.divIcon({ html: this.props.id });
+    const text = L.divIcon({
+      html: `${this.props.id} bounds: ${JSON.stringify(
+        this.props.bounds
+      )} x,y: ${JSON.stringify(this.props.xy)}`
+    });
     const textLoc = [
       this.props.bounds[0][0] + 1000,
       this.props.bounds[0][1] + 100
@@ -122,7 +126,7 @@ export default class Video extends React.Component {
           key={this.key}
           bounds={this.props.bounds}
           ref={this.addElementToIndex}
-          color={this.props.color}
+          color={this.props.debugColor}
         >
           {debugMarker}
         </Rectangle>
