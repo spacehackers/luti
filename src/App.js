@@ -30,10 +30,16 @@ const map_bounds = [
   [0, 0],
   [x_count(video_layout) * img_width, y_count(video_layout) * img_height]
 ];
-const init_center = [
-  Math.ceil(map_bounds[1][0] / 2 + img_width / 2),
-  Math.ceil(map_bounds[1][1] / 2 + img_height / 2)
-];
+const init_center = (() => {
+  const init_video = video_layout.filter(x => x.init_position)[0] || {
+    x: '0',
+    y: '0'
+  };
+  return [
+    init_video.x * img_width + img_width / 2 - 600,
+    init_video.y * img_height + img_height + 200
+  ];
+})();
 
 export default class App extends React.Component {
   constructor(props) {
@@ -62,7 +68,7 @@ export default class App extends React.Component {
           zoomSnap={0}
           zoomDelta={0.25}
           minZoom={init_zoom}
-          maxZoom={init_zoom + 1}
+          maxZoom={init_zoom + 0.5}
           center={init_center}
           zoom={init_zoom}
           keyboardPanDelta={300}

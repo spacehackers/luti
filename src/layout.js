@@ -227,7 +227,8 @@ export default [
   {
     filename: '112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End',
     x: '4',
-    y: '7'
+    y: '7',
+    init_position: true
   },
   {
     filename: '112718_ErebusSeaIceHole_NikonE200_40x_DiatomSkinny',
