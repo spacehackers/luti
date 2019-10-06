@@ -1,0 +1,10 @@
+$color_selected: #666666;
+$color: #999999;
+$transition_speed: 100ms; // see TRANSITION_SPEED in js
+
+@mixin luti_font() {
+  font-family: "antarctican-headline", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: uppercase;
+}

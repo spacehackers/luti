@@ -1,14 +1,15 @@
-import React from 'react';
-import { Map } from 'react-leaflet';
-import L from 'leaflet';
-import WebFont from 'webfontloader';
+import React from "react"
+import { Map } from "react-leaflet"
+import L from "leaflet"
+import WebFont from "webfontloader"
 
-import Videos from './Videos';
-import Menu from './Menu';
+import Videos from "./Videos"
+import Menu from "./Menu"
+import Intro from "./Intro"
 
-import './App.scss';
+import "./App.scss"
 
-import video_layout from './layout';
+import video_layout from "./layout"
 // import video_layout from './debug_layout';
 
 import {
@@ -17,14 +18,14 @@ import {
   img_width,
   img_height,
   init_zoom
-} from './vid_config';
+} from "./vid_config"
 
 WebFont.load({
   typekit: {
-    id: 'ikz3unr'
+    id: "ikz3unr"
   },
   timeout: 3000
-});
+})
 
 const map_bounds = [
   [0, 0],
@@ -32,39 +33,49 @@ const map_bounds = [
     (x_count(video_layout) - 0.55) * img_width,
     (y_count(video_layout) + 1.55) * img_height
   ]
-];
+]
 const init_center = (() => {
   const init_video = video_layout.filter(x => x.init_position)[0] || {
-    x: '0',
-    y: '0'
-  };
+    x: "0",
+    y: "0"
+  }
   return [
     init_video.x * img_width + img_width / 2 - 600,
     init_video.y * img_height + img_height + 200
-  ];
-})();
+  ]
+})()
 
 export default class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    L.Map.include(L.LayerIndexMixin);
+    L.Map.include(L.LayerIndexMixin)
 
     this.state = {
-      bounds: undefined
-    };
+      bounds: undefined,
+      introVisible: false
+    }
+
     this.onMove = ({ target }) => {
-      this.setState({ bounds: target.getBounds() });
-    };
+      this.setState({ bounds: target.getBounds() })
+
+      if (this.state.introVisible) {
+        this.setState({ introVisible: false })
+      }
+    }
+
     this.onMapLoad = ({ leafletElement }) => {
-      this.setState({ bounds: leafletElement.getBounds() });
-    };
+      this.setState({ bounds: leafletElement.getBounds(), introVisible: true })
+    }
   }
 
   render() {
     return (
       <React.Fragment>
         <Menu />
+        <Intro visible={this.state.introVisible}>
+          Drag to Discover New Creatures
+        </Intro>
         <Map
           key="map"
           crs={L.CRS.Simple}
@@ -82,6 +93,6 @@ export default class App extends React.Component {
           <Videos videoLayout={video_layout} bounds={this.state.bounds} />
         </Map>
       </React.Fragment>
-    );
+    )
   }
 }

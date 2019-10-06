@@ -1,0 +1,54 @@
+@import "shared";
+
+.intro {
+  h2 {
+    @include luti_font;
+
+    position: absolute;
+    bottom: 25vh;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    width: 14em;
+    z-index: 500;
+
+    .wf-loading & {
+      opacity: 0;
+    }
+
+    .wf-active & {
+      opacity: 1;
+      transition: all $transition_speed linear;
+    }
+
+    &.hidden {
+      opacity: 0;
+    }
+
+    &.enter {
+      opacity: 0;
+    }
+
+    &.enter.enter-active {
+      opacity: 1;
+      transition: all $transition_speed linear;
+    }
+
+    &.enter-done {
+      opacity: 1;
+    }
+
+    &.exit {
+      opacity: 1;
+    }
+
+    &.exit-active {
+      opacity: 0;
+    }
+
+    &.exit-done {
+      opacity: 0;
+    }
+  }
+}
