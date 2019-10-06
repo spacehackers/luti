@@ -20,13 +20,6 @@ import {
   init_zoom
 } from "./vid_config"
 
-WebFont.load({
-  typekit: {
-    id: "ikz3unr"
-  },
-  timeout: 3000
-})
-
 const map_bounds = [
   [0, 0],
   [
@@ -44,6 +37,13 @@ const init_center = (() => {
     init_video.y * img_height + img_height + 200
   ]
 })()
+
+WebFont.load({
+  typekit: {
+    id: "ikz3unr"
+  },
+  timeout: 7000
+})
 
 export default class App extends React.Component {
   constructor(props) {
