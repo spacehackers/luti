@@ -1,43 +1,43 @@
-import React from "react";
-import classNames from "classnames";
-import { CSSTransition } from "react-transition-group";
+import React from "react"
+import classNames from "classnames"
+import { CSSTransition } from "react-transition-group"
+import { TRANSITION_SPEED } from "./constants.js"
 
-import "./Menu.scss";
-
-const TRANSITION_SPEED = 200;
+import "./Menu.scss"
 
 const menuData = [
-  { slug: "home", content: "Life Under the Ice" },
+  { slug: "anchor", content: "Life Under the Ice" },
+  { slug: "home", content: "Home" },
   { slug: "about", content: "About the Project" },
   { slug: "thanks", content: "Acknowledgements" }
-];
+]
 
 export default class Menu extends React.Component {
   constructor() {
-    super();
+    super()
 
     this.state = {
-      selected: "home",
+      selected: "anchor",
       open: false
-    };
+    }
   }
 
   handleMenuClick(e, slug) {
-    e.preventDefault();
-    const open = slug === "home" ? !this.state.open : this.state.open;
+    e.preventDefault()
+    const open = slug === "anchor" ? !this.state.open : this.state.open
 
-    this.setState({ selected: slug, open: open });
+    this.setState({ selected: slug, open: open })
   }
 
   hidden(slug) {
-    if (this.state.open || slug === "home") return;
+    if (this.state.open || slug === "anchor") return
 
-    return true;
+    return true
   }
 
   renderItem(menuItem, key) {
-    const { slug, content } = menuItem;
-    const selected = this.state.selected === slug;
+    const { slug, content } = menuItem
+    const selected = this.state.selected === slug
 
     return (
       <li
@@ -50,13 +50,13 @@ export default class Menu extends React.Component {
         <a
           href="#"
           onClick={e => {
-            this.handleMenuClick(e, slug);
+            this.handleMenuClick(e, slug)
           }}
         >
           {content}
         </a>
       </li>
-    );
+    )
   }
 
   render() {
@@ -68,6 +68,6 @@ export default class Menu extends React.Component {
           </ul>
         </CSSTransition>
       </nav>
-    );
+    )
   }
 }
