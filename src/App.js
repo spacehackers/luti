@@ -7,7 +7,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import Videos from "./Videos"
 import Menu from "./Menu"
 import Intro from "./Intro"
-import Page from "./Page/Page"
+import About from "./About"
+import Acknowledgements from "./Acknowledgements"
 
 import "./App.scss"
 
@@ -39,15 +40,6 @@ const init_center = (() => {
     init_video.y * img_height + img_height + 200
   ]
 })()
-
-// temp
-function About() {
-  return <h1>About</h1>
-}
-
-function Acknowledgements() {
-  return <h1>Acknowledgements</h1>
-}
 
 export default class App extends React.Component {
   constructor(props) {
@@ -112,11 +104,11 @@ export default class App extends React.Component {
         <Switch>
           <Route path="/about">
             <Menu page="about" />
-            <Page title="About">These are Abouts </Page>
+            <About />
           </Route>
           <Route path="/acknowledgements">
             <Menu page="acknowledgements" />
-            <Page title="Acknowledgements">These are acknowledgements </Page>
+            <Acknowledgements />
           </Route>
           <Route path="/">
             <Menu page="home" />
