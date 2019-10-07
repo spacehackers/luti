@@ -11,7 +11,7 @@ const Acknowledgements = () => {
       <h1>{page}</h1>
 
       <p>
-        This is the About. Edit me in
+        This is the {page} page. Edit me in
         <a
           href={`https://github.com/basilleaf/luti/blob/master/src/${page}.js`}
         >

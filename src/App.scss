@@ -12,7 +12,6 @@ body,
 body {
   margin: 0;
   background-color: $luti_background;
-  overflow: hidden;
   font-family: "antarctican-headline", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -21,8 +20,8 @@ body {
 
 #map,
 .leaflet-container {
-  height: $img_height;
-  width: $img_width;
+  height: calc(100vh - 60px);
+  width: 100vw;
 }
 
 .leaflet-control-container {
