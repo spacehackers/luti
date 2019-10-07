@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import Videos from "./Videos"
 import Menu from "./Menu"
 import Intro from "./Intro"
+import Page from "./Page/Page"
 
 import "./App.scss"
 
@@ -111,11 +112,11 @@ export default class App extends React.Component {
         <Switch>
           <Route path="/about">
             <Menu page="about" />
-            <About />
+            <Page title="About">These are Abouts </Page>
           </Route>
           <Route path="/acknowledgements">
             <Menu page="acknowledgements" />
-            <Acknowledgements />
+            <Page title="Acknowledgements">These are acknowledgements </Page>
           </Route>
           <Route path="/">
             <Menu page="home" />
