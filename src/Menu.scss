@@ -17,6 +17,7 @@
   list-style-type: none;
   text-align: center;
   z-index: 500; // for the map
+  overflow: hidden;
 
   .wf-loading & {
     opacity: 0;
@@ -51,40 +52,42 @@
   &.exit-done li + li {
     opacity: 0;
   }
-}
 
-.menu li {
-  background: #fff;
-  width: 100%;
-  font-size: 16px;
-  white-space: nowrap;
-  padding: 6px;
+  li {
+    background: #fff;
+    width: 100%;
+    font-size: 16px;
+    white-space: nowrap;
+    padding: 6px;
 
-  &.hidden {
-    opacity: 0;
-    height: 0;
-    padding: 0;
+    &.hidden {
+      opacity: 0;
+      height: 0;
+      padding: 0;
+    }
   }
-}
 
-a {
-  color: $color;
-  font-size: 22px;
-  text-decoration: none;
-  padding: 0 6em;
-
-  .selected & {
-    @include selected;
+  li:first-of-type {
+    a {
+      @include selected;
+    }
   }
-}
 
-.menu li:first-of-type {
-  a {
-    @include selected;
+  li {
+    a {
+      color: $color;
+      font-size: 22px;
+      text-decoration: none;
+      padding: 0 6em;
+    }
+
+    &.selected a {
+      @include selected;
+    }
   }
-}
 
-a.hover {
-  color: $color_selected;
-  text-decoration: underline;
+  li > a.hover {
+    color: $color_selected;
+    text-decoration: underline;
+  }
 }

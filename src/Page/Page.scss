@@ -34,5 +34,13 @@
       font-size: 22px;
       line-height: 1.5em;
     }
+
+    a {
+      padding: 0 5px;
+    }
+
+    a:hover {
+      color: purple;
+    }
   }
 }
