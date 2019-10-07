@@ -2,6 +2,7 @@ import React from "react"
 import { Map } from "react-leaflet"
 import L from "leaflet"
 import WebFont from "webfontloader"
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 
 import Videos from "./Videos"
 import Menu from "./Menu"
@@ -38,12 +39,13 @@ const init_center = (() => {
   ]
 })()
 
-WebFont.load({
-  typekit: {
-    id: "ikz3unr"
-  },
-  timeout: 7000
-})
+function About() {
+  return <h1>About</h1>
+}
+
+function Acknowledgements() {
+  return <h1>Acknowledgements</h1>
+}
 
 export default class App extends React.Component {
   constructor(props) {
@@ -55,6 +57,13 @@ export default class App extends React.Component {
       bounds: undefined,
       introVisible: false
     }
+
+    WebFont.load({
+      typekit: {
+        id: "ikz3unr"
+      },
+      timeout: 7000
+    })
 
     this.onMove = ({ target }) => {
       this.setState({ bounds: target.getBounds() })
@@ -71,28 +80,42 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Menu />
-        <Intro visible={this.state.introVisible}>
-          Drag to Discover New Creatures
-        </Intro>
-        <Map
-          key="map"
-          crs={L.CRS.Simple}
-          zoomSnap={0}
-          zoomDelta={0.25}
-          minZoom={init_zoom}
-          maxZoom={init_zoom + 0.5}
-          center={init_center}
-          zoom={init_zoom}
-          keyboardPanDelta={300}
-          onMove={this.onMove}
-          maxBounds={map_bounds}
-          ref={this.onMapLoad}
-        >
-          <Videos videoLayout={video_layout} bounds={this.state.bounds} />
-        </Map>
-      </React.Fragment>
+      <Router>
+        <Switch>
+          <Route path="/about">
+            <Menu page="about" />
+            <About />
+          </Route>
+          <Route path="/acknowledgements">
+            <Menu page="acknowledgements" />
+            <Acknowledgements />
+          </Route>
+          <Route path="/">
+            <Menu page="home" />
+            <React.Fragment>
+              <Intro visible={this.state.introVisible}>
+                Drag to Discover New Creatures
+              </Intro>
+              <Map
+                key="map"
+                crs={L.CRS.Simple}
+                zoomSnap={0}
+                zoomDelta={0.25}
+                minZoom={init_zoom}
+                maxZoom={init_zoom + 0.5}
+                center={init_center}
+                zoom={init_zoom}
+                keyboardPanDelta={300}
+                onMove={this.onMove}
+                maxBounds={map_bounds}
+                ref={this.onMapLoad}
+              >
+                <Videos videoLayout={video_layout} bounds={this.state.bounds} />
+              </Map>
+            </React.Fragment>
+          </Route>
+        </Switch>
+      </Router>
     )
   }
 }

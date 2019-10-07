@@ -5,6 +5,11 @@
   margin: 0;
 }
 
+@mixin selected {
+  color: $color_selected;
+  font-weight: 600;
+}
+
 .menu {
   @include luti_font;
   margin: 0;
@@ -68,8 +73,13 @@ a {
   text-decoration: none;
 
   .selected & {
-    color: $color_selected;
-    font-weight: 600;
+    @include selected;
+  }
+}
+
+.menu li:first-of-type {
+  a {
+    @include selected;
   }
 }
 

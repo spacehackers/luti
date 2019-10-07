@@ -9,24 +9,31 @@ const menuData = [
   { slug: "anchor", content: "Life Under the Ice" },
   { slug: "home", content: "Home" },
   { slug: "about", content: "About the Project" },
-  { slug: "thanks", content: "Acknowledgements" }
+  { slug: "acknowledgements", content: "Acknowledgements" }
 ]
 
 export default class Menu extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
-      selected: "anchor",
+      selected: "",
       open: false
     }
   }
 
-  handleMenuClick(e, slug) {
-    e.preventDefault()
-    const open = slug === "anchor" ? !this.state.open : this.state.open
+  componentDidMount() {
+    this.setState({ selected: this.props.page })
+  }
 
-    this.setState({ selected: slug, open: open })
+  handleMenuClick(e, slug) {
+    if (slug === "anchor") {
+      e.preventDefault()
+      const open = !this.state.open
+      this.setState({ open: open })
+    } else {
+      this.setState({ selected: slug })
+    }
   }
 
   hidden(slug) {
@@ -37,18 +44,18 @@ export default class Menu extends React.Component {
 
   renderItem(menuItem, key) {
     const { slug, content } = menuItem
-    const selected = this.state.selected === slug
 
+    const selected = slug === this.state.selected
     return (
       <li
         key={key}
         className={classNames({
-          selected: selected,
+          selected,
           hidden: this.hidden(slug)
         })}
       >
         <a
-          href="#"
+          href={slug === "home" ? "/" : `/${slug}`}
           onClick={e => {
             this.handleMenuClick(e, slug)
           }}
