@@ -39,6 +39,7 @@ const init_center = (() => {
   ]
 })()
 
+// temp
 function About() {
   return <h1>About</h1>
 }
@@ -78,6 +79,32 @@ export default class App extends React.Component {
     }
   }
 
+  renderHomepage() {
+    return (
+      <React.Fragment>
+        <Intro visible={this.state.introVisible}>
+          Drag to Discover New Creatures
+        </Intro>
+        <Map
+          key="map"
+          crs={L.CRS.Simple}
+          zoomSnap={0}
+          zoomDelta={0.25}
+          minZoom={init_zoom}
+          maxZoom={init_zoom + 0.5}
+          center={init_center}
+          zoom={init_zoom}
+          keyboardPanDelta={300}
+          onMove={this.onMove}
+          maxBounds={map_bounds}
+          ref={this.onMapLoad}
+        >
+          <Videos videoLayout={video_layout} bounds={this.state.bounds} />
+        </Map>
+      </React.Fragment>
+    )
+  }
+
   render() {
     return (
       <Router>
@@ -92,27 +119,7 @@ export default class App extends React.Component {
           </Route>
           <Route path="/">
             <Menu page="home" />
-            <React.Fragment>
-              <Intro visible={this.state.introVisible}>
-                Drag to Discover New Creatures
-              </Intro>
-              <Map
-                key="map"
-                crs={L.CRS.Simple}
-                zoomSnap={0}
-                zoomDelta={0.25}
-                minZoom={init_zoom}
-                maxZoom={init_zoom + 0.5}
-                center={init_center}
-                zoom={init_zoom}
-                keyboardPanDelta={300}
-                onMove={this.onMove}
-                maxBounds={map_bounds}
-                ref={this.onMapLoad}
-              >
-                <Videos videoLayout={video_layout} bounds={this.state.bounds} />
-              </Map>
-            </React.Fragment>
+            {this.renderHomepage()}
           </Route>
         </Switch>
       </Router>
