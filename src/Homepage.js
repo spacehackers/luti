@@ -3,8 +3,6 @@ import L from 'leaflet';
 import { Map } from 'react-leaflet';
 import { withRouter } from 'react-router-dom';
 
-import Menu from './Menu';
-
 import Videos from './Videos';
 import Intro from './Intro';
 
@@ -80,7 +78,6 @@ class Homepage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Menu page="home" />
         <Intro visible={this.state.introVisible}>
           Drag to Discover New Creatures
         </Intro>

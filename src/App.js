@@ -34,6 +34,7 @@ export default class App extends React.Component {
             <Acknowledgements />
           </Route>
           <Route path="/">
+            <Menu page="home" />
             <Homepage />
           </Route>
         </Switch>
