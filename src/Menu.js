@@ -27,12 +27,15 @@ export default class Menu extends React.Component {
   }
 
   handleMenuClick(e, slug) {
-    if (slug === "anchor") {
-      e.preventDefault()
-      const open = !this.state.open
-      this.setState({ open: open })
-    } else {
-      this.setState({ selected: slug })
+    switch (slug) {
+      case "anchor":
+        e.preventDefault()
+        const open = !this.state.open
+        this.setState({ open: open })
+        break
+
+      default:
+        this.setState({ selected: slug })
     }
   }
 
@@ -44,6 +47,7 @@ export default class Menu extends React.Component {
 
   renderItem(menuItem, key) {
     const { slug, content } = menuItem
+    const hash = window.location.hash
 
     const selected = slug === this.state.selected
     return (
@@ -55,7 +59,7 @@ export default class Menu extends React.Component {
         })}
       >
         <a
-          href={slug === "home" ? "/" : `/${slug}`}
+          href={slug === "home" ? "/" : `/${slug}#${hash}`}
           onClick={e => {
             this.handleMenuClick(e, slug)
           }}
