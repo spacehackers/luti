@@ -1,12 +1,14 @@
-import React from 'react';
-import L from 'leaflet';
-import { Map } from 'react-leaflet';
-import { withRouter } from 'react-router-dom';
+import React from "react"
+import debounce from "lodash/debounce"
 
-import Videos from './Videos';
-import Intro from './Intro';
+import L from "leaflet"
+import { Map } from "react-leaflet"
+import { withRouter } from "react-router-dom"
 
-import video_layout from './layout';
+import Videos from "./Videos"
+import Intro from "./Intro"
+
+import video_layout from "./layout"
 // import video_layout from './debug_layout';
 
 import {
@@ -15,15 +17,15 @@ import {
   img_width,
   img_height,
   init_zoom
-} from './vid_config';
+} from "./vid_config"
 
 L.LatLngBounds.fromBBoxString = bbox => {
-  const [west, south, east, north] = bbox.split(',').map(parseFloat);
+  const [west, south, east, north] = bbox.split(",").map(parseFloat)
   return new L.LatLngBounds(
     new L.LatLng(south, west),
     new L.LatLng(north, east)
-  );
-};
+  )
+}
 
 const map_bounds = [
   [0, 0],
@@ -31,48 +33,63 @@ const map_bounds = [
     (x_count(video_layout) - 0.55) * img_width,
     (y_count(video_layout) + 1.55) * img_height
   ]
-];
+]
 const init_center = (() => {
   const init_video = video_layout.filter(x => x.init_position)[0] || {
-    x: '0',
-    y: '0'
-  };
+    x: "0",
+    y: "0"
+  }
   return [
     init_video.x * img_width + img_width / 2 - 600,
     init_video.y * img_height + img_height + 200
-  ];
-})();
+  ]
+})()
 
 class Homepage extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    L.Map.include(L.LayerIndexMixin);
+    L.Map.include(L.LayerIndexMixin)
 
     this.state = {
       bounds: undefined,
-      introVisible: false
-    };
+      introVisible: false,
+      interacting: false
+    }
+
+    this.handleOnMove = debounce(this.handleOnMove, 500)
+
     if (props.location.hash.length > 1) {
       const bounds = L.LatLngBounds.fromBBoxString(
         props.location.hash.substr(1)
-      );
-      this.state.bounds = bounds;
+      )
+      this.state.bounds = bounds
     }
 
     this.onMove = ({ target }) => {
-      this.props.history.replace(`/#${target.getBounds().toBBoxString()}`);
-      console.log(target.getBounds());
-      this.setState({ bounds: target.getBounds() });
-
-      if (this.state.introVisible) {
-        this.setState({ introVisible: false });
-      }
-    };
+      this.handleOnMove(target)
+    }
 
     this.onMapLoad = ({ leafletElement }) => {
-      this.setState({ bounds: leafletElement.getBounds(), introVisible: true });
-    };
+      this.setState({ bounds: leafletElement.getBounds(), introVisible: true })
+    }
+  }
+
+  handleOnMove = target => {
+    if (!this.state.interacting) {
+      this.setState({ interacting: true })
+      return
+    }
+
+    this.props.history.replace(`/#${target.getBounds().toBBoxString()}`)
+    console.log(target.getBounds())
+    this.setState({ bounds: target.getBounds() })
+
+    if (this.state.introVisible) {
+      setTimeout(() => {
+        this.setState({ introVisible: false })
+      }, 3000)
+    }
   }
 
   render() {
@@ -99,8 +116,8 @@ class Homepage extends React.Component {
           <Videos videoLayout={video_layout} bounds={this.state.bounds} />
         </Map>
       </React.Fragment>
-    );
+    )
   }
 }
 
-export default withRouter(Homepage);
+export default withRouter(Homepage)
