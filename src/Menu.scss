@@ -18,6 +18,8 @@
   text-align: center;
   z-index: 500; // for the map
   overflow: hidden;
+  position: absolute;
+  width: 100vw;
 
   .wf-loading & {
     opacity: 0;
