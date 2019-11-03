@@ -16,6 +16,8 @@ body {
   font-weight: 400;
   font-style: normal;
   text-transform: uppercase;
+  height: calc(100vh - 60px);
+  overflow: hidden;
 }
 
 #map,

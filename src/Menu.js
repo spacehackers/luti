@@ -19,7 +19,8 @@ export default class Menu extends React.Component {
     this.state = {
       selected: "",
       open: false,
-      tabKeyPress: false
+      tabKeyPress: false,
+      navigatingMap: false
     }
   }
 
@@ -50,17 +51,24 @@ export default class Menu extends React.Component {
     if (e.which !== 9) return
     if (this.state.open) return
 
+    let focusTarget
+
     if (!this.state.tabKeyPress) {
+      if (this.state.navigatingMap && e.shiftKey) {
+        focusTarget = document.getElementsByClassName("anchor")
+        focusTarget[0].focus()
+      }
+
       this.setState({ tabKeyPress: true })
       return
     }
 
     if (this.state.tabKeyPress) {
       // this is a 2nd consecutive tab press
-      const focusTarget = document.getElementsByClassName("leaflet-container")
+      focusTarget = document.getElementsByClassName("leaflet-container")
       focusTarget[0].focus()
 
-      this.setState({ tabKeyPress: false })
+      this.setState({ tabKeyPress: false, navigatingMap: true })
     }
   }
 
@@ -79,6 +87,7 @@ export default class Menu extends React.Component {
       >
         <a
           href={slug === "home" ? "/" : `/${slug}#${hash}`}
+          className={slug}
           onClick={e => {
             this.handleMenuClick(e, slug)
           }}
