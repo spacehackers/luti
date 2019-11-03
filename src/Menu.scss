@@ -10,17 +10,53 @@
   font-weight: 600;
 }
 
-.menu {
+ul.menu {
   @include luti_font;
+  background: #fff;
+
   margin: 0;
-  padding: 0;
+  padding: 6px 0;
   list-style-type: none;
   text-align: center;
   z-index: 500; // for the map
-  overflow: hidden;
   position: absolute;
   width: 100vw;
 
+  li {
+    width: 100%;
+    font-size: 16px;
+    white-space: nowrap;
+
+    &.hidden {
+      opacity: 0;
+      height: 0;
+    }
+  }
+
+  li:first-of-type {
+    a {
+      @include selected;
+    }
+  }
+
+  li {
+    a {
+      color: $color;
+      font-size: 22px;
+      text-decoration: none;
+    }
+
+    &.selected a {
+      @include selected;
+    }
+  }
+
+  li > a.hover {
+    color: $color_selected;
+    text-decoration: underline;
+  }
+
+  // animations
   .wf-loading & {
     opacity: 0;
   }
@@ -53,42 +89,5 @@
 
   &.exit-done li + li {
     opacity: 0;
-  }
-
-  li {
-    background: #fff;
-    width: 100%;
-    font-size: 16px;
-    white-space: nowrap;
-    padding: 6px;
-
-    &.hidden {
-      opacity: 0;
-      height: 0;
-      padding: 0;
-    }
-  }
-
-  li:first-of-type {
-    a {
-      @include selected;
-    }
-  }
-
-  li {
-    a {
-      color: $color;
-      font-size: 22px;
-      text-decoration: none;
-    }
-
-    &.selected a {
-      @include selected;
-    }
-  }
-
-  li > a.hover {
-    color: $color_selected;
-    text-decoration: underline;
   }
 }
