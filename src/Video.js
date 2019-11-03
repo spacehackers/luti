@@ -60,6 +60,7 @@ export default class Video extends React.Component {
 
       console.log('video.src = ', m3u8);
       video.src = m3u8;
+      video.playsInline = true;
       video.addEventListener('loadedmetadata', () => {
         console.log('IM PLAYING');
       });
