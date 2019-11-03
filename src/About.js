@@ -20,22 +20,11 @@ const About = () => {
       </p>
 
       <p>
-        Sensors indicate human life forms 30 meters below the planet's surface.
-        Stellar flares are increasing in magnitude and frequency. Set course for
-        Rhomboid Dronegar 006, warp seven. There's no evidence of an advanced
-        communication network. Total guidance system failure, with less than 24
-        hours' reserve power. Shield effectiveness has been reduced 12 percent.
-        We have covered the area in a spherical pattern which a ship without
-        warp drive could cross in the given time.
+        <em>Life Under the Ice</em> is an exploratory tour through the microscopic world of Antarctica. Each microbe tells a story of the weird and whimsical life in Antarctica that is otherwise invisible to the naked eye.
       </p>
 
       <p>
-        Run a manual sweep of anomalous airborne or electromagnetic readings.
-        Radiation levels in our atmosphere have increased by 3,000 percent.
-        Electromagnetic and subspace wave fronts approaching synchronization.
-        What is the strength of the ship's deflector shields at maximum output?
-        The wormhole's size and short period would make this a local phenomenon.
-        Do you have sufficient data to compile a holographic simulation?
+        Typically when we think about Antarctica, we think of a place that's barren and lifeless... except for a few penguins. But Antarctica should instead be known as a polar oasis of life, host to countless creatures that are utterly fascinating. We just can’t usually see them – until now. <em>Life Under the Ice</em> enables anyone to delve into this world as an explorer; as if you had been shrunk down and were wading through one large petri dish of curiosities.
       </p>
     </Page>
   )
