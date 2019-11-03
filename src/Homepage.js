@@ -95,12 +95,11 @@ class Homepage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Intro visible={this.state.introVisible}>
+        <Intro visible={false}>
           Drag to Discover New Creatures
         </Intro>
         <Map
           key="map"
-          bounds={this.state.bounds}
           crs={L.CRS.Simple}
           zoomSnap={0}
           zoomDelta={0.25}
