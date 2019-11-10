@@ -33,6 +33,15 @@ export default class App extends React.Component {
     return (
       <Router>
         <Switch>
+          <Route
+            path="/videos"
+            component={() => {
+              window.location.href =
+                "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/"
+              return null
+            }}
+          />
+
           <Route path="/about">
             <Menu page="about" />
             <About />
