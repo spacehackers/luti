@@ -20,23 +20,26 @@
 
   .wrapper {
     width: 100%;
-    margin: 50px 150px;
-    padding: 20px;
+    margin: 85px 200px;
+    padding: 20px 50px;
     background-color: #f6f6f6;
 
     h1 {
-      font-weight: 400;
+      font-weight: 500;
       margin: 0;
+      font-size: 90px;
     }
 
     p {
+      font-family: "roboto-condensed", sans-serif;
+      font-weight: 400;
       text-transform: none;
-      font-size: 22px;
-      line-height: 1.5em;
+      font-size: 26px;
+      line-height: 1.4em;
     }
 
     a {
-      padding: 0 5px;
+      padding: 0 2px;
     }
 
     a:hover {
