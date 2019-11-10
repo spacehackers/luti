@@ -1,6 +1,7 @@
 $color_selected: #666666;
 $color: #999999;
 $transition_speed: 100ms; // see TRANSITION_SPEED in js
+$mobile_breakpoint: 700px;
 
 @mixin luti_font() {
   @font-face {
