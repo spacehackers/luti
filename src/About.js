@@ -2,7 +2,7 @@ import React from "react"
 import Page from "./Page/Page"
 
 const About = () => {
-  const page = "About"
+  const page = "About the Project"
 
   return (
     <Page>
