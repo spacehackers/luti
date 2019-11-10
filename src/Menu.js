@@ -72,11 +72,18 @@ export default class Menu extends React.Component {
     }
   }
 
+  getAriaLabel() {
+    if (this.state.open) {
+      return "lose the menu"
+    }
+    return "open the menu"
+  }
+
   renderItem(menuItem, key) {
     const { slug, content } = menuItem
     const hash = "" // window.location.hash
-
     const selected = slug === this.state.selected
+
     return (
       <li
         key={key}
@@ -85,17 +92,37 @@ export default class Menu extends React.Component {
           hidden: this.hidden(slug)
         })}
       >
-        <a
-          href={slug === "home" ? "/" : `/${slug}#${hash}`}
-          className={slug}
-          onClick={e => {
-            this.handleMenuClick(e, slug)
-          }}
-          onKeyUp={this.handleTabNavigation}
-        >
-          {content}
-        </a>
+        <div clasName="menu-item-wrapper">
+          {this.renderIcon(key)}
+          <span className="menu-link">
+            <a
+              href={slug === "home" ? "/" : `/${slug}#${hash}`}
+              className={slug}
+              onClick={e => {
+                this.handleMenuClick(e, slug)
+              }}
+              onKeyUp={this.handleTabNavigation}
+            >
+              {content}
+            </a>
+          </span>
+        </div>
       </li>
+    )
+  }
+
+  renderIcon(key) {
+    if (key !== 0) return
+
+    return (
+      <span className="icon-wrapper">
+        <img
+          className="menu-toggle"
+          src="LUTI_hamburger.svg"
+          aria-label={this.getAriaLabel()}
+          alt=""
+        />
+      </span>
     )
   }
 

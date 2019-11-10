@@ -35,6 +35,29 @@ ul.menu {
   }
 
   li:first-of-type {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon-wrapper {
+      border: 1px solid green;
+    }
+
+    .icon-wrapper {
+      border: 1px solid green;
+    }
+
+    .menu-toggle {
+      display: inline;
+      padding: 0;
+      margin: 0;
+      height: 6em;
+    }
+
+    .menu-link {
+      border: 1px solid red;
+    }
+
     a {
       @include selected;
     }
@@ -57,7 +80,7 @@ ul.menu {
     text-decoration: underline;
   }
 
-  // animations
+  // animation
   .wf-loading & {
     opacity: 0;
   }
