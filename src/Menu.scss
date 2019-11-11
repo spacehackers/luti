@@ -31,6 +31,7 @@ ul.menu {
     &.hidden {
       opacity: 0;
       height: 0;
+      visibility: hidden;
     }
   }
 
@@ -92,26 +93,32 @@ ul.menu {
 
   &.enter li + li {
     opacity: 0;
+    visibility: hidden;
   }
 
   &.enter.enter-active li + li {
     opacity: 1;
+    visibility: visible;
     transition: all $transition_speed linear;
   }
 
   &.enter-done li + li {
     opacity: 1;
+    visibility: visible;
   }
 
   &.exit li + li {
     opacity: 1;
+    visibility: visible;
   }
 
   &.exit-active li + li {
     opacity: 0;
+    visibility: hidden;
   }
 
   &.exit-done li + li {
     opacity: 0;
+    visibility: hidden;
   }
 }
