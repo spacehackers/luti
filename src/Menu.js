@@ -92,7 +92,7 @@ export default class Menu extends React.Component {
           hidden: this.hidden(slug)
         })}
       >
-        <div clasName="menu-item-wrapper">
+        <div className="menu-item-wrapper">
           {this.renderIcon(key)}
           <span className="menu-link">
             <a

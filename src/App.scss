@@ -1,5 +1,6 @@
+@import "shared";
+
 $luti_background: #dcdedd;
-$rows: 10;
 $img_width: 1920px;
 $img_height: 1080px;
 
@@ -7,6 +8,16 @@ html,
 body,
 #map {
   background-color: $luti_background;
+
+  @media (max-width: $mobile_breakpoint) {
+    height: calc(100vh-42px);
+    overflow: hidden;
+  }
+}
+#map,
+.leaflet-container {
+  height: 100vh;
+  width: 100vw;
 }
 
 body {
@@ -17,12 +28,6 @@ body {
   font-style: normal;
   text-transform: uppercase;
   scroll-behavior: smooth;
-}
-
-#map,
-.leaflet-container {
-  height: calc(100vh - 60px);
-  width: 100vw;
 }
 
 .leaflet-control-container {
