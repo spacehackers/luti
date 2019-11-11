@@ -21,6 +21,14 @@ export default class Videos extends React.Component {
       this.setState({ canvas });
     };
 
+    this.getCenterVideo = () => {
+      const center = this.props.bounds.getCenter().toBounds(1);
+      const centerVideo = _.head(this.map.search(center));
+      if (centerVideo !== undefined) {
+        console.log("CURRENT VIDEO TITLE", centerVideo.options.video.title);
+      }
+    };
+
     this.calculateVisible = () => {
       const newVisible = {};
       this.map
@@ -43,12 +51,14 @@ export default class Videos extends React.Component {
       this.map.indexLayer(leafletElement);
       this.alreadyIndexedIds[id] = true;
       this.calculateVisible();
+      this.getCenterVideo();
     };
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       this.calculateVisible();
+      this.getCenterVideo();
     }
   }
 
@@ -62,6 +72,7 @@ export default class Videos extends React.Component {
           m3u8={`${base_url}${vid.filename}.m3u8`}
           id={id}
           key={id}
+          video={vid}
           xy={[vid.x, vid.y]}
           bounds={xy_to_bounds(vid.x, vid.y)}
           debug={false}
