@@ -9,7 +9,7 @@ import Info from "./Info"
 import Videos from "./Videos"
 import Intro from "./Intro"
 
-import video_layout from "./layout"
+import video_layout from "./layout.json"
 // import video_layout from './debug_layout';
 
 import {
