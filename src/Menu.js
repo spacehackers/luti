@@ -29,13 +29,13 @@ export default class Menu extends React.Component {
   }
 
   isMobile() {
-    return false
+    return window.innerWidth <= MOBILE_BREAKPOINT
   }
 
   handleMenuClick(e, slug) {
     switch (slug) {
       case "anchor":
-        if (window.innerWidth > MOBILE_BREAKPOINT) {
+        if (!this.isMobile()) {
           this.setState({ selected: "home" })
           return
         }
@@ -56,12 +56,14 @@ export default class Menu extends React.Component {
     return true
   }
 
-  handleTabNavigation = e => {
+  handleKeyUp = e => {
     if (e.which !== 9) return
     if (this.state.open) return
+    if (this.isMobile()) return
+
+    console.log("handleKeyUp")
 
     let focusTarget
-
     if (!this.state.tabKeyPress) {
       if (this.state.navigatingMap && e.shiftKey) {
         focusTarget = document.getElementsByClassName("anchor")
@@ -72,7 +74,7 @@ export default class Menu extends React.Component {
       return
     }
 
-    if (this.state.tabKeyPress) {
+    if (this.isMobile() && this.state.tabKeyPress) {
       // this is a 2nd consecutive tab press
       focusTarget = document.getElementsByClassName("leaflet-container")
       focusTarget[0].focus()
@@ -106,7 +108,7 @@ export default class Menu extends React.Component {
               onClick={e => {
                 this.handleMenuClick(e, slug)
               }}
-              onKeyUp={this.handleTabNavigation}
+              onKeyUp={this.handleKeyUp}
             >
               {content}
             </a>
