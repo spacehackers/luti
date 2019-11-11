@@ -39,7 +39,7 @@ export const style = { height: `${img_height}px`, width: `${img_width}px` };
 
 export const xy_to_bounds = (x, y) => {
   return [
-    [y * img_height, x * img_width],
+    [y * (img_height - 1), x * img_width - 1],
     [y * img_height + img_height, x * img_width + img_width]
   ];
 };
