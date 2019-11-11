@@ -76,16 +76,6 @@ ul.menu {
     }
   }
 
-  // animate visibility after font is loaded
-  .wf-loading & {
-    opacity: 0;
-  }
-
-  .wf-active & {
-    opacity: 1;
-    transition: all $transition_speed linear;
-  }
-
   // mobile menu animations
   @media (max-width: $mobile_breakpoint) {
     &.enter li + li {
@@ -134,5 +124,15 @@ ul.menu {
   li > a.hover {
     color: $color_selected;
     text-decoration: underline;
+  }
+
+  // animate visibility after font is loaded
+  .wf-loading & {
+    opacity: 0;
+  }
+
+  .wf-active & {
+    opacity: 1;
+    transition: all $transition_speed linear;
   }
 }
