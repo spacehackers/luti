@@ -1,0 +1,20 @@
+@import "shared";
+
+.info-button {
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  width: 100px;
+  z-index: 500;
+
+  background: transparent;
+  outline: 0;
+  border: 0;
+}
+
+.info-button:hover {
+  cursor: pointer;
+}
+
+.info-toggle {
+}
