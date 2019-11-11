@@ -7,7 +7,6 @@
 
 @mixin selected {
   color: $color_selected;
-  font-weight: 600;
 }
 
 ul.menu {
@@ -23,14 +22,47 @@ ul.menu {
   width: 100vw;
   font-size: $font_size;
 
-  li {
-    width: 100%;
-    white-space: nowrap;
+  // hamburger
+  .menu-toggle {
+    display: none;
 
-    &.hidden {
-      opacity: 0;
-      height: 0;
-      visibility: hidden;
+    @media (max-width: $mobile_breakpoint) {
+      display: inline;
+      height: 16px;
+      padding: 0 20px;
+    }
+  }
+
+  li {
+    @media (min-width: $mobile_breakpoint) {
+      $top: 6px;
+
+      .home {
+        display: none;
+      }
+
+      .about {
+        position: absolute;
+        right: 20px;
+        top: $top;
+      }
+
+      .acknowledgements {
+        position: absolute;
+        right: 7em;
+        top: $top;
+      }
+    }
+
+    @media (max-width: $mobile_breakpoint) {
+      width: 100%;
+      white-space: nowrap;
+
+      &.hidden {
+        opacity: 0;
+        height: 0;
+        visibility: hidden;
+      }
     }
   }
 
@@ -39,17 +71,52 @@ ul.menu {
     align-items: center;
     justify-content: center;
 
-    .menu-toggle {
-      display: inline;
-      height: 16px;
-      padding: 0 20px;
-    }
-
-    .menu-link {
-    }
-
     a {
       @include selected;
+    }
+  }
+
+  // animate visibility after font is loaded
+  .wf-loading & {
+    opacity: 0;
+  }
+
+  .wf-active & {
+    opacity: 1;
+    transition: all $transition_speed linear;
+  }
+
+  // mobile menu animations
+  @media (max-width: $mobile_breakpoint) {
+    &.enter li + li {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    &.enter.enter-active li + li {
+      opacity: 1;
+      visibility: visible;
+      transition: all $transition_speed linear;
+    }
+
+    &.enter-done li + li {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &.exit li + li {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &.exit-active li + li {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    &.exit-done li + li {
+      opacity: 0;
+      visibility: hidden;
     }
   }
 
@@ -67,46 +134,5 @@ ul.menu {
   li > a.hover {
     color: $color_selected;
     text-decoration: underline;
-  }
-
-  // animation
-  .wf-loading & {
-    opacity: 0;
-  }
-
-  .wf-active & {
-    opacity: 1;
-    transition: all $transition_speed linear;
-  }
-
-  &.enter li + li {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  &.enter.enter-active li + li {
-    opacity: 1;
-    visibility: visible;
-    transition: all $transition_speed linear;
-  }
-
-  &.enter-done li + li {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  &.exit li + li {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  &.exit-active li + li {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  &.exit-done li + li {
-    opacity: 0;
-    visibility: hidden;
   }
 }
