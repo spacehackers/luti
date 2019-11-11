@@ -71,13 +71,19 @@ class Homepage extends React.Component {
     }
 
     this.onMapLoad = ({ leafletElement }) => {
-      const screenPixels = leafletElement.getSize().x * leafletElement.getSize().y;
-      let newState = { bounds: leafletElement.getBounds(), introVisible: true, boundsPad: 0.0 };
-      if(screenPixels > 450 * 900) { // bigger than an iPhone X Max
-        console.log("DESKTOP MODE");
-        newState.boundsPad = 0.5;
+      const screenPixels =
+        leafletElement.getSize().x * leafletElement.getSize().y
+      let newState = {
+        bounds: leafletElement.getBounds(),
+        introVisible: true,
+        boundsPad: 0.0
       }
-      this.setState(newState);
+      if (screenPixels > 450 * 900) {
+        // bigger than an iPhone X Max
+        console.log("DESKTOP MODE")
+        newState.boundsPad = 0.5
+      }
+      this.setState(newState)
     }
   }
 
@@ -101,9 +107,7 @@ class Homepage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Intro visible={false}>
-          Drag to Discover New Creatures
-        </Intro>
+        <Intro visible={false}>Drag to Discover New Creatures</Intro>
         <Map
           key="map"
           crs={L.CRS.Simple}
@@ -113,12 +117,16 @@ class Homepage extends React.Component {
           maxZoom={init_zoom + 0.5}
           center={init_center}
           zoom={init_zoom}
-          keyboardPanDelta={300}
+          keyboardPanDelta={150}
           onMove={this.onMove}
           maxBounds={map_bounds}
           ref={this.onMapLoad}
         >
-          <Videos videoLayout={video_layout} bounds={this.state.bounds} boundsPad={this.state.boundsPad} />
+          <Videos
+            videoLayout={video_layout}
+            bounds={this.state.bounds}
+            boundsPad={this.state.boundsPad}
+          />
         </Map>
       </React.Fragment>
     )
