@@ -17,7 +17,6 @@ export default class Video extends React.Component {
     this.hls = {};
     this.cachedHls = (m3u8, autocreate) => {
       if (autocreate && !(m3u8 in this.hls)) {
-        console.log("CREATING HLS FOR", m3u8);
         const hls = new Hls(hls_config);
         hls.loadSource(m3u8);
         hls.on(Hls.Events.MEDIA_ATTACHED, () => {
