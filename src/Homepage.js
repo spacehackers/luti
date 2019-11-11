@@ -71,7 +71,13 @@ class Homepage extends React.Component {
     }
 
     this.onMapLoad = ({ leafletElement }) => {
-      this.setState({ bounds: leafletElement.getBounds(), introVisible: true })
+      const screenPixels = leafletElement.getSize().x * leafletElement.getSize().y;
+      let newState = { bounds: leafletElement.getBounds(), introVisible: true, boundsPad: 0.0 };
+      if(screenPixels > 450 * 900) { // bigger than an iPhone X Max
+        console.log("DESKTOP MODE");
+        newState.boundsPad = 0.5;
+      }
+      this.setState(newState);
     }
   }
 
@@ -112,7 +118,7 @@ class Homepage extends React.Component {
           maxBounds={map_bounds}
           ref={this.onMapLoad}
         >
-          <Videos videoLayout={video_layout} bounds={this.state.bounds} />
+          <Videos videoLayout={video_layout} bounds={this.state.bounds} boundsPad={this.state.boundsPad} />
         </Map>
       </React.Fragment>
     )

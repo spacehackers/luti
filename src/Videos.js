@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import _ from 'lodash';
+import _ from "lodash";
 
-import Video from './Video';
+import Video from "./Video";
 
-import 'leaflet-layerindex';
+import "leaflet-layerindex";
 
-import { vid_config, base_url, xy_to_bounds } from './vid_config';
+import { vid_config, base_url, xy_to_bounds } from "./vid_config";
 
 export default class Videos extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ export default class Videos extends React.Component {
     this.calculateVisible = () => {
       const newVisible = {};
       this.map
-        .search(this.props.bounds.pad(0.5)) // pad the triggering bounds so that offscreen videos can preload
+        .search(this.props.bounds.pad(this.props.boundsPad)) // pad the triggering bounds so that offscreen videos can preload
         .map(v => v.options.id)
         .forEach(url => {
           newVisible[url] = true;
@@ -50,6 +50,7 @@ export default class Videos extends React.Component {
 
   render() {
     const videos = [];
+    console.log(this.props.bounds);
     this.props.videoLayout.forEach((vid, idx) => {
       const id = `${vid.filename}-${idx}`;
       const visible = id in this.state.visible;
@@ -62,7 +63,7 @@ export default class Videos extends React.Component {
           bounds={xy_to_bounds(vid.x, vid.y)}
           debug={false}
           showVideoName={false}
-          debugColor={visible ? '#f00' : '#0f0'}
+          debugColor={visible ? "#f00" : "#0f0"}
           indexFunc={this.index}
           visible={visible}
           {...vid_config}

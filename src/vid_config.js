@@ -1,4 +1,4 @@
-const _ = require('lodash');
+const _ = require("lodash");
 
 export const img_height = 1080;
 export const img_width = 1920;
@@ -15,7 +15,7 @@ export const init_center = video_layout =>
   ].map(e => Math.ceil(e));
 // export const init_center = [img_height / 2, img_width / 2].map(e => Math.ceil(e));
 
-export const base_url = 'https://lifeundertheice.s3.amazonaws.com/';
+export const base_url = "https://lifeundertheice.s3.amazonaws.com/";
 
 export const init_zoom = -0.6;
 

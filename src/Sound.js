@@ -16,7 +16,7 @@ export default class Sound extends React.Component {
         })
     );
     this.calculate_volumes = (x, y) => {
-      let levels = [];
+      const levels = [];
       this.sounds.forEach((sound, idx) => {
         const l = this.locations[idx];
         const distance = Math.sqrt(
@@ -26,7 +26,7 @@ export default class Sound extends React.Component {
         if (volume < 0) {
           volume = 0;
         }
-        volume = volume / 10000.0;
+        volume /= 10000.0;
         sound.fade(sound.volume(), volume, 100);
         console.log("fading from", sound.volume(), "to", volume, distance);
         levels.push(volume);

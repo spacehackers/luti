@@ -1,24 +1,24 @@
-import React from "react"
-import WebFont from "webfontloader"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import React from "react";
+import WebFont from "webfontloader";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Menu from "./Menu"
-import Homepage from "./Homepage"
-import About from "./About"
-import Acknowledgements from "./Acknowledgements"
+import Menu from "./Menu";
+import Homepage from "./Homepage";
+import About from "./About";
+import Acknowledgements from "./Acknowledgements";
 
-import "./App.scss"
+import "./App.scss";
 
 export default class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     WebFont.load({
       typekit: {
         id: "ikz3unr"
       },
       timeout: 7000
-    })
+    });
   }
 
   componentDidMount() {
@@ -37,8 +37,8 @@ export default class App extends React.Component {
             path="/videos"
             component={() => {
               window.location.href =
-                "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/"
-              return null
+                "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/";
+              return null;
             }}
           />
 
@@ -56,6 +56,6 @@ export default class App extends React.Component {
           </Route>
         </Switch>
       </Router>
-    )
+    );
   }
 }

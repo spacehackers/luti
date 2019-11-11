@@ -1,9 +1,9 @@
-import React from "react"
-import classNames from "classnames"
-import { CSSTransition } from "react-transition-group"
-import { TRANSITION_SPEED } from "./constants.js"
+import React from "react";
+import classNames from "classnames";
+import { CSSTransition } from "react-transition-group";
+import { TRANSITION_SPEED } from "./constants.js";
 
-import "./Intro.scss"
+import "./Intro.scss";
 
 const Intro = props => {
   return (
@@ -18,7 +18,7 @@ const Intro = props => {
         </h2>
       </div>
     </CSSTransition>
-  )
-}
+  );
+};
 
-export default Intro
+export default Intro;

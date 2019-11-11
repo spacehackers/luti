@@ -17,9 +17,11 @@
   "rules": {
     "quotes": [
       2,
-      "single"
+      "double"
     ],
     "react/jsx-filename-extension": "off",
+    "import/no-named-as-default": "off",
+    "import/no-named-as-default-member": "off",
     "no-underscore-dangle": "off",
     "react/prefer-stateless-function": "off",
     "prefer-destructuring": "off",
@@ -47,10 +49,7 @@
       "as-needed"
     ],
     "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true
-      }
+      "error"
     ]
   },
   "plugins": [

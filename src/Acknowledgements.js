@@ -1,8 +1,8 @@
-import React from "react"
-import Page from "./Page/Page"
+import React from "react";
+import Page from "./Page/Page";
 
 const Acknowledgements = () => {
-  const page = "Acknowledgements"
+  const page = "Acknowledgements";
 
   return (
     <Page>
@@ -360,7 +360,7 @@ const Acknowledgements = () => {
         Spring Wood, Debora Zamd, and Steve Zellerhoff. /
       </p>
     </Page>
-  )
-}
+  );
+};
 
-export default Acknowledgements
+export default Acknowledgements;
