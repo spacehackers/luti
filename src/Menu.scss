@@ -8,7 +8,6 @@
 @mixin selected {
   color: $color_selected;
   font-weight: 600;
-  font-size: 32px;
 }
 
 ul.menu {
@@ -22,10 +21,10 @@ ul.menu {
   z-index: 500; // for the map
   position: absolute;
   width: 100vw;
+  font-size: $font_size;
 
   li {
     width: 100%;
-    font-size: 32px;
     white-space: nowrap;
 
     &.hidden {
@@ -40,23 +39,13 @@ ul.menu {
     align-items: center;
     justify-content: center;
 
-    .icon-wrapper {
-      border: 1px solid green;
-    }
-
-    .icon-wrapper {
-      border: 1px solid green;
-    }
-
     .menu-toggle {
       display: inline;
-      padding: 0;
-      margin: 0;
-      height: 6em;
+      height: 16px;
+      padding: 0 20px;
     }
 
     .menu-link {
-      border: 1px solid red;
     }
 
     a {
@@ -67,7 +56,6 @@ ul.menu {
   li {
     a {
       color: $color;
-      font-size: 32px;
       text-decoration: none;
     }
 
