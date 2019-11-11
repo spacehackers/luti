@@ -17,6 +17,10 @@ export default class Videos extends React.Component {
       visible: {}
     };
 
+    this.colorPixelSetup = canvas => {
+      this.setState({ canvas });
+    };
+
     this.calculateVisible = () => {
       const newVisible = {};
       this.map
@@ -50,7 +54,6 @@ export default class Videos extends React.Component {
 
   render() {
     const videos = [];
-    console.log(this.props.bounds);
     this.props.videoLayout.forEach((vid, idx) => {
       const id = `${vid.filename}-${idx}`;
       const visible = id in this.state.visible;
@@ -66,10 +69,20 @@ export default class Videos extends React.Component {
           debugColor={visible ? "#f00" : "#0f0"}
           indexFunc={this.index}
           visible={visible}
+          colorCanvas={this.state.canvas}
           {...vid_config}
         />
       );
     });
-    return <>{videos}</>;
+    return (
+      <>
+        {videos}
+        <canvas
+          id="colorpixel"
+          style={{ width: "1px", height: "1px" }}
+          ref={this.colorPixelSetup}
+        />
+      </>
+    );
   }
 }
