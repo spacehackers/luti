@@ -16,8 +16,7 @@ export default class App extends React.Component {
     WebFont.load({
       typekit: {
         id: "ikz3unr"
-      },
-      timeout: 7000
+      }
     })
   }
 
