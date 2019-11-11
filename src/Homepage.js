@@ -4,6 +4,7 @@ import debounce from "lodash/debounce"
 import L from "leaflet"
 import { Map } from "react-leaflet"
 import { withRouter } from "react-router-dom"
+import Info from "./Info"
 
 import Videos from "./Videos"
 import Intro from "./Intro"
@@ -108,6 +109,7 @@ class Homepage extends React.Component {
     return (
       <React.Fragment>
         <Intro visible={false}>Drag to Discover New Creatures</Intro>
+        <Info />
         <Map
           key="map"
           crs={L.CRS.Simple}

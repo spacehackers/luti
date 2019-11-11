@@ -3,7 +3,6 @@ import WebFont from "webfontloader"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 import Menu from "./Menu"
-import Info from "./Info"
 import Homepage from "./Homepage"
 import About from "./About"
 import Acknowledgements from "./Acknowledgements"
@@ -54,7 +53,6 @@ export default class App extends React.Component {
           <Route path="/">
             <Menu page="home" />
             <Homepage />
-            <Info />
           </Route>
         </Switch>
       </Router>
