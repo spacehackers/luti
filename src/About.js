@@ -49,9 +49,7 @@ const About = () => {
         <a href="https://patreon.com/arielwaldman">becoming a patron</a>.
       </p>
 
-      <p>
-        <strong>THE EXPEDITION</strong>
-      </p>
+      <h2>THE EXPEDITION</h2>
 
       <p>
         <a href="https://arielwaldman.com">Ariel Waldman</a> led a 5-week
@@ -71,13 +69,13 @@ const About = () => {
       </p>
 
       <p>
-        <img src="/USGS_McMurdoSound_Cropped_Highlighted.png" />
-        <br />
-        <small>
-          <em>
-            Map courtesy of USGS. Yellow circles highlight locations sampled.
-          </em>
-        </small>
+        <img
+          src="/USGS_McMurdoSound_Cropped_Highlighted.png"
+          alt="Murdo Sound"
+        />
+        <figcaption>
+          Map courtesy of USGS. Yellow circles highlight locations sampled.
+        </figcaption>
       </p>
 
       <p>
