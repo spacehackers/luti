@@ -1,5 +1,8 @@
 @import "../shared";
 
+$content_width: 560px;
+$content_height: 315px;
+
 .page {
   @include luti_font;
 
@@ -19,8 +22,8 @@
   }
 
   .youtube_embed {
-    width: 560px;
-    height: 315px;
+    width: $content_width;
+    height: $content_height;
 
     @media (max-width: $mobile_breakpoint) {
       width: 100%;
@@ -59,6 +62,7 @@
   }
 
   p {
+    max-width: $content_width;
     font-weight: 400;
     text-transform: none;
     font-size: 26px;
