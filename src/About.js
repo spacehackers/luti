@@ -68,7 +68,7 @@ const About = () => {
         Dry Valleys at Lake Bonney and Lake Hoare.
       </p>
 
-      <p>
+      <figure>
         <img
           src="/USGS_McMurdoSound_Cropped_Highlighted.png"
           alt="Murdo Sound"
@@ -76,7 +76,7 @@ const About = () => {
         <figcaption>
           Map courtesy of USGS. Yellow circles highlight locations sampled.
         </figcaption>
-      </p>
+      </figure>
 
       <p>
         While in Antarctica, Ariel filmed her expedition and showcased the
@@ -87,105 +87,93 @@ const About = () => {
         before.
       </p>
 
-      <p>
-        <iframe
-          className="youtube_embed"
-          src="https://www.youtube.com/embed/VJZIgFO-dFg"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-        <br />
-        <small>
-          <em>
-            Ariel spent 5 weeks in Antarctica to film microbes living under the
-            ice. Here's how she got there.
-          </em>
-        </small>
-      </p>
+      <div className="embeds_wrapper">
+        <figure role="group">
+          <figure>
+            <iframe
+              className="youtube_embed"
+              src="https://www.youtube.com/embed/VJZIgFO-dFg"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <figcaption>
+              Ariel spent 5 weeks in Antarctica to film microbes living under
+              the ice. Here's how she got there.
+            </figcaption>
+          </figure>
 
-      <p>
-        <iframe
-          className="youtube_embed"
-          src="https://www.youtube.com/embed/u9aHl-qssHI"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-        <br />
-        <small>
-          <em>
-            Ariel joined Antarctic divers in going deep under the sea ice to
-            explore the weird wonders of the Southern Ocean.
-          </em>
-        </small>
-      </p>
+          <figure>
+            <iframe
+              className="youtube_embed"
+              src="https://www.youtube.com/embed/u9aHl-qssHI"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <figcaption>
+              Ariel joined Antarctic divers in going deep under the sea ice to
+              explore the weird wonders of the Southern Ocean.
+            </figcaption>
+          </figure>
 
-      <p>
-        <iframe
-          className="youtube_embed"
-          src="https://www.youtube.com/embed/d7TMawjKG5k"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-        <br />
-        <small>
-          <em>
-            Here's what it was like to camp outside in the Antarctic Dry Valleys
-            next to the natural phenomenon known as Blood Falls.
-          </em>
-        </small>
-      </p>
+          <figure>
+            <iframe
+              className="youtube_embed"
+              src="https://www.youtube.com/embed/d7TMawjKG5k"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <figcaption>
+              Here's what it was like to camp outside in the Antarctic Dry
+              Valleys next to the natural phenomenon known as Blood Falls.
+            </figcaption>
+          </figure>
 
-      <p>
-        <iframe
-          className="youtube_embed"
-          src="https://www.youtube.com/embed/hImxHVhlan4"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-        <br />
-        <small>
-          <em>
-            Some of the extremophiles Ariel sought to film with her microscopes
-            live embedded INSIDE glaciers. Ariel climbed on to the top of a
-            glacier in search for tardigrades and shared what it was like to
-            camp at Lake Hoare next to Canada Glacier.
-          </em>
-        </small>
-      </p>
+          <figure>
+            <iframe
+              className="youtube_embed"
+              src="https://www.youtube.com/embed/hImxHVhlan4"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <figcaption>
+              Some of the extremophiles Ariel sought to film with her
+              microscopes live embedded INSIDE glaciers. Ariel climbed on to the
+              top of a glacier in search for tardigrades and shared what it was
+              like to camp at Lake Hoare next to Canada Glacier.
+            </figcaption>
+          </figure>
 
-      <p>
-        <iframe
-          className="youtube_embed"
-          src="https://www.youtube.com/embed/PcZxLJ9RbLM"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-        <br />
-        <small>
-          <em>
-            While in Antarctica, Ariel went on a day-long road trip across the
-            sea ice with a team that uses a robot called Icefin to explore the
-            seafloor. One day, robots like Icefin may help us explore the icy
-            moons in our solar system, such as Europa.
-          </em>
-        </small>
-      </p>
+          <figure>
+            <iframe
+              className="youtube_embed"
+              src="https://www.youtube.com/embed/PcZxLJ9RbLM"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <figcaption>
+              While in Antarctica, Ariel went on a day-long road trip across the
+              sea ice with a team that uses a robot called Icefin to explore the
+              seafloor. One day, robots like Icefin may help us explore the icy
+              moons in our solar system, such as Europa.
+            </figcaption>
+          </figure>
+        </figure>
+      </div>
 
-      <br />
-      <p>
-        If you would like to get in touch regarding this project, email{" "}
-        <a href="mailto:ariel@arielwaldman.com">ariel@arielwaldman.com</a>.
-      </p>
-      <br />
-      <p>
-        ---
-        <br />
-        <small>
+      <div className="contact">
+        <p>
+          If you would like to get in touch regarding this project, email{" "}
+          <a href="mailto:ariel@arielwaldman.com">ariel@arielwaldman.com</a>.
+        </p>
+      </div>
+
+      <div className="disclosure">
+        <p>
           <em>
             Disclosure: This material is based upon work supported by the
             National Science Foundation under Grant Number 1745408. Any
@@ -193,8 +181,8 @@ const About = () => {
             this material are those of the author and do not necessarily reflect
             the views of the National Science Foundation.
           </em>
-        </small>
-      </p>
+        </p>
+      </div>
     </Page>
   )
 }
