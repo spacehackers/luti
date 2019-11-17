@@ -20,6 +20,10 @@ body {
   height: calc(100vh - #{$menu-height});
   width: 100vw;
   overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
 }
 
 .leaflet-control-container {
