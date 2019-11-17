@@ -18,6 +18,16 @@
     transition: all $transition_speed linear;
   }
 
+  .youtube_embed {
+    width: 560px;
+    height: 315px;
+
+    @media (max-width: $mobile_breakpoint) {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   .wrapper {
     width: 100%;
     margin: 85px 100px;
