@@ -6,7 +6,8 @@ import "./Info.scss"
 const propTypes = {
   title: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
+  hidden: PropTypes.bool
 }
 
 const defaultProps = {
