@@ -6,22 +6,20 @@ $img_height: 1080px;
 
 body {
   background-color: $luti_background;
-}
-
-#map,
-.leaflet-container {
-  height: 100vh;
-  width: 100vw;
-}
-
-body {
-  margin: 0;
   background-color: $luti_background;
   font-family: "antarctican-headline", sans-serif;
   font-weight: 400;
   font-style: normal;
   text-transform: uppercase;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+#map,
+.leaflet-container {
+  height: calc(100vh - #{$menu-height});
+  width: 100vw;
+  overflow: hidden;
 }
 
 .leaflet-control-container {
