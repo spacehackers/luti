@@ -47,6 +47,10 @@ const init_center = (() => {
   ]
 })()
 
+const propTypes = {
+  hidden: PropTypes.bool
+}
+
 class Homepage extends React.Component {
   constructor(props) {
     super(props)
@@ -114,7 +118,7 @@ class Homepage extends React.Component {
         <Intro visible={this.state.introVisible}>
           Drag to Discover New Creatures
         </Intro>
-        <Info />
+        <Info hidden={false} />
         <Map
           key="map"
           crs={L.CRS.Simple}
@@ -140,8 +144,6 @@ class Homepage extends React.Component {
   }
 }
 
-Homepage.propTypes = {
-  hidden: PropTypes.bool
-}
+Homepage.propTypes = propTypes
 
 export default withRouter(Homepage)

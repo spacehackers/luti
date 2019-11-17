@@ -1,20 +1,52 @@
 @import "shared";
+@import "sharingButtons";
+
+$overlay-height: 240px;
 
 .info-button {
-  position: fixed;
-  bottom: 30px;
+  position: absolute;
+  // right: 30px;
+  // bottom: $overlay-height + 20px;
   right: 20px;
+  bottom: $overlay-height + 50px;
   width: 100px;
-  z-index: 500;
 
   background: transparent;
   outline: 0;
   border: 0;
+
+  z-index: 500;
 }
 
 .info-button:hover {
   cursor: pointer;
 }
 
-.info-toggle {
+.info-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: $overlay-height;
+  display: flex;
+  font-size: 16px;
+
+  position: fixed;
+  bottom: 0;
+  z-index: 500;
+  background: #fff;
+  padding: 20px;
+
+  .info-section {
+    flex: 2;
+  }
+
+  .share-links {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .title-desc {
+  }
 }

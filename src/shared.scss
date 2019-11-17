@@ -5,6 +5,11 @@ $mobile_breakpoint: 780px;
 $large_breakpoint: 1150px;
 $font_size: 1.4em;
 $menu-height: 32px;
+$browser-context: 16; // Default
+
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em;
+}
 
 @mixin luti_font() {
   @font-face {
