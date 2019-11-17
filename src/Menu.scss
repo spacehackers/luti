@@ -18,7 +18,10 @@ ul.menu {
   list-style-type: none;
   text-align: center;
   z-index: 500; // for the map
-  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   width: 100vw;
   font-size: $font_size;
 
