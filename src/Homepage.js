@@ -111,7 +111,9 @@ class Homepage extends React.Component {
 
     return (
       <React.Fragment>
-        <Intro visible={true}>Drag to Discover New Creatures</Intro>
+        <Intro visible={this.state.introVisible}>
+          Drag to Discover New Creatures
+        </Intro>
         <Info />
         <Map
           key="map"
