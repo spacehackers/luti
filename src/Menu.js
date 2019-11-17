@@ -99,7 +99,6 @@ export default class Menu extends React.Component {
     return (
       <li key={key} className={`${selected} ${hidden} ${slug}`}>
         <div className="menu-item-wrapper">
-          {this.renderIcon(key)}
           <span className="menu-link">
             <a
               href={href}
@@ -109,6 +108,7 @@ export default class Menu extends React.Component {
               }}
               onKeyUp={this.handleKeyUp}
             >
+              {this.renderIcon(key)}
               {content}
             </a>
           </span>
