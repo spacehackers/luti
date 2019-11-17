@@ -13,6 +13,10 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      hideMap: true
+    }
+
     WebFont.load({
       typekit: {
         id: "ikz3unr"
@@ -26,6 +30,10 @@ export default class App extends React.Component {
     // if (window.location.hash && document.referrer.includes("localhost")) {
     //   document.location.href = "/"
     // }
+
+    window.setTimeout(() => {
+      this.setState({ hideMap: false })
+    }, 500)
   }
 
   render() {
@@ -51,7 +59,7 @@ export default class App extends React.Component {
           </Route>
           <Route path="/">
             <Menu page="home" />
-            <Homepage />
+            <Homepage hidden={this.state.hideMap} />
           </Route>
         </Switch>
       </Router>

@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import debounce from "lodash/debounce"
 
 import L from "leaflet"
@@ -106,9 +107,11 @@ class Homepage extends React.Component {
   }
 
   render() {
+    if (this.props.hidden === true) return false
+
     return (
       <React.Fragment>
-        <Intro visible={false}>Drag to Discover New Creatures</Intro>
+        <Intro visible={true}>Drag to Discover New Creatures</Intro>
         <Info />
         <Map
           key="map"
@@ -133,6 +136,10 @@ class Homepage extends React.Component {
       </React.Fragment>
     )
   }
+}
+
+Homepage.propTypes = {
+  hidden: PropTypes.bool
 }
 
 export default withRouter(Homepage)
