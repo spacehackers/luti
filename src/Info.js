@@ -1,55 +1,42 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
+import classNames from "classnames"
+import { CSSTransition } from "react-transition-group"
+import "./Info.scss"
 
-import "./Info.scss";
+const TRANSITION_SPEED = 600
 
 const propTypes = {
   title: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  hidden: PropTypes.bool
-};
+  url: PropTypes.string.isRequired
+}
 
 const defaultProps = {
-  hidden: false,
   title: "Curious Microbe",
   desc: "Last seen in Antarctica",
   url: "luti.org"
-};
+}
 
 export default class Info extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      open: false
-    };
+      hidden: true
+    }
   }
 
-  handleClick(e) {
-    const url = window.location.href;
-
-    alert(url);
+  handleClick = () => {
+    console.log("🍎", this.state.hidden)
+    this.setState({ hidden: !this.state.hidden })
   }
 
   getAriaLabel() {
     if (this.state.open) {
-      return "click for info";
+      return "click for info"
     }
-    return "close info";
-  }
-
-  renderButton() {
-    return (
-      <button className="info-button" onClick={this.handleClick}>
-        <img
-          className="info-toggle"
-          src="LUTI_WhatsThis.svg"
-          aria-label={this.getAriaLabel()}
-          alt=""
-        />
-      </button>
-    );
+    return "close info"
   }
 
   renderSharingButtons() {
@@ -112,12 +99,25 @@ export default class Info extends React.Component {
           </div>
         </a>
       </div>
-    );
+    )
+  }
+
+  renderButton() {
+    return (
+      <button className="info-button" onClick={this.handleClick}>
+        <img
+          className="info-toggle"
+          src="LUTI_WhatsThis.svg"
+          aria-label={this.getAriaLabel()}
+          alt=""
+        />
+      </button>
+    )
   }
 
   renderInfo() {
-    const { title, desc, url } = this.props;
-    const shareLink = '<a href = ""';
+    const { title, desc, url } = this.props
+    const shareLink = '<a href = ""'
     return (
       <div className="info-section">
         <div className="title-desc">
@@ -125,23 +125,29 @@ export default class Info extends React.Component {
           <p>{this.props.desc}</p>
         </div>
       </div>
-    );
+    )
+  }
+
+  renderInfoWrapper() {
+    return (
+      <div className="info-wrapper">
+        {this.renderInfo()}
+        {this.renderSharingButtons()}
+      </div>
+    )
   }
 
   render() {
-    if (this.props.hidden === true) return false;
-
     return (
-      <React.Fragment>
-        {this.renderButton()}
-        <div className="info-wrapper">
-          {this.renderInfo()}
-          {this.renderSharingButtons()}
+      <CSSTransition in={!this.state.hidden} timeout={TRANSITION_SPEED}>
+        <div>
+          {this.renderButton()}
+          {this.renderInfoWrapper()}
         </div>
-      </React.Fragment>
-    );
+      </CSSTransition>
+    )
   }
 }
 
-Info.propTypes = propTypes;
-Info.defaultProps = defaultProps;
+Info.propTypes = propTypes
+Info.defaultProps = defaultProps

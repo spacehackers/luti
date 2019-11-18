@@ -24,6 +24,10 @@ body {
   top: 0;
   right: 0;
   left: 0;
+
+  @media (min-width: $mobile_breakpoint) {
+    height: 100vh;
+  }
 }
 
 .leaflet-control-container {

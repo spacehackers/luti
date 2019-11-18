@@ -3,22 +3,51 @@
 
 $overlay-height-desktop: 240px;
 $overlay-height-mobile: 130px;
+$speed: 600ms;
+$padding: 20px;
 
 .info-button {
-  position: absolute;
-  width: 100px;
-  // right: 30px;
-  // bottom: $overlay-height + 20px;
+  $margin-bottom: 20px;
+
+  position: fixed;
   right: 20px;
-  bottom: $overlay-height-desktop + 50px;
+  bottom: $margin-bottom;
+  width: 100px;
+  margin-bottom: 50px;
+
   background: transparent;
   outline: 0;
   border: 0;
-  z-index: 500;
+  z-index: 900;
 
-  @media (max-width: $mobile_breakpoint) {
-    bottom: $overlay-height-mobile + 50px;
-    right: 0;
+  // animations
+  .hidden & {
+    bottom: $margin-bottom;
+  }
+
+  .enter & {
+    bottom: $margin-bottom;
+  }
+
+  .enter.enter-active & {
+    bottom: $overlay-height-desktop + $margin-bottom;
+    transition: all $transition_speed ease-in;
+  }
+
+  .enter-done & {
+    bottom: $overlay-height-desktop + $margin-bottom;
+  }
+
+  .exit & {
+    bottom: $margin-bottom;
+  }
+
+  .exit-active & {
+    bottom: $margin-bottom;
+    transition: all $transition_speed ease-out;
+  }
+
+  .exit-done & {
   }
 }
 
@@ -30,23 +59,21 @@ $overlay-height-mobile: 130px;
 }
 
 .info-wrapper {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: $overlay-height-desktop;
-  display: flex;
   font-size: 16px;
 
-  position: fixed;
-  bottom: 0;
+  @media (min-width: $mobile_breakpoint) {
+    overflow-y: hidden;
+  }
+
   z-index: 500;
   background: #fff;
-  padding: 20px;
+  padding: 0;
 
-  @media (max-width: $mobile_breakpoint) {
-    height: $overlay-height-mobile;
-  }
+  height: 0;
 
   .info-section {
     flex: 2;
@@ -62,5 +89,43 @@ $overlay-height-mobile: 130px;
     @media (max-width: $mobile_breakpoint) {
       display: none;
     }
+  }
+
+  // animations
+  .hidden & {
+    height: 0;
+    padding: 0;
+  }
+
+  .enter & {
+    height: 0;
+    padding: 0;
+  }
+
+  .enter.enter-active & {
+    height: $overlay-height-desktop;
+    padding: $padding;
+    transition: all $transition_speed ease-in;
+  }
+
+  .enter-done & {
+    height: $overlay-height-desktop;
+    padding: $padding;
+  }
+
+  .exit & {
+    height: $overlay-height-desktop;
+    padding: $padding;
+  }
+
+  .exit-active & {
+    height: 0;
+    padding: 0;
+    transition: all $transition_speed ease-out;
+  }
+
+  &.exit-done & {
+    height: 0;
+    padding: 0;
   }
 }
