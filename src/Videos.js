@@ -25,7 +25,7 @@ export default class Videos extends React.Component {
       const center = this.props.bounds.getCenter().toBounds(1);
       const centerVideo = _.head(this.map.search(center));
       if (centerVideo !== undefined) {
-        console.log("CURRENT VIDEO TITLE", centerVideo.options.video.title);
+        this.props.onVideoChange(centerVideo.options.video);
       }
     };
 
