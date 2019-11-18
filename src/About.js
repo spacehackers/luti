@@ -91,6 +91,7 @@ const About = () => {
         <figure role="group">
           <figure>
             <iframe
+              title="How to get to Antarctica - Episode 1"
               className="youtube_embed"
               src="https://www.youtube.com/embed/VJZIgFO-dFg"
               frameborder="0"
@@ -105,6 +106,7 @@ const About = () => {
 
           <figure>
             <iframe
+              title="Antarctica under the ice - Episode 2"
               className="youtube_embed"
               src="https://www.youtube.com/embed/u9aHl-qssHI"
               frameborder="0"
@@ -119,6 +121,7 @@ const About = () => {
 
           <figure>
             <iframe
+              title="Camping in Antarctica - Episode 3"
               className="youtube_embed"
               src="https://www.youtube.com/embed/d7TMawjKG5k"
               frameborder="0"
@@ -133,6 +136,7 @@ const About = () => {
 
           <figure>
             <iframe
+              title="Extremophiles of Antarctica - Episode 4"
               className="youtube_embed"
               src="https://www.youtube.com/embed/hImxHVhlan4"
               frameborder="0"
@@ -149,6 +153,7 @@ const About = () => {
 
           <figure>
             <iframe
+              title="Antarctica robot road trip - Episode 5"
               className="youtube_embed"
               src="https://www.youtube.com/embed/PcZxLJ9RbLM"
               frameborder="0"
