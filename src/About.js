@@ -71,7 +71,7 @@ const About = () => {
       <figure>
         <img
           src="/USGS_McMurdoSound_Cropped_Highlighted.png"
-          alt="Murdo Sound"
+          alt="USGS Map of McMurdo Sound"
         />
         <figcaption>
           Map courtesy of USGS. Yellow circles highlight locations sampled.
