@@ -74,8 +74,6 @@ class Homepage extends React.Component {
         return;
       }
 
-      this.props.history.replace(`/#${target.getBounds().toBBoxString()}`);
-      console.log(target.getBounds());
       this.setState({ bounds: target.getBounds() });
 
       if (this.state.introVisible) {
@@ -87,12 +85,14 @@ class Homepage extends React.Component {
 
     this.handleOnMove = debounce(handleOnMove, 500, { leading: true });
 
+    /*
     if (props.location.hash.length > 1) {
       const bounds = L.LatLngBounds.fromBBoxString(
         props.location.hash.substr(1)
       );
       this.state.bounds = bounds;
     }
+    */
 
     this.onMove = ({ target }) => {
       this.handleOnMove(target);
@@ -103,6 +103,7 @@ class Homepage extends React.Component {
         if (isEqual(prevState.currentVideo, currentVideo)) {
           return undefined;
         }
+        this.props.history.replace(`/#${currentVideo.x},${currentVideo.y}`);
         return { currentVideo };
       });
     };

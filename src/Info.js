@@ -39,11 +39,13 @@ export default class Info extends React.Component {
   }
 
   renderSharingButtons() {
+    const encodedMessage=encodeURIComponent("Check out what I found under the ice!");
+    const encodedURI=encodeURIComponent(window.location.href);
     return (
       <div className="share-links">
         <a
           className="resp-sharing-button__link"
-          href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io"
+          href={`https://facebook.com/sharer/sharer.php?u=${encodedURI}`}
           target="_blank"
           rel="noopener"
           aria-label=""
@@ -62,7 +64,7 @@ export default class Info extends React.Component {
 
         <a
           className="resp-sharing-button__link"
-          href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io"
+          href={`https://twitter.com/intent/tweet/?text=${encodedMessage}&amp;url=${encodedURI}`}
           target="_blank"
           rel="noopener"
           aria-label=""
@@ -81,7 +83,7 @@ export default class Info extends React.Component {
 
         <a
           className="resp-sharing-button__link"
-          href="mailto:?subject=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;body=http%3A%2F%2Fsharingbuttons.io"
+          href={`mailto:?subject=${encodedMessage}&amp;body=${encodedURI}`}
           target="_self"
           rel="noopener"
           aria-label=""
