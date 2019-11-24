@@ -58,18 +58,13 @@ export default class Video extends React.Component {
       const video = ref.leafletElement.getElement();
 
       console.log("video.src = ", m3u8);
+
       video.src = m3u8;
+      video.poster = m3u8
+        .replace(/\.m3u8/, "-00001.png")
+        .replace(/lifeundertheice/, "lifeundertheice-thumbs");
       video.crossOrigin = "Anonymous";
       video.playsInline = true;
-      video.addEventListener("play", () => {
-        const context = this.props.colorCanvas.getContext("2d");
-        context.drawImage(video, 0, 0, 1, 1);
-        const idata = context.getImageData(0, 0, 1, 1);
-        const r = idata.data[0];
-        const g = idata.data[1];
-        const b = idata.data[2];
-        console.log("RGB", r, g, b);
-      });
       video.addEventListener("loadedmetadata", () => {
         console.log("IM PLAYING");
       });

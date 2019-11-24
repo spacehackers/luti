@@ -17,10 +17,6 @@ export default class Videos extends React.Component {
       visible: {}
     };
 
-    this.colorPixelSetup = canvas => {
-      this.setState({ canvas });
-    };
-
     this.getCenterVideo = () => {
       const center = this.props.bounds.getCenter().toBounds(1);
       const centerVideo = _.head(this.map.search(center));
@@ -80,20 +76,10 @@ export default class Videos extends React.Component {
           debugColor={visible ? "#f00" : "#0f0"}
           indexFunc={this.index}
           visible={visible}
-          colorCanvas={this.state.canvas}
           {...vid_config}
         />
       );
     });
-    return (
-      <>
-        {videos}
-        <canvas
-          id="colorpixel"
-          style={{ width: "1px", height: "1px" }}
-          ref={this.colorPixelSetup}
-        />
-      </>
-    );
+    return <>{videos}</>;
   }
 }
