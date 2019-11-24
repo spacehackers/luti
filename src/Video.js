@@ -18,9 +18,9 @@ export default class Video extends React.Component {
     this.cachedHls = (m3u8, autocreate) => {
       if (autocreate && !(m3u8 in this.hls)) {
         const hls = new Hls(hls_config);
-        hls.loadSource(m3u8);
         hls.on(Hls.Events.MEDIA_ATTACHED, () => {
           console.log("ATTACHED", hls.media);
+          hls.loadSource(m3u8);
           hls.media.muted = true;
           hls.media.loop = true;
           hls.media.autoplay = false;
@@ -42,9 +42,12 @@ export default class Video extends React.Component {
     };
 
     this.enableVideoHls = ref => {
-      this.cachedHls(ref.props.m3u8, true).attachMedia(
-        ref.leafletElement.getElement()
-      );
+      const m3u8 = ref.props.m3u8;
+      const video = ref.leafletElement.getElement();
+      this.cachedHls(ref.props.m3u8, true).attachMedia(video);
+      video.poster = m3u8
+        .replace(/\.m3u8/, "-00001.png")
+        .replace(/lifeundertheice/, "lifeundertheice-thumbs");
     };
 
     this.disableVideoM3u8 = ref => {
