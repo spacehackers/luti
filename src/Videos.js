@@ -34,8 +34,9 @@ export default class Videos extends React.Component {
           newVisible[url] = true;
         });
       if (!_.isEqual(newVisible, this.state.visible)) {
-        this.setState({ visible: newVisible });
+        return newVisible;
       }
+      return undefined;
     };
 
     this.index = leafletElement => {
@@ -46,16 +47,25 @@ export default class Videos extends React.Component {
       this.map = leafletElement._map;
       this.map.indexLayer(leafletElement);
       this.alreadyIndexedIds[id] = true;
-      this.calculateVisible();
+      const newVisible = this.calculateVisible();
+      if (newVisible !== undefined) {
+        this.setState({ visible: newVisible });
+      }
       this.getCenterVideo();
     };
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      this.calculateVisible();
-      this.getCenterVideo();
+  shouldComponentUpdate(nextProps) {
+    if (_.isEqual(nextProps, this.props)) {
+      return false;
     }
+    const newVisible = this.calculateVisible();
+    this.getCenterVideo();
+    if (newVisible !== undefined) {
+      this.setState({ visible: newVisible });
+      return true;
+    }
+    return false;
   }
 
   render() {
