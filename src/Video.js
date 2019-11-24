@@ -63,6 +63,8 @@ export default class Video extends React.Component {
       console.log("video.src = ", m3u8);
 
       video.src = m3u8;
+      video.width = 1920;
+      video.height = 1080;
       video.poster = m3u8
         .replace(/\.m3u8/, "-00001.png")
         .replace(/lifeundertheice/, "lifeundertheice-thumbs");

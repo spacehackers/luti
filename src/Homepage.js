@@ -65,7 +65,8 @@ class Homepage extends React.Component {
     this.state = {
       bounds: undefined,
       introVisible: false,
-      interacting: false
+      interacting: false,
+      init_zoom
     };
 
     const handleOnMove = target => {
@@ -120,6 +121,7 @@ class Homepage extends React.Component {
         // bigger than an iPhone X Max
         console.log("DESKTOP MODE");
         newState.boundsPad = 0.5;
+        newState.init_zoom = init_zoom + 1;
       }
       this.setState(newState);
     };
@@ -144,10 +146,10 @@ class Homepage extends React.Component {
           crs={L.CRS.Simple}
           zoomSnap={0}
           zoomDelta={0.25}
-          minZoom={init_zoom}
-          maxZoom={init_zoom + 0.5}
+          minZoom={this.state.init_zoom}
+          maxZoom={this.state.init_zoom + 0.5}
           center={init_center}
-          zoom={init_zoom}
+          zoom={this.state.init_zoom}
           keyboardPanDelta={150}
           onMove={this.onMove}
           maxBounds={map_bounds}
