@@ -8,7 +8,7 @@ const TRANSITION_SPEED = 600
 
 const propTypes = {
   title: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
+  desc: PropTypes.node.isRequired,
   url: PropTypes.string.isRequired
 }
 
