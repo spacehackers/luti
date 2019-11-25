@@ -139,10 +139,8 @@ export default class Video extends React.Component {
       this.props.bounds[0][1] + 100
     ];
     let debugMarker = <></>;
-    if (this.props.showVideoName) {
-      debugMarker = <Marker position={textLoc} icon={text} />;
-    }
     if (this.props.debug) {
+      debugMarker = <Marker position={textLoc} icon={text} />;
       return (
         <Rectangle
           id={this.props.id}
