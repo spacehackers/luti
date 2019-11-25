@@ -72,7 +72,7 @@ $content_height: 315px;
   }
 
   img {
-    max-width: $content_width;
+    width: 100%;
   }
 
   figure {
@@ -93,7 +93,7 @@ $content_height: 315px;
 
   a {
     color: lightcoral;
-    padding: 0 2px;
+    padding: 0 1px;
   }
 
   a:hover {

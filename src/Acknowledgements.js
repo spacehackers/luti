@@ -347,7 +347,7 @@ const Acknowledgements = () => {
         Robinson, T.J. Rogers, Steve Rupp, Caitlin Scarano, Neal Scheibe,
         Britney Schmidt, Adam Solon, Pacifica Sommers, Michael Stone, James
         VanMatre, Claire Veligdan, Joe Wallis, Kathleen Welch, David White,
-        Spring Wood, Debora Zamd, and Steve Zellerhoff. /
+        Spring Wood, Debora Zamd, and Steve Zellerhoff.
       </p>
     </Page>
   );
