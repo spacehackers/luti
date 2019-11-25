@@ -8,13 +8,6 @@ export const x_count = video_layout =>
 export const y_count = video_layout =>
   _.max(video_layout.map(l => parseInt(l.y, 10))) + 1;
 
-export const init_center = video_layout =>
-  [
-    (x_count(video_layout) * img_height) / 2 + img_height / 2,
-    (y_count(video_layout) * img_width) / 2 + img_width / 2
-  ].map(e => Math.ceil(e));
-// export const init_center = [img_height / 2, img_width / 2].map(e => Math.ceil(e));
-
 export const base_url = "https://lifeundertheice.s3.amazonaws.com/";
 
 export const init_zoom = -1.6;
