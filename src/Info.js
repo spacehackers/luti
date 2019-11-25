@@ -108,7 +108,7 @@ export default class Info extends React.Component {
       <button className="info-button" onClick={this.handleClick}>
         <img
           className="info-toggle"
-          src="LUTI_WhatsThis.svg"
+          src="LUTI_WhatsThis5.svg"
           aria-label={this.getAriaLabel()}
           alt=""
         />
