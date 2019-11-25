@@ -46,10 +46,7 @@ const init_center = (() => {
     x: "0",
     y: "0"
   };
-  return [
-    init_video.x * img_width + img_width / 2 - 600,
-    init_video.y * img_height + img_height + 200
-  ];
+  return init_video.bounds().getCenter();
 })();
 
 const propTypes = {
