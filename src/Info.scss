@@ -1,7 +1,7 @@
 @import "shared";
 @import "sharingButtons";
 
-$overlay-height-desktop: 240px;
+$overlay-height-desktop: 200px;
 $overlay-height-mobile: 130px;
 $speed: 600ms;
 $padding: 20px;
@@ -12,8 +12,8 @@ $padding: 20px;
   position: fixed;
   right: 20px;
   bottom: $margin-bottom;
-  width: 200px;
-  margin-bottom: 0px;
+  width: 175px;
+  margin-bottom: 15px;
 
   background: transparent;
   outline: 0;
@@ -70,7 +70,7 @@ $padding: 20px;
   }
 
   z-index: 500;
-  background: #fff;
+  background: #f6f6f6;
   padding: 0;
 
   height: 0;
