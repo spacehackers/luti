@@ -14,6 +14,7 @@ export default class Video extends React.Component {
       }
     };
 
+    this.enabled = false;
     this.hls = {};
     this.cachedHls = (m3u8, autocreate) => {
       if (autocreate && !(m3u8 in this.hls)) {
@@ -78,6 +79,11 @@ export default class Video extends React.Component {
     this.enableVideo = ref => {
       if (ref === null) return;
       this.addElementToIndex(ref);
+      if (this.enabled) {
+        console.log("VIDEO ALREADY ENABLED");
+        return;
+      }
+      this.enabled = true;
 
       const video = ref.leafletElement.getElement();
       if (video.tagName !== "VIDEO") return;
@@ -98,6 +104,11 @@ export default class Video extends React.Component {
     this.disableVideo = ref => {
       if (ref === null) return;
       this.addElementToIndex(ref);
+      if (!this.enabled) {
+        console.log("VIDEO ALREADY DISABLED");
+        return;
+      }
+      this.enabled = false;
 
       const video = ref.leafletElement.getElement();
       if (video.tagName !== "VIDEO") return;
@@ -117,26 +128,26 @@ export default class Video extends React.Component {
 
   render() {
     const text = L.divIcon({
-      html: `${this.props.id} bounds: ${JSON.stringify(
-        this.props.bounds
-      )} x,y: ${JSON.stringify(this.props.xy)}`
+      html: `${this.props.id} visible: ${
+        this.props.visible
+      } bounds: ${JSON.stringify(this.props.bounds)} x,y: ${JSON.stringify(
+        this.props.xy
+      )}`
     });
     const textLoc = [
       this.props.bounds[0][0] + 1000,
       this.props.bounds[0][1] + 100
     ];
     let debugMarker = <></>;
-    if (this.props.showVideoName) {
-      debugMarker = <Marker position={textLoc} icon={text} />;
-    }
     if (this.props.debug) {
+      debugMarker = <Marker position={textLoc} icon={text} />;
       return (
         <Rectangle
           id={this.props.id}
           key={this.key}
           bounds={this.props.bounds}
           ref={this.addElementToIndex}
-          color={this.props.debugColor}
+          color={this.props.visible ? "#f00" : "#0f0"}
         >
           {debugMarker}
         </Rectangle>
@@ -147,7 +158,7 @@ export default class Video extends React.Component {
     return (
       <VideoOverlay
         {...this.props}
-        url={(this.props.visible && this.props.m3u8) || ""}
+        url=""
         ref={callback}
         key={`video-${this.key}`}
       >

@@ -56,22 +56,28 @@ export default class Videos extends React.Component {
     };
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (this.state.redrawRequired) {
-      this.setState({ redrawRequired: false });
-      return true;
+  componentDidUpdate(nextProps, nextState) {
+    if (!_.isEqual(nextProps.bounds, this.props.bounds)) {
+      console.log("NEW BOUNDS, CALCULATING VISIBLES");
+      const newVisible = this.calculateVisible();
+      this.getCenterVideo();
+      if (newVisible !== undefined) {
+        this.setState({ visible: newVisible });
+      }
     }
-    if (_.isEqual(nextProps, this.props)) {
-      console.log("NO UPDATE");
-      return false;
+    if (!_.isEqual(nextState.visible, this.state.visible)) {
+      console.log("NEW VISIBLES, REDRAWING");
     }
-    const newVisible = this.calculateVisible();
-    this.getCenterVideo();
-    if (newVisible !== undefined) {
-      this.setState({ visible: newVisible, redrawRequired: true });
-      return true;
-    }
-    return false;
+    /*
+    console.log(
+      "NEW STATES IN VIDEOS",
+      Object.keys(nextState).filter(k => nextState[k] !== this.state[k])
+    );
+    console.log(
+      "NEW PROPS IN VIDEOS",
+      Object.keys(nextProps).filter(k => nextProps[k] !== this.props[k])
+    );
+    */
   }
 
   render() {
@@ -88,8 +94,6 @@ export default class Videos extends React.Component {
           xy={[vid.x, vid.y]}
           bounds={xy_to_bounds(vid.x, vid.y)}
           debug={false}
-          showVideoName={false}
-          debugColor={visible ? "#f00" : "#0f0"}
           indexFunc={this.index}
           visible={visible}
           {...vid_config}
