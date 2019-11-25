@@ -49,20 +49,26 @@ export default class Videos extends React.Component {
       this.alreadyIndexedIds[id] = true;
       const newVisible = this.calculateVisible();
       if (newVisible !== undefined) {
-        this.setState({ visible: newVisible });
+        console.log("NEW VISIBLE IN INDEX", newVisible);
+        this.setState({ visible: newVisible, redrawRequired: true });
       }
       this.getCenterVideo();
     };
   }
 
   shouldComponentUpdate(nextProps) {
+    if (this.state.redrawRequired) {
+      this.setState({ redrawRequired: false });
+      return true;
+    }
     if (_.isEqual(nextProps, this.props)) {
+      console.log("NO UPDATE");
       return false;
     }
     const newVisible = this.calculateVisible();
     this.getCenterVideo();
     if (newVisible !== undefined) {
-      this.setState({ visible: newVisible });
+      this.setState({ visible: newVisible, redrawRequired: true });
       return true;
     }
     return false;

@@ -120,7 +120,7 @@ class Homepage extends React.Component {
       if (screenPixels > 450 * 900) {
         // bigger than an iPhone X Max
         console.log("DESKTOP MODE");
-        newState.boundsPad = 0.5;
+        newState.boundsPad = 0.0;
         newState.init_zoom = init_zoom + 1;
       }
       this.setState(newState);

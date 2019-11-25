@@ -19,7 +19,7 @@ export default class Video extends React.Component {
       if (autocreate && !(m3u8 in this.hls)) {
         const hls = new Hls(hls_config);
         hls.on(Hls.Events.MEDIA_ATTACHED, () => {
-          console.log("ATTACHED", hls.media);
+          // console.log("HLS ATTACHED", hls.media);
           hls.loadSource(m3u8);
           hls.media.muted = true;
           hls.media.loop = true;
@@ -27,7 +27,7 @@ export default class Video extends React.Component {
           hls.media.play();
         });
         hls.on(Hls.Events.MEDIA_DETACHED, () => {
-          console.log("DETACHED", hls.media);
+          // console.log("HLS DETACHED", hls.media);
         });
         this.hls[m3u8] = hls;
       }
@@ -84,12 +84,12 @@ export default class Video extends React.Component {
 
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
         this.enableVideoM3u8(ref);
-        console.log("M3U8 TO ENABLE VIDEO");
+        console.log("M3U8 ENABLE VIDEO");
         return;
       }
       if (Hls.isSupported()) {
         this.enableVideoHls(ref);
-        console.log("HLS TO ENABLE VIDEO");
+        console.log("HLS ENABLE VIDEO");
         return;
       }
       console.log("NOTHING WORKS TO ENABLE VIDEO");
@@ -103,12 +103,12 @@ export default class Video extends React.Component {
       if (video.tagName !== "VIDEO") return;
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
         this.disableVideoM3u8(ref);
-        console.log("M3U8 TO DISABLE VIDEO");
+        console.log("M3U8 DISABLE VIDEO");
         return;
       }
       if (Hls.isSupported()) {
         this.disableVideoHls(ref);
-        console.log("HLS TO DISABLE VIDEO");
+        console.log("HLS DISABLE VIDEO");
         return;
       }
       console.log("NOTHING WORKS TO DISABLE VIDEO");
