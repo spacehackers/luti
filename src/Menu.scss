@@ -24,6 +24,8 @@ ul.menu {
   left: 0;
   width: 100vw;
   font-size: $font_size;
+  font-weight: 600;
+  letter-spacing: .5px;
 
   // hamburger
   .menu-toggle {
@@ -46,13 +48,13 @@ ul.menu {
 
       .about {
         position: absolute;
-        right: 8.5em;
+        right: 11.5em;
         top: $top;
       }
 
       .acknowledgements {
         position: absolute;
-        right: 20px;
+        right: 50px;
         top: $top;
       }
     }
