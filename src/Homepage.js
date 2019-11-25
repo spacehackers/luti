@@ -79,7 +79,7 @@ class Homepage extends React.Component {
       }
     };
 
-    this.handleOnMove = debounce(handleOnMove, 500, { leading: true });
+    this.handleOnMove = handleOnMove;
 
     /*
     if (props.location.hash.length > 1) {
