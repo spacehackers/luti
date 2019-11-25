@@ -11,15 +11,6 @@ const About = () => {
       <h1>{page}</h1>
 
       <p>
-        This is the About. Edit me in
-        <a
-          href={`https://github.com/basilleaf/luti/blob/master/src/${page}.js`}
-        >
-          src/{page}.js
-        </a>
-      </p>
-
-      <p>
         <em>Life Under the Ice</em> is an exploratory tour through the
         microscopic world of Antarctica. Each microbe tells a story of the weird
         and whimsical life in Antarctica that is otherwise invisible to the
@@ -45,9 +36,20 @@ const About = () => {
         </a>
         . <em>Life Under the Ice</em> will continue to be updated with new
         videos of Antarctic microbes every several months as new samples are
-        made available and processed. You can directly support this project by{" "}
+        made available and processed.
+      </p>
+
+      <p>
+        You can directly support this project by{" "}
         <a href="https://patreon.com/arielwaldman">becoming a patron</a>.
       </p>
+
+            <div className="contact">
+        <p>
+          If you would like to get in touch regarding <em>Life Under the Ice</em>, email{" "}
+          <a href="mailto:ariel@arielwaldman.com">ariel@arielwaldman.com</a>.
+        </p>
+      </div>
 
       <h2>THE EXPEDITION</h2>
 
@@ -168,13 +170,6 @@ const About = () => {
             </figcaption>
           </figure>
         </figure>
-      </div>
-
-      <div className="contact">
-        <p>
-          If you would like to get in touch regarding this project, email{" "}
-          <a href="mailto:ariel@arielwaldman.com">ariel@arielwaldman.com</a>.
-        </p>
       </div>
 
       <div className="disclosure">

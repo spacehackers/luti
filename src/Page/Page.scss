@@ -46,7 +46,7 @@ $content_height: 315px;
   h1 {
     font-weight: 500;
     margin: 0;
-    font-size: 90px;
+    font-size: 75px;
 
     @media (max-width: $mobile_breakpoint) {
       font-size: 40px;
@@ -59,9 +59,10 @@ $content_height: 315px;
   }
 
   p {
-    font-weight: 400;
+    font-family: roboto-condensed, sans-serif;
+    font-weight: 300;
     text-transform: none;
-    font-size: 26px;
+    font-size: 22px;
     line-height: 1.4;
 
     @media (max-width: $mobile_breakpoint) {
@@ -81,19 +82,23 @@ $content_height: 315px;
   }
 
   figcaption {
-    margin: 5px 0 20px;
+    font-family: roboto-condensed, sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    text-transform: none;
+    margin: 5px 0 40px;
     padding: 0;
     max-width: $content_width;
   }
 
   a {
-    color: #6800ff;
+    color: lightcoral;
     padding: 0 2px;
-
-    :hover {
-      color: purple;
-    }
   }
+
+  a:hover {
+      color: orchid;
+    }
 
   .contact {
   }
