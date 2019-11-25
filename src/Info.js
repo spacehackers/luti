@@ -8,7 +8,7 @@ const TRANSITION_SPEED = 600
 
 const propTypes = {
   title: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
+  desc: PropTypes.node.isRequired,
   url: PropTypes.string.isRequired
 }
 
@@ -39,13 +39,13 @@ export default class Info extends React.Component {
   }
 
   renderSharingButtons() {
-    const encodedMessage=encodeURIComponent("Check out what I found under the ice!");
+    const encodedMessage=encodeURIComponent("Woah! Check out this microscopic creature I found on Life Under The Ice:");
     const encodedURI=encodeURIComponent(window.location.href);
     return (
       <div className="share-links">
         <a
           className="resp-sharing-button__link"
-          href={`https://facebook.com/sharer/sharer.php?u=${encodedURI}`}
+          href={`https://facebook.com/sharer/sharer.php?u=${encodedURI}&title=${encodedMessage}`}
           target="_blank"
           rel="noopener"
           aria-label=""

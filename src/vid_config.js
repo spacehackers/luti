@@ -17,7 +17,7 @@ export const init_center = video_layout =>
 
 export const base_url = "https://lifeundertheice.s3.amazonaws.com/";
 
-export const init_zoom = -0.6;
+export const init_zoom = -1.6;
 
 export const hls_config = {
   debug: false,
@@ -39,7 +39,7 @@ export const style = { height: `${img_height}px`, width: `${img_width}px` };
 
 export const xy_to_bounds = (x, y) => {
   return [
-    [y * (img_height - 1), x * img_width - 1],
+    [y * (img_height + 0), x * (img_width + 0)],
     [y * img_height + img_height, x * img_width + img_width]
   ];
 };

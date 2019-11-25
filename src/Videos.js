@@ -17,10 +17,6 @@ export default class Videos extends React.Component {
       visible: {}
     };
 
-    this.colorPixelSetup = canvas => {
-      this.setState({ canvas });
-    };
-
     this.getCenterVideo = () => {
       const center = this.props.bounds.getCenter().toBounds(1);
       const centerVideo = _.head(this.map.search(center));
@@ -38,8 +34,9 @@ export default class Videos extends React.Component {
           newVisible[url] = true;
         });
       if (!_.isEqual(newVisible, this.state.visible)) {
-        this.setState({ visible: newVisible });
+        return newVisible;
       }
+      return undefined;
     };
 
     this.index = leafletElement => {
@@ -50,16 +47,31 @@ export default class Videos extends React.Component {
       this.map = leafletElement._map;
       this.map.indexLayer(leafletElement);
       this.alreadyIndexedIds[id] = true;
-      this.calculateVisible();
+      const newVisible = this.calculateVisible();
+      if (newVisible !== undefined) {
+        console.log("NEW VISIBLE IN INDEX", newVisible);
+        this.setState({ visible: newVisible, redrawRequired: true });
+      }
       this.getCenterVideo();
     };
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      this.calculateVisible();
-      this.getCenterVideo();
+  shouldComponentUpdate(nextProps) {
+    if (this.state.redrawRequired) {
+      this.setState({ redrawRequired: false });
+      return true;
     }
+    if (_.isEqual(nextProps, this.props)) {
+      console.log("NO UPDATE");
+      return false;
+    }
+    const newVisible = this.calculateVisible();
+    this.getCenterVideo();
+    if (newVisible !== undefined) {
+      this.setState({ visible: newVisible, redrawRequired: true });
+      return true;
+    }
+    return false;
   }
 
   render() {
@@ -80,20 +92,10 @@ export default class Videos extends React.Component {
           debugColor={visible ? "#f00" : "#0f0"}
           indexFunc={this.index}
           visible={visible}
-          colorCanvas={this.state.canvas}
           {...vid_config}
         />
       );
     });
-    return (
-      <>
-        {videos}
-        <canvas
-          id="colorpixel"
-          style={{ width: "1px", height: "1px" }}
-          ref={this.colorPixelSetup}
-        />
-      </>
-    );
+    return <>{videos}</>;
   }
 }

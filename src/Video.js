@@ -18,16 +18,16 @@ export default class Video extends React.Component {
     this.cachedHls = (m3u8, autocreate) => {
       if (autocreate && !(m3u8 in this.hls)) {
         const hls = new Hls(hls_config);
-        hls.loadSource(m3u8);
         hls.on(Hls.Events.MEDIA_ATTACHED, () => {
-          console.log("ATTACHED", hls.media);
+          // console.log("HLS ATTACHED", hls.media);
+          hls.loadSource(m3u8);
           hls.media.muted = true;
           hls.media.loop = true;
           hls.media.autoplay = false;
           hls.media.play();
         });
         hls.on(Hls.Events.MEDIA_DETACHED, () => {
-          console.log("DETACHED", hls.media);
+          // console.log("HLS DETACHED", hls.media);
         });
         this.hls[m3u8] = hls;
       }
@@ -42,9 +42,12 @@ export default class Video extends React.Component {
     };
 
     this.enableVideoHls = ref => {
-      this.cachedHls(ref.props.m3u8, true).attachMedia(
-        ref.leafletElement.getElement()
-      );
+      const m3u8 = ref.props.m3u8;
+      const video = ref.leafletElement.getElement();
+      this.cachedHls(ref.props.m3u8, true).attachMedia(video);
+      video.poster = m3u8
+        .replace(/\.m3u8/, "-00001.png")
+        .replace(/lifeundertheice/, "lifeundertheice-thumbs");
     };
 
     this.disableVideoM3u8 = ref => {
@@ -58,18 +61,15 @@ export default class Video extends React.Component {
       const video = ref.leafletElement.getElement();
 
       console.log("video.src = ", m3u8);
+
       video.src = m3u8;
+      video.width = 1920;
+      video.height = 1080;
+      video.poster = m3u8
+        .replace(/\.m3u8/, "-00001.png")
+        .replace(/lifeundertheice/, "lifeundertheice-thumbs");
       video.crossOrigin = "Anonymous";
       video.playsInline = true;
-      video.addEventListener("play", () => {
-        const context = this.props.colorCanvas.getContext("2d");
-        context.drawImage(video, 0, 0, 1, 1);
-        const idata = context.getImageData(0, 0, 1, 1);
-        const r = idata.data[0];
-        const g = idata.data[1];
-        const b = idata.data[2];
-        console.log("RGB", r, g, b);
-      });
       video.addEventListener("loadedmetadata", () => {
         console.log("IM PLAYING");
       });
@@ -84,12 +84,12 @@ export default class Video extends React.Component {
 
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
         this.enableVideoM3u8(ref);
-        console.log("M3U8 TO ENABLE VIDEO");
+        console.log("M3U8 ENABLE VIDEO");
         return;
       }
       if (Hls.isSupported()) {
         this.enableVideoHls(ref);
-        console.log("HLS TO ENABLE VIDEO");
+        console.log("HLS ENABLE VIDEO");
         return;
       }
       console.log("NOTHING WORKS TO ENABLE VIDEO");
@@ -103,12 +103,12 @@ export default class Video extends React.Component {
       if (video.tagName !== "VIDEO") return;
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
         this.disableVideoM3u8(ref);
-        console.log("M3U8 TO DISABLE VIDEO");
+        console.log("M3U8 DISABLE VIDEO");
         return;
       }
       if (Hls.isSupported()) {
         this.disableVideoHls(ref);
-        console.log("HLS TO DISABLE VIDEO");
+        console.log("HLS DISABLE VIDEO");
         return;
       }
       console.log("NOTHING WORKS TO DISABLE VIDEO");
