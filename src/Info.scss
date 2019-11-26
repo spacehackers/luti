@@ -65,6 +65,19 @@ $padding: 20px;
   right: 0;
   font-size: 16px;
 
+  h1 {
+    font-size: 40px;
+    color: #666666;
+  }
+
+  p {
+    font-family: roboto-condensed, sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    text-transform: none;
+    color: #888888
+  }
+
   @media (min-width: $mobile_breakpoint) {
     overflow-y: hidden;
   }
