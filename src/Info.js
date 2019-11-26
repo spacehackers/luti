@@ -120,12 +120,14 @@ export default class Info extends React.Component {
     const { title, desc, url } = this.props
     const shareLink = '<a href = ""'
     return (
-      <div className="info-section">
-        <div className="title-desc">
-          <h1>{this.props.title}</h1>
-          <p>{this.props.desc}</p>
-        </div>
+      <>
+      <div className="info-title">
+      <h1>{this.props.title}</h1>
       </div>
+      <div className="info-description">
+      {this.props.desc}
+      </div>
+      </>
     )
   }
 

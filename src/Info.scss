@@ -87,8 +87,21 @@ $padding: 20px;
   padding: 0;
 
   height: 0;
+  display: flex;
 
-  .info-section {
+  @media (max-width: $mobile_breakpoint) {
+    flex-direction: column;
+  }
+
+  .info-title {
+    flex: 1;
+  }
+
+  .info-title h1 {
+    margin: 0;
+  }
+
+  .info-description {
     flex: 2;
   }
 
