@@ -1,5 +1,8 @@
 @import "shared";
 
+$medium_breakpoint: 1250px;
+$mobile_breakpoint: 1120px;
+
 .nav {
   padding: 0;
   margin: 0;
@@ -25,7 +28,7 @@ ul.menu {
   width: 100vw;
   font-size: $font_size;
   font-weight: 600;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 
   // hamburger
   .menu-toggle {
@@ -48,7 +51,7 @@ ul.menu {
 
       .about {
         position: absolute;
-        right: 11.5em;
+        right: 10em;
         top: $top;
       }
 
@@ -56,6 +59,16 @@ ul.menu {
         position: absolute;
         right: 50px;
         top: $top;
+      }
+    }
+
+    @media (min-width: $medium_breakpoint) {
+      .about {
+        right: 11.5em;
+      }
+
+      .acknowledgements {
+        right: 50px;
       }
     }
 
