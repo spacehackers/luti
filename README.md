@@ -1,5 +1,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5c9d516c-3b5d-44c9-9780-92ea70bb62fd/deploy-status)](https://app.netlify.com/sites/lifeundertheice/deploys)
 
+## Default React boilerplate readme
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
