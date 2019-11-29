@@ -13,6 +13,7 @@ export default class VideoData {
         xy_to_bounds(this.x, this.y)[1]
       );
     this.info = () => ({
+      url: `https://lifeundertheice.org/${this.x}/${this.y}`,
       title: data.title,
       desc: (
         <>
@@ -20,8 +21,7 @@ export default class VideoData {
           <br />
           {data.magnification}
         </>
-      ),
-      url: "example.com"
+      )
     });
   }
 }

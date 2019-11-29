@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import debounce from "lodash/debounce";
 import isEqual from "lodash/isEqual";
 
 import L from "leaflet";
@@ -39,14 +38,6 @@ const map_bounds = [
   [y_count(video_layout) * img_height, x_count(video_layout) * img_width]
 ];
 
-const init_center = (() => {
-  const init_video = video_layout.filter(x => x.init_position)[0] || {
-    x: "0",
-    y: "0"
-  };
-  return init_video.bounds().getCenter();
-})();
-
 const propTypes = {
   hidden: PropTypes.bool
 };
@@ -54,6 +45,18 @@ const propTypes = {
 class Homepage extends React.Component {
   constructor(props) {
     super(props);
+
+    this.init_center = (x, y) => {
+      let init_video;
+      if (x === undefined || y === undefined) {
+        init_video = video_layout.filter(v => v.init_position)[0];
+      } else {
+        init_video = video_layout.filter(
+          v => v.x === parseInt(x) && v.y === parseInt(y)
+        )[0];
+      }
+      return init_video.bounds().getCenter();
+    };
 
     L.Map.include(L.LayerIndexMixin);
 
@@ -99,7 +102,6 @@ class Homepage extends React.Component {
         if (isEqual(prevState.currentVideo, currentVideo)) {
           return undefined;
         }
-        this.props.history.replace(`/#${currentVideo.x},${currentVideo.y}`);
         return { currentVideo };
       });
     };
@@ -125,6 +127,8 @@ class Homepage extends React.Component {
   render() {
     if (this.props.hidden === true) return false;
 
+    const { x, y } = this.props.match.params;
+
     return (
       <React.Fragment>
         <Intro visible={this.state.introVisible}>
@@ -143,7 +147,7 @@ class Homepage extends React.Component {
           zoomDelta={0.25}
           minZoom={this.state.init_zoom}
           maxZoom={this.state.init_zoom + 0.5}
-          center={init_center}
+          center={this.init_center(x, y)}
           zoom={this.state.init_zoom}
           keyboardPanDelta={150}
           onMove={this.onMove}

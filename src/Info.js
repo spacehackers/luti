@@ -40,7 +40,7 @@ export default class Info extends React.Component {
 
   renderSharingButtons() {
     const encodedMessage=encodeURIComponent("Woah! Check out this microscopic creature I found on Life Under The Ice:");
-    const encodedURI=encodeURIComponent(window.location.href);
+    const encodedURI=encodeURIComponent(this.props.url);
     return (
       <div className="share-links">
         <a
