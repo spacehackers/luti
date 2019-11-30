@@ -71,6 +71,7 @@ export default class Video extends React.Component {
         .replace(/lifeundertheice/, "lifeundertheice-thumbs");
       video.crossOrigin = "Anonymous";
       video.playsInline = true;
+      video.muted = true;
       video.addEventListener("loadedmetadata", () => {
         console.log("IM PLAYING");
       });
