@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import isEqual from "lodash/isEqual";
+import queryString from "query-string";
 
 import L from "leaflet";
 import { Map } from "react-leaflet";
@@ -128,6 +129,7 @@ class Homepage extends React.Component {
     if (this.props.hidden === true) return false;
 
     const { x, y } = this.props.match.params;
+    const query = queryString.parse(this.props.location.search);
 
     return (
       <React.Fragment>
@@ -155,6 +157,7 @@ class Homepage extends React.Component {
           ref={this.onMapLoad}
         >
           <Videos
+            debug={query.debug}
             videoLayout={video_layout}
             onVideoChange={this.onVideoChange}
             bounds={this.state.bounds}
