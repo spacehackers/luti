@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import isEqual from "lodash/isEqual";
+import throttle from "lodash/throttle";
 import queryString from "query-string";
 
 import L from "leaflet";
@@ -53,7 +54,7 @@ class Homepage extends React.Component {
         init_video = video_layout.filter(v => v.init_position)[0];
       } else {
         init_video = video_layout.filter(
-          v => v.x === parseInt(x) && v.y === parseInt(y)
+          v => v.x === parseInt(x, 10) && v.y === parseInt(y, 10)
         )[0];
       }
       return init_video.bounds().getCenter();
@@ -83,7 +84,10 @@ class Homepage extends React.Component {
       }
     };
 
-    this.handleOnMove = handleOnMove;
+    this.handleOnMove = throttle(handleOnMove, 200, {
+      leading: true,
+      trailing: true
+    });
 
     /*
     if (props.location.hash.length > 1) {
