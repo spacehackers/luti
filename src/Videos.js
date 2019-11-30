@@ -93,7 +93,7 @@ export default class Videos extends React.Component {
           video={vid}
           xy={[vid.x, vid.y]}
           bounds={xy_to_bounds(vid.x, vid.y)}
-          debug={false}
+          debug={this.props.debug}
           indexFunc={this.index}
           visible={visible}
           {...vid_config}
