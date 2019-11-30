@@ -80,7 +80,7 @@ class Homepage extends React.Component {
       if (this.state.introVisible) {
         setTimeout(() => {
           this.setState({ introVisible: false });
-        }, 3000);
+        }, 500);
       }
     };
 
