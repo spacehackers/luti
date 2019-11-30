@@ -124,7 +124,7 @@ export default class Menu extends React.Component {
       <span className="icon-wrapper">
         <img
           className="menu-toggle"
-          src="LUTI_hamburger.svg"
+          src="/LUTI_hamburger.svg"
           aria-label={this.getAriaLabel()}
           alt=""
         />
