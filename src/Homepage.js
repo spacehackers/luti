@@ -130,13 +130,11 @@ class Homepage extends React.Component {
   }
 
   render() {
-    if (this.props.hidden === true) return false;
-
     const { x, y } = this.props.match.params;
     const query = queryString.parse(this.props.location.search);
 
     return (
-      <React.Fragment>
+      <>
         <Intro visible={this.state.introVisible}>
           Drag & Observe New Creatures
         </Intro>
@@ -146,33 +144,36 @@ class Homepage extends React.Component {
             ? this.state.currentVideo.info()
             : undefined)}
         />
-        <Map
-          key="map"
-          crs={L.CRS.Simple}
-          zoomSnap={0}
-          zoomDelta={0.25}
-          minZoom={this.state.init_zoom}
-          maxZoom={this.state.init_zoom + 0.5}
-          center={this.init_center(x, y)}
-          zoom={this.state.init_zoom}
-          keyboardPanDelta={150}
-          onMove={this.onMove}
-          maxBounds={map_bounds}
-          ref={this.onMapLoad}
-        >
-          <Videos
-            debug={query.debug}
-            videoLayout={video_layout}
-            onVideoChange={this.onVideoChange}
-            bounds={this.state.bounds}
-            boundsPad={this.state.boundsPad}
-          />
-        </Map>
-      </React.Fragment>
+        {!this.props.hidden && (
+          <Map
+            key="map"
+            crs={L.CRS.Simple}
+            zoomSnap={0}
+            zoomDelta={0.25}
+            minZoom={this.state.init_zoom}
+            maxZoom={this.state.init_zoom + 0.5}
+            center={this.init_center(x, y)}
+            zoom={this.state.init_zoom}
+            keyboardPanDelta={150}
+            onMove={this.onMove}
+            maxBounds={map_bounds}
+            ref={this.onMapLoad}
+          >
+            <Videos
+              debug={query.debug}
+              videoLayout={video_layout}
+              onVideoChange={this.onVideoChange}
+              bounds={this.state.bounds}
+              boundsPad={this.state.boundsPad}
+            />
+          </Map>
+        )}
+      </>
     );
   }
 }
 
 Homepage.propTypes = propTypes;
+Homepage.defaultProps = { hidden: true };
 
 export default withRouter(Homepage);

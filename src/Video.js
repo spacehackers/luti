@@ -72,6 +72,7 @@ export default class Video extends React.Component {
       video.crossOrigin = "Anonymous";
       video.playsInline = true;
       video.muted = true;
+      video.loop = true;
       video.addEventListener("loadedmetadata", () => {
         console.log("IM PLAYING");
       });
