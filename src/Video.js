@@ -47,7 +47,7 @@ export default class Video extends React.Component {
       const video = ref.leafletElement.getElement();
       this.cachedHls(ref.props.m3u8, true).attachMedia(video);
       video.poster = m3u8
-        .replace(/\.m3u8/, "-00001.png")
+        .replace(/-playlist.m3u8/, "-00001.png")
         .replace(/lifeundertheice/, "lifeundertheice-thumbs");
     };
 
@@ -67,7 +67,7 @@ export default class Video extends React.Component {
       video.width = 1920;
       video.height = 1080;
       video.poster = m3u8
-        .replace(/\.m3u8/, "-00001.png")
+        .replace(/-playlist.m3u8/, "-00001.png")
         .replace(/lifeundertheice/, "lifeundertheice-thumbs");
       video.crossOrigin = "Anonymous";
       video.playsInline = true;

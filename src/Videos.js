@@ -86,7 +86,7 @@ export default class Videos extends React.Component {
       const visible = id in this.state.visible;
       videos.push(
         <Video
-          m3u8={`${base_url}${vid.filename}.m3u8`}
+          m3u8={`${base_url}${vid.filename}-playlist.m3u8`}
           id={id}
           key={id}
           video={vid}
