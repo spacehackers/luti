@@ -84,7 +84,7 @@ class Homepage extends React.Component {
       }
     };
 
-    this.handleOnMove = throttle(handleOnMove, 200, {
+    this.handleOnMove = throttle(handleOnMove, 50, {
       leading: true,
       trailing: true
     });
