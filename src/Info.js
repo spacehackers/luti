@@ -1,53 +1,48 @@
-import React from "react"
-import PropTypes from "prop-types"
-import classNames from "classnames"
-import { CSSTransition } from "react-transition-group"
-import "./Info.scss"
+import React from "react";
+import PropTypes from "prop-types";
+import { CSSTransition } from "react-transition-group";
+import "./Info.scss";
 
-const TRANSITION_SPEED = 600
+const TRANSITION_SPEED = 600;
 
 const propTypes = {
   title: PropTypes.string.isRequired,
   desc: PropTypes.node.isRequired,
   url: PropTypes.string.isRequired
-}
-
-const defaultProps = {
-  title: "Curious Microbe",
-  desc: "Last seen in Antarctica",
-  url: "luti.org"
-}
+};
 
 export default class Info extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       hidden: true
-    }
-  }
+    };
 
-  handleClick = () => {
-    this.setState({ hidden: !this.state.hidden })
+    this.handleClick = () => {
+      this.setState(prevState => ({ hidden: !prevState.hidden }));
+    };
   }
 
   getAriaLabel() {
     if (this.state.open) {
-      return "click for info"
+      return "click for info";
     }
-    return "close info"
+    return "close info";
   }
 
   renderSharingButtons() {
-    const encodedMessage=encodeURIComponent("Woah! Check out this microscopic creature I found on Life Under The Ice:");
-    const encodedURI=encodeURIComponent(this.props.url);
+    const encodedMessage = encodeURIComponent(
+      "Woah! Check out this microscopic creature I found on Life Under The Ice:"
+    );
+    const encodedURI = encodeURIComponent(this.props.url);
     return (
       <div className="share-links">
         <a
           className="resp-sharing-button__link"
           href={`https://facebook.com/sharer/sharer.php?u=${encodedURI}&title=${encodedMessage}`}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           aria-label=""
         >
           <div className="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small">
@@ -66,7 +61,7 @@ export default class Info extends React.Component {
           className="resp-sharing-button__link"
           href={`https://twitter.com/intent/tweet/?text=${encodedMessage}&amp;url=${encodedURI}`}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           aria-label=""
         >
           <div className="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
@@ -100,12 +95,12 @@ export default class Info extends React.Component {
           </div>
         </a>
       </div>
-    )
+    );
   }
 
   renderButton() {
     return (
-      <button className="info-button" onClick={this.handleClick}>
+      <button type="button" className="info-button" onClick={this.handleClick}>
         <img
           className="info-toggle"
           src="/LUTI_WhatsThis5.svg"
@@ -113,22 +108,19 @@ export default class Info extends React.Component {
           alt=""
         />
       </button>
-    )
+    );
   }
 
   renderInfo() {
-    const { title, desc, url } = this.props
-    const shareLink = '<a href = ""'
+    const { title, desc } = this.props;
     return (
       <>
-      <div className="info-title">
-      <h1>{this.props.title}</h1>
-      </div>
-      <div className="info-description">
-      {this.props.desc}
-      </div>
+        <div className="info-title">
+          <h1>{title}</h1>
+        </div>
+        <div className="info-description">{desc}</div>
       </>
-    )
+    );
   }
 
   renderInfoWrapper() {
@@ -137,7 +129,7 @@ export default class Info extends React.Component {
         {this.renderInfo()}
         {this.renderSharingButtons()}
       </div>
-    )
+    );
   }
 
   render() {
@@ -148,9 +140,8 @@ export default class Info extends React.Component {
           {this.renderInfoWrapper()}
         </div>
       </CSSTransition>
-    )
+    );
   }
 }
 
-Info.propTypes = propTypes
-Info.defaultProps = defaultProps
+Info.propTypes = propTypes;

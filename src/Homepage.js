@@ -138,12 +138,6 @@ class Homepage extends React.Component {
         <Intro visible={this.state.introVisible}>
           Drag & Observe New Creatures
         </Intro>
-        <Info
-          hidden={false}
-          {...(this.state.currentVideo
-            ? this.state.currentVideo.info()
-            : undefined)}
-        />
         {!this.props.hidden && (
           <Map
             key="map"
@@ -168,6 +162,12 @@ class Homepage extends React.Component {
             />
           </Map>
         )}
+        <Info
+          hidden={false}
+          {...(this.state.currentVideo
+            ? this.state.currentVideo.info()
+            : undefined)}
+        />
       </>
     );
   }
