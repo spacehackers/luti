@@ -132,7 +132,7 @@ class Homepage extends React.Component {
     return (
       <React.Fragment>
         <Intro visible={this.state.introVisible}>
-          Drag to Discover New Creatures
+          Drag & Observe New Creatures
         </Intro>
         <Info
           hidden={false}
