@@ -3,6 +3,7 @@
 import React from "react";
 import { event as currentEvent, select } from "d3-selection";
 import { zoom, zoomIdentity } from "d3-zoom";
+import throttle from "lodash/throttle";
 
 export default class Zoomable extends React.Component {
   constructor(props) {
@@ -37,8 +38,8 @@ export default class Zoomable extends React.Component {
         .attr("height", d => `${d.height}px`)
         .attr("width", d => `${d.width}px`)
         .style("position", "absolute")
-        .style("left", d => `${d.x}px`)
-        .style("top", d => `${d.y}px`)
+        .style("left", "0")
+        .style("top", "0")
         .nodes()
         .forEach(v => {
           this.playing[v.id] = false;
@@ -50,7 +51,7 @@ export default class Zoomable extends React.Component {
         window.document.getElementById("map").clientHeight
       ];
       this.zoom = zoom()
-        .scaleExtent([1, 5])
+        .scaleExtent([0.75, 2])
         .extent([[0, 0], extent])
         .on("zoom", () => this.zoomed(currentEvent.transform));
 
@@ -77,32 +78,23 @@ export default class Zoomable extends React.Component {
       select(this.node)
         .selectAll("video")
         .data(mappedData, d => d.id)
-        .style("left", d => `${d.left}px`)
-        .style("top", d => `${d.top}px`)
+        .style("transform", d => `translate3d(${d.left}px, ${d.top}px, 0px)`)
         .attr("width", d => `${Math.ceil(d.right - d.left) + 2}px`)
         .attr("height", d => `${Math.ceil(d.bottom - d.top) + 2}px`);
       mappedData.forEach(v => {
         if (intersectRect(v, containerRect)) {
           if (!this.loaded[v.id]) {
             const video = v.video;
-            video.src = v.src;
             video.crossOrigin = "Anonymous";
             video.playsInline = true;
             video.muted = true;
             video.loop = true;
             video.autoplay = true;
             video.controls = false;
+            video.src = v.src;
             this.loaded[v.id] = true;
           }
           if (!this.playing[v.id]) {
-            v.video
-              .play()
-              .then(() => {
-                console.log("PLAYED", v.id);
-              })
-              .catch(e => {
-                console.log("PLAY ERROR", e);
-              });
             this.playing[v.id] = true;
           }
         } else if (this.playing[v.id]) {
@@ -115,6 +107,11 @@ export default class Zoomable extends React.Component {
         }
       });
     };
+
+    this.updateZoomable = throttle(this.updateZoomable, 15, {
+      leading: true,
+      trailing: true
+    });
   }
 
   componentDidMount() {
