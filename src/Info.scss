@@ -99,10 +99,28 @@ $padding: 20px;
     color: #888888
   }
 
-  .share-links {
+  .share-links,.share-links-mobile {
     flex: 1;
     display: flex;
+  }
+
+  .share-links {
     justify-content: flex-end;
+  }
+
+  .share-links-mobile a {
+    text-transform: none;
+    color: white;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  .share-links-mobile {
+    background-color: #888888;
+    padding: 10px;
+    display: inline-flex;
+    margin-top: 10px;
   }
 
   .share-links {

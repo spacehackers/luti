@@ -32,10 +32,30 @@ export default class Info extends React.Component {
   }
 
   renderSharingButtons() {
-    const encodedMessage = encodeURIComponent(
-      "Woah! Check out this microscopic creature I found on Life Under The Ice:"
-    );
+    const message =
+      "Woah! Check out this microscopic creature I found on Life Under The Ice:";
+    const encodedMessage = encodeURIComponent(message);
     const encodedURI = encodeURIComponent(this.props.url);
+    const shareClick = () => {
+      navigator
+        .share({
+          title: message,
+          url: this.props.url
+        })
+        .then(() => {
+          console.log("Thanks for sharing!");
+        })
+        .catch(console.error);
+    };
+    if (navigator.share) {
+      return (
+        <div className="share-links-mobile">
+          <a onClick={shareClick} href="">
+            Share this
+          </a>
+        </div>
+      );
+    }
     return (
       <div className="share-links">
         <a
