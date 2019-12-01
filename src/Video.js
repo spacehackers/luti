@@ -73,9 +73,7 @@ export default class Video extends React.Component {
       video.playsInline = true;
       video.muted = true;
       video.loop = true;
-      video.addEventListener("loadedmetadata", () => {
-        console.log("IM PLAYING");
-      });
+      video.addEventListener("loadedmetadata", () => {});
     };
 
     this.enableVideo = ref => {
