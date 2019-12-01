@@ -5,6 +5,8 @@
   "dependencies": {
     "chart.js": "^2.8.0",
     "classnames": "^2.2.6",
+    "d3-selection": "^1.4.1",
+    "d3-zoom": "^1.8.3",
     "history": "^4.10.1",
     "hls.js": "^0.12.4",
     "howler": "^2.1.2",
