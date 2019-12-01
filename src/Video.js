@@ -43,12 +43,14 @@ export default class Video extends React.Component {
     };
 
     this.enableVideoHls = ref => {
-      const m3u8 = ref.props.m3u8;
       const video = ref.leafletElement.getElement();
       this.cachedHls(ref.props.m3u8, true).attachMedia(video);
+      /*
+      const m3u8 = ref.props.m3u8;
       video.poster = m3u8
         .replace(/-playlist.m3u8/, "-00001.png")
         .replace(/lifeundertheice/, "lifeundertheice-thumbs");
+        */
     };
 
     this.disableVideoM3u8 = ref => {
@@ -61,14 +63,14 @@ export default class Video extends React.Component {
       const m3u8 = ref.props.m3u8;
       const video = ref.leafletElement.getElement();
 
-      console.log("video.src = ", m3u8);
-
       video.src = m3u8;
       video.width = 1920;
       video.height = 1080;
+      /*
       video.poster = m3u8
         .replace(/-playlist.m3u8/, "-00001.png")
         .replace(/lifeundertheice/, "lifeundertheice-thumbs");
+        */
       video.crossOrigin = "Anonymous";
       video.playsInline = true;
       video.muted = true;
@@ -89,12 +91,12 @@ export default class Video extends React.Component {
 
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
         this.enableVideoM3u8(ref);
-        console.log("M3U8 ENABLE VIDEO");
+        console.log("M3U8 ENABLE VIDEO", video.src);
         return;
       }
       if (Hls.isSupported()) {
         this.enableVideoHls(ref);
-        console.log("HLS ENABLE VIDEO");
+        console.log("HLS ENABLE VIDEO", video.src);
         return;
       }
       console.log("NOTHING WORKS TO ENABLE VIDEO");
@@ -111,13 +113,13 @@ export default class Video extends React.Component {
       const video = ref.leafletElement.getElement();
       if (video.tagName !== "VIDEO") return;
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        console.log("M3U8 DISABLE VIDEO", video.src);
         this.disableVideoM3u8(ref);
-        console.log("M3U8 DISABLE VIDEO");
         return;
       }
       if (Hls.isSupported()) {
+        console.log("HLS DISABLE VIDEO", video.src);
         this.disableVideoHls(ref);
-        console.log("HLS DISABLE VIDEO");
         return;
       }
       console.log("NOTHING WORKS TO DISABLE VIDEO");

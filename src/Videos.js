@@ -60,7 +60,7 @@ export default class Videos extends React.Component {
       const newVisible = this.calculateVisible();
       this.getCenterVideo();
       if (newVisible !== undefined) {
-        this.setState({ visible: newVisible });
+        this.setState({ visible: newVisible }); // eslint-disable-line react/no-did-update-set-state
       }
     }
     if (!_.isEqual(nextState.visible, this.state.visible)) {
