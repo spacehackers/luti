@@ -4,12 +4,33 @@ import React from "react";
 import { event as currentEvent, select } from "d3-selection";
 import { zoom, zoomIdentity } from "d3-zoom";
 import throttle from "lodash/throttle";
+import Hls from "hls.js";
+import { hls_config } from "./vid_config";
 
 export default class Zoomable extends React.Component {
   constructor(props) {
     super(props);
     this.playing = {};
     this.loaded = {};
+    this.hls = {};
+    this.cachedHls = (id, m3u8, autocreate) => {
+      if (autocreate && !(m3u8 in this.hls)) {
+        const hls = new Hls(hls_config);
+        hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+          // console.log("HLS ATTACHED", hls.media);
+          hls.loadSource(m3u8);
+          hls.media.muted = true;
+          hls.media.loop = true;
+          hls.media.autoplay = false;
+          hls.media.play();
+        });
+        hls.on(Hls.Events.MEDIA_DETACHED, () => {
+          // console.log("HLS DETACHED", hls.media);
+        });
+        this.hls[id] = hls;
+      }
+      return this.hls[id];
+    };
     this.zoomed = transform => {
       this.setState({ transform });
     };
@@ -92,6 +113,10 @@ export default class Zoomable extends React.Component {
             video.autoplay = true;
             video.controls = false;
             video.src = v.src;
+            if (Hls.isSupported()) {
+              this.cachedHls(v.id, v.src, true).attachMedia(video);
+            }
+
             this.loaded[v.id] = true;
           }
           if (!this.playing[v.id]) {
@@ -100,6 +125,12 @@ export default class Zoomable extends React.Component {
         } else if (this.playing[v.id]) {
           console.log(v.id, v.video);
           v.video.pause();
+          if (Hls.isSupported()) {
+            const hls = this.cachedHls(v.id, v.video.src, false);
+            if (hls) {
+              hls.detachMedia();
+            }
+          }
           v.video.src = "";
           console.log("PAUSED", v.id);
           this.playing[v.id] = false;
