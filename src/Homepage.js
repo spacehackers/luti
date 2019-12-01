@@ -162,12 +162,9 @@ class Homepage extends React.Component {
             />
           </Map>
         )}
-        <Info
-          hidden={false}
-          {...(this.state.currentVideo
-            ? this.state.currentVideo.info()
-            : undefined)}
-        />
+        {this.state.currentVideo && (
+          <Info hidden={false} {...this.state.currentVideo.info()} />
+        )}
       </>
     );
   }
