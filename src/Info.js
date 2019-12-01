@@ -18,10 +18,28 @@ export default class Info extends React.Component {
     this.state = {
       hidden: true
     }
+  }
 
-    this.handleClick = () => {
-      this.setState(prevState => ({ hidden: !prevState.hidden }))
+  handleClick = () => {
+    this.setState(
+      prevState => ({ hidden: !prevState.hidden }),
+      () => {
+        this.handleOpen()
+      }
+    )
+  }
+
+  handleOpen = () => {
+    const map = document.getElementsByClassName("leaflet-container")[0]
+
+    if (this.state.hidden) {
+      map.removeEventListener("click", this.handleClick)
+      return
     }
+
+    window.setTimeout(() => {
+      map.addEventListener("click", this.handleClick)
+    }, 100)
   }
 
   getAriaLabel() {
