@@ -1,41 +1,41 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { CSSTransition } from "react-transition-group";
-import "./Info.scss";
+import React from "react"
+import PropTypes from "prop-types"
+import { CSSTransition } from "react-transition-group"
+import "./Info.scss"
 
-const TRANSITION_SPEED = 600;
+const TRANSITION_SPEED = 600
 
 const propTypes = {
   title: PropTypes.string.isRequired,
   desc: PropTypes.node.isRequired,
   url: PropTypes.string.isRequired
-};
+}
 
 export default class Info extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       hidden: true
-    };
+    }
 
     this.handleClick = () => {
-      this.setState(prevState => ({ hidden: !prevState.hidden }));
-    };
+      this.setState(prevState => ({ hidden: !prevState.hidden }))
+    }
   }
 
   getAriaLabel() {
     if (this.state.open) {
-      return "click for info";
+      return "click for info"
     }
-    return "close info";
+    return "close info"
   }
 
   renderSharingButtons() {
     const message =
-      "Woah! Check out this microscopic creature I found on Life Under The Ice:";
-    const encodedMessage = encodeURIComponent(message);
-    const encodedURI = encodeURIComponent(this.props.url);
+      "Woah! Check out this microscopic creature I found on Life Under The Ice:"
+    const encodedMessage = encodeURIComponent(message)
+    const encodedURI = encodeURIComponent(this.props.url)
     const shareClick = e => {
       navigator
         .share({
@@ -43,10 +43,10 @@ export default class Info extends React.Component {
           url: this.props.url
         })
         .then(() => {
-          console.log("Thanks for sharing!");
+          console.log("Thanks for sharing!")
         })
-        .catch(console.error);
-    };
+        .catch(console.error)
+    }
     if (navigator.share) {
       return (
         <div className="share-links-mobile">
@@ -54,7 +54,7 @@ export default class Info extends React.Component {
             Share this
           </button>
         </div>
-      );
+      )
     }
     return (
       <div className="share-links">
@@ -115,7 +115,7 @@ export default class Info extends React.Component {
           </div>
         </a>
       </div>
-    );
+    )
   }
 
   renderButton() {
@@ -128,11 +128,11 @@ export default class Info extends React.Component {
           alt=""
         />
       </button>
-    );
+    )
   }
 
   renderInfo() {
-    const { title, desc } = this.props;
+    const { title, desc } = this.props
     return (
       <>
         <div className="info-title">
@@ -140,16 +140,16 @@ export default class Info extends React.Component {
         </div>
         <div className="info-description">{desc}</div>
       </>
-    );
+    )
   }
 
-  renderInfoWrapper() {
+  renderInfoContent() {
     return (
-      <div className="info-wrapper">
+      <div className="info-content">
         {this.renderInfo()}
         {this.renderSharingButtons()}
       </div>
-    );
+    )
   }
 
   render() {
@@ -157,11 +157,11 @@ export default class Info extends React.Component {
       <CSSTransition in={!this.state.hidden} timeout={TRANSITION_SPEED}>
         <div>
           {this.renderButton()}
-          {this.renderInfoWrapper()}
+          {this.renderInfoContent()}
         </div>
       </CSSTransition>
-    );
+    )
   }
 }
 
-Info.propTypes = propTypes;
+Info.propTypes = propTypes

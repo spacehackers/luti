@@ -55,26 +55,22 @@ $padding: 20px;
   cursor: pointer;
 }
 
-.title-desc {
-}
-
-.info-wrapper {
+.info-content {
+  display: none;
+  height: 0;
+  padding: 0;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   font-size: 16px;
 
-    @media (min-width: $mobile_breakpoint) {
-    overflow-y: hidden;
-  }
-
   z-index: 500;
   background: #f6f6f6;
-  padding: 0;
 
-  height: 0;
-  display: flex;
+  @media (min-width: $mobile_breakpoint) {
+    overflow-y: hidden;
+  }
 
   @media (max-width: $mobile_breakpoint) {
     flex-direction: column;
@@ -96,10 +92,11 @@ $padding: 20px;
     font-weight: 300;
     font-size: 20px;
     text-transform: none;
-    color: #888888
+    color: #888888;
   }
 
-  .share-links,.share-links-mobile {
+  .share-links,
+  .share-links-mobile {
     flex: 1;
     display: flex;
     margin-left: 10px;
@@ -129,14 +126,17 @@ $padding: 20px;
   }
 
   // animations
+
   .hidden & {
     height: 0;
     padding: 0;
+    display: none;
   }
 
   .enter & {
     height: 0;
     padding: 0;
+    display: flex;
   }
 
   .enter.enter-active & {
@@ -148,6 +148,7 @@ $padding: 20px;
   .enter-done & {
     height: $overlay-height-desktop;
     padding: $padding;
+    display: flex;
   }
 
   .exit & {
@@ -161,8 +162,9 @@ $padding: 20px;
     transition: all $transition_speed ease-out;
   }
 
-  &.exit-done & {
+  .exit-done & {
     height: 0;
     padding: 0;
+    display: none;
   }
 }
