@@ -8,10 +8,6 @@ $mobile_breakpoint: 1120px;
   margin: 0;
 }
 
-@mixin selected {
-  color: $color_selected;
-}
-
 ul.menu {
   @include luti_font;
   background: #f6f6f6;
@@ -89,8 +85,10 @@ ul.menu {
     align-items: center;
     justify-content: center;
 
-    a {
-      @include selected;
+    @media (max-width: $mobile_breakpoint) {
+      a {
+        color: $color_selected;
+      }
     }
   }
 
@@ -135,7 +133,7 @@ ul.menu {
     }
 
     &.selected a {
-      @include selected;
+      color: $color_selected;
     }
   }
 

@@ -92,9 +92,14 @@ export default class Menu extends React.Component {
   renderItem(menuItem, key) {
     const { slug, content } = menuItem
     const hash = "" // window.location.hash
-    const selected = slug === this.state.selected ? "selected" : ""
     const hidden = this.hidden(slug) ? "hidden" : ""
     const href = slug === "home" || slug === "anchor" ? "/" : `/${slug}#${hash}`
+
+    let selected = slug === this.state.selected ? "selected" : ""
+
+    if (slug === "anchor" && this.state.selected === "home") {
+      selected = "selected"
+    }
 
     return (
       <li key={key} className={`${selected} ${hidden} ${slug}`}>
