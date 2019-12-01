@@ -65,7 +65,7 @@ $padding: 20px;
   right: 0;
   font-size: 16px;
 
-    @media (min-width: $mobile_breakpoint) {
+  @media (min-width: $mobile_breakpoint) {
     overflow-y: hidden;
   }
 
@@ -96,10 +96,11 @@ $padding: 20px;
     font-weight: 300;
     font-size: 20px;
     text-transform: none;
-    color: #888888
+    color: #888888;
   }
 
-  .share-links,.share-links-mobile {
+  .share-links,
+  .share-links-mobile {
     flex: 1;
     display: flex;
     margin-left: 10px;
@@ -161,7 +162,7 @@ $padding: 20px;
     transition: all $transition_speed ease-out;
   }
 
-  &.exit-done & {
+  .exit-done & {
     height: 0;
     padding: 0;
   }
