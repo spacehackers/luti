@@ -56,8 +56,8 @@ export default class Zoomable extends React.Component {
         .append("video")
         .attr("id", d => d.id)
         .attr("src", "")
-        .attr("height", d => `${d.height}px`)
-        .attr("width", d => `${d.width}px`)
+        .attr("height", d => `${d.height}`)
+        .attr("width", d => `${d.width}`)
         .style("position", "absolute")
         .style("left", "0")
         .style("top", "0")
@@ -72,7 +72,7 @@ export default class Zoomable extends React.Component {
         window.document.getElementById("map").clientHeight
       ];
       this.zoom = zoom()
-        .scaleExtent([0.375, 1])
+        .scaleExtent([0.375, 2])
         .extent([[0, 0], extent])
         .on("zoom", () => this.zoomed(currentEvent.transform));
 
