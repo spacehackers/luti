@@ -22,6 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 validation_data.json
+validation_data.html
 
 # Local Netlify folder
 .netlify
