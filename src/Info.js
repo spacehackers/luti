@@ -36,7 +36,7 @@ export default class Info extends React.Component {
       "Woah! Check out this microscopic creature I found on Life Under The Ice:";
     const encodedMessage = encodeURIComponent(message);
     const encodedURI = encodeURIComponent(this.props.url);
-    const shareClick = () => {
+    const shareClick = e => {
       navigator
         .share({
           title: message,
@@ -50,9 +50,9 @@ export default class Info extends React.Component {
     if (navigator.share) {
       return (
         <div className="share-links-mobile">
-          <a onClick={shareClick} href="">
+          <button type="button" onClick={shareClick}>
             Share this
-          </a>
+          </button>
         </div>
       );
     }

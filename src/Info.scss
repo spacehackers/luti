@@ -108,19 +108,17 @@ $padding: 20px;
     justify-content: flex-end;
   }
 
-  .share-links-mobile a {
+  .share-links-mobile button {
     text-transform: none;
+    font-family: roboto-condensed, sans-serif;
+    outline: 0;
     color: white;
+    border: 0;
+    background-color: #888888;
     text-decoration: none;
     font-weight: 400;
     font-size: 20px;
-  }
-
-  .share-links-mobile {
-    background-color: #888888;
     padding: 10px;
-    display: inline-flex;
-    margin-top: 10px;
   }
 
   .share-links {
