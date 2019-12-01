@@ -33,11 +33,6 @@ export default class Zoomable extends React.Component {
         .enter()
         .append("video")
         .attr("id", d => d.id)
-        .attr("crossorigin", "Anonymous")
-        .attr("loop", "")
-        .attr("muted", "")
-        .attr("autoplay", "")
-        .attr("playsinline", "")
         .attr("src", "")
         .attr("height", d => `${d.height}px`)
         .attr("width", d => `${d.width}px`)
@@ -89,7 +84,14 @@ export default class Zoomable extends React.Component {
       mappedData.forEach(v => {
         if (intersectRect(v, containerRect)) {
           if (!this.loaded[v.id]) {
-            v.video.src = v.src;
+            const video = v.video;
+            video.src = v.src;
+            video.crossOrigin = "Anonymous";
+            video.playsInline = true;
+            video.muted = true;
+            video.loop = true;
+            video.autoplay = true;
+            video.controls = false;
             this.loaded[v.id] = true;
           }
           if (!this.playing[v.id]) {
