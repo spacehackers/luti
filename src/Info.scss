@@ -1,8 +1,8 @@
 @import "shared";
 @import "sharingButtons";
 
-$overlay-height-desktop: 200px;
-$overlay-height-mobile: 130px;
+$overlay-height-desktop: 240px;
+$overlay-height-mobile: 170px;
 $speed: 600ms;
 $padding: 20px;
 
@@ -98,7 +98,9 @@ $padding: 20px;
   .share-links-mobile {
     flex: 1;
     display: flex;
-    margin-left: 10px;
+    @media (min-width: $mobile_breakpoint) {
+      margin-left: 10px;
+    }
   }
 
   .share-links {
