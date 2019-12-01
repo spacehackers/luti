@@ -28,6 +28,7 @@ video {
   top: 0;
   right: 0;
   left: 0;
+  background-color: $luti_background;
 
   @media (min-width: $mobile_breakpoint) {
     height: 100vh;

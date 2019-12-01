@@ -5,11 +5,10 @@ import throttle from "lodash/throttle";
 import queryString from "query-string";
 
 import L from "leaflet";
-import { Map } from "react-leaflet";
 import { withRouter } from "react-router-dom";
 import Info from "./Info";
+import Zoomable from "./Zoomable";
 
-import Videos from "./Videos";
 import Intro from "./Intro";
 
 import VideoData from "./VideoData";
@@ -62,11 +61,24 @@ class Homepage extends React.Component {
 
     L.Map.include(L.LayerIndexMixin);
 
+    const videoData = video_layout_data.map((l, i) => ({
+      ...l,
+      src: `https://lifeundertheice.s3.amazonaws.com/${
+        l.filename
+      }-playlist.m3u8`,
+      width: 1920 / 2.0,
+      height: 1082 / 2.0,
+      x: (l.x * 1920) / 2.0,
+      y: (l.y * 1078) / 2.0,
+      id: `${l.filename}-${i}`
+    }));
+
     this.state = {
       bounds: undefined,
       introVisible: false,
       interacting: false,
-      init_zoom
+      init_zoom,
+      videoData
     };
 
     const handleOnMove = target => {
@@ -138,30 +150,7 @@ class Homepage extends React.Component {
         <Intro visible={this.state.introVisible}>
           Drag & Observe New Creatures
         </Intro>
-        {!this.props.hidden && (
-          <Map
-            key="map"
-            crs={L.CRS.Simple}
-            zoomSnap={0}
-            zoomDelta={0.25}
-            minZoom={this.state.init_zoom}
-            maxZoom={this.state.init_zoom + 0.5}
-            center={this.init_center(x, y)}
-            zoom={this.state.init_zoom}
-            keyboardPanDelta={150}
-            onMove={this.onMove}
-            maxBounds={map_bounds}
-            ref={this.onMapLoad}
-          >
-            <Videos
-              debug={query.debug}
-              videoLayout={video_layout}
-              onVideoChange={this.onVideoChange}
-              bounds={this.state.bounds}
-              boundsPad={this.state.boundsPad}
-            />
-          </Map>
-        )}
+        {!this.props.hidden && <Zoomable data={this.state.videoData} />}
         <Info
           hidden={false}
           {...(this.state.currentVideo
