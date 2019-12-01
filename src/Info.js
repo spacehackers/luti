@@ -39,7 +39,7 @@ export default class Info extends React.Component {
     const shareClick = e => {
       navigator
         .share({
-          title: message,
+          text: message,
           url: this.props.url
         })
         .then(() => {
