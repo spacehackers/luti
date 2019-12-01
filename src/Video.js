@@ -82,7 +82,6 @@ export default class Video extends React.Component {
       if (ref === null) return;
       this.addElementToIndex(ref);
       if (this.enabled) {
-        console.log("VIDEO ALREADY ENABLED");
         return;
       }
       this.enabled = true;
@@ -107,7 +106,6 @@ export default class Video extends React.Component {
       if (ref === null) return;
       this.addElementToIndex(ref);
       if (!this.enabled) {
-        console.log("VIDEO ALREADY DISABLED");
         return;
       }
       this.enabled = false;
