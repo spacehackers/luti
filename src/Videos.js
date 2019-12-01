@@ -57,7 +57,6 @@ export default class Videos extends React.Component {
 
   componentDidUpdate(nextProps, nextState) {
     if (!_.isEqual(nextProps.bounds, this.props.bounds)) {
-      console.log("NEW BOUNDS, CALCULATING VISIBLES");
       const newVisible = this.calculateVisible();
       this.getCenterVideo();
       if (newVisible !== undefined) {
@@ -65,18 +64,8 @@ export default class Videos extends React.Component {
       }
     }
     if (!_.isEqual(nextState.visible, this.state.visible)) {
-      console.log("NEW VISIBLES, REDRAWING");
+      // console.log("NEW VISIBLES, REDRAWING");
     }
-    /*
-    console.log(
-      "NEW STATES IN VIDEOS",
-      Object.keys(nextState).filter(k => nextState[k] !== this.state[k])
-    );
-    console.log(
-      "NEW PROPS IN VIDEOS",
-      Object.keys(nextProps).filter(k => nextProps[k] !== this.props[k])
-    );
-    */
   }
 
   render() {
