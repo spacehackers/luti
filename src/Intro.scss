@@ -27,10 +27,12 @@
 
     &.hidden {
       opacity: 0;
+      display: none;
     }
 
     &.enter {
       opacity: 0;
+      display: block;
     }
 
     &.enter.enter-active {
@@ -40,6 +42,7 @@
 
     &.enter-done {
       opacity: 1;
+      display: block;
     }
 
     &.exit {
@@ -52,6 +55,7 @@
 
     &.exit-done {
       opacity: 0;
+      display: none;
     }
   }
 }
