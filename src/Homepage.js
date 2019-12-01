@@ -66,10 +66,10 @@ class Homepage extends React.Component {
       src: `https://lifeundertheice.s3.amazonaws.com/${
         l.filename
       }-playlist.m3u8`,
-      width: 1920 / 2.0,
-      height: 1082 / 2.0,
-      x: (l.x * 1920) / 2.0,
-      y: (l.y * 1078) / 2.0,
+      width: 1920,
+      height: 1082,
+      x: l.x * 1920,
+      y: l.y * 1078,
       id: `${l.filename}-${i}`
     }));
 

@@ -72,7 +72,7 @@ export default class Zoomable extends React.Component {
         window.document.getElementById("map").clientHeight
       ];
       this.zoom = zoom()
-        .scaleExtent([0.75, 2])
+        .scaleExtent([0.375, 1])
         .extent([[0, 0], extent])
         .on("zoom", () => this.zoomed(currentEvent.transform));
 
@@ -99,9 +99,11 @@ export default class Zoomable extends React.Component {
       select(this.node)
         .selectAll("video")
         .data(mappedData, d => d.id)
-        .style("transform", d => `translate3d(${d.left}px, ${d.top}px, 0px)`)
-        .attr("width", d => `${Math.ceil(d.right - d.left) + 2}px`)
-        .attr("height", d => `${Math.ceil(d.bottom - d.top) + 2}px`);
+        .style(
+          "transform",
+          d =>
+            `translate3d(${d.left}px, ${d.top}px, 0px) scale3d(${t.k},${t.k},1)`
+        );
       mappedData.forEach(v => {
         if (intersectRect(v, containerRect)) {
           if (!this.loaded[v.id]) {
