@@ -161,9 +161,9 @@ export default class Info extends React.Component {
     )
   }
 
-  renderInfoContent() {
+  renderInfoWrapper() {
     return (
-      <div className="info-content">
+      <div className="info-wrapper">
         {this.renderInfo()}
         {this.renderSharingButtons()}
       </div>
@@ -175,7 +175,7 @@ export default class Info extends React.Component {
       <CSSTransition in={!this.state.hidden} timeout={TRANSITION_SPEED}>
         <div>
           {this.renderButton()}
-          {this.renderInfoContent()}
+          {this.renderInfoWrapper()}
         </div>
       </CSSTransition>
     )

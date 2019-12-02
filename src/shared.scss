@@ -6,6 +6,7 @@ $large_breakpoint: 1150px;
 $font_size: 1.7em;
 $menu-height: 32px;
 $browser-context: 16; // Default
+$z-index-map: 500;
 
 @function em($pixels, $context: $browser-context) {
   @return #{$pixels/$context}em;

@@ -1,8 +1,7 @@
 @import "shared";
 @import "sharingButtons";
 
-$overlay-height-desktop: 240px;
-$overlay-height-mobile: 170px;
+$overlay-height: 240px;
 $speed: 600ms;
 $padding: 20px;
 
@@ -18,7 +17,7 @@ $padding: 20px;
   background: transparent;
   outline: 0;
   border: 0;
-  z-index: 900;
+  z-index: $z-index-map;
 
   // animations
   .hidden & {
@@ -30,12 +29,12 @@ $padding: 20px;
   }
 
   .enter.enter-active & {
-    bottom: $overlay-height-desktop + $margin-bottom;
+    bottom: $overlay-height + $margin-bottom;
     transition: all $transition_speed ease-in;
   }
 
   .enter-done & {
-    bottom: $overlay-height-desktop + $margin-bottom;
+    bottom: $overlay-height + $margin-bottom;
   }
 
   .exit & {
@@ -55,7 +54,7 @@ $padding: 20px;
   cursor: pointer;
 }
 
-.info-content {
+.info-wrapper {
   display: none;
   height: 0;
   padding: 0;
@@ -64,7 +63,7 @@ $padding: 20px;
   left: 0;
   right: 0;
   font-size: 16px;
-  z-index: 500;
+  z-index: $z-index-map + 1; // cover the button too
   background: #f6f6f6;
 
   @media (min-width: $mobile_breakpoint) {
@@ -92,12 +91,14 @@ $padding: 20px;
     font-size: 20px;
     text-transform: none;
     color: #888888;
+    margin-bottom: 20px;
   }
 
   .share-links,
   .share-links-mobile {
     flex: 1;
     display: flex;
+
     @media (min-width: $mobile_breakpoint) {
       margin-left: 10px;
     }
@@ -141,20 +142,35 @@ $padding: 20px;
   }
 
   .enter.enter-active & {
-    height: $overlay-height-desktop;
+    height: $overlay-height;
     padding: $padding;
     transition: all $transition_speed ease-in;
+
+    @media (max-width: $mobile_breakpoint) {
+      height: auto;
+      min-height: $overlay-height;
+    }
   }
 
   .enter-done & {
-    height: $overlay-height-desktop;
+    height: $overlay-height;
     padding: $padding;
     display: flex;
+
+    @media (max-width: $mobile_breakpoint) {
+      height: auto;
+      min-height: $overlay-height;
+    }
   }
 
   .exit & {
-    height: $overlay-height-desktop;
+    height: $overlay-height;
     padding: $padding;
+
+    @media (max-width: $mobile_breakpoint) {
+      height: auto;
+      min-height: $overlay-height;
+    }
   }
 
   .exit-active & {
