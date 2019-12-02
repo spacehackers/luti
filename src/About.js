@@ -44,9 +44,10 @@ const About = () => {
         <a href="https://patreon.com/arielwaldman">becoming a patron</a>.
       </p>
 
-            <div className="contact">
+      <div className="contact">
         <p>
-          If you would like to get in touch regarding <em>Life Under the Ice</em>, email{" "}
+          If you would like to get in touch regarding{" "}
+          <em>Life Under the Ice</em>, email{" "}
           <a href="mailto:ariel@arielwaldman.com">ariel@arielwaldman.com</a>.
         </p>
       </div>
@@ -90,7 +91,7 @@ const About = () => {
       </p>
 
       <div className="embeds_wrapper">
-        <figure role="group">
+        <figure className="figure-group" role="group">
           <figure>
             <iframe
               title="How to get to Antarctica - Episode 1"
@@ -105,6 +106,11 @@ const About = () => {
               the ice. Here's how she got there.
             </figcaption>
           </figure>
+
+          <div className="caption" aria-hidden="true">
+            Ariel spent 5 weeks in Antarctica to film microbes living under the
+            ice. Here's how she got there.
+          </div>
 
           <figure>
             <iframe
@@ -121,6 +127,11 @@ const About = () => {
             </figcaption>
           </figure>
 
+          <div className="caption" aria-hidden="true">
+            Ariel joined Antarctic divers in going deep under the sea ice to
+            explore the weird wonders of the Southern Ocean.
+          </div>
+
           <figure>
             <iframe
               title="Camping in Antarctica - Episode 3"
@@ -135,6 +146,11 @@ const About = () => {
               Valleys next to the natural phenomenon known as Blood Falls.
             </figcaption>
           </figure>
+
+          <div className="caption" aria-hidden="true">
+            Here's what it was like to camp outside in the Antarctic Dry Valleys
+            next to the natural phenomenon known as Blood Falls.
+          </div>
 
           <figure>
             <iframe
@@ -153,6 +169,13 @@ const About = () => {
             </figcaption>
           </figure>
 
+          <div className="caption" aria-hidden="true">
+            Some of the extremophiles Ariel sought to film with her microscopes
+            live embedded INSIDE glaciers. Ariel climbed on to the top of a
+            glacier in search for tardigrades and shared what it was like to
+            camp at Lake Hoare next to Canada Glacier.
+          </div>
+
           <figure>
             <iframe
               title="Antarctica robot road trip - Episode 5"
@@ -169,6 +192,13 @@ const About = () => {
               moons in our solar system, such as Europa.
             </figcaption>
           </figure>
+
+          <div className="caption" aria-hidden="true">
+            While in Antarctica, Ariel went on a day-long road trip across the
+            sea ice with a team that uses a robot called Icefin to explore the
+            seafloor. One day, robots like Icefin may help us explore the icy
+            moons in our solar system, such as Europa.
+          </div>
         </figure>
       </div>
 
