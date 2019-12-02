@@ -56,8 +56,8 @@ const Acknowledgements = () => {
       <p>
         <strong><a href="https://twitter.com/mattb">Matt Biddulph</a></strong>
         <br />
-        for being the lead music composer and a web developer for Life Under the
-        Ice, using modular synths to set a mood for the microbes. Thanks also
+        for being the deputy web developer and music composer for Life Under the
+        Ice. The music component (launching soon, stay tuned!) will be using modular synths to set a mood for the microbes. Thanks also
         for being the best partner, cheerleader, and collaborator throughout.
       </p>
 
