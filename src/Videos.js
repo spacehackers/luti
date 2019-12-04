@@ -6,7 +6,7 @@ import Video from "./Video";
 
 import "leaflet-layerindex";
 
-import { vid_config, base_url, xy_to_bounds } from "./vid_config";
+import { vid_config, base_url, bounds_to_xy, xy_to_bounds } from "./vid_config";
 
 export default class Videos extends React.Component {
   constructor(props) {
@@ -109,6 +109,8 @@ export default class Videos extends React.Component {
     this.props.videoLayout.forEach((vid, idx) => {
       const id = `${vid.filename}-${idx}`;
       const visible = id in this.state.visible;
+      const debugMessage = `Map bounds XY ${this.map &&
+        JSON.stringify(bounds_to_xy(this.map.getBounds()))}`;
       videos.push(
         <Video
           m3u8={`${base_url}${vid.filename}-playlist.m3u8`}
@@ -120,7 +122,7 @@ export default class Videos extends React.Component {
           bounds={xy_to_bounds(vid.x, vid.y)}
           canplay={!!this.state.canplay[id]}
           debug={this.props.debug}
-          debugMessage=""
+          debugMessage={debugMessage}
           indexFunc={this.index}
           visible={visible}
           {...vid_config}
