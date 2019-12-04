@@ -4,6 +4,22 @@ import L from "leaflet";
 import Hls from "hls.js";
 import { hls_config } from "./vid_config";
 
+const VIDEO_EVENTS = [
+  "playing",
+  "canplay",
+  "canplaythrough",
+  "play",
+  "loadedmetadata",
+  "loadeddata",
+  "ratechange",
+  "waiting",
+  "ended",
+  "pause",
+  "suspend",
+  "emptied",
+  "stalled"
+];
+
 export default class Video extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +51,21 @@ export default class Video extends React.Component {
       return this.hls[m3u8];
     };
 
+    this.addVideoListeners = video => {
+      VIDEO_EVENTS.forEach(name =>
+        video.addEventListener(name, this.props.eventLogger)
+      );
+    };
+
+    this.removeVideoListeners = video => {
+      VIDEO_EVENTS.forEach(name =>
+        video.removeEventListener(name, this.props.eventLogger)
+      );
+    };
+
     this.disableVideoHls = ref => {
+      const video = ref.leafletElement.getElement();
+      this.removeVideoListeners(video);
       const hls = this.cachedHls(ref.props.m3u8, false);
       if (hls) {
         hls.detachMedia();
@@ -45,6 +75,7 @@ export default class Video extends React.Component {
     this.enableVideoHls = ref => {
       const video = ref.leafletElement.getElement();
       this.cachedHls(ref.props.m3u8, true).attachMedia(video);
+      this.addVideoListeners(video);
       /*
       const m3u8 = ref.props.m3u8;
       video.poster = m3u8
@@ -55,6 +86,7 @@ export default class Video extends React.Component {
 
     this.disableVideoM3u8 = ref => {
       const video = ref.leafletElement.getElement();
+      this.removeVideoListeners(video);
 
       video.src = "";
     };
@@ -75,7 +107,7 @@ export default class Video extends React.Component {
       video.playsInline = true;
       video.muted = true;
       video.loop = true;
-      video.addEventListener("loadedmetadata", () => {});
+      this.addVideoListeners(video);
     };
 
     this.enableVideo = ref => {
@@ -87,6 +119,7 @@ export default class Video extends React.Component {
       this.enabled = true;
 
       const video = ref.leafletElement.getElement();
+      this.showCanplayStatus(video, this.props.canplay);
       if (video.tagName !== "VIDEO") return;
 
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
@@ -111,6 +144,7 @@ export default class Video extends React.Component {
       this.enabled = false;
 
       const video = ref.leafletElement.getElement();
+      this.showCanplayStatus(video, this.props.canplay);
       if (video.tagName !== "VIDEO") return;
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
         console.log("M3U8 DISABLE VIDEO", video.src);
@@ -124,15 +158,25 @@ export default class Video extends React.Component {
       }
       console.log("NOTHING WORKS TO DISABLE VIDEO");
     };
+
+    this.showCanplayStatus = (video, canplay) => {
+      if (canplay) {
+        video.classList.remove("video-loading");
+        video.classList.add("video-playing");
+      } else {
+        video.classList.add("video-loading");
+        video.classList.remove("video-playing");
+      }
+    };
   }
 
   render() {
     const text = L.divIcon({
-      html: `${this.props.id} visible: ${
-        this.props.visible
-      } bounds: ${JSON.stringify(this.props.bounds)} x,y: ${JSON.stringify(
-        this.props.xy
-      )}`
+      html: `${this.props.id} ${this.props.debugMessage}
+      <br />
+      canplay: ${this.props.canplay} bounds: ${JSON.stringify(
+        this.props.bounds
+      )} x,y: ${JSON.stringify(this.props.xy)}`
     });
     const textLoc = [
       this.props.bounds[0][0] + 1000,
@@ -141,10 +185,11 @@ export default class Video extends React.Component {
     let debugMarker = <></>;
     if (this.props.debug) {
       debugMarker = <Marker position={textLoc} icon={text} />;
+      debugMarker = <Marker position={textLoc} icon={text} />;
       return (
         <Rectangle
           id={this.props.id}
-          key={this.key}
+          key={`${this.props.id}-rect`}
           bounds={this.props.bounds}
           ref={this.addElementToIndex}
           color={this.props.visible ? "#f00" : "#0f0"}
@@ -160,7 +205,7 @@ export default class Video extends React.Component {
         {...this.props}
         url=""
         ref={callback}
-        key={`video-${this.key}`}
+        key={`video-${this.props.id}`}
       >
         {debugMarker}
       </VideoOverlay>

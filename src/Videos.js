@@ -14,7 +14,8 @@ export default class Videos extends React.Component {
 
     this.alreadyIndexedIds = {};
     this.state = {
-      visible: {}
+      visible: {},
+      canplay: {}
     };
 
     this.getCenterVideo = () => {
@@ -26,6 +27,9 @@ export default class Videos extends React.Component {
     };
 
     this.calculateVisible = () => {
+      if (!this.map) {
+        return undefined;
+      }
       const newVisible = {};
       this.map
         .search(this.props.bounds.pad(this.props.boundsPad)) // pad the triggering bounds so that offscreen videos can preload
@@ -53,6 +57,38 @@ export default class Videos extends React.Component {
       }
       this.getCenterVideo();
     };
+
+    this.eventLogger = id => evt =>
+      this.setState(prevState => {
+        if (
+          !prevState.canplay[id] &&
+          (evt.type === "canplay" ||
+            evt.type === "canplaythrough" ||
+            evt.type === "playing")
+        ) {
+          return {
+            canplay: {
+              ...prevState.canplay,
+              [id]: true
+            }
+          };
+        }
+        if (
+          prevState.canplay[id] &&
+          (evt.type === "stalled" ||
+            evt.type === "waiting" ||
+            evt.type === "ended" ||
+            evt.type === "emptied")
+        ) {
+          return {
+            canplay: {
+              ...prevState.canplay,
+              [id]: false
+            }
+          };
+        }
+        return undefined;
+      });
   }
 
   componentDidUpdate(nextProps, nextState) {
@@ -78,10 +114,13 @@ export default class Videos extends React.Component {
           m3u8={`${base_url}${vid.filename}-playlist.m3u8`}
           id={id}
           key={id}
+          eventLogger={this.eventLogger(id)}
           video={vid}
           xy={[vid.x, vid.y]}
           bounds={xy_to_bounds(vid.x, vid.y)}
+          canplay={!!this.state.canplay[id]}
           debug={this.props.debug}
+          debugMessage=""
           indexFunc={this.index}
           visible={visible}
           {...vid_config}
