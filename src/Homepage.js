@@ -69,7 +69,7 @@ class Homepage extends React.Component {
       init_zoom
     };
 
-    const handleOnMove = target => {
+    const handleOnMove = ({ target }) => {
       if (!this.state.interacting) {
         this.setState({ interacting: true });
         return;
@@ -97,10 +97,6 @@ class Homepage extends React.Component {
       this.state.bounds = bounds;
     }
     */
-
-    this.onMove = ({ target }) => {
-      this.handleOnMove(target);
-    };
 
     this.onVideoChange = currentVideo => {
       this.setState(prevState => {
@@ -149,7 +145,7 @@ class Homepage extends React.Component {
             center={this.init_center(x, y)}
             zoom={this.state.init_zoom}
             keyboardPanDelta={150}
-            onMove={this.onMove}
+            onMove={this.handleOnMove}
             maxBounds={map_bounds}
             ref={this.onMapLoad}
           >
