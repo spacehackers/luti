@@ -18,21 +18,21 @@ export default class Videos extends React.Component {
       canplay: {}
     };
 
-    this.getCenterVideo = () => {
-      const center = this.props.bounds.getCenter().toBounds(1);
+    this.getCenterVideo = bounds => {
+      const center = bounds.getCenter().toBounds(1);
       const centerVideo = _.head(this.map.search(center));
       if (centerVideo !== undefined) {
         this.props.onVideoChange(centerVideo.options.video);
       }
     };
 
-    this.calculateVisible = () => {
+    this.calculateVisible = bounds => {
       if (!this.map) {
         return undefined;
       }
       const newVisible = {};
       this.map
-        .search(this.props.bounds.pad(this.props.boundsPad)) // pad the triggering bounds so that offscreen videos can preload
+        .search(bounds.pad(this.props.boundsPad)) // pad the triggering bounds so that offscreen videos can preload
         .map(v => v.options.id)
         .forEach(url => {
           newVisible[url] = true;
@@ -51,11 +51,11 @@ export default class Videos extends React.Component {
       this.map = leafletElement._map;
       this.map.indexLayer(leafletElement);
       this.alreadyIndexedIds[id] = true;
-      const newVisible = this.calculateVisible();
+      const newVisible = this.calculateVisible(this.props.bounds);
       if (newVisible !== undefined) {
         this.setState({ visible: newVisible });
       }
-      this.getCenterVideo();
+      this.getCenterVideo(this.props.bounds);
     };
 
     this.eventLogger = id => evt =>
@@ -91,17 +91,19 @@ export default class Videos extends React.Component {
       });
   }
 
-  componentDidUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps, nextState) {
     if (!_.isEqual(nextProps.bounds, this.props.bounds)) {
-      const newVisible = this.calculateVisible();
-      this.getCenterVideo();
+      const newVisible = this.calculateVisible(nextProps.bounds);
+      this.getCenterVideo(nextProps.bounds);
       if (newVisible !== undefined) {
-        this.setState({ visible: newVisible }); // eslint-disable-line react/no-did-update-set-state
+        this.setState({ visible: newVisible });
       }
     }
     if (!_.isEqual(nextState.visible, this.state.visible)) {
-      // console.log("NEW VISIBLES, REDRAWING");
+      console.log("NEW VISIBLES, REDRAWING");
+      return true;
     }
+    return false;
   }
 
   render() {
