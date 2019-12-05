@@ -108,7 +108,7 @@ export default class Videos extends React.Component {
       );
     };
 
-    this.handleOnMove = () => {
+    const handleOnMove = () => {
       const bounds = this.props.map.getBounds();
       const xy_bounds = bounds_to_xy(bounds.pad(this.props.boundsPad));
       if (!_.isEqual(xy_bounds, this.state.xy_bounds)) {
@@ -116,6 +116,11 @@ export default class Videos extends React.Component {
         this.setState({ xy_bounds });
       }
     };
+    this.handleOnMove = _.throttle(handleOnMove, 50, {
+      leading: true,
+      trailing: true
+    });
+
     if (this.props.map) {
       this.props.map.addEventListener("move", this.handleOnMove);
     }
