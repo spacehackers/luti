@@ -1,5 +1,5 @@
 import React from "react";
-import { Marker, Rectangle, VideoOverlay } from "react-leaflet";
+import { Marker, Rectangle, ImageOverlay, VideoOverlay } from "react-leaflet";
 import L from "leaflet";
 import Hls from "hls.js";
 import { hls_config } from "./vid_config";
@@ -209,14 +209,23 @@ export default class Video extends React.Component {
 
     const callback = this.props.visible ? this.enableVideo : this.disableVideo;
     return (
-      <VideoOverlay
-        {...this.props}
-        url=""
-        ref={callback}
-        key={`video-${this.props.id}`}
-      >
-        {debugMarker}
-      </VideoOverlay>
+      <>
+        <VideoOverlay
+          {...this.props}
+          url=""
+          ref={callback}
+          key={`video-${this.props.id}`}
+        >
+          {debugMarker}
+        </VideoOverlay>
+        {this.props.spinnerTest && !this.props.canplay && (
+          <ImageOverlay
+            bounds={this.props.bounds}
+            key={`image-${this.props.id}`}
+            url="https://freefrontend.com/assets/img/css-spinners/Rainbow-Spinner.gif"
+          />
+        )}
+      </>
     );
   }
 }

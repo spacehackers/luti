@@ -32,6 +32,7 @@ export default class Videos extends React.Component {
         this.props.onVideoChange(centerVideo);
       }
     };
+    this.getCenterVideo(props.bounds);
 
     this.index = () => {};
 
@@ -109,6 +110,7 @@ export default class Videos extends React.Component {
           bounds={xy_to_bounds(vid.x, vid.y)}
           canplay={!!this.state.canplay[id]}
           debug={this.props.debug}
+          spinnerTest={this.props.spinnerTest}
           indexFunc={this.index}
           visible={visible}
           {...vid_config}

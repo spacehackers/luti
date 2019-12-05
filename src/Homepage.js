@@ -151,6 +151,7 @@ class Homepage extends React.Component {
           >
             <Videos
               debug={query.debug}
+              spinnerTest={query.spinnerTest}
               videoLayout={video_layout}
               onVideoChange={this.onVideoChange}
               bounds={this.state.bounds}
