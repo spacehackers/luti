@@ -30,6 +30,7 @@ export default class Video extends React.Component {
       }
     };
 
+    this.loaded = false;
     this.enabled = false;
     this.hls = {};
     this.cachedHls = (m3u8, autocreate) => {
@@ -171,6 +172,13 @@ export default class Video extends React.Component {
   }
 
   render() {
+    if (!this.loaded) {
+      if (!this.props.visible) {
+        return null;
+      }
+      this.loaded = true;
+    }
+
     const text = L.divIcon({
       html: `${this.props.id} ${this.props.debugMessage}
       <br />

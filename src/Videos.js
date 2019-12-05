@@ -14,49 +14,26 @@ export default class Videos extends React.Component {
 
     this.alreadyIndexedIds = {};
     this.state = {
-      visible: {},
-      canplay: {}
+      canplay: {},
+      xy_bounds: bounds_to_xy(props.bounds)
     };
 
     this.getCenterVideo = bounds => {
       const center = bounds.getCenter().toBounds(1);
-      const centerVideo = _.head(this.map.search(center));
+      const centerVideoXY = bounds_to_xy(center);
+      const centerVideo = _.head(
+        this.props.videoLayout.filter(
+          v =>
+            centerVideoXY.x_bottom_left === v.x &&
+            centerVideoXY.y_bottom_left === v.y
+        )
+      );
       if (centerVideo !== undefined) {
-        this.props.onVideoChange(centerVideo.options.video);
+        this.props.onVideoChange(centerVideo);
       }
     };
 
-    this.calculateVisible = bounds => {
-      if (!this.map) {
-        return undefined;
-      }
-      const newVisible = {};
-      this.map
-        .search(bounds.pad(this.props.boundsPad)) // pad the triggering bounds so that offscreen videos can preload
-        .map(v => v.options.id)
-        .forEach(url => {
-          newVisible[url] = true;
-        });
-      if (!_.isEqual(newVisible, this.state.visible)) {
-        return newVisible;
-      }
-      return undefined;
-    };
-
-    this.index = leafletElement => {
-      const id = leafletElement.options.id;
-      if (this.alreadyIndexedIds[id]) {
-        return;
-      }
-      this.map = leafletElement._map;
-      this.map.indexLayer(leafletElement);
-      this.alreadyIndexedIds[id] = true;
-      const newVisible = this.calculateVisible(this.props.bounds);
-      if (newVisible !== undefined) {
-        this.setState({ visible: newVisible });
-      }
-      this.getCenterVideo(this.props.bounds);
-    };
+    this.index = () => {};
 
     this.eventLogger = id => evt =>
       this.setState(prevState => {
@@ -89,18 +66,28 @@ export default class Videos extends React.Component {
         }
         return undefined;
       });
+    this.isVisible = vid => {
+      if (!this.state.xy_bounds) {
+        return false;
+      }
+      return (
+        vid.x >= this.state.xy_bounds.x_bottom_left &&
+        vid.x <= this.state.xy_bounds.x_top_right &&
+        vid.y >= this.state.xy_bounds.y_bottom_left &&
+        vid.y <= this.state.xy_bounds.y_top_right
+      );
+    };
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     if (!_.isEqual(nextProps.bounds, this.props.bounds)) {
-      const newVisible = this.calculateVisible(nextProps.bounds);
       this.getCenterVideo(nextProps.bounds);
-      if (newVisible !== undefined) {
-        this.setState({ visible: newVisible });
+      const xy_bounds = bounds_to_xy(nextProps.bounds);
+      if (!_.isEqual(xy_bounds, this.state.xy_bounds)) {
+        this.setState({ xy_bounds });
       }
     }
-    if (!_.isEqual(nextState.visible, this.state.visible)) {
-      console.log("NEW VISIBLES, REDRAWING");
+    if (!_.isEqual(nextState.xy_bounds, this.state.xy_bounds)) {
       return true;
     }
     return false;
@@ -110,9 +97,7 @@ export default class Videos extends React.Component {
     const videos = [];
     this.props.videoLayout.forEach((vid, idx) => {
       const id = `${vid.filename}-${idx}`;
-      const visible = id in this.state.visible;
-      const debugMessage = `Map bounds XY ${this.map &&
-        JSON.stringify(bounds_to_xy(this.map.getBounds()))}`;
+      const visible = this.isVisible(vid);
       videos.push(
         <Video
           m3u8={`${base_url}${vid.filename}-playlist.m3u8`}
@@ -124,7 +109,6 @@ export default class Videos extends React.Component {
           bounds={xy_to_bounds(vid.x, vid.y)}
           canplay={!!this.state.canplay[id]}
           debug={this.props.debug}
-          debugMessage={debugMessage}
           indexFunc={this.index}
           visible={visible}
           {...vid_config}
