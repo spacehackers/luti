@@ -42,6 +42,7 @@ export default class Video extends React.Component {
           hls.media.muted = true;
           hls.media.loop = true;
           hls.media.autoplay = false;
+          hls.media.style.objectFit = "cover";
           hls.media.play();
         });
         hls.on(Hls.Events.MEDIA_DETACHED, () => {
@@ -108,6 +109,7 @@ export default class Video extends React.Component {
       video.playsInline = true;
       video.muted = true;
       video.loop = true;
+      video.style.objectFit = "cover";
       this.addVideoListeners(video);
     };
 
