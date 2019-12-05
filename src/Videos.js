@@ -13,11 +13,14 @@ export default class Videos extends React.Component {
 
     this.alreadyIndexedIds = {};
     this.state = {
-      canplay: {},
-      xy_bounds: bounds_to_xy(props.bounds)
+      canplay: {}
     };
 
-    this.getCenterVideo = bounds => {
+    this.getCenterVideo = () => {
+      if (!this.props.map) {
+        return;
+      }
+      const bounds = this.props.map.getBounds();
       const center = bounds.getCenter().toBounds(1);
       const centerVideoXY = bounds_to_xy(center);
       const centerVideo = _.head(
@@ -31,7 +34,7 @@ export default class Videos extends React.Component {
         this.props.onVideoChange(centerVideo);
       }
     };
-    this.getCenterVideo(props.bounds);
+    this.getCenterVideo();
 
     this.index = () => {};
 
@@ -97,7 +100,7 @@ export default class Videos extends React.Component {
     setTimeout(this.monitorVideoStartup, 5000);
 
     this.loadingProblemAlert = () => {
-      const rectBounds = this.props.bounds.pad(-0.3);
+      const rectBounds = this.props.map.getBounds().pad(-0.3);
       return (
         <ImageOverlay
           bounds={rectBounds}
@@ -105,17 +108,27 @@ export default class Videos extends React.Component {
         />
       );
     };
-  }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (!_.isEqual(nextProps.bounds, this.props.bounds)) {
-      this.getCenterVideo(nextProps.bounds);
-      const xy_bounds = bounds_to_xy(
-        nextProps.bounds.pad(this.props.boundsPad)
-      );
+    this.handleOnMove = () => {
+      const bounds = this.props.map.getBounds();
+      this.getCenterVideo();
+      const xy_bounds = bounds_to_xy(bounds.pad(this.props.boundsPad));
       if (!_.isEqual(xy_bounds, this.state.xy_bounds)) {
         this.setState({ xy_bounds });
       }
+    };
+    if (this.props.map) {
+      this.props.map.addEventListener("move", this.handleOnMove);
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (!this.props.map && nextProps.map) {
+      console.log("LATE ARRIVING MAP");
+      nextProps.map.addEventListener("move", this.handleOnMove);
+    }
+    if (!_.isEqual(nextProps, this.props)) {
+      return true;
     }
     if (!_.isEqual(nextState.canplay, this.state.canplay)) {
       return true;
@@ -126,10 +139,14 @@ export default class Videos extends React.Component {
     if (!_.isEqual(nextState.xy_bounds, this.state.xy_bounds)) {
       return true;
     }
+    // console.log("PREVENTED RENDER", nextState);
     return false;
   }
 
   render() {
+    if (!this.props.map) {
+      return null;
+    }
     const videos = [];
     this.props.videoLayout.forEach((vid, idx) => {
       const id = `${vid.filename}-${idx}`;

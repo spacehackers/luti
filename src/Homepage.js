@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import isEqual from "lodash/isEqual";
-import throttle from "lodash/throttle";
 import queryString from "query-string";
 
 import L from "leaflet";
@@ -63,19 +62,23 @@ class Homepage extends React.Component {
     L.Map.include(L.LayerIndexMixin);
 
     this.state = {
-      bounds: undefined,
       introVisible: false,
       interacting: false,
       init_zoom
     };
 
-    const handleOnMove = ({ target }) => {
+    this.handleOnMove = () => {
+      // we're only using this move listener to do some initial removal of UI elements
+      // so we remove it once that job is done
+      if (this.state.interacting && !this.state.introVisible) {
+        this.state.map.removeEventListener("move", this.handleOnMove);
+        return;
+      }
+
       if (!this.state.interacting) {
         this.setState({ interacting: true });
         return;
       }
-
-      this.setState({ bounds: target.getBounds() });
 
       if (this.state.introVisible) {
         setTimeout(() => {
@@ -83,20 +86,6 @@ class Homepage extends React.Component {
         }, 500);
       }
     };
-
-    this.handleOnMove = throttle(handleOnMove, 50, {
-      leading: true,
-      trailing: true
-    });
-
-    /*
-    if (props.location.hash.length > 1) {
-      const bounds = L.LatLngBounds.fromBBoxString(
-        props.location.hash.substr(1)
-      );
-      this.state.bounds = bounds;
-    }
-    */
 
     this.onVideoChange = currentVideo => {
       this.setState(prevState => {
@@ -108,10 +97,10 @@ class Homepage extends React.Component {
     };
 
     this.onMapLoad = ({ leafletElement }) => {
+      this.setState({ map: leafletElement });
       const screenPixels =
         leafletElement.getSize().x * leafletElement.getSize().y;
       const newState = {
-        bounds: leafletElement.getBounds(),
         introVisible: true,
         boundsPad: 0.1
       };
@@ -155,8 +144,8 @@ class Homepage extends React.Component {
               showLoadingProblem={query.loading}
               videoLayout={video_layout}
               onVideoChange={this.onVideoChange}
-              bounds={this.state.bounds}
               boundsPad={this.state.boundsPad}
+              map={this.state.map}
             />
           </Map>
         )}
