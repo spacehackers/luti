@@ -45,12 +45,16 @@ export default class Videos extends React.Component {
           evt.type === "canplaythrough" ||
           evt.type === "playing")
       ) {
-        this.setState(prevState => ({
-          canplay: {
+        this.setState(prevState => {
+          const canplay = {
             ...prevState.canplay,
             [id]: true
+          };
+          if (this.props.onVideoStatusChange) {
+            this.props.onVideoStatusChange(canplay);
           }
-        }));
+          return { canplay };
+        });
         return;
       }
       if (
@@ -60,12 +64,16 @@ export default class Videos extends React.Component {
           evt.type === "ended" ||
           evt.type === "emptied")
       ) {
-        this.setState(prevState => ({
-          canplay: {
+        this.setState(prevState => {
+          const canplay = {
             ...prevState.canplay,
             [id]: false
+          };
+          if (this.props.onVideoStatusChange) {
+            this.props.onVideoStatusChange(canplay);
           }
-        }));
+          return { canplay };
+        });
       }
     };
     this.isVisible = vid => {
@@ -79,24 +87,6 @@ export default class Videos extends React.Component {
         vid.y <= this.state.xy_bounds.y_top_right
       );
     };
-
-    this.monitorVideoStartup = () => {
-      let ok = false;
-      Object.keys(this.state.canplay).forEach(k => {
-        if (this.state.canplay[k]) {
-          ok = true;
-        }
-      });
-      if (ok) {
-        this.setState({ loadingProblem: false });
-        console.log("AT LEAST ONE VIDEO LOADED!");
-      } else {
-        this.setState({ loadingProblem: true });
-        console.log("EVERYTHING IS TERRIBLE");
-        setTimeout(this.monitorVideoStartup, 2000);
-      }
-    };
-    setTimeout(this.monitorVideoStartup, 5000);
 
     this.loadingProblemAlert = () => {
       const rectBounds = this.props.map.getBounds().pad(-0.3);

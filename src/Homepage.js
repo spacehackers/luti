@@ -43,9 +43,15 @@ const propTypes = {
   hidden: PropTypes.bool
 };
 
+const VIDEO_PLAY_TIMEOUT = 10000;
+
 class Homepage extends React.Component {
   constructor(props) {
     super(props);
+
+    this.startupTime = Date.now();
+
+    setTimeout(() => this.forceUpdate(), VIDEO_PLAY_TIMEOUT);
 
     this.init_center = (x, y) => {
       let init_video;
@@ -64,7 +70,8 @@ class Homepage extends React.Component {
     this.state = {
       introVisible: false,
       interacting: false,
-      init_zoom
+      init_zoom,
+      videosPlaying: 0
     };
 
     this.handleOnMove = () => {
@@ -80,7 +87,7 @@ class Homepage extends React.Component {
         return;
       }
 
-      if (this.state.introVisible) {
+      if (this.state.introVisible && this.state.videosPlaying > 0) {
         setTimeout(() => {
           this.setState({ introVisible: false });
         }, 500);
@@ -112,17 +119,34 @@ class Homepage extends React.Component {
       }
       this.setState(newState);
     };
+
+    this.updateVideoStatus = status => {
+      const videosPlaying = Object.keys(status).length;
+      this.setState({ videosPlaying });
+    };
   }
 
   render() {
     const { x, y } = this.props.match.params;
     const query = queryString.parse(this.props.location.search);
 
+    let introMessage = "Drag & Observe New Creatures";
+    if (this.state.videosPlaying === 0) {
+      if (Date.now() - this.startupTime > VIDEO_PLAY_TIMEOUT) {
+        introMessage = (
+          <>
+            Your connection is too slow to load this webpage.
+            <br />
+            Please find a faster connection.
+          </>
+        );
+      } else {
+        introMessage = "Connecting To Creatures";
+      }
+    }
     return (
       <>
-        <Intro visible={this.state.introVisible}>
-          Drag & Observe New Creatures
-        </Intro>
+        <Intro visible={this.state.introVisible}>{introMessage}</Intro>
         {!this.props.hidden && (
           <Map
             key="map"
@@ -144,6 +168,7 @@ class Homepage extends React.Component {
               showLoadingProblem={query.loading}
               videoLayout={video_layout}
               onVideoChange={this.onVideoChange}
+              onVideoStatusChange={this.updateVideoStatus}
               boundsPad={this.state.boundsPad}
               map={this.state.map}
             />
