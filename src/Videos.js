@@ -1,5 +1,7 @@
 import React from "react";
 
+import { ImageOverlay } from "react-leaflet";
+import L from "leaflet";
 import _ from "lodash";
 
 import Video from "./Video";
@@ -76,6 +78,34 @@ export default class Videos extends React.Component {
         vid.y <= this.state.xy_bounds.y_top_right
       );
     };
+
+    this.monitorVideoStartup = () => {
+      let ok = false;
+      Object.keys(this.state.canplay).forEach(k => {
+        if (this.state.canplay[k]) {
+          ok = true;
+        }
+      });
+      if (ok) {
+        this.setState({ loadingProblem: false });
+        console.log("AT LEAST ONE VIDEO LOADED!");
+      } else {
+        this.setState({ loadingProblem: true });
+        console.log("EVERYTHING IS TERRIBLE");
+        setTimeout(this.monitorVideoStartup, 2000);
+      }
+    };
+    setTimeout(this.monitorVideoStartup, 5000);
+
+    this.loadingProblemAlert = () => {
+      const rectBounds = this.props.bounds.pad(-0.3);
+      return (
+        <ImageOverlay
+          bounds={rectBounds}
+          url="https://www.shitpostbot.com/img/sourceimages/oh-no-5ab91493df486.png"
+        />
+      );
+    };
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -89,6 +119,9 @@ export default class Videos extends React.Component {
       }
     }
     if (!_.isEqual(nextState.canplay, this.state.canplay)) {
+      return true;
+    }
+    if (!_.isEqual(nextState.loadingProblem, this.state.loadingProblem)) {
       return true;
     }
     if (!_.isEqual(nextState.xy_bounds, this.state.xy_bounds)) {
@@ -120,6 +153,13 @@ export default class Videos extends React.Component {
         />
       );
     });
-    return <>{videos}</>;
+    return (
+      <>
+        {this.props.showLoadingProblem &&
+          this.state.loadingProblem &&
+          this.loadingProblemAlert()}
+        {videos}
+      </>
+    );
   }
 }
