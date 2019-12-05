@@ -38,37 +38,36 @@ export default class Videos extends React.Component {
 
     this.index = () => {};
 
-    this.eventLogger = id => evt =>
-      this.setState(prevState => {
-        if (
-          !prevState.canplay[id] &&
-          (evt.type === "canplay" ||
-            evt.type === "canplaythrough" ||
-            evt.type === "playing")
-        ) {
-          return {
-            canplay: {
-              ...prevState.canplay,
-              [id]: true
-            }
-          };
-        }
-        if (
-          prevState.canplay[id] &&
-          (evt.type === "stalled" ||
-            evt.type === "waiting" ||
-            evt.type === "ended" ||
-            evt.type === "emptied")
-        ) {
-          return {
-            canplay: {
-              ...prevState.canplay,
-              [id]: false
-            }
-          };
-        }
-        return undefined;
-      });
+    this.eventLogger = id => evt => {
+      if (
+        !this.state.canplay[id] &&
+        (evt.type === "canplay" ||
+          evt.type === "canplaythrough" ||
+          evt.type === "playing")
+      ) {
+        this.setState(prevState => ({
+          canplay: {
+            ...prevState.canplay,
+            [id]: true
+          }
+        }));
+        return;
+      }
+      if (
+        this.state.canplay[id] &&
+        (evt.type === "stalled" ||
+          evt.type === "waiting" ||
+          evt.type === "ended" ||
+          evt.type === "emptied")
+      ) {
+        this.setState(prevState => ({
+          canplay: {
+            ...prevState.canplay,
+            [id]: false
+          }
+        }));
+      }
+    };
     this.isVisible = vid => {
       if (!this.state.xy_bounds) {
         return false;
@@ -111,9 +110,9 @@ export default class Videos extends React.Component {
 
     this.handleOnMove = () => {
       const bounds = this.props.map.getBounds();
-      this.getCenterVideo();
       const xy_bounds = bounds_to_xy(bounds.pad(this.props.boundsPad));
       if (!_.isEqual(xy_bounds, this.state.xy_bounds)) {
+        this.getCenterVideo();
         this.setState({ xy_bounds });
       }
     };
