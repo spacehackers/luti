@@ -1,7 +1,6 @@
 import React from "react";
 
 import { ImageOverlay } from "react-leaflet";
-import L from "leaflet";
 import _ from "lodash";
 
 import Video from "./Video";
