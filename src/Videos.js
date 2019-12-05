@@ -88,6 +88,9 @@ export default class Videos extends React.Component {
         this.setState({ xy_bounds });
       }
     }
+    if (!_.isEqual(nextState.canplay, this.state.canplay)) {
+      return true;
+    }
     if (!_.isEqual(nextState.xy_bounds, this.state.xy_bounds)) {
       return true;
     }
