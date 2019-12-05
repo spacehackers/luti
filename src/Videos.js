@@ -123,6 +123,7 @@ export default class Videos extends React.Component {
 
     if (this.props.map) {
       this.props.map.addEventListener("move", this.handleOnMove);
+      this.handleOnMove();
     }
   }
 
@@ -130,6 +131,7 @@ export default class Videos extends React.Component {
     if (!this.props.map && nextProps.map) {
       console.log("LATE ARRIVING MAP");
       nextProps.map.addEventListener("move", this.handleOnMove);
+      this.handleOnMove();
     }
     if (!_.isEqual(nextProps, this.props)) {
       return true;
