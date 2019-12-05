@@ -11,26 +11,29 @@ const Acknowledgements = () => {
       <h1>{page}</h1>
 
       <p>
-        <em>The process of formulating, creating and executing Life Under the Ice
-        was six years in the making. The expedition and project would not have been
-        possible without the support of so many awesome people and organizations
-        along the way. I have attempted to list them all below both because they
-        are deserving of so much gratitude, but also to be transparent in
-        detailing just how much “it takes a village” for someone to accomplish
-        their dreams.</em>
-        <br />
-        – <a href="https://arielwaldman.com">Ariel Waldman</a>, creator of{" "}
+        <em>
+          The process of formulating, creating and executing Life Under the Ice
+          was six years in the making. The expedition and project would not have
+          been possible without the support of so many awesome people and
+          organizations along the way. I have attempted to list them all below
+          both because they are deserving of so much gratitude, but also to be
+          transparent in detailing just how much “it takes a village” for
+          someone to accomplish their dreams.
+        </em>
+        <br />– <a href="https://arielwaldman.com">Ariel Waldman</a>, creator of{" "}
         <em>Life Under the Ice</em>
       </p>
-<br />
+      <br />
       <p>
         <strong>Enormous thanks to…</strong>
       </p>
 
       <p>
-        <strong><a href="https://www.nsf.gov/funding/pgm_summ.jsp?pims_id=503518">
-          National Science Foundation Antarctic Artists & Writers program
-        </a></strong>
+        <strong>
+          <a href="https://www.nsf.gov/funding/pgm_summ.jsp?pims_id=503518">
+            National Science Foundation Antarctic Artists & Writers program
+          </a>
+        </strong>
         <br />
         for being an invaluable program and resource in service to artists,
         scientists and society at-large. The program covered the cost of
@@ -45,7 +48,9 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="https://lisaballard.io/">Lisa Ballard</a></strong>
+        <strong>
+          <a href="https://lisaballard.io/">Lisa Ballard</a>
+        </strong>
         <br />
         for being the lead web developer for Life Under the Ice, turning a vague
         concept into a technical reality and open sourcing it along the way.
@@ -54,11 +59,14 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="https://twitter.com/mattb">Matt Biddulph</a></strong>
+        <strong>
+          <a href="https://twitter.com/mattb">Matt Biddulph</a>
+        </strong>
         <br />
         for being the deputy web developer and music composer for Life Under the
-        Ice. The music component (launching soon, stay tuned!) will be using modular synths to set a mood for the microbes. Thanks also
-        for being the best partner, cheerleader, and collaborator throughout.
+        Ice. The music component (launching soon, stay tuned!) will be using
+        modular synths to set a mood for the microbes. Thanks also for being the
+        best partner, cheerleader, and collaborator throughout.
       </p>
 
       <p>
@@ -76,9 +84,11 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="https://en.wikipedia.org/wiki/Christopher_McKay">
-          Chris McKay
-        </a></strong>
+        <strong>
+          <a href="https://en.wikipedia.org/wiki/Christopher_McKay">
+            Chris McKay
+          </a>
+        </strong>
         <br />
         for being my champion and guide throughout. There is so much unwritten
         knowledge about the logistics and politics of Antarctic work that I
@@ -92,7 +102,9 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="https://micro.utk.edu/faculty/mikucki.php">Jill Mikucki</a></strong>
+        <strong>
+          <a href="https://micro.utk.edu/faculty/mikucki.php">Jill Mikucki</a>
+        </strong>
         <br />
         for defending the merit of this project over the years, fighting for me
         to get what I needed for a successful expedition, and taking me under
@@ -106,7 +118,10 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong>All my patrons on <a href="https://patreon.com/arielwaldman">Patreon</a></strong>
+        <strong>
+          All my patrons on{" "}
+          <a href="https://patreon.com/arielwaldman">Patreon</a>
+        </strong>
         <br />
         for being awesome humans and supporting my otherwise-unfunded work and
         lab equipment{" "}
@@ -128,9 +143,11 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="https://www.sfmicrosoc.org/">
-          San Francisco Microscopical Society
-        </a></strong>
+        <strong>
+          <a href="https://www.sfmicrosoc.org/">
+            San Francisco Microscopical Society
+          </a>
+        </strong>
         <br />
         for providing a friendly, local community to welcome me when I was just
         a self-taught beginner in microscopy looking for help. A small grant
@@ -157,20 +174,24 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="http://schmidt.eas.gatech.edu/project-rise-up/">
-          Britney Schmidt & the Icefin team
-        </a></strong>
+        <strong>
+          <a href="http://schmidt.eas.gatech.edu/project-rise-up/">
+            Britney Schmidt & the Icefin team
+          </a>
+        </strong>
         <br />
         for your support, time, helpful advice, and welcoming me to ride along
         with your awesome robot.
       </p>
 
       <p>
-        <strong><a href="https://pacificasommers.com/">Pacifica Sommers</a>,{" "}
-        <a href="https://entnemdept.ifas.ufl.edu/people-directory/dorota-porazinska/">
-          Dorota Porazinska
-        </a>
-        , and Adam Solon</strong>
+        <strong>
+          <a href="https://pacificasommers.com/">Pacifica Sommers</a>,{" "}
+          <a href="https://entnemdept.ifas.ufl.edu/people-directory/dorota-porazinska/">
+            Dorota Porazinska
+          </a>
+          , and Adam Solon
+        </strong>
         <br />
         for helping me conquer hiking up my first glacier! I couldn’t have done
         it without their expertise, assistance, and patience. They literally
@@ -182,9 +203,11 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="https://antarcticsun.usap.gov/features/4191/">Rob Robbins</a>,
-        Steve Rupp, and{" "}
-        <a href="http://www.henrykaiserguitar.com/">Henry Kaiser</a></strong>
+        <strong>
+          <a href="https://antarcticsun.usap.gov/features/4191/">Rob Robbins</a>
+          , Steve Rupp, and{" "}
+          <a href="http://www.henrykaiserguitar.com/">Henry Kaiser</a>
+        </strong>
         <br />
         for diving into the cold depths of Antarctic waters to fetch me the
         coolest of microbes. Also thanks for being so welcoming, helping me
@@ -192,7 +215,9 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="">Ken Mankoff</a></strong>
+        <strong>
+          <a href="http://kenmankoff.com">Ken Mankoff</a>
+        </strong>
         <br />
         for being the first to tell me about the existence of the Antarctic
         Artists and Writers program, encouraging me to apply, and putting me in
@@ -201,9 +226,11 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="https://nai.nasa.gov/directory/boston-penelope/">
-          Penny Boston
-        </a></strong>
+        <strong>
+          <a href="https://nai.nasa.gov/directory/boston-penelope/">
+            Penny Boston
+          </a>
+        </strong>
         <br />
         for including me in the astrobiology world, sending opportunities my
         way, helping review my proposals, and providing tons of helpful advice
@@ -211,7 +238,9 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="http://www.montana.edu/priscu/">John Priscu</a></strong>
+        <strong>
+          <a href="http://www.montana.edu/priscu/">John Priscu</a>
+        </strong>
         <br />
         for providing a letter of support to someone new to the Antarctic field,
         and for trying to get me out into the “deep field” of Antarctica, which
@@ -219,32 +248,40 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="https://www.nasa.gov/content/lynn-j-rothschild">
-          Lynn Rothschild
-        </a></strong>
+        <strong>
+          <a href="https://www.nasa.gov/content/lynn-j-rothschild">
+            Lynn Rothschild
+          </a>
+        </strong>
         <br />
         for offering a letter of support and being a champion of
         multidisciplinary collaboration.
       </p>
 
       <p>
-        <strong><a href="https://www.siena.edu/faculty-and-staff/person/matt-bellis/">
-          Matt Bellis
-        </a></strong>
+        <strong>
+          <a href="https://www.siena.edu/faculty-and-staff/person/matt-bellis/">
+            Matt Bellis
+          </a>
+        </strong>
         <br />
         for taking the time to review my proposals, provide valuable
         suggestions, and for always offering help when I need it.
       </p>
 
       <p>
-        <strong><a href="https://twitter.com/Alex_Parker">Alex Parker</a></strong>
+        <strong>
+          <a href="https://twitter.com/Alex_Parker">Alex Parker</a>
+        </strong>
         <br />
         for helping review my proposals, making valuable introductions, and
         providing excellent advice on how to convey my concept.
       </p>
 
       <p>
-        <strong><a href="https://adamslab.byu.edu/">Byron Adams</a></strong>
+        <strong>
+          <a href="https://adamslab.byu.edu/">Byron Adams</a>
+        </strong>
         <br />
         for helping me get my lab supplies in order, tracking down answers, and
         providing additional microbes for filming. Thanks also for all the
@@ -252,15 +289,19 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="http://www.maryannarogers.com/">Maryanna Rogers</a></strong>
+        <strong>
+          <a href="http://www.maryannarogers.com/">Maryanna Rogers</a>
+        </strong>
         <br />
         for the letter of support and helping workshop my proposal to stay
         rooted in art.
       </p>
 
       <p>
-        <strong><a href="https://twitter.com/ianbrunswick">Ian Brunswick</a> and{" "}
-        <a href="https://twitter.com/shaunoboyle">Shaun O’Boyle</a></strong>
+        <strong>
+          <a href="https://twitter.com/ianbrunswick">Ian Brunswick</a> and{" "}
+          <a href="https://twitter.com/shaunoboyle">Shaun O’Boyle</a>
+        </strong>
         <br />
         for letters of support and being a welcoming interface to the awesome{" "}
         <a href="https://dublin.sciencegallery.com/">Science Gallery</a>{" "}
@@ -268,30 +309,38 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="http://www.ganucheau.com/">Matt Ganucheau</a></strong>
+        <strong>
+          <a href="http://www.ganucheau.com/">Matt Ganucheau</a>
+        </strong>
         <br />
         for the letter of support and encouragement from the world of art+tech.
       </p>
 
       <p>
-        <strong><a href="https://www.seti.org/our-scientists/seth-shostak">
-          Seth Shostak
-        </a></strong>
+        <strong>
+          <a href="https://www.seti.org/our-scientists/seth-shostak">
+            Seth Shostak
+          </a>
+        </strong>
         <br />
         for the letter of support early on, being a sounding board, and for
         always believing in me.
       </p>
 
       <p>
-        <strong><a href="http://www.iftf.org/marinagorbis/">Marina Gorbis</a></strong>
+        <strong>
+          <a href="http://www.iftf.org/marinagorbis/">Marina Gorbis</a>
+        </strong>
         <br />
         for the encouragement, cheerleading, and letter of support early on.
       </p>
 
       <p>
-        <strong><a href="https://sloan.org/about/staff/joshua-m-greenberg">
-          Josh Greenberg
-        </a></strong>
+        <strong>
+          <a href="https://sloan.org/about/staff/joshua-m-greenberg">
+            Josh Greenberg
+          </a>
+        </strong>
         <br />
         for the encouragement and letter of support early on in this effort.
       </p>
@@ -308,14 +357,18 @@ const Acknowledgements = () => {
       </p>
 
       <p>
-        <strong><a href="http://djspooky.com/">Paul Miller</a></strong>
+        <strong>
+          <a href="http://djspooky.com/">Paul Miller</a>
+        </strong>
         <br />
         for keeping me motivated and helping me think about alternative pathways
         to Antarctica if this one didn’t pan out.
       </p>
 
       <p>
-        <strong><a href="https://www.linkedin.com/in/mills42/">Caroline Miller</a></strong>
+        <strong>
+          <a href="https://www.linkedin.com/in/mills42/">Caroline Miller</a>
+        </strong>
         <br />
         for giving me a tour of an awesome microscope startup and offering space
         for me to experiment with microscopes early on in my microscopy journey.

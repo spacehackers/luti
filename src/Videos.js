@@ -4,8 +4,6 @@ import _ from "lodash";
 
 import Video from "./Video";
 
-import "leaflet-layerindex";
-
 import { vid_config, base_url, bounds_to_xy, xy_to_bounds } from "./vid_config";
 
 export default class Videos extends React.Component {
