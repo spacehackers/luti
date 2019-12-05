@@ -113,12 +113,12 @@ class Homepage extends React.Component {
       const newState = {
         bounds: leafletElement.getBounds(),
         introVisible: true,
-        boundsPad: 0.0
+        boundsPad: 0.1
       };
       if (screenPixels > 450 * 900) {
         // bigger than an iPhone X Max
         console.log("DESKTOP MODE");
-        newState.boundsPad = 0.0;
+        newState.boundsPad = 0.25;
         newState.init_zoom = init_zoom + 1;
       }
       this.setState(newState);

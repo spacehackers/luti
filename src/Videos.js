@@ -83,7 +83,9 @@ export default class Videos extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     if (!_.isEqual(nextProps.bounds, this.props.bounds)) {
       this.getCenterVideo(nextProps.bounds);
-      const xy_bounds = bounds_to_xy(nextProps.bounds);
+      const xy_bounds = bounds_to_xy(
+        nextProps.bounds.pad(this.props.boundsPad)
+      );
       if (!_.isEqual(xy_bounds, this.state.xy_bounds)) {
         this.setState({ xy_bounds });
       }
