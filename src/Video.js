@@ -207,12 +207,7 @@ export default class Video extends React.Component {
       );
     }
 
-    const callback = ref =>
-      setTimeout(
-        () =>
-          this.props.visible ? this.enableVideo(ref) : this.disableVideo(ref),
-        1
-      );
+    const callback = this.props.visible ? this.enableVideo : this.disableVideo;
     return (
       <>
         <VideoOverlay
