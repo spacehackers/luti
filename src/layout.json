@@ -667,7 +667,7 @@
     "filename": "042519_LakeBonneyMicrobialMat_NikonE200_10x_BF_PinkRotifer_edit",
     "x": 6,
     "y": 7,
-    "title": "Rotifer",
+    "title": "Philodina Gregaria Bdelloid Rotifer",
     "location": "Discovered in an algal mat from a moat on the East lobe of Lake Bonney in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 20x."
   },
@@ -715,7 +715,7 @@
     "filename": "051319_LakeBonneyMicrobialMat_20x_BF_PinkRotifer_01_edit",
     "x": 1,
     "y": 8,
-    "title": "Rotifer",
+    "title": "Philodina Gregaria Bdelloid Rotifer",
     "location": "Discovered in an algal mat from a moat on the East lobe of Lake Bonney in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 40x."
   },
@@ -828,7 +828,7 @@
     "filename": "112718_JettySeaIceCeiling_NikonE200_40x_TwoCircles",
     "x": 4,
     "y": 9,
-    "title": "Unknown Microbe",
+    "title": "Diatoms",
     "location": "Discovered directly under the sea ice in the McMurdo Sound in the Southern Ocean in Antarctica.",
     "magnification": "Magnified 80x."
   },
@@ -844,7 +844,7 @@
     "filename": "112718_JettySeaIceCeiling_NikonE200_40x_Chain",
     "x": 6,
     "y": 9,
-    "title": "Unknown Microbe",
+    "title": "Chaetoceros Diatom",
     "location": "Discovered directly under the sea ice in the McMurdo Sound in the Southern Ocean in Antarctica.",
     "magnification": "Magnified 80x."
   },
@@ -1172,7 +1172,7 @@
     "filename": "042919_LakeBonneyMicrobialMat_NikonE200_40x_BF_Nostoc",
     "x": 3,
     "y": 13,
-    "title": "Nostoc",
+    "title": "Nostoc Cyanobacteria",
     "location": "Discovered in an algal mat from a moat on the East lobe of Lake Bonney in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 80x."
   },
@@ -1188,7 +1188,7 @@
     "filename": "112718_ErebusSeaIceHole_NikonE200_40x_Circle_02",
     "x": 5,
     "y": 13,
-    "title": "Unknown Microbe",
+    "title": "Diatom",
     "location": "Discovered under the sea ice in McMurdo Sound near the Erebus Glacier Tongue in Antarctica.",
     "magnification": "Magnified 80x."
   },
