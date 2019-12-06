@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { CSSTransition } from "react-transition-group";
-import { TRANSITION_SPEED } from "./constants.js";
+import { TRANSITION_SPEED } from "./constants";
 
 import "./Intro.scss";
 
