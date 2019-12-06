@@ -45,3 +45,22 @@ export const xy_to_bounds = (x, y) => {
     [(y + 1) * (img_height + 0), (x + 1) * (img_width + 0)]
   ];
 };
+
+export const zoomSettings = () => {
+  const screenPixels = window.screen.width * window.screen.height;
+  const isMobile = screenPixels < 450 * 900; // bigger than an iPhone X Max
+  if (isMobile) {
+    return {
+      minZoom: -1.5,
+      initZoom: -1.0,
+      maxZoom: -0.4,
+      boundsPad: 0.1
+    };
+  }
+  return {
+    minZoom: -0.85,
+    initZoom: -0.6,
+    maxZoom: -0.1,
+    boundsPad: 0.25
+  };
+};

@@ -21,7 +21,7 @@ import {
   y_count,
   img_width,
   img_height,
-  init_zoom
+  zoomSettings
 } from "./vid_config";
 
 const video_layout = video_layout_data.map(data => new VideoData(data));
@@ -70,7 +70,6 @@ class Homepage extends React.Component {
     this.state = {
       introVisible: false,
       interacting: false,
-      init_zoom,
       videosPlaying: 0
     };
 
@@ -104,20 +103,11 @@ class Homepage extends React.Component {
     };
 
     this.onMapLoad = ({ leafletElement }) => {
-      this.setState({ map: leafletElement });
-      const screenPixels =
-        leafletElement.getSize().x * leafletElement.getSize().y;
-      const newState = {
+      this.setState({
+        map: leafletElement,
         introVisible: true,
-        boundsPad: 0.1
-      };
-      if (screenPixels > 450 * 900) {
-        // bigger than an iPhone X Max
-        console.log("DESKTOP MODE");
-        newState.boundsPad = 0.25;
-        newState.init_zoom = init_zoom + 1;
-      }
-      this.setState(newState);
+        boundsPad: zoomSettings().boundsPad
+      });
     };
 
     this.updateVideoStatus = status => {
@@ -134,11 +124,11 @@ class Homepage extends React.Component {
     if (this.state.videosPlaying === 0) {
       if (Date.now() - this.startupTime > VIDEO_PLAY_TIMEOUT) {
         introMessage = (
-          <>
+          <div className="connection-problem">
             Your connection is too slow to load this webpage.
             <br />
             Please find a faster connection.
-          </>
+          </div>
         );
       } else {
         introMessage = "Loading Microbes...";
@@ -153,13 +143,14 @@ class Homepage extends React.Component {
             crs={L.CRS.Simple}
             zoomSnap={0}
             zoomDelta={0.25}
-            minZoom={this.state.init_zoom}
-            maxZoom={this.state.init_zoom + 0.5}
+            zoom={zoomSettings().initZoom}
+            minZoom={zoomSettings().minZoom}
+            maxZoom={zoomSettings().maxZoom}
             center={this.init_center(x, y)}
-            zoom={this.state.init_zoom}
             keyboardPanDelta={150}
             onMove={this.handleOnMove}
             maxBounds={map_bounds}
+            attributionControl={false}
             ref={this.onMapLoad}
           >
             <Videos
