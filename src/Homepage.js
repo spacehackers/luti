@@ -125,6 +125,14 @@ class Homepage extends React.Component {
       if (Date.now() - this.startupTime > VIDEO_PLAY_TIMEOUT) {
         introMessage = (
           <div className="connection-problem">
+            <span
+              role="img"
+              aria-label="warning"
+              className="connection-problem-emoji"
+            >
+              ⚠️
+            </span>
+            <br />
             Your connection is too slow to load this webpage.
             <br />
             Please find a faster connection.
