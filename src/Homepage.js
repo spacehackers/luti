@@ -130,7 +130,7 @@ class Homepage extends React.Component {
     const { x, y } = this.props.match.params;
     const query = queryString.parse(this.props.location.search);
 
-    let introMessage = "Drag & Observe New Creatures";
+    let introMessage = "Drag To Discover New Creatures";
     if (this.state.videosPlaying === 0) {
       if (Date.now() - this.startupTime > VIDEO_PLAY_TIMEOUT) {
         introMessage = (
