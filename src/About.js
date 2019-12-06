@@ -1,8 +1,8 @@
-import React from "react"
-import Page from "./Page/Page"
+import React from "react";
+import Page from "./Page/Page";
 
 const About = () => {
-  const page = "About the Project"
+  const page = "About the Project";
 
   return (
     <Page>
@@ -73,7 +73,7 @@ const About = () => {
 
       <figure>
         <img
-          src="/USGS_McMurdoSound_Cropped_Highlighted.png"
+          src="/USGS_McMurdoSound_Cropped_Highlighted.jpg"
           alt="USGS Map of McMurdo Sound"
         />
         <figcaption>
@@ -97,10 +97,10 @@ const About = () => {
               title="How to get to Antarctica - Episode 1"
               className="youtube_embed"
               src="https://www.youtube.com/embed/VJZIgFO-dFg"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+              allowFullScreen
+            />
             <figcaption>
               Ariel spent 5 weeks in Antarctica to film microbes living under
               the ice. Here's how she got there.
@@ -117,10 +117,10 @@ const About = () => {
               title="Antarctica under the ice - Episode 2"
               className="youtube_embed"
               src="https://www.youtube.com/embed/u9aHl-qssHI"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+              allowFullScreen
+            />
             <figcaption>
               Ariel joined Antarctic divers in going deep under the sea ice to
               explore the weird wonders of the Southern Ocean.
@@ -137,10 +137,10 @@ const About = () => {
               title="Camping in Antarctica - Episode 3"
               className="youtube_embed"
               src="https://www.youtube.com/embed/d7TMawjKG5k"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+              allowFullScreen
+            />
             <figcaption>
               Here's what it was like to camp outside in the Antarctic Dry
               Valleys next to the natural phenomenon known as Blood Falls.
@@ -157,10 +157,10 @@ const About = () => {
               title="Extremophiles of Antarctica - Episode 4"
               className="youtube_embed"
               src="https://www.youtube.com/embed/hImxHVhlan4"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+              allowFullScreen
+            />
             <figcaption>
               Some of the extremophiles Ariel sought to film with her
               microscopes live embedded INSIDE glaciers. Ariel climbed on to the
@@ -181,10 +181,10 @@ const About = () => {
               title="Antarctica robot road trip - Episode 5"
               className="youtube_embed"
               src="https://www.youtube.com/embed/PcZxLJ9RbLM"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+              allowFullScreen
+            />
             <figcaption>
               While in Antarctica, Ariel went on a day-long road trip across the
               sea ice with a team that uses a robot called Icefin to explore the
@@ -214,7 +214,7 @@ const About = () => {
         </p>
       </div>
     </Page>
-  )
-}
+  );
+};
 
-export default About
+export default About;
