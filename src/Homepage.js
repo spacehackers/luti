@@ -174,7 +174,7 @@ class Homepage extends React.Component {
             />
           </Map>
         )}
-        {this.state.currentVideo && (
+        {this.state.currentVideo && this.state.videosPlaying > 0 && (
           <Info hidden={false} {...this.state.currentVideo.info()} />
         )}
       </>
