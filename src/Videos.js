@@ -1,6 +1,5 @@
 import React from "react";
 
-import { ImageOverlay } from "react-leaflet";
 import _ from "lodash";
 
 import Video from "./Video";
@@ -88,16 +87,6 @@ export default class Videos extends React.Component {
       );
     };
 
-    this.loadingProblemAlert = () => {
-      const rectBounds = this.props.map.getBounds().pad(-0.3);
-      return (
-        <ImageOverlay
-          bounds={rectBounds}
-          url="https://www.shitpostbot.com/img/sourceimages/oh-no-5ab91493df486.png"
-        />
-      );
-    };
-
     const handleOnMove = () => {
       const bounds = this.props.map.getBounds();
       const xy_bounds = bounds_to_xy(bounds.pad(this.props.boundsPad));
@@ -129,9 +118,6 @@ export default class Videos extends React.Component {
       return true;
     }
     if (!_.isEqual(nextState.canplay, this.state.canplay)) {
-      return true;
-    }
-    if (!_.isEqual(nextState.loadingProblem, this.state.loadingProblem)) {
       return true;
     }
     if (!_.isEqual(nextState.xy_bounds, this.state.xy_bounds)) {
@@ -167,13 +153,6 @@ export default class Videos extends React.Component {
         />
       );
     });
-    return (
-      <>
-        {this.props.showLoadingProblem &&
-          this.state.loadingProblem &&
-          this.loadingProblemAlert()}
-        {videos}
-      </>
-    );
+    return <>{videos}</>;
   }
 }
