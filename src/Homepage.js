@@ -141,7 +141,7 @@ class Homepage extends React.Component {
           </>
         );
       } else {
-        introMessage = "Connecting To Creatures";
+        introMessage = "Loading Microbes...";
       }
     }
     return (
