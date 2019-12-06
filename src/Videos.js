@@ -110,7 +110,9 @@ export default class Videos extends React.Component {
       leading: true,
       trailing: true
     });
+  }
 
+  componentDidMount() {
     if (this.props.map) {
       this.props.map.addEventListener("move", this.handleOnMove);
       this.handleOnMove();
