@@ -18,36 +18,6 @@ $padding: 20px;
   outline: 0;
   border: 0;
   z-index: $z-index-map;
-
-  // animations
-  .hidden & {
-    bottom: $margin-bottom;
-  }
-
-  .enter & {
-    bottom: $margin-bottom;
-  }
-
-  .enter.enter-active & {
-    bottom: $overlay-height + $margin-bottom;
-    transition: all $transition_speed ease-in;
-  }
-
-  .enter-done & {
-    bottom: $overlay-height + $margin-bottom;
-  }
-
-  .exit & {
-    bottom: $margin-bottom;
-  }
-
-  .exit-active & {
-    bottom: $margin-bottom;
-    transition: all $transition_speed ease-out;
-  }
-
-  .exit-done & {
-  }
 }
 
 .info-button:hover {
@@ -142,35 +112,20 @@ $padding: 20px;
   }
 
   .enter.enter-active & {
-    height: $overlay-height;
     padding: $padding;
+    height: auto;
     transition: all $transition_speed ease-in;
-
-    @media (max-width: $mobile_breakpoint) {
-      height: auto;
-      min-height: $overlay-height;
-    }
   }
 
   .enter-done & {
-    height: $overlay-height;
+    height: auto;
     padding: $padding;
     display: flex;
-
-    @media (max-width: $mobile_breakpoint) {
-      height: auto;
-      min-height: $overlay-height;
-    }
   }
 
   .exit & {
-    height: $overlay-height;
+    height: auto;
     padding: $padding;
-
-    @media (max-width: $mobile_breakpoint) {
-      height: auto;
-      min-height: $overlay-height;
-    }
   }
 
   .exit-active & {
