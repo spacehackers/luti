@@ -1,6 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { CSSTransition } from "react-transition-group"
+import debounce from "lodash/debounce"
+
 import "./Info.scss"
 
 const TRANSITION_SPEED = 600
@@ -18,9 +20,15 @@ export default class Info extends React.Component {
     this.state = {
       hidden: true
     }
+
+    this.handleClick = debounce(this.handleClick, 500, {
+      leading: true,
+      trailing: false
+    })
   }
 
   handleClick = () => {
+    console.log("handleClick")
     this.setState(
       prevState => ({ hidden: !prevState.hidden }),
       () => {
@@ -34,11 +42,15 @@ export default class Info extends React.Component {
 
     if (this.state.hidden) {
       map.removeEventListener("click", this.handleClick)
+      map.removeEventListener("touchstart", this.handleClick)
+      map.removeEventListener("touchmove", this.handleClick)
       return
     }
 
     window.setTimeout(() => {
       map.addEventListener("click", this.handleClick)
+      map.addEventListener("touchstart", this.handleClick)
+      map.addEventListener("touchmove", this.handleClick)
     }, 100)
   }
 
