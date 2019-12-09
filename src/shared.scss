@@ -14,7 +14,7 @@ $z-index-map: 500;
 
 @mixin luti_font() {
   @font-face {
-    font-family: "antarctican-headline", sans-serif;
+    font-family: "antarctican-headline", "Trebuchet MS", Helvetica, sans-serif;
     src: "https://use.typekit.net/ikz3unr.css%E2%80%9C%3E";
   }
 
