@@ -28,7 +28,6 @@ export default class Info extends React.Component {
   }
 
   handleClick = () => {
-    console.log("handleClick")
     this.setState(
       prevState => ({ hidden: !prevState.hidden }),
       () => {
