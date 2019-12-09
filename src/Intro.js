@@ -1,14 +1,14 @@
-import React from "react";
-import classNames from "classnames";
-import { CSSTransition } from "react-transition-group";
-import { TRANSITION_SPEED } from "./constants";
+import React from "react"
+import classNames from "classnames"
+import { CSSTransition } from "react-transition-group"
+import { TRANSITION_SPEED } from "./constants"
 
-import "./Intro.scss";
+import "./Intro.scss"
 
 const Intro = props => {
   return (
-    <CSSTransition in={props.visible} timeout={TRANSITION_SPEED}>
-      <div className="intro">
+    <div className="intro">
+      <CSSTransition in={props.visible} timeout={TRANSITION_SPEED}>
         <h2
           className={classNames({
             hidden: !props.visible
@@ -16,9 +16,9 @@ const Intro = props => {
         >
           {props.children}
         </h2>
-      </div>
-    </CSSTransition>
-  );
-};
+      </CSSTransition>
+    </div>
+  )
+}
 
-export default Intro;
+export default Intro

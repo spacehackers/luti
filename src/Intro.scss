@@ -22,7 +22,7 @@
 
     .wf-active & {
       opacity: 1;
-      transition: all $transition_speed linear 500ms;
+      transition: all $transition_speed linear;
     }
 
     &.hidden {
