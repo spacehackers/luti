@@ -132,14 +132,14 @@
     "x": 5,
     "y": 1,
     "title": "Tardigrade",
-    "location": "Discovered in a stream on the lower side of Canada \nGlacier in the Dry Valleys in Antarctica.",
+    "location": "Discovered in a stream on the lower side of Canada Glacier in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 20x."
   },
   {
     "filename": "123018_CanadaGlacierCryoconite1_NikonE200_40x_Circle_edit",
     "x": 6,
     "y": 1,
-    "title": "Unknown Microbe",
+    "title": "Diatom",
     "location": "Discovered in a cryoconite hole inside Canada Glacier in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 80x."
   },
@@ -315,7 +315,7 @@
     "filename": "112718_JettySeaIceCeiling_NikonE200_40x_RedBubbles_01",
     "x": 6,
     "y": 3,
-    "title": "Unknown Microbe",
+    "title": "Diatoms and Unidentified Red Microbes",
     "location": "Discovered directly under the sea ice in the McMurdo Sound in the Southern Ocean in Antarctica.",
     "magnification": "Magnified 80x."
   },
@@ -675,7 +675,7 @@
     "filename": "112918_JettySeafloor_NikonE200_40x_Circle_01",
     "x": 7,
     "y": 7,
-    "title": "Diatom",
+    "title": "Asteromphalus Antarcticus Diatom",
     "location": "Discovered ~74 feet deep on the seafloor in the McMurdo Sound in the Southern Ocean in Antarctica.",
     "magnification": "Magnified 80x."
   },
