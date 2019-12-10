@@ -1,7 +1,6 @@
 import React from "react";
 import WebFont from "webfontloader";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import queryString from "query-string";
 
 import Menu from "./Menu";
 import Homepage from "./Homepage";
@@ -39,36 +38,34 @@ export default class App extends React.Component {
   }
 
   render() {
-    const query = queryString.parse(window.location.search);
-    if (query.tardigrade === undefined) {
-      return <PasswordPrompt />;
-    }
     return (
-      <Router>
-        <Switch>
-          <Route
-            path="/videos"
-            component={() => {
-              window.location.href =
-                "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/";
-              return null;
-            }}
-          />
+      <PasswordPrompt>
+        <Router>
+          <Switch>
+            <Route
+              path="/videos"
+              component={() => {
+                window.location.href =
+                  "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/";
+                return null;
+              }}
+            />
 
-          <Route path="/about">
-            <Menu page="about" />
-            <About />
-          </Route>
-          <Route path="/thanks">
-            <Menu page="thanks" />
-            <Acknowledgements />
-          </Route>
-          <Route path="/:x?/:y?">
-            <Menu page="home" />
-            <Homepage hidden={this.state.hideMap} />
-          </Route>
-        </Switch>
-      </Router>
+            <Route path="/about">
+              <Menu page="about" />
+              <About />
+            </Route>
+            <Route path="/thanks">
+              <Menu page="thanks" />
+              <Acknowledgements />
+            </Route>
+            <Route path="/:x?/:y?">
+              <Menu page="home" />
+              <Homepage hidden={this.state.hideMap} />
+            </Route>
+          </Switch>
+        </Router>
+      </PasswordPrompt>
     );
   }
 }

@@ -1,18 +1,27 @@
 import React from "react";
+import { withCookies } from "react-cookie";
 
-export default class extends React.Component {
+class PasswordPrompt extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       password: ""
     };
+
     this.passwordAction = evt => {
       evt.preventDefault();
-      window.location = `/?${this.state.password}=1`;
+      this.props.cookies.set("password", this.state.password.toLowerCase(), {
+        path: "/"
+      });
+      this.forceUpdate();
     };
   }
 
   render() {
+    if (this.props.cookies.get("password") === "tardigrade") {
+      return this.props.children;
+    }
     return (
       <div className="password-prompt">
         <h1>Life Under The Ice</h1>
@@ -29,3 +38,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export default withCookies(PasswordPrompt);
