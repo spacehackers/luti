@@ -1,1 +1,10 @@
-Sitemap: https://lifeundertheice.org/sitemap.txt
+User-agent: Twitterbot
+Disallow:
+
+User-agent: facebookexternalhit
+Disallow:
+
+User-agent: *
+Disallow: /
+
+#Sitemap: https://lifeundertheice.org/sitemap.txt
