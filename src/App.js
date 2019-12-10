@@ -7,6 +7,7 @@ import Menu from "./Menu";
 import Homepage from "./Homepage";
 import About from "./About";
 import Acknowledgements from "./Acknowledgements";
+import PasswordPrompt from "./PasswordPrompt";
 
 import "./App.scss";
 
@@ -40,7 +41,7 @@ export default class App extends React.Component {
   render() {
     const query = queryString.parse(window.location.search);
     if (query.tardigrade === undefined) {
-      return null;
+      return <PasswordPrompt />;
     }
     return (
       <Router>
