@@ -228,7 +228,7 @@ export default class Video extends React.Component {
           <ImageOverlay
             bounds={this.props.bounds}
             key={`image-${this.props.id}`}
-            url="https://freefrontend.com/assets/img/css-spinners/Rainbow-Spinner.gif"
+            url="/grey-1920x1080.png"
           />
         )}
       </>
