@@ -98,6 +98,7 @@ export default class Video extends React.Component {
       const video = ref.leafletElement.getElement();
 
       video.src = m3u8;
+      video.style.border = "1px solid rgb(0, 0, 0, 0.0)";
       video.width = 1920;
       video.height = 1080;
       /*

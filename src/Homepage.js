@@ -62,7 +62,10 @@ class Homepage extends React.Component {
           v => v.x === parseInt(x, 10) && v.y === parseInt(y, 10)
         )[0];
       }
-      return init_video.bounds().getCenter();
+
+      // offset a little to center the initial tardigrade better on iPhone X screen
+      const center = init_video.bounds().getCenter();
+      return L.latLng(center.lat - 120, center.lng - 100);
     };
 
     L.Map.include(L.LayerIndexMixin);
@@ -159,6 +162,7 @@ class Homepage extends React.Component {
             onMove={this.handleOnMove}
             maxBounds={map_bounds}
             attributionControl={false}
+            bounceAtZoomLimits={false}
             ref={this.onMapLoad}
           >
             <Videos

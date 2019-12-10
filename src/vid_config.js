@@ -52,8 +52,8 @@ export const zoomSettings = () => {
   if (isMobile) {
     return {
       minZoom: -1.5,
-      initZoom: -1.0,
-      maxZoom: -0.4,
+      initZoom: -1.01,
+      maxZoom: 0.3,
       boundsPad: 0.1
     };
   }
