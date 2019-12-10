@@ -1,27 +1,28 @@
-import React from "react"
-import WebFont from "webfontloader"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import React from "react";
+import WebFont from "webfontloader";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import queryString from "query-string";
 
-import Menu from "./Menu"
-import Homepage from "./Homepage"
-import About from "./About"
-import Acknowledgements from "./Acknowledgements"
+import Menu from "./Menu";
+import Homepage from "./Homepage";
+import About from "./About";
+import Acknowledgements from "./Acknowledgements";
 
-import "./App.scss"
+import "./App.scss";
 
 export default class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       hideMap: true
-    }
+    };
 
     WebFont.load({
       typekit: {
         id: "ikz3unr"
       }
-    })
+    });
   }
 
   componentDidMount() {
@@ -32,11 +33,15 @@ export default class App extends React.Component {
     // }
 
     window.setTimeout(() => {
-      this.setState({ hideMap: false })
-    }, 500)
+      this.setState({ hideMap: false });
+    }, 500);
   }
 
   render() {
+    const query = queryString.parse(window.location.search);
+    if (query.tardigrade === undefined) {
+      return null;
+    }
     return (
       <Router>
         <Switch>
@@ -44,8 +49,8 @@ export default class App extends React.Component {
             path="/videos"
             component={() => {
               window.location.href =
-                "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/"
-              return null
+                "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/";
+              return null;
             }}
           />
 
@@ -63,6 +68,6 @@ export default class App extends React.Component {
           </Route>
         </Switch>
       </Router>
-    )
+    );
   }
 }
