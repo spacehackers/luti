@@ -32,6 +32,7 @@ class PasswordPrompt extends React.Component {
               type="text"
               onChange={evt => this.setState({ password: evt.target.value })}
             />
+            <input type="submit" value="submit" />
           </label>
         </form>
       </div>
