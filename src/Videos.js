@@ -12,7 +12,8 @@ export default class Videos extends React.Component {
 
     this.alreadyIndexedIds = {};
     this.state = {
-      canplay: {}
+      canplay: {},
+      visible: true
     };
 
     this.getCenterVideo = () => {
@@ -76,6 +77,9 @@ export default class Videos extends React.Component {
       }
     };
     this.isVisible = vid => {
+      if (!this.state.visible) {
+        return false;
+      }
       if (!this.state.xy_bounds) {
         return false;
       }
@@ -106,6 +110,13 @@ export default class Videos extends React.Component {
       this.props.map.addEventListener("move", this.handleOnMove);
       this.handleOnMove();
     }
+    document.addEventListener(
+      "visibilitychange",
+      () => {
+        this.setState({ visible: !document.hidden });
+      },
+      false
+    );
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -121,6 +132,9 @@ export default class Videos extends React.Component {
       return true;
     }
     if (!_.isEqual(nextState.xy_bounds, this.state.xy_bounds)) {
+      return true;
+    }
+    if (!_.isEqual(nextState.visible, this.state.visible)) {
       return true;
     }
     // console.log("PREVENTED RENDER", nextState);
