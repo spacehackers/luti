@@ -53,7 +53,7 @@ export const zoomSettings = () => {
     return {
       minZoom: -1.5,
       initZoom: -1.01,
-      maxZoom: 0.3,
+      maxZoom: 0.2,
       boundsPad: 0.1
     };
   }
