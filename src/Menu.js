@@ -8,7 +8,7 @@ const menuData = [
   { slug: "anchor", content: "Life Under the Ice" },
   { slug: "home", content: "Home" },
   { slug: "about", content: "About the Project" },
-  { slug: "acknowledgements", content: "Acknowledgements" }
+  { slug: "thanks", content: "Acknowledgements" }
 ]
 
 export default class Menu extends React.Component {
@@ -60,8 +60,6 @@ export default class Menu extends React.Component {
     if (this.state.open) return
     if (this.isMobile()) return
 
-    console.log("handleKeyUp")
-
     let focusTarget
     if (!this.state.tabKeyPress) {
       if (this.state.navigatingMap && e.shiftKey) {
@@ -93,7 +91,7 @@ export default class Menu extends React.Component {
     const { slug, content } = menuItem
     const hash = "" // window.location.hash
     const hidden = this.hidden(slug) ? "hidden" : ""
-    const href = slug === "home" || slug === "anchor" ? "/" : `/${slug}#${hash}`
+    const href = slug === "home" || slug === "anchor" ? "/" : `/${slug}` // #${hash}`
 
     let selected = slug === this.state.selected ? "selected" : ""
 
