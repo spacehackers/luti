@@ -169,6 +169,7 @@ class Homepage extends React.Component {
               debug={query.debug}
               spinnerTest={query.spinnerTest}
               showLoadingProblem={query.loading}
+              useCloudfront={!!query.cloudfront}
               videoLayout={video_layout}
               onVideoChange={this.onVideoChange}
               onVideoStatusChange={this.updateVideoStatus}
