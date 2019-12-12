@@ -1,5 +1,6 @@
 import React from "react";
 import { withCookies } from "react-cookie";
+import queryString from "query-string";
 
 class PasswordPrompt extends React.Component {
   constructor(props) {
@@ -18,8 +19,18 @@ class PasswordPrompt extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const query = queryString.parse(window.location.search);
+    if (query.reset_password) {
+      this.props.cookies.set("password", "", {
+        path: "/"
+      });
+    }
+    this.forceUpdate();
+  }
+
   render() {
-    if (this.props.cookies.get("password") === "tardigrade") {
+    if (this.props.cookies.get("password") === "secrettardigrade") {
       return this.props.children;
     }
     return (
