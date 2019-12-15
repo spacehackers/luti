@@ -32,25 +32,21 @@ export default class Video extends React.Component {
 
     this.loaded = false;
     this.enabled = false;
-    this.hls = {};
+    this.hls = undefined;
+
     this.cachedHls = (m3u8, autocreate) => {
-      if (autocreate && !(m3u8 in this.hls)) {
+      if (autocreate && this.hls === undefined) {
         const hls = new Hls(hls_config);
         hls.on(Hls.Events.MEDIA_ATTACHED, () => {
-          // console.log("HLS ATTACHED", hls.media);
           hls.loadSource(m3u8);
-          hls.media.muted = true;
-          hls.media.loop = true;
-          hls.media.autoplay = false;
-          hls.media.style.objectFit = "cover";
-          hls.media.play();
+          this.configureVideo(hls.media);
         });
         hls.on(Hls.Events.MEDIA_DETACHED, () => {
-          // console.log("HLS DETACHED", hls.media);
+          this.removeVideoListeners(hls.media);
         });
-        this.hls[m3u8] = hls;
+        this.hls = hls;
       }
-      return this.hls[m3u8];
+      return this.hls;
     };
 
     this.addVideoListeners = video => {
@@ -65,25 +61,11 @@ export default class Video extends React.Component {
       );
     };
 
-    this.disableVideoHls = ref => {
-      const video = ref.leafletElement.getElement();
-      this.removeVideoListeners(video);
-      const hls = this.cachedHls(ref.props.m3u8, false);
+    this.disableVideoHls = () => {
+      const hls = this.cachedHls(this.props.m3u8, false);
       if (hls) {
         hls.detachMedia();
       }
-    };
-
-    this.enableVideoHls = ref => {
-      const video = ref.leafletElement.getElement();
-      this.cachedHls(ref.props.m3u8, true).attachMedia(video);
-      this.addVideoListeners(video);
-      /*
-      const m3u8 = ref.props.m3u8;
-      video.poster = m3u8
-        .replace(/-playlist.m3u8/, "-00001.png")
-        .replace(/lifeundertheice/, "lifeundertheice-thumbs");
-        */
     };
 
     this.disableVideoM3u8 = ref => {
@@ -93,11 +75,8 @@ export default class Video extends React.Component {
       video.src = "";
     };
 
-    this.enableVideoM3u8 = ref => {
-      const m3u8 = ref.props.m3u8;
-      const video = ref.leafletElement.getElement();
-
-      video.src = m3u8;
+    /* eslint-disable no-param-reassign */
+    this.configureVideo = video => {
       video.style.border = "1px solid rgb(0, 0, 0, 0.0)";
       video.width = 1920;
       video.height = 1080;
@@ -112,6 +91,22 @@ export default class Video extends React.Component {
       video.loop = true;
       video.style.objectFit = "cover";
       this.addVideoListeners(video);
+    };
+    /* eslint-enable no-param-reassign */
+
+    this.enableVideoM3u8 = ref => {
+      const m3u8 = ref.props.m3u8;
+      const video = ref.leafletElement.getElement();
+
+      video.src = m3u8;
+      this.configureVideo(video);
+    };
+
+    this.enableVideoHls = ref => {
+      const m3u8 = ref.props.m3u8;
+      const video = ref.leafletElement.getElement();
+
+      this.cachedHls(m3u8, true).attachMedia(video);
     };
 
     this.enableVideo = ref => {
@@ -195,7 +190,6 @@ export default class Video extends React.Component {
     ];
     let debugMarker = <></>;
     if (this.props.debug) {
-      debugMarker = <Marker position={textLoc} icon={text} />;
       debugMarker = <Marker position={textLoc} icon={text} />;
       return (
         <Rectangle
