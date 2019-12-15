@@ -12,8 +12,12 @@ class PasswordPrompt extends React.Component {
 
     this.passwordAction = evt => {
       evt.preventDefault();
+      const timestamp = new Date().getTime();
+      const expire = timestamp + 60 * 60 * 24 * 1000 * 30; // 30 days
+
       this.props.cookies.set("password", this.state.password.toLowerCase(), {
-        path: "/"
+        path: "/",
+        expires: new Date(expire)
       });
       this.forceUpdate();
     };
