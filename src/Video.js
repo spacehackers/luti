@@ -21,153 +21,143 @@ const VIDEO_EVENTS = [
 ];
 
 export default class Video extends React.Component {
-  constructor(props) {
-    super(props);
-    this.addElementToIndex = ref => {
-      if (ref === null) return;
-      if (this.props.indexFunc) {
-        this.props.indexFunc(ref.leafletElement);
-      }
-    };
+  loaded = false;
 
-    this.loaded = false;
-    this.enabled = false;
-    this.hls = undefined;
+  enabled = false;
 
-    this.cachedHls = (m3u8, autocreate) => {
-      if (autocreate && this.hls === undefined) {
-        const hls = new Hls(hls_config);
-        hls.on(Hls.Events.MEDIA_ATTACHED, () => {
-          hls.loadSource(m3u8);
-          this.configureVideo(hls.media);
-        });
-        hls.on(Hls.Events.MEDIA_DETACHED, () => {
-          this.removeVideoListeners(hls.media);
-        });
-        this.hls = hls;
-      }
-      return this.hls;
-    };
+  hls = undefined;
 
-    this.addVideoListeners = video => {
-      VIDEO_EVENTS.forEach(name =>
-        video.addEventListener(name, this.props.eventLogger)
-      );
-    };
+  cachedHls = (m3u8, autocreate) => {
+    if (autocreate && this.hls === undefined) {
+      const hls = new Hls(hls_config);
+      hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+        hls.loadSource(m3u8);
+        this.configureVideo(hls.media);
+      });
+      hls.on(Hls.Events.MEDIA_DETACHED, () => {
+        this.removeVideoListeners(hls.media);
+      });
+      this.hls = hls;
+    }
+    return this.hls;
+  };
 
-    this.removeVideoListeners = video => {
-      VIDEO_EVENTS.forEach(name =>
-        video.removeEventListener(name, this.props.eventLogger)
-      );
-    };
+  addVideoListeners = video => {
+    VIDEO_EVENTS.forEach(name =>
+      video.addEventListener(name, this.props.eventLogger)
+    );
+  };
 
-    this.disableVideoHls = () => {
-      const hls = this.cachedHls(this.props.m3u8, false);
-      if (hls) {
-        hls.detachMedia();
-      }
-    };
+  removeVideoListeners = video => {
+    VIDEO_EVENTS.forEach(name =>
+      video.removeEventListener(name, this.props.eventLogger)
+    );
+  };
 
-    this.disableVideoM3u8 = ref => {
-      const video = ref.leafletElement.getElement();
-      this.removeVideoListeners(video);
+  disableVideoHls = () => {
+    const hls = this.cachedHls(this.props.m3u8, false);
+    if (hls) {
+      hls.detachMedia();
+    }
+  };
 
-      video.src = "";
-    };
+  disableVideoM3u8 = ref => {
+    const video = ref.leafletElement.getElement();
+    this.removeVideoListeners(video);
 
-    /* eslint-disable no-param-reassign */
-    this.configureVideo = video => {
-      video.style.border = "1px solid rgb(0, 0, 0, 0.0)";
-      video.width = 1920;
-      video.height = 1080;
-      /*
+    video.src = "";
+  };
+
+  /* eslint-disable no-param-reassign */
+  configureVideo = video => {
+    video.style.border = "1px solid rgb(0, 0, 0, 0.0)";
+    video.width = 1920;
+    video.height = 1080;
+    /*
       video.poster = m3u8
         .replace(/-playlist.m3u8/, "-00001.png")
         .replace(/lifeundertheice/, "lifeundertheice-thumbs");
         */
-      video.crossOrigin = "Anonymous";
-      video.playsInline = true;
-      video.muted = true;
-      video.loop = true;
-      video.style.objectFit = "cover";
-      this.addVideoListeners(video);
-    };
-    /* eslint-enable no-param-reassign */
+    video.crossOrigin = "Anonymous";
+    video.playsInline = true;
+    video.muted = true;
+    video.loop = true;
+    video.style.objectFit = "cover";
+    this.addVideoListeners(video);
+  };
+  /* eslint-enable no-param-reassign */
 
-    this.enableVideoM3u8 = ref => {
-      const m3u8 = ref.props.m3u8;
-      const video = ref.leafletElement.getElement();
+  enableVideoM3u8 = ref => {
+    const m3u8 = ref.props.m3u8;
+    const video = ref.leafletElement.getElement();
 
-      video.src = m3u8;
-      this.configureVideo(video);
-    };
+    video.src = m3u8;
+    this.configureVideo(video);
+  };
 
-    this.enableVideoHls = ref => {
-      const m3u8 = ref.props.m3u8;
-      const video = ref.leafletElement.getElement();
+  enableVideoHls = ref => {
+    const m3u8 = ref.props.m3u8;
+    const video = ref.leafletElement.getElement();
 
-      this.cachedHls(m3u8, true).attachMedia(video);
-    };
+    this.cachedHls(m3u8, true).attachMedia(video);
+  };
 
-    this.enableVideo = ref => {
-      if (ref === null) return;
-      this.addElementToIndex(ref);
-      if (this.enabled) {
-        return;
-      }
-      this.enabled = true;
+  enableVideo = ref => {
+    if (ref === null) return;
+    if (this.enabled) {
+      return;
+    }
+    this.enabled = true;
 
-      const video = ref.leafletElement.getElement();
-      this.showCanplayStatus(video, this.props.canplay);
-      if (video.tagName !== "VIDEO") return;
+    const video = ref.leafletElement.getElement();
+    this.showCanplayStatus(video, this.props.canplay);
+    if (video.tagName !== "VIDEO") return;
 
-      if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        this.enableVideoM3u8(ref);
-        console.log("M3U8 ENABLE VIDEO", video.src);
-        return;
-      }
-      if (Hls.isSupported()) {
-        this.enableVideoHls(ref);
-        console.log("HLS ENABLE VIDEO", video.src);
-        return;
-      }
-      console.log("NOTHING WORKS TO ENABLE VIDEO");
-    };
+    if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      this.enableVideoM3u8(ref);
+      console.log("M3U8 ENABLE VIDEO", video.src);
+      return;
+    }
+    if (Hls.isSupported()) {
+      this.enableVideoHls(ref);
+      console.log("HLS ENABLE VIDEO", video.src);
+      return;
+    }
+    console.log("NOTHING WORKS TO ENABLE VIDEO");
+  };
 
-    this.disableVideo = ref => {
-      if (ref === null) return;
-      this.addElementToIndex(ref);
-      if (!this.enabled) {
-        return;
-      }
-      this.enabled = false;
+  disableVideo = ref => {
+    if (ref === null) return;
+    if (!this.enabled) {
+      return;
+    }
+    this.enabled = false;
 
-      const video = ref.leafletElement.getElement();
-      this.showCanplayStatus(video, this.props.canplay);
-      if (video.tagName !== "VIDEO") return;
-      if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        console.log("M3U8 DISABLE VIDEO", video.src);
-        this.disableVideoM3u8(ref);
-        return;
-      }
-      if (Hls.isSupported()) {
-        console.log("HLS DISABLE VIDEO", video.src);
-        this.disableVideoHls(ref);
-        return;
-      }
-      console.log("NOTHING WORKS TO DISABLE VIDEO");
-    };
+    const video = ref.leafletElement.getElement();
+    this.showCanplayStatus(video, this.props.canplay);
+    if (video.tagName !== "VIDEO") return;
+    if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      console.log("M3U8 DISABLE VIDEO", video.src);
+      this.disableVideoM3u8(ref);
+      return;
+    }
+    if (Hls.isSupported()) {
+      console.log("HLS DISABLE VIDEO", video.src);
+      this.disableVideoHls(ref);
+      return;
+    }
+    console.log("NOTHING WORKS TO DISABLE VIDEO");
+  };
 
-    this.showCanplayStatus = (video, canplay) => {
-      if (canplay) {
-        video.classList.remove("video-loading");
-        video.classList.add("video-playing");
-      } else {
-        video.classList.add("video-loading");
-        video.classList.remove("video-playing");
-      }
-    };
-  }
+  showCanplayStatus = (video, canplay) => {
+    if (canplay) {
+      video.classList.remove("video-loading");
+      video.classList.add("video-playing");
+    } else {
+      video.classList.add("video-loading");
+      video.classList.remove("video-playing");
+    }
+  };
 
   render() {
     if (!this.loaded) {
@@ -196,7 +186,6 @@ export default class Video extends React.Component {
           id={this.props.id}
           key={`${this.props.id}-rect`}
           bounds={this.props.bounds}
-          ref={this.addElementToIndex}
           color={this.props.visible ? "#f00" : "#0f0"}
         >
           {debugMarker}
