@@ -13,7 +13,7 @@
   },
   "extends": [
     "airbnb",
-    "prettier"
+    "plugin:prettier/recommended"
   ],
   "rules": {
     "quotes": [
@@ -33,9 +33,6 @@
       "error",
       "as-needed"
     ],
-    "prettier/prettier": [
-      "error"
-    ],
     "camelcase": "off",
     "comma-dangle": "off",
     "import/no-named-as-default": "off",
@@ -53,8 +50,5 @@
     "react/prefer-stateless-function": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off"
-  },
-  "plugins": [
-    "prettier"
-  ]
+  }
 }
