@@ -15,7 +15,7 @@ export const init_zoom = -1.6;
 
 export const hls_config = {
   debug: false,
-  enableWorker: false,
+  enableWorker: true,
   capLevelToPlayerSize: true,
   maxBufferSize: 30,
   maxBufferLength: 5
