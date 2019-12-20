@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import isEqual from "lodash/isEqual";
 import queryString from "query-string";
+import ReactGA from "react-ga";
 
 import L from "leaflet";
 import { Map } from "react-leaflet";
@@ -101,6 +102,15 @@ class Homepage extends React.Component {
         if (isEqual(prevState.currentVideo, currentVideo)) {
           return undefined;
         }
+        console.debug(
+          "GA|Pageview Sent: ",
+          currentVideo.x,
+          currentVideo.y,
+          currentVideo.filename
+        );
+        ReactGA.pageview(
+          `/${currentVideo.x}/${currentVideo.y}/${currentVideo.filename}`
+        );
         return { currentVideo };
       });
     };
