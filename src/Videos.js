@@ -83,6 +83,9 @@ export default class Videos extends React.Component {
       }
     };
     this.isVisible = vid => {
+      if (this.state.globalDisable) {
+        return false;
+      }
       if (!this.state.visible) {
         return false;
       }
@@ -109,6 +112,29 @@ export default class Videos extends React.Component {
       leading: true,
       trailing: true
     });
+
+    this.disableAllVideos = () => {
+      console.log("TIMEOUT: DISABLE ALL VIDEOS");
+      this.setState({
+        globalDisable: true
+      });
+    };
+
+    this.resetDeadMansSwitch = () => {
+      if (this.state.globalDisable) {
+        console.log("TIMEOUT ENDED: ENABLE ALL VIDEOS");
+        this.setState({
+          globalDisable: false
+        });
+      }
+      clearTimeout(this.deadMansSwitch);
+
+      const MINUTES_OF_NO_INTERACTION_BEFORE_VIDEOS_DISABLED = 10;
+      this.deadMansSwitch = setTimeout(
+        this.disableAllVideos,
+        MINUTES_OF_NO_INTERACTION_BEFORE_VIDEOS_DISABLED * 60 * 1000
+      );
+    };
   }
 
   componentDidMount() {
@@ -123,6 +149,17 @@ export default class Videos extends React.Component {
       },
       false
     );
+    this.resetDeadMansSwitch();
+    ["mouseover", "keydown", "scroll", "touchstart", "touchmove"].forEach(
+      eventName =>
+        document.body.addEventListener(
+          eventName,
+          _.throttle(this.resetDeadMansSwitch, 50, {
+            leading: true,
+            trailing: true
+          })
+        )
+    );
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -134,17 +171,20 @@ export default class Videos extends React.Component {
     if (!_.isEqual(nextProps, this.props)) {
       return true;
     }
-    if (!_.isEqual(nextState.canplay, this.state.canplay)) {
-      return true;
-    }
-    if (!_.isEqual(nextState.xy_bounds, this.state.xy_bounds)) {
-      return true;
-    }
-    if (!_.isEqual(nextState.visible, this.state.visible)) {
-      return true;
-    }
+    const updatable_state = [
+      "canplay",
+      "xy_bounds",
+      "visible",
+      "globalDisable"
+    ];
+    let updateOk = false;
+    updatable_state.forEach(name => {
+      if (!_.isEqual(nextState[name], this.state[name])) {
+        updateOk = true;
+      }
+    });
     // console.log("PREVENTED RENDER", nextState);
-    return false;
+    return updateOk;
   }
 
   render() {
