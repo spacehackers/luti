@@ -65,7 +65,9 @@ export default class Video extends React.Component {
     const video = ref.leafletElement.getElement();
     this.removeVideoListeners(video);
 
-    video.src = "";
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
   };
 
   /* eslint-disable no-param-reassign */
