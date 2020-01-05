@@ -63,9 +63,8 @@ const Acknowledgements = () => {
           <a href="https://twitter.com/mattb">Matt Biddulph</a>
         </strong>
         <br />
-        for being the deputy web developer and music composer for <em>Life Under the
-        Ice</em>. The forthcoming music component (stay tuned) will be using
-        modular synths to set a mood for the microbes. Thanks also for being the
+        for being the deputy web developer for <em>Life Under the
+        Ice</em> and navigating the challenges of video on the web. Thanks also for being the
         best partner, cheerleader, and collaborator throughout.
       </p>
 
@@ -81,6 +80,31 @@ const Acknowledgements = () => {
         developer to help make this project come to fruition, and provided a
         modest stipend for the first couple months of my post-expedition
         microscopy work.
+      </p>
+
+            <p>
+        <strong>
+          All my patrons on{" "}
+          <a href="https://patreon.com/arielwaldman">Patreon</a>
+        </strong>
+        <br />
+        for being awesome humans and supporting my otherwise-unfunded work and
+        lab equipment{" "}
+        <a href="https://www.patreon.com/posts/heavy-sigh-and-11497109">
+          over the years
+        </a>
+        . This included time spent: researching, developing and writing
+        proposals, meeting with artists and scientists to solicit support,
+        teaching myself microscopy, taking one year of classes and lab time at
+        school to become certified in microscopy, figuring out permits, figuring
+        out equipment needs, five months of working closely with NSF on
+        logistics and preparing everything for my expedition, the five weeks I
+        spent in Antarctica, production of a{" "}
+        <a href="https://www.youtube.com/playlist?list=PLN_whQB72CoDyLvgy12QpPszBA808YxMW">
+          five episode mini-series
+        </a>{" "}
+        about the expedition, and all the development that went into the
+        creation of this website once I got back home.
       </p>
 
       <p>
@@ -115,31 +139,6 @@ const Acknowledgements = () => {
           prime stomping ground
         </a>
         .
-      </p>
-
-      <p>
-        <strong>
-          All my patrons on{" "}
-          <a href="https://patreon.com/arielwaldman">Patreon</a>
-        </strong>
-        <br />
-        for being awesome humans and supporting my otherwise-unfunded work and
-        lab equipment{" "}
-        <a href="https://www.patreon.com/posts/heavy-sigh-and-11497109">
-          over the years
-        </a>
-        . This included time spent: researching, developing and writing
-        proposals, meeting with artists and scientists to solicit support,
-        teaching myself microscopy, taking one year of classes and lab time at
-        school to become certified in microscopy, figuring out permits, figuring
-        out equipment needs, five months of working closely with NSF on
-        logistics and preparing everything for my expedition, the five weeks I
-        spent in Antarctica, production of a{" "}
-        <a href="https://www.youtube.com/playlist?list=PLN_whQB72CoDyLvgy12QpPszBA808YxMW">
-          five episode mini-series
-        </a>{" "}
-        about the expedition, and all the development that went into the
-        creation of this website once I got back home.
       </p>
 
       <p>
