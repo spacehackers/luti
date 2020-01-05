@@ -275,7 +275,7 @@
     "filename": "113018_JettySeafloor_NikonE200_40x_DiatomChain_01",
     "x": 1,
     "y": 3,
-    "title": "Diatoms",
+    "title": "Fragilariopsis Kerguelensis Diatoms",
     "location": "Discovered ~74 feet deep on the seafloor in the McMurdo Sound in the Southern Ocean in Antarctica.",
     "magnification": "Magnified 80x."
   },
@@ -387,7 +387,7 @@
     "filename": "123018_JettySeafloor_NikonE200_Diatom_02_edit",
     "x": 4,
     "y": 4,
-    "title": "Diatom",
+    "title": "Fragilariopsis Cylindrus Diatom",
     "location": "Discovered ~74 feet deep on the seafloor in the McMurdo Sound in the Southern Ocean in Antarctica.",
     "magnification": "Magnified 20x."
   },
@@ -467,7 +467,7 @@
     "filename": "120118_JettySeaIceCeiling_NikonE200_10x_DiatomStructure_01",
     "x": 3,
     "y": 5,
-    "title": "Diatoms",
+    "title": "Nitzschia Frigida Diatoms",
     "location": "Discovered directly under the sea ice in the McMurdo Sound in the Southern Ocean in Antarctica.",
     "magnification": "Magnified 20x."
   },
@@ -571,7 +571,7 @@
     "filename": "112718_ErebusSeaIceHole_NikonE200_40x_DiatomChain_03",
     "x": 5,
     "y": 6,
-    "title": "Diatoms",
+    "title": "Fragilariopsis Kerguelensis Diatoms",
     "location": "Discovered under the sea ice in McMurdo Sound near the Erebus Glacier Tongue in Antarctica.",
     "magnification": "Magnified 80x."
   },
@@ -756,7 +756,7 @@
     "filename": "112718_ErebusSeaIceHole_NikonE200_40x_DiatomSkinny",
     "x": 6,
     "y": 8,
-    "title": "Diatom",
+    "title": "Nitzschia Linearis Diatom",
     "location": "Discovered under the sea ice in McMurdo Sound near the Erebus Glacier Tongue in Antarctica.",
     "magnification": "Magnified 80x."
   },
@@ -924,7 +924,7 @@
     "filename": "111118_DaytonsWallSeafloor_OlympusCKX41_10x_TriangleOblong",
     "x": 5,
     "y": 10,
-    "title": "Diatoms (Trigonium & Not Yet Identified)",
+    "title": "Trigonium & Fragilariopsis Cylindrus Diatoms",
     "location": "Discovered ~74 feet deep on the seafloor in the McMurdo Sound in the Southern Ocean in Antarctica.",
     "magnification": "Magnified 25x."
   },
@@ -1028,7 +1028,7 @@
     "filename": "112718_ErebusSeaIceHole_NikonE200_40x_DiatomChain_01",
     "x": 7,
     "y": 11,
-    "title": "Diatoms",
+    "title": "Fragilariopsis Cylindrus Diatoms",
     "location": "Discovered under the sea ice in McMurdo Sound near the Erebus Glacier Tongue in Antarctica.",
     "magnification": "Magnified 80x."
   },
@@ -1196,7 +1196,7 @@
     "filename": "112718_JettySeaIceCeiling_NikonE200_10x_DiatomTrafficJam_01",
     "x": 6,
     "y": 13,
-    "title": "Diatoms",
+    "title": "Nitzschia Frigida Diatoms",
     "location": "Discovered directly under the sea ice in the McMurdo Sound in the Southern Ocean in Antarctica.",
     "magnification": "Magnified 20x."
   },
