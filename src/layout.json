@@ -195,7 +195,7 @@
     "filename": "112118_CanadaGlacierCryoconite2_NikonE200_40x_CiliateThing",
     "x": 2,
     "y": 2,
-    "title": "Unknown Microbe",
+    "title": "Ciliate",
     "location": "Discovered in a cryoconite hole inside Canada Glacier in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 80x."
   },
@@ -460,7 +460,7 @@
     "x": 2,
     "y": 5,
     "title": "Tardigrade",
-    "location": "Discovered in a stream on the lower side of Canada \nGlacier in the Dry Valleys in Antarctica.",
+    "location": "Discovered in a stream on the lower side of Canada Glacier in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 80x."
   },
   {
@@ -480,18 +480,18 @@
     "magnification": "Magnified 200x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "112918_JettySeafloor_NikonSMZ1000_4x_Ostracod_01",
     "x": 5,
     "y": 5,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Ostracod",
+    "location": "Discovered ~74 feet deep on the seafloor in the McMurdo Sound in the Southern Ocean in Antarctica.",
+    "magnification": "Magnified 8x."
   },
   {
     "filename": "112718_ErebusSeaIceHole_NikonE200_40x_Circle_02",
     "x": 6,
     "y": 5,
-    "title": "Unknown Microbe",
+    "title": "Diatom",
     "location": "Discovered under the sea ice in McMurdo Sound near the Erebus Glacier Tongue in Antarctica.",
     "magnification": "Magnified 80x."
   },
@@ -552,12 +552,12 @@
     "magnification": "Magnified 200x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "051319_LakeBonneyMicrobialMat_40x_BF_PinkRotiferTun_edited",
     "x": 3,
     "y": 6,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Philodina Gregaria Bdelloid Rotifer Tun",
+    "location": "Discovered in an algal mat from a moat on the East lobe of Lake Bonney in the Dry Valleys in Antarctica.",
+    "magnification": "Magnified 80x."
   },
   {
     "filename": "120318_LakeHoareSoil_NikonE200_10x_Nematode_02",
@@ -576,12 +576,12 @@
     "magnification": "Magnified 80x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "112018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotiferTun_02",
     "x": 6,
     "y": 6,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Philodina Gregaria Bdelloid Rotifer Tun",
+    "location": "Discovered in a cryoconite hole inside Canada Glacier in the Dry Valleys in Antarctica.",
+    "magnification": "Magnified 20x."
   },
   {
     "filename": "112118_CanadaGlacierCryoconite2_NikonE200_100x_Bacteria_01",
@@ -643,7 +643,7 @@
     "filename": "112718_ErebusSeaIceHole_NikonE200_40x_Circle_05",
     "x": 3,
     "y": 7,
-    "title": "Unknown Microbe",
+    "title": "Diatom",
     "location": "Discovered under the sea ice in McMurdo Sound near the Erebus Glacier Tongue in Antarctica.",
     "magnification": "Magnified 80x."
   },
@@ -656,12 +656,12 @@
     "magnification": "Magnified 200x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "110818_Jetty_OlympusCKX41_40x_RedBlobExploding",
     "x": 5,
     "y": 7,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Microbe Awaiting Identification",
+    "location": "Discovered ~74 feet deep on the seafloor in the McMurdo Sound in the Southern Ocean in Antarctica.",
+    "magnification": "Magnified 80x."
   },
   {
     "filename": "042519_LakeBonneyMicrobialMat_NikonE200_10x_BF_PinkRotifer_edit",
@@ -680,12 +680,12 @@
     "magnification": "Magnified 80x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "051319_LakeBonneyMicrobialMat_40x_BF_StringThing_edited",
     "x": 8,
     "y": 7,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Cyanobacteria",
+    "location": "Discovered in an algal mat from a moat on the East lobe of Lake Bonney in the Dry Valleys in Antarctica.",
+    "magnification": "Magnified 80x."
   },
   {
     "filename": "112118_CanadaGlacierCryoconite1_NikonE200_40x_TwoSpirals_02",
@@ -720,12 +720,12 @@
     "magnification": "Magnified 40x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "111118_DaytonsWallSeafloor_OlympusCKX41_10x_2Triangles",
     "x": 2,
     "y": 8,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Trigonium Diatoms",
+    "location": "Discovered ~74 feet deep on the seafloor in the McMurdo Sound in the Southern Ocean in Antarctica.",
+    "magnification": "Magnified 25x."
   },
   {
     "filename": "123018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_04_edit",
@@ -736,12 +736,12 @@
     "magnification": "Magnified 20x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "051319_LakeBonneyMicrobialMat_20x_BF_SpiralBall_edited",
     "x": 4,
     "y": 8,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Nostoc",
+    "location": "Discovered in an algal mat from a moat on the East lobe of Lake Bonney in the Dry Valleys in Antarctica.",
+    "magnification": "Magnified 40x."
   },
   {
     "filename": "112118_CanadaGlacierCryoconite1_NikonE200_10x_Tardigrade_End",
@@ -761,12 +761,12 @@
     "magnification": "Magnified 80x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "112918_JettySeafloor_NikonE200_40x_DiatomChain_02",
     "x": 7,
     "y": 8,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Fragilariopsis Kerguelensis Diatoms",
+    "location": "Discovered ~74 feet deep on the seafloor in the McMurdo Sound in the Southern Ocean in Antarctica.",
+    "magnification": "Magnified 80x."
   },
   {
     "filename": "123018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_03_edit",
@@ -817,12 +817,12 @@
     "magnification": "Magnified 8x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "111118_DaytonsWallSeafloor_OlympusCKX41_20x_Nematode",
     "x": 3,
     "y": 9,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Nematode",
+    "location": "Discovered ~74 feet deep on the seafloor in the McMurdo Sound in the Southern Ocean in Antarctica.",
+    "magnification": "Magnified 50x."
   },
   {
     "filename": "112718_JettySeaIceCeiling_NikonE200_40x_TwoCircles",
@@ -833,12 +833,12 @@
     "magnification": "Magnified 80x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "051319_LakeBonneyMicrobialMat_20x_BF_PinkRotifer_02_edited",
     "x": 5,
     "y": 9,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Philodina Gregaria Bdelloid Rotifer",
+    "location": "Discovered in an algal mat from a moat on the East lobe of Lake Bonney in the Dry Valleys in Antarctica.",
+    "magnification": "Magnified 40x."
   },
   {
     "filename": "112718_JettySeaIceCeiling_NikonE200_40x_Chain",
@@ -857,12 +857,12 @@
     "magnification": "Magnified 20x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "042519_LakeBonneyMicrobialMat_NikonE200_20x_BF_PinkRotifer_edited",
     "x": 8,
     "y": 9,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Philodina Gregaria Bdelloid Rotifer",
+    "location": "Discovered in an algal mat from a moat on the East lobe of Lake Bonney in the Dry Valleys in Antarctica.",
+    "magnification": "Magnified 40x."
   },
   {
     "filename": "110418_JettySeafloor_NikonE200_10x_Diatoms",
@@ -916,7 +916,7 @@
     "filename": "112818_JettySeafloor_NikonE200_40x_Stars",
     "x": 4,
     "y": 10,
-    "title": "Unknown Microbe",
+    "title": "Diatoms",
     "location": "Discovered ~74 feet deep on the seafloor in the McMurdo Sound in the Southern Ocean in Antarctica.",
     "magnification": "Magnified 80x."
   },
@@ -937,12 +937,12 @@
     "magnification": "Magnified 200x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "111118_DaytonsWallSeafloor_OlympusCKX41_20x_Diatom1",
     "x": 7,
     "y": 10,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Diatom",
+    "location": "Discovered ~74 feet deep on the seafloor in the McMurdo Sound in the Southern Ocean in Antarctica.",
+    "magnification": "Magnified 50x."
   },
   {
     "filename": "112718_ErebusSeaIceHole_NikonE200_40x_Circle_06",
@@ -1001,20 +1001,20 @@
     "magnification": "Magnified 200x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "112918_JettySeafloor_NikonE200_40x_Circle_03",
     "x": 4,
     "y": 11,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Diatom",
+    "location": "Discovered ~74 feet deep on the seafloor in the McMurdo Sound in the Southern Ocean in Antarctica.",
+    "magnification": "Magnified 80x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "112018_CanadaGlacierCryoconite1_NikonE200_40x_Spiral_02",
     "x": 5,
     "y": 11,
-    "title": "Bacteria",
-    "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
-    "magnification": "Magnified 200x."
+    "title": "Spirulina Cyanobacteria",
+    "location": "Discovered in a cryoconite hole inside Canada Glacier in the Dry Valleys in Antarctica.",
+    "magnification": "Magnified 80x."
   },
   {
     "filename": "123018_CanadaGlacierCryoconite1_NikonE200_10x_PinkRotifer_05_edit",
@@ -1124,7 +1124,7 @@
     "filename": "112718_ErebusSeaIceHole_NikonE200_40x_Circle_03",
     "x": 8,
     "y": 12,
-    "title": "Unknown Microbe",
+    "title": "Diatom",
     "location": "Discovered under the sea ice in McMurdo Sound near the Erebus Glacier Tongue in Antarctica.",
     "magnification": "Magnified 80x."
   },

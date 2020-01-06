@@ -12,7 +12,7 @@ const About = () => {
 
       <p>
         <em>Life Under the Ice</em> is an exploratory tour through the
-        microscopic world of Antarctica. Each microbe tells a story of the weird
+        microscopic world of Antarctica, created by <a href="https://arielwaldman.com">Ariel Waldman</a>. Each microbe tells a story of the weird
         and whimsical life in Antarctica that is otherwise invisible to the
         naked eye.
       </p>
