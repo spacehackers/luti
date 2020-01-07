@@ -8,7 +8,6 @@ import Menu from "./Menu";
 import Homepage from "./Homepage";
 import About from "./About";
 import Acknowledgements from "./Acknowledgements";
-import PasswordPrompt from "./PasswordPrompt";
 import GAListener from "./GAListener";
 
 import "./App.scss";
@@ -45,35 +44,33 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <PasswordPrompt>
-        <Router>
-          <GAListener>
-            <Switch>
-              <Route
-                path="/videos"
-                component={() => {
-                  window.location.href =
-                    "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/";
-                  return null;
-                }}
-              />
+      <Router>
+        <GAListener>
+          <Switch>
+            <Route
+              path="/videos"
+              component={() => {
+                window.location.href =
+                  "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/";
+                return null;
+              }}
+            />
 
-              <Route path="/about">
-                <Menu page="about" />
-                <About />
-              </Route>
-              <Route path="/thanks">
-                <Menu page="thanks" />
-                <Acknowledgements />
-              </Route>
-              <Route path="/:x?/:y?">
-                <Menu page="home" />
-                <Homepage hidden={this.state.hideMap} />
-              </Route>
-            </Switch>
-          </GAListener>
-        </Router>
-      </PasswordPrompt>
+            <Route path="/about">
+              <Menu page="about" />
+              <About />
+            </Route>
+            <Route path="/thanks">
+              <Menu page="thanks" />
+              <Acknowledgements />
+            </Route>
+            <Route path="/:x?/:y?">
+              <Menu page="home" />
+              <Homepage hidden={this.state.hideMap} />
+            </Route>
+          </Switch>
+        </GAListener>
+      </Router>
     );
   }
 }
