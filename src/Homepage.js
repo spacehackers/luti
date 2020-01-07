@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import isEqual from "lodash/isEqual";
 import queryString from "query-string";
 import ReactGA from "react-ga";
+import { Helmet } from "react-helmet";
 
 import L from "leaflet";
 import { Map } from "react-leaflet";
@@ -155,8 +156,29 @@ class Homepage extends React.Component {
         introMessage = "Loading Microbes...";
       }
     }
+    let helmetData = {
+      title: "Life Under the Ice",
+      description:
+        "An exploratory tour through the microscopic world of Antarctica. Each microbe tells a story of the weird and whimsical life in Antarctica that is otherwise invisible to the naked eye.",
+      image: "https://lifeundertheice.org/TwitterCard_Tardigrade.jpg"
+    };
+    if (this.state.currentVideo) {
+      helmetData = {
+        title: "Life Under the Ice",
+        description: this.state.currentVideo.title,
+        image: this.state.currentVideo.screenshot
+      };
+    }
     return (
       <>
+        <Helmet>
+          <meta name="twitter:title" content={helmetData.title} />
+          <meta name="twitter:description" content={helmetData.description} />
+          <meta name="twitter:image" content={helmetData.image} />
+          <meta property="og:title" content={helmetData.title} />
+          <meta property="og:description" content={helmetData.description} />
+          <meta property="og:image" content={helmetData.image} />
+        </Helmet>
         <Intro visible={this.state.introVisible}>{introMessage}</Intro>
         {!this.props.hidden && (
           <Map
