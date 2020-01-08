@@ -164,9 +164,13 @@ class Homepage extends React.Component {
     };
     if (this.state.currentVideo) {
       helmetData = {
-        ...helmetData,
         title: `${this.state.currentVideo.title} - Life Under The Ice`,
-        image: this.state.currentVideo.screenshot
+        image: this.state.currentVideo.init_position
+          ? helmetData.image
+          : this.state.currentVideo.screenshot,
+        description: this.state.currentVideo.init_position
+          ? helmetData.description
+          : this.state.currentVideo.location
       };
     }
     return (
