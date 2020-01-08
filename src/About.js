@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import Page from "./Page/Page";
 
 const About = () => {
@@ -8,13 +9,35 @@ const About = () => {
     <Page>
       {/* edit below */}
 
+      <Helmet>
+        <meta name="twitter:title" content={`Life Under The Ice - ${page}`} />
+        <meta property="og:title" content={`Life Under The Ice - ${page}`} />
+        <meta
+          name="twitter:description"
+          content="Life Under the Ice is an exploratory tour through the microscopic world of Antarctica, created by Ariel Waldman."
+        />
+        <meta
+          property="og:description"
+          content="Life Under the Ice is an exploratory tour through the microscopic world of Antarctica, created by Ariel Waldman."
+        />
+        <meta
+          name="twitter:image"
+          content="https://lifeundertheice.org/TwitterCard_Tardigrade.jpg"
+        />
+        <meta
+          property="og:image"
+          content="https://lifeundertheice.org/TwitterCard_Tardigrade.jpg"
+        />
+      </Helmet>
+
       <h1>{page}</h1>
 
       <p>
         <em>Life Under the Ice</em> is an exploratory tour through the
-        microscopic world of Antarctica, created by <a href="https://arielwaldman.com">Ariel Waldman</a>. Each microbe tells a story of the weird
-        and whimsical life in Antarctica that is otherwise invisible to the
-        naked eye.
+        microscopic world of Antarctica, created by{" "}
+        <a href="https://arielwaldman.com">Ariel Waldman</a>. Each microbe tells
+        a story of the weird and whimsical life in Antarctica that is otherwise
+        invisible to the naked eye.
       </p>
 
       <p>

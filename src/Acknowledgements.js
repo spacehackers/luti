@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import Page from "./Page/Page";
 
 const Acknowledgements = () => {
@@ -7,6 +8,27 @@ const Acknowledgements = () => {
   return (
     <Page>
       {/* edit below */}
+
+      <Helmet>
+        <meta name="twitter:title" content={`Life Under The Ice - ${page}`} />
+        <meta property="og:title" content={`Life Under The Ice - ${page}`} />
+        <meta
+          name="twitter:description"
+          content="The process of formulating, creating and executing Life Under the Ice was six years in the making."
+        />
+        <meta
+          property="og:description"
+          content="The process of formulating, creating and executing Life Under the Ice was six years in the making."
+        />
+        <meta
+          name="twitter:image"
+          content="https://lifeundertheice.org/TwitterCard_Tardigrade.jpg"
+        />
+        <meta
+          property="og:image"
+          content="https://lifeundertheice.org/TwitterCard_Tardigrade.jpg"
+        />
+      </Helmet>
 
       <h1>{page}</h1>
 
@@ -63,8 +85,8 @@ const Acknowledgements = () => {
           <a href="https://twitter.com/mattb">Matt Biddulph</a>
         </strong>
         <br />
-        for being the deputy web developer for <em>Life Under the
-        Ice</em> and navigating the challenges of video on the web. Thanks also for being the
+        for being the deputy web developer for <em>Life Under the Ice</em> and
+        navigating the challenges of video on the web. Thanks also for being the
         best partner, cheerleader, and collaborator throughout.
       </p>
 
@@ -82,7 +104,7 @@ const Acknowledgements = () => {
         microscopy work.
       </p>
 
-            <p>
+      <p>
         <strong>
           All my patrons on{" "}
           <a href="https://patreon.com/arielwaldman">Patreon</a>
