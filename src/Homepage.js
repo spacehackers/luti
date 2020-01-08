@@ -164,8 +164,7 @@ class Homepage extends React.Component {
     };
     if (this.state.currentVideo) {
       helmetData = {
-        title: "Life Under the Ice",
-        description: this.state.currentVideo.title,
+        ...helmetData,
         image: this.state.currentVideo.screenshot
       };
     }
