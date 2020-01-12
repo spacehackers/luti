@@ -64,7 +64,7 @@ export default class App extends React.Component {
               <Menu page="thanks" />
               <Acknowledgements />
             </Route>
-            <Route path="/:x?/:y?">
+            <Route path="/:x?/:y?/:hash?">
               <Menu page="home" />
               <Homepage hidden={this.state.hideMap} />
             </Route>

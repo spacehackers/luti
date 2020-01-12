@@ -55,9 +55,11 @@ class Homepage extends React.Component {
 
     setTimeout(() => this.forceUpdate(), VIDEO_PLAY_TIMEOUT);
 
-    this.init_center = (x, y) => {
+    this.init_center = (x, y, hash) => {
       let init_video;
-      if (x === undefined || y === undefined) {
+      if (hash !== undefined) {
+        init_video = video_layout.filter(v => v.hash === hash)[0];
+      } else if (x === undefined || y === undefined) {
         init_video = video_layout.filter(v => v.init_position)[0];
       } else {
         init_video = video_layout.filter(
@@ -131,7 +133,7 @@ class Homepage extends React.Component {
   }
 
   render() {
-    const { x, y } = this.props.match.params;
+    const { x, y, hash } = this.props.match.params;
     const query = queryString.parse(this.props.location.search);
 
     let introMessage = "Drag To Discover New Creatures";
@@ -193,7 +195,7 @@ class Homepage extends React.Component {
             zoom={zoomSettings().initZoom}
             minZoom={zoomSettings().minZoom}
             maxZoom={zoomSettings().maxZoom}
-            center={this.init_center(x, y)}
+            center={this.init_center(x, y, hash)}
             keyboardPanDelta={150}
             onMove={this.handleOnMove}
             maxBounds={map_bounds}
