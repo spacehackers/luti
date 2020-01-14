@@ -10,6 +10,9 @@ export default class VideoData {
 
     this.hash = hash(this.filename).slice(0, 6);
 
+    this.url = `https://lifeundertheice.org/${this.x}/${this.y}/${this.hash}`;
+    this.analyticsUrl = `/${this.x}/${this.y}/${this.filename}`;
+
     this.bounds = () =>
       new L.LatLngBounds(
         xy_to_bounds(this.x, this.y)[0],
@@ -17,7 +20,7 @@ export default class VideoData {
       );
     this.screenshot = `https://lifeundertheice.s3.amazonaws.com/${data.filename}.jpg`;
     this.info = () => ({
-      url: `https://lifeundertheice.org/${this.x}/${this.y}/${this.hash}`,
+      url: this.url,
       title: data.title,
       desc: (
         <>

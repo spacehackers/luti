@@ -117,15 +117,15 @@ export default class Video extends React.Component {
 
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
       this.enableVideoM3u8(ref);
-      console.log("M3U8 ENABLE VIDEO", video.src);
+      console.debug("M3U8 ENABLE VIDEO", video.src);
       return;
     }
     if (Hls.isSupported()) {
       this.enableVideoHls(ref);
-      console.log("HLS ENABLE VIDEO", video.src);
+      console.debug("HLS ENABLE VIDEO", video.src);
       return;
     }
-    console.log("NOTHING WORKS TO ENABLE VIDEO");
+    console.debug("NOTHING WORKS TO ENABLE VIDEO");
   };
 
   disableVideo = ref => {
@@ -139,16 +139,16 @@ export default class Video extends React.Component {
     this.showCanplayStatus(video, this.props.canplay);
     if (video.tagName !== "VIDEO") return;
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      console.log("M3U8 DISABLE VIDEO", video.src);
+      console.debug("M3U8 DISABLE VIDEO", video.src);
       this.disableVideoM3u8(ref);
       return;
     }
     if (Hls.isSupported()) {
-      console.log("HLS DISABLE VIDEO", video.src);
+      console.debug("HLS DISABLE VIDEO", video.src);
       this.disableVideoHls(ref);
       return;
     }
-    console.log("NOTHING WORKS TO DISABLE VIDEO");
+    console.debug("NOTHING WORKS TO DISABLE VIDEO");
   };
 
   showCanplayStatus = (video, canplay) => {

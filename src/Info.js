@@ -72,7 +72,7 @@ export default class Info extends React.Component {
           url: this.props.url
         })
         .then(() => {
-          console.log("Thanks for sharing!")
+          console.debug("Thanks for sharing!")
         })
         .catch(console.error)
     }

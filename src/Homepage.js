@@ -105,15 +105,8 @@ class Homepage extends React.Component {
         if (isEqual(prevState.currentVideo, currentVideo)) {
           return undefined;
         }
-        console.debug(
-          "GA|Pageview Sent: ",
-          currentVideo.x,
-          currentVideo.y,
-          currentVideo.filename
-        );
-        ReactGA.pageview(
-          `/${currentVideo.x}/${currentVideo.y}/${currentVideo.filename}`
-        );
+        console.debug("Center microbe is ", currentVideo.url);
+        ReactGA.pageview(currentVideo.analyticsUrl);
         return { currentVideo };
       });
     };

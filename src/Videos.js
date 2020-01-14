@@ -114,7 +114,7 @@ export default class Videos extends React.Component {
     });
 
     this.disableAllVideos = () => {
-      console.log("TIMEOUT: DISABLE ALL VIDEOS");
+      console.debug("TIMEOUT: DISABLE ALL VIDEOS");
       this.setState({
         globalDisable: true
       });
@@ -122,7 +122,7 @@ export default class Videos extends React.Component {
 
     this.resetDeadMansSwitch = () => {
       if (this.state.globalDisable) {
-        console.log("TIMEOUT ENDED: ENABLE ALL VIDEOS");
+        console.debug("TIMEOUT ENDED: ENABLE ALL VIDEOS");
         this.setState({
           globalDisable: false
         });
@@ -164,7 +164,7 @@ export default class Videos extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     if (!this.props.map && nextProps.map) {
-      console.log("LATE ARRIVING MAP");
+      console.debug("LATE ARRIVING MAP");
       nextProps.map.addEventListener("move", this.handleOnMove);
       this.handleOnMove();
     }
@@ -183,7 +183,7 @@ export default class Videos extends React.Component {
         updateOk = true;
       }
     });
-    // console.log("PREVENTED RENDER", nextState);
+    // console.debug("PREVENTED RENDER", nextState);
     return updateOk;
   }
 

@@ -28,7 +28,7 @@ export default class Sound extends React.Component {
         }
         volume /= 10000.0;
         sound.fade(sound.volume(), volume, 100);
-        console.log("fading from", sound.volume(), "to", volume, distance);
+        console.debug("fading from", sound.volume(), "to", volume, distance);
         levels.push(volume);
       });
       if (this.props.onChange) {
@@ -38,7 +38,7 @@ export default class Sound extends React.Component {
   }
 
   render() {
-    console.log("sound", this.props);
+    console.debug("sound", this.props);
     this.calculate_volumes(this.props.center_lat, this.props.center_lng);
     return (
       <div>
