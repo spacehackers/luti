@@ -55,7 +55,7 @@ class Homepage extends React.Component {
 
     setTimeout(() => this.forceUpdate(), VIDEO_PLAY_TIMEOUT);
 
-    this.init_center = (x, y, hash) => {
+    this.calculate_initial_video = (x, y, hash) => {
       let init_video;
       if (hash !== undefined) {
         init_video = video_layout.filter(v => v.hash === hash)[0];
@@ -66,18 +66,23 @@ class Homepage extends React.Component {
           v => v.x === parseInt(x, 10) && v.y === parseInt(y, 10)
         )[0];
       }
+      return init_video;
+    };
 
+    this.init_center = () => {
       // offset a little to center the initial tardigrade better on iPhone X screen
-      const center = init_video.bounds().getCenter();
+      const center = this.state.currentVideo.bounds().getCenter();
       return L.latLng(center.lat - 120, center.lng - 100);
     };
 
     L.Map.include(L.LayerIndexMixin);
 
+    const { x, y, hash } = props.match.params;
     this.state = {
       introVisible: false,
       interacting: false,
-      videosPlaying: 0
+      videosPlaying: 0,
+      currentVideo: this.calculate_initial_video(x, y, hash)
     };
 
     this.handleOnMove = () => {
@@ -126,7 +131,6 @@ class Homepage extends React.Component {
   }
 
   render() {
-    const { x, y, hash } = this.props.match.params;
     const query = queryString.parse(this.props.location.search);
 
     let introMessage = "Drag To Discover New Creatures";
@@ -184,7 +188,7 @@ class Homepage extends React.Component {
             zoom={zoomSettings().initZoom}
             minZoom={zoomSettings().minZoom}
             maxZoom={zoomSettings().maxZoom}
-            center={this.init_center(x, y, hash)}
+            center={this.init_center()}
             keyboardPanDelta={150}
             onMove={this.handleOnMove}
             maxBounds={map_bounds}
