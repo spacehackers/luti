@@ -157,15 +157,11 @@ class Homepage extends React.Component {
         "An exploratory tour through the microscopic world of Antarctica. Each microbe tells a story of the weird and whimsical life in Antarctica that is otherwise invisible to the naked eye.",
       image: "https://lifeundertheice.org/TwitterCard_Tardigrade.jpg"
     };
-    if (this.state.currentVideo) {
+    if (this.state.currentVideo && !this.state.currentVideo.init_position) {
       helmetData = {
         title: `${this.state.currentVideo.title} - Life Under The Ice`,
-        image: this.state.currentVideo.init_position
-          ? helmetData.image
-          : this.state.currentVideo.screenshot,
-        description: this.state.currentVideo.init_position
-          ? helmetData.description
-          : this.state.currentVideo.location
+        image: this.state.currentVideo.screenshot,
+        description: this.state.currentVideo.location
       };
     }
     return (
