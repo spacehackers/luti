@@ -100,7 +100,12 @@ class Homepage extends React.Component {
 
       if (this.state.introVisible && this.state.videosPlaying > 0) {
         setTimeout(() => {
-          this.setState({ introVisible: false });
+          this.setState(prevState => {
+            if (prevState.introVisible) {
+              return { introVisible: false };
+            }
+            return null;
+          });
         }, 500);
       }
     };
