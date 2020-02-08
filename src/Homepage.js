@@ -71,7 +71,7 @@ class Homepage extends React.Component {
 
     this.init_center = () => {
       // offset a little to center the initial tardigrade better on iPhone X screen
-      const center = this.state.currentVideo.bounds().getCenter();
+      const center = this.state.initialVideo.bounds().getCenter();
       return L.latLng(center.lat - 120, center.lng - 100);
     };
 
@@ -82,6 +82,7 @@ class Homepage extends React.Component {
       introVisible: false,
       interacting: false,
       videosPlaying: 0,
+      initialVideo: this.calculate_initial_video(x, y, hash),
       currentVideo: this.calculate_initial_video(x, y, hash)
     };
 
