@@ -1,11 +1,11 @@
-$color_selected: #666666;
-$color: #999999;
-$transition_speed: 300ms; // see TRANSITION_SPEED in js
-$mobile_breakpoint: 780px;
-$large_breakpoint: 1150px;
-$font_size: 1.7em;
-$menu-height: 32px;
 $browser-context: 16; // Default
+$color: #999999;
+$color_selected: #666666;
+$font_size: 1.7em;
+$large_breakpoint: 1150px;
+$menu-height: 32px;
+$mobile_breakpoint: 780px;
+$transition_speed: 500ms; // see TRANSITION_SPEED in js
 $z-index-map: 500;
 
 @function em($pixels, $context: $browser-context) {
@@ -13,13 +13,13 @@ $z-index-map: 500;
 }
 
 @mixin luti_font() {
+  color: $color_selected;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+
   @font-face {
     font-family: "antarctican-headline", "Trebuchet MS", Helvetica, sans-serif;
     src: "https://use.typekit.net/ikz3unr.css%E2%80%9C%3E";
   }
-
-  font-weight: 400;
-  font-style: normal;
-  text-transform: uppercase;
-  color: $color_selected;
 }

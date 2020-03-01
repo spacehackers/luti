@@ -4,8 +4,9 @@ import { CSSTransition } from "react-transition-group"
 import debounce from "lodash/debounce"
 
 import "./Info.scss"
+import "./InfoButton.scss"
 
-const TRANSITION_SPEED = 600
+const TRANSITION_SPEED = 500
 
 const propTypes = {
   title: PropTypes.string.isRequired,
