@@ -12,11 +12,15 @@ body {
   font-style: normal;
   text-transform: uppercase;
   scroll-behavior: smooth;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 video {
   background-color: $luti_background;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
 
 #map,

@@ -28,6 +28,11 @@ export default class Info extends React.Component {
     })
   }
 
+  componentDidMount() {
+    const body = document.body
+    body.classList.add("overflow-hidden")
+  }
+
   handleClick = () => {
     this.setState(
       prevState => ({ hidden: !prevState.hidden }),
