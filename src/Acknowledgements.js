@@ -71,7 +71,7 @@ const Acknowledgements = () => {
 
       <p>
         <strong>
-          <a href="https://lisaballard.io/">Lisa Ballard</a>
+          <a href="https://lisaballard.dev/">Lisa Ballard</a>
         </strong>
         <br />
         for being the lead web developer for Life Under the Ice, turning a vague
