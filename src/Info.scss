@@ -1,40 +1,25 @@
 @import "shared";
 @import "sharingButtons";
 
-$overlay-height: 240px;
-$speed: 600ms;
+$max-height: 500px;
+$overlay-height: auto;
 $padding: 20px;
+$speed: 600ms;
 
-.info-button {
-  $margin-bottom: 20px;
-
-  position: fixed;
-  right: 20px;
-  bottom: $margin-bottom;
-  width: 175px;
-  margin-bottom: 15px;
-
-  background: transparent;
-  outline: 0;
-  border: 0;
-  z-index: $z-index-map;
-}
-
-.info-button:hover {
-  cursor: pointer;
-}
+$offscreen: -$max-height;
 
 .info-wrapper {
-  display: none;
-  height: 0;
-  padding: 0;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  font-size: 16px;
-  z-index: $z-index-map + 1; // cover the button too
   background: #f6f6f6;
+  bottom: $offscreen;
+  display: flex;
+  font-size: 16px;
+  height: $overlay-height;
+  left: 0;
+  max-height: 500px;
+  padding: $padding;
+  position: absolute;
+  right: 0;
+  z-index: $z-index-map + 1; // cover the button too
 
   @media (min-width: $mobile_breakpoint) {
     overflow-y: hidden;
@@ -55,13 +40,13 @@ $padding: 20px;
   }
 
   .info-description {
+    color: #888888;
     flex: 2;
     font-family: roboto-condensed, sans-serif;
-    font-weight: 300;
     font-size: 20px;
-    text-transform: none;
-    color: #888888;
+    font-weight: 300;
     margin-bottom: 20px;
+    text-transform: none;
   }
 
   .share-links,
@@ -83,16 +68,16 @@ $padding: 20px;
   }
 
   .share-links-mobile button {
-    text-transform: none;
-    font-family: roboto-condensed, sans-serif;
-    outline: 0;
-    color: white;
-    border: 0;
     background-color: #888888;
-    text-decoration: none;
-    font-weight: 400;
+    border: 0;
+    color: white;
+    font-family: roboto-condensed, sans-serif;
     font-size: 20px;
+    font-weight: 400;
+    outline: 0;
     padding: 10px;
+    text-decoration: none;
+    text-transform: none;
   }
 
   .share-links {
@@ -101,46 +86,34 @@ $padding: 20px;
     }
   }
 
-  // animations
-
+  // hide/show animations
   .hidden & {
-    height: 0;
-    padding: 0;
-    display: none;
+    bottom: $offscreen;
   }
 
   .enter & {
-    height: 0;
-    padding: 0;
-    display: flex;
+    bottom: $offscreen;
   }
 
   .enter.enter-active & {
-    padding: $padding;
-    height: auto;
-    transition: all $transition_speed ease-in;
+    bottom: 0;
+    transition: all $transition_speed ease;
   }
 
   .enter-done & {
-    height: auto;
-    padding: $padding;
-    display: flex;
+    bottom: 0;
   }
 
   .exit & {
-    height: auto;
-    padding: $padding;
+    bottom: 0;
   }
 
   .exit-active & {
-    height: 0;
-    padding: 0;
-    transition: all $transition_speed ease-out;
+    bottom: $offscreen;
+    transition: all $transition_speed ease;
   }
 
   .exit-done & {
-    height: 0;
-    padding: 0;
-    display: none;
+    bottom: $offscreen;
   }
 }
