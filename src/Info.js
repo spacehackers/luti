@@ -114,7 +114,7 @@ export default class Info extends React.Component {
 
         <a
           className="resp-sharing-button__link"
-          href={`https://twitter.com/intent/tweet/?text=${encodedMessage}&amp;url=${encodedURI}`}
+          href={`https://twitter.com/intent/tweet/?text=${encodedMessage}&url=${encodedURI}`}
           target="_blank"
           rel="noopener noreferrer"
           aria-label=""
@@ -133,7 +133,7 @@ export default class Info extends React.Component {
 
         <a
           className="resp-sharing-button__link"
-          href={`mailto:?subject=${encodedMessage}&amp;body=${encodedURI}`}
+          href={`mailto:?subject=${encodedMessage}&body=${encodedURI}`}
           target="_self"
           rel="noopener"
           aria-label=""
