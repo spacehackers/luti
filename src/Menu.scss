@@ -10,7 +10,12 @@ $mobile_breakpoint: 1120px;
 
 ul.menu {
   @include luti_font;
-  background: #f6f6f6;
+  background: $menu_background_color;
+
+  &.dark {
+    @include luti_font_dark;
+    background: $menu_background_color_dark;
+  }
 
   margin: 0;
   padding: 6px 0;
@@ -92,6 +97,20 @@ ul.menu {
     }
   }
 
+  &.dark {
+    li:first-of-type {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: $mobile_breakpoint) {
+        a {
+          color: $color_selected_dark;
+        }
+      }
+    }
+  }
+
   // mobile menu animations
   @media (max-width: $mobile_breakpoint) {
     &.enter li + li {
@@ -140,6 +159,24 @@ ul.menu {
   li > a.hover {
     color: $color_selected;
     text-decoration: underline;
+  }
+
+  &.dark {
+    li {
+      a {
+        color: $color_dark;
+        text-decoration: none;
+      }
+
+      &.selected a {
+        color: $color_selected_dark;
+      }
+    }
+
+    li > a.hover {
+      color: $color_selected_dark;
+      text-decoration: underline;
+    }
   }
 
   // animate visibility after font is loaded

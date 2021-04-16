@@ -14,7 +14,11 @@
     z-index: $z-index-map;
     font-size: 1.7em;
     font-weight: 400;
-    color: #999999;
+    color: $intro_color;
+
+    &.dark {
+      color: $intro_color_dark;
+    }
 
     .wf-loading & {
       opacity: 0;

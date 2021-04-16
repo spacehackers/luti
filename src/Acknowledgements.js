@@ -2,11 +2,11 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import Page from "./Page/Page";
 
-const Acknowledgements = () => {
+const Acknowledgements = props => {
   const page = "Acknowledgements";
 
   return (
-    <Page>
+    <Page displayMode={props.displayMode}>
       {/* edit below */}
 
       <Helmet>

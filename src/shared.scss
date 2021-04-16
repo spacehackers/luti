@@ -1,6 +1,4 @@
 $browser-context: 16; // Default
-$color: #999999;
-$color_selected: #666666;
 $font_size: 1.7em;
 $large_breakpoint: 1150px;
 $menu-height: 32px;
@@ -8,12 +6,60 @@ $mobile_breakpoint: 780px;
 $transition_speed: 500ms; // see TRANSITION_SPEED in js
 $z-index-map: 500;
 
+/*-- colors ---*/
+
+// light mode
+$color: #999999;
+$color_selected: #666666;
+$intro_color: #999999;
+$menu_background_color: #f6f6f6;
+$luti_background: #dcdedd;
+$page_background: #f6f6f6;
+$page_color: #666666;
+$link: lightcoral;
+$link_hover: indianred;
+$title: #666666;
+$description: #888888;
+$share_links_bg_color: #888888;
+$share_links_color: white;
+$info_wrapper_bg: #f6f6f6;
+
+// dark mode
+$color_dark: blue;
+$color_selected_dark: green;
+$intro_color_dark: teal;
+$menu_background_color_dark: purple;
+$luti_background_dark: black;
+$page_background_dark: gray;
+$page_color_dark: green;
+$link_dark: lime;
+$link_hover_dark: brown;
+$title_dark: DarkBlue;
+$description_dark: olive;
+$share_links_bg_color_dark: blue;
+$info_wrapper_bg_dark: blue;
+$share_links_color_dark: yellow;
+$zoom_btn_bg_dark: DarkBlue;
+$zoom_btn_color_dark: teal;
+
 @function em($pixels, $context: $browser-context) {
   @return #{$pixels/$context}em;
 }
 
 @mixin luti_font() {
   color: $color_selected;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+
+  @font-face {
+    font-family: "antarctican-headline", "Trebuchet MS", Helvetica, sans-serif;
+    src: "https://use.typekit.net/ikz3unr.css%E2%80%9C%3E";
+  }
+}
+
+@mixin luti_font_dark() {
+  color: $color_selected_dark;
   font-style: normal;
   font-weight: 400;
   text-transform: uppercase;
