@@ -1,33 +1,36 @@
-import React from "react";
-import WebFont from "webfontloader";
-import ReactGA from "react-ga";
+import React from "react"
+import WebFont from "webfontloader"
+import ReactGA from "react-ga"
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { DARK_MODE_HASH, LIGHT_MODE_HASH } from "./constants.js"
 
-import Menu from "./Menu";
-import Homepage from "./Homepage";
-import About from "./About";
-import Acknowledgements from "./Acknowledgements";
-import GAListener from "./GAListener";
+import Menu from "./Menu"
+import Homepage from "./Homepage"
+import About from "./About"
+import Acknowledgements from "./Acknowledgements"
+import GAListener from "./GAListener"
 
-import "./App.scss";
+import "./App.scss"
 
-const trackingId = "UA-153597890-1";
-ReactGA.initialize(trackingId);
+const trackingId = "UA-153597890-1"
+
+ReactGA.initialize(trackingId)
 
 export default class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      hideMap: true
-    };
+      hideMap: true,
+      displayMode: LIGHT_MODE_HASH.slice(1)
+    }
 
     WebFont.load({
       typekit: {
         id: "ikz3unr"
       }
-    });
+    })
   }
 
   componentDidMount() {
@@ -37,9 +40,14 @@ export default class App extends React.Component {
     //   document.location.href = "/"
     // }
 
+    console.log(window.location.hash)
+    if (window.location.hash === DARK_MODE_HASH) {
+      this.setState({ displayMode: DARK_MODE_HASH.slice(1) })
+    }
+
     window.setTimeout(() => {
-      this.setState({ hideMap: false });
-    }, 500);
+      this.setState({ hideMap: false })
+    }, 500)
   }
 
   render() {
@@ -51,26 +59,29 @@ export default class App extends React.Component {
               path="/videos"
               component={() => {
                 window.location.href =
-                  "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/";
-                return null;
+                  "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/"
+                return null
               }}
             />
 
             <Route path="/about">
-              <Menu page="about" />
+              <Menu page="about" displayMode={this.state.displayMode} />
               <About />
             </Route>
             <Route path="/thanks">
-              <Menu page="thanks" />
-              <Acknowledgements />
+              <Menu page="thanks" displayMode={this.state.displayMode} />
+              <Acknowledgements displayMode={this.state.displayMode} />
             </Route>
             <Route path="/:x?/:y?/:hash?">
-              <Menu page="home" />
-              <Homepage hidden={this.state.hideMap} />
+              <Menu page="home" displayMode={this.state.displayMode} />
+              <Homepage
+                hidden={this.state.hideMap}
+                displayMode={this.state.displayMode}
+              />
             </Route>
           </Switch>
         </GAListener>
       </Router>
-    );
+    )
   }
 }
