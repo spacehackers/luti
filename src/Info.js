@@ -1,76 +1,78 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { CSSTransition } from "react-transition-group";
-import debounce from "lodash/debounce";
+import React from "react"
+import PropTypes from "prop-types"
+import classNames from "classnames"
+import debounce from "lodash/debounce"
 
-import "./Info.scss";
-import "./InfoButton.scss";
+import { CSSTransition } from "react-transition-group"
 
-const TRANSITION_SPEED = 500;
+import "./Info.scss"
+import "./InfoButton.scss"
+
+const TRANSITION_SPEED = 500
 
 const propTypes = {
   title: PropTypes.string.isRequired,
   desc: PropTypes.node.isRequired,
   url: PropTypes.string.isRequired
-};
+}
 
 export default class Info extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       hidden: true
-    };
+    }
 
     this.handleClick = debounce(this.handleClick, 500, {
       leading: true,
       trailing: false
-    });
+    })
   }
 
   componentDidMount() {
-    const body = document.body;
-    body.classList.add("overflow-hidden");
+    const body = document.body
+    body.classList.add("overflow-hidden")
   }
 
   handleClick = () => {
     this.setState(
       prevState => ({ hidden: !prevState.hidden }),
       () => {
-        this.handleOpen();
+        this.handleOpen()
       }
-    );
-  };
+    )
+  }
 
   handleOpen = () => {
-    const map = document.getElementsByClassName("leaflet-container")[0];
+    const map = document.getElementsByClassName("leaflet-container")[0]
 
     if (this.state.hidden) {
-      map.removeEventListener("click", this.handleClick);
-      map.removeEventListener("touchstart", this.handleClick);
-      map.removeEventListener("touchmove", this.handleClick);
-      return;
+      map.removeEventListener("click", this.handleClick)
+      map.removeEventListener("touchstart", this.handleClick)
+      map.removeEventListener("touchmove", this.handleClick)
+      return
     }
 
     window.setTimeout(() => {
-      map.addEventListener("click", this.handleClick);
-      map.addEventListener("touchstart", this.handleClick);
-      map.addEventListener("touchmove", this.handleClick);
-    }, 100);
-  };
+      map.addEventListener("click", this.handleClick)
+      map.addEventListener("touchstart", this.handleClick)
+      map.addEventListener("touchmove", this.handleClick)
+    }, 100)
+  }
 
   getAriaLabel() {
     if (this.state.open) {
-      return "click for info";
+      return "click for info"
     }
-    return "close info";
+    return "close info"
   }
 
   renderSharingButtons() {
     const message =
-      "Woah! Check out this microscopic creature I found on Life Under The Ice:";
-    const encodedMessage = encodeURIComponent(message);
-    const encodedURI = encodeURIComponent(this.props.url);
+      "Woah! Check out this microscopic creature I found on Life Under The Ice:"
+    const encodedMessage = encodeURIComponent(message)
+    const encodedURI = encodeURIComponent(this.props.url)
     const shareClick = e => {
       navigator
         .share({
@@ -78,10 +80,10 @@ export default class Info extends React.Component {
           url: this.props.url
         })
         .then(() => {
-          console.debug("Thanks for sharing!");
+          console.debug("Thanks for sharing!")
         })
-        .catch(console.error);
-    };
+        .catch(console.error)
+    }
     if (navigator.share) {
       return (
         <div className="share-links-mobile">
@@ -89,7 +91,7 @@ export default class Info extends React.Component {
             Share this
           </button>
         </div>
-      );
+      )
     }
     return (
       <div className="share-links">
@@ -150,24 +152,29 @@ export default class Info extends React.Component {
           </div>
         </a>
       </div>
-    );
+    )
   }
 
   renderButton() {
+    const img =
+      this.props.displayMode === "dark"
+        ? "/LUTI_WhatsThis5.svg"
+        : "/LUTI_WhatsThis5.svg" // todo: update with dark mode svg
+
     return (
       <button type="button" className="info-button" onClick={this.handleClick}>
         <img
           className="info-toggle"
-          src="/LUTI_WhatsThis5.svg"
+          src={img}
           aria-label={this.getAriaLabel()}
           alt=""
         />
       </button>
-    );
+    )
   }
 
   renderInfo() {
-    const { title, desc } = this.props;
+    const { title, desc } = this.props
     return (
       <>
         <div className="info-title">
@@ -175,16 +182,16 @@ export default class Info extends React.Component {
         </div>
         <div className="info-description">{desc}</div>
       </>
-    );
+    )
   }
 
   renderInfoWrapper() {
     return (
-      <div className="info-wrapper">
+      <div className={classNames("info-wrapper", this.props.displayMode)}>
         {this.renderInfo()}
         {this.renderSharingButtons()}
       </div>
-    );
+    )
   }
 
   render() {
@@ -195,8 +202,8 @@ export default class Info extends React.Component {
           {this.renderInfoWrapper()}
         </div>
       </CSSTransition>
-    );
+    )
   }
 }
 
-Info.propTypes = propTypes;
+Info.propTypes = propTypes

@@ -14,14 +14,24 @@ body {
   background-color: $luti_background;
   background-color: $luti_background;
 
+  video {
+    background-color: $luti_background;
+  }
+
   &.dark {
     background-color: $luti_background_dark;
     background-color: $luti_background_dark;
-  }
-}
 
-video {
-  background-color: $luti_background;
+    .leaflet-control-zoom-in,
+    .leaflet-control-zoom-out {
+      background-color: $zoom_btn_bg_dark;
+      color: $zoom_btn_color_dark;
+    }
+
+    video {
+      background-color: $luti_background_dark;
+    }
+  }
 }
 
 .overflow-hidden {
