@@ -12,11 +12,13 @@ $z-index-map: 500;
 $color: #999999;
 $color_selected: #666666;
 $menu_background_color: #f6f6f6;
+$luti_background: #dcdedd;
 
 // dark mode
 $color_dark: blue;
 $color_selected_dark: green;
 $menu_background_color_dark: purple;
+$luti_background_dark: black;
 
 @function em($pixels, $context: $browser-context) {
   @return #{$pixels/$context}em;

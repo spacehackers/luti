@@ -42,7 +42,9 @@ export default class App extends React.Component {
 
     console.log(window.location.hash)
     if (window.location.hash === DARK_MODE_HASH) {
-      this.setState({ displayMode: DARK_MODE_HASH.slice(1) })
+      const displayMode = DARK_MODE_HASH.slice(1)
+      this.setState({ displayMode: displayMode })
+      document.body.classList.add(displayMode)
     }
 
     window.setTimeout(() => {
