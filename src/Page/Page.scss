@@ -126,6 +126,16 @@ $content_height: 315px;
     color: $link_hover;
   }
 
+  &.dark {
+    a {
+      color: $link_dark;
+    }
+
+    a:hover {
+      color: $link_hover_dark;
+    }
+  }
+
   .contact {
   }
 
