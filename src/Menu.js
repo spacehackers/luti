@@ -1,4 +1,6 @@
 import React from "react"
+import classNames from "classnames"
+
 import { CSSTransition } from "react-transition-group"
 import { TRANSITION_SPEED, MOBILE_BREAKPOINT } from "./constants.js"
 
@@ -138,7 +140,7 @@ export default class Menu extends React.Component {
     return (
       <nav>
         <CSSTransition in={this.state.open} timeout={TRANSITION_SPEED}>
-          <ul className="menu">
+          <ul className={classNames("menu", this.props.displayMode)}>
             {menuData.map((menuItem, key) => this.renderItem(menuItem, key))}
           </ul>
         </CSSTransition>

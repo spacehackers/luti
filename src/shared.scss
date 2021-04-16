@@ -1,6 +1,4 @@
 $browser-context: 16; // Default
-$color: #999999;
-$color_selected: #666666;
 $font_size: 1.7em;
 $large_breakpoint: 1150px;
 $menu-height: 32px;
@@ -8,12 +6,36 @@ $mobile_breakpoint: 780px;
 $transition_speed: 500ms; // see TRANSITION_SPEED in js
 $z-index-map: 500;
 
+/*-- colors ---*/
+
+// light mode
+$color: #999999;
+$color_selected: #666666;
+$menu_background_color: #f6f6f6;
+
+// dark mode
+$color_dark: blue;
+$color_selected_dark: green;
+$menu_background_color_dark: purple;
+
 @function em($pixels, $context: $browser-context) {
   @return #{$pixels/$context}em;
 }
 
 @mixin luti_font() {
   color: $color_selected;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+
+  @font-face {
+    font-family: "antarctican-headline", "Trebuchet MS", Helvetica, sans-serif;
+    src: "https://use.typekit.net/ikz3unr.css%E2%80%9C%3E";
+  }
+}
+
+@mixin luti_font_dark() {
+  color: $color_selected_dark;
   font-style: normal;
   font-weight: 400;
   text-transform: uppercase;
