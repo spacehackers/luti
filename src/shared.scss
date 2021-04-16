@@ -11,14 +11,36 @@ $z-index-map: 500;
 // light mode
 $color: #999999;
 $color_selected: #666666;
+$intro_color: #999999;
 $menu_background_color: #f6f6f6;
 $luti_background: #dcdedd;
+$page_background: #f6f6f6;
+$page_color: #666666;
+$link: lightcoral;
+$link_hover: indianred;
+$title: #666666;
+$description: #888888;
+$share_links_bg_color: #888888;
+$share_links_color: white;
+$info_wrapper_bg: #f6f6f6;
 
 // dark mode
 $color_dark: blue;
 $color_selected_dark: green;
+$intro_color_dark: teal;
 $menu_background_color_dark: purple;
 $luti_background_dark: black;
+$page_background_dark: gray;
+$page_color_dark: green;
+$link: lime;
+$link_hover: brown;
+$title_dark: DarkBlue;
+$description_dark: olive;
+$share_links_bg_color_dark: blue;
+$info_wrapper_bg_dark: blue;
+$share_links_color_dark: yellow;
+$zoom_btn_bg_dark: DarkBlue;
+$zoom_btn_color_dark: teal;
 
 @function em($pixels, $context: $browser-context) {
   @return #{$pixels/$context}em;

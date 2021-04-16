@@ -1,12 +1,12 @@
-import React from "react";
-import { Helmet } from "react-helmet";
-import Page from "./Page/Page";
+import React from "react"
+import { Helmet } from "react-helmet"
+import Page from "./Page/Page"
 
-const Acknowledgements = () => {
-  const page = "Acknowledgements";
+const Acknowledgements = props => {
+  const page = "Acknowledgements"
 
   return (
-    <Page>
+    <Page displayMode={props.displayMode}>
       {/* edit below */}
 
       <Helmet>
@@ -424,7 +424,7 @@ const Acknowledgements = () => {
         Spring Wood, Debora Zamd, and Steve Zellerhoff.
       </p>
     </Page>
-  );
-};
+  )
+}
 
-export default Acknowledgements;
+export default Acknowledgements

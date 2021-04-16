@@ -1,12 +1,12 @@
-import React from "react";
-import { Helmet } from "react-helmet";
-import Page from "./Page/Page";
+import React from "react"
+import { Helmet } from "react-helmet"
+import Page from "./Page/Page"
 
-const About = () => {
-  const page = "About the Project";
+const About = props => {
+  const page = "About the Project"
 
   return (
-    <Page>
+    <Page displayMode={props.displayMode}>
       {/* edit below */}
 
       <Helmet>
@@ -237,7 +237,7 @@ const About = () => {
         </p>
       </div>
     </Page>
-  );
-};
+  )
+}
 
-export default About;
+export default About

@@ -68,7 +68,7 @@ export default class App extends React.Component {
 
             <Route path="/about">
               <Menu page="about" displayMode={this.state.displayMode} />
-              <About />
+              <About displayMode={this.state.displayMode} />
             </Route>
             <Route path="/thanks">
               <Menu page="thanks" displayMode={this.state.displayMode} />
