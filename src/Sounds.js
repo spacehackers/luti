@@ -1,11 +1,9 @@
 import React from "react";
-import { Marker, Circle } from "react-leaflet";
+import Control from "react-leaflet-control";
 import L from "leaflet";
-
 import { tsv } from "d3-fetch";
-
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-const audioContext = new AudioContext();
+import throttle from "lodash/throttle";
+import Sound from "./Sound";
 
 const debug_sound_source =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vQbyxIWPplJbfSWBRfpSNmho-6LcS1xgEWd8VRLAn3R1dkvWQP3-OHLrFuA4_NgeMk9y3JKzkWzMwWW/pub?gid=0&single=true&output=tsv";
@@ -14,10 +12,21 @@ export default class Sounds extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mp3s: {},
-      sounds: []
+      sounds: [],
+      volume: {}
     };
     this.latlngs = {};
+    this.analysers = {};
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    this.audioContext = new AudioContext();
+
+    const handleOnMove = () => {
+      this.calculateAudioPositions();
+    };
+    this.handleOnMove = throttle(handleOnMove, 50, {
+      leading: true,
+      trailing: true
+    });
   }
 
   componentDidMount() {
@@ -28,107 +37,105 @@ export default class Sounds extends React.Component {
       }));
       this.latlngs[sound.File] = new L.LatLng(sound.X, sound.Y);
     });
+    this.setState({ paused: this.props.paused });
+    if (this.props.map) {
+      this.props.map.addEventListener("move", this.handleOnMove);
+      this.handleOnMove();
+    }
   }
 
-  /* eslint-disable no-param-reassign */
-  setupAudio = mp3 => audio => {
-    if (!this.mounted) return;
-    if (!audio) return;
-    if (mp3 in this.state.mp3s) return;
+  componentDidUpdate(prevProps) {
+    if (this.props.paused !== prevProps.paused) {
+      setTimeout(() => {
+        console.log("RESUME AUDIO");
+        this.audioContext.resume();
+        this.setState({ paused: false });
+      }, 100);
+    }
+  }
 
-    audio.loop = true;
-    audio.autoplay = true;
-    audio.src = mp3;
-    console.log("AUDIO", mp3, audio);
-
-    const track = audioContext.createMediaElementSource(audio);
-    const gain = audioContext.createGain();
-    const pan = audioContext.createStereoPanner();
-    const analyser = audioContext.createAnalyser();
-    analyser.fftSize = 32;
-
-    track
-      .connect(gain)
-      .connect(pan)
-      .connect(analyser)
-      .connect(audioContext.destination);
-
-    this.setState(prevState => {
-      Object.assign(prevState.mp3s, {
-        [mp3]: {
-          audio,
-          track,
-          gain,
-          pan,
-          analyser
-        }
-      });
-    });
-  };
-  /* eslint-enable no-param-reassign */
-
-  calculateVolumes = center => {
-    if (center.equals(this.lastCenter)) {
+  calculateAudioPositions = () => {
+    if (!this.props.map) {
       return;
     }
-    this.lastCenter = center;
-    let pan = -1;
-    Object.keys(this.latlngs).forEach(mp3 => {
-      const audio = this.state.mp3s[mp3];
 
-      const bufferLength = audio.analyser.frequencyBinCount;
-      console.log(bufferLength);
-      const dataArray = new Uint8Array(bufferLength);
-      audio.analyser.getByteTimeDomainData(dataArray);
-      console.log(mp3, dataArray);
-
-      const latlng = this.latlngs[mp3];
-      const distance = center.distanceTo(latlng);
-      let volume = 10000000 - distance;
-      if (volume < 0) {
-        volume = 0;
-      }
-      volume /= 10000000.0;
-      console.log(center, latlng, volume);
-      if (volume < 0.0001) {
-        volume = 0.0001;
-      }
-      audio.gain.gain.exponentialRampToValueAtTime(
-        volume,
-        audioContext.currentTime + 1
+    const volume = {};
+    const bounds = this.props.map.getBounds().pad(0.1);
+    const center = bounds.getCenter();
+    const radius = L.CRS.Simple.distance(bounds.getNorthWest(), center);
+    this.state.sounds.forEach(sound => {
+      const location = new L.LatLng(
+        parseInt(sound.X, 10),
+        parseInt(sound.Y, 10)
       );
-      audio.pan.pan.value = pan;
-      pan += 0.6;
-      if (pan > 1) pan = 1;
-      if (!this.props.paused) {
-        audioContext.resume();
-        audio.audio.play();
+      let v = Math.abs(L.CRS.Simple.distance(center, location)) / radius;
+      if (v > 1) {
+        v = 1;
       }
+      if (v < 0) {
+        v = 0;
+      }
+      volume[this.keyForSound(sound)] = 1 - v;
     });
+    this.setState({ volume });
+  };
+
+  keyForSound = sound => {
+    const location = [parseInt(sound.X, 10), parseInt(sound.Y, 10)];
+    return `sound-${location[0]}-${location[1]}`;
+  };
+
+  analyserForSound = sound => {
+    const key = this.keyForSound(sound);
+    if (!(key in this.analysers)) {
+      const analyser = this.audioContext.createAnalyser();
+      analyser.fftSize = 32;
+      this.analysers[key] = analyser;
+    }
+    return this.analysers[key];
   };
 
   render() {
-    if (this.props.map) {
-      this.calculateVolumes(this.props.map.getCenter());
-    }
     return (
       <>
+        (this.props.debug && (
+        <Control position="topright">
+          <div id="sound-debug">
+            {this.state.sounds.map(sound => (
+              <div key={`debug-${this.keyForSound(sound)}`}>
+                {sound.File}: <br />[{parseInt(sound.X, 10)},{" "}
+                {parseInt(sound.Y, 10)}] <br />
+                <div
+                  style={{
+                    height: "10px",
+                    backgroundColor: sound.Color,
+                    width: `${(
+                      this.state.volume[this.keyForSound(sound)] || 0
+                    ).toFixed(2) * 50}px`
+                  }}
+                >
+                  &nbsp;
+                </div>
+              </div>
+            ))}
+          </div>
+        </Control>
+        ));
         {this.state.sounds.map(sound => {
           const location = [parseInt(sound.X, 10), parseInt(sound.Y, 10)];
+          const key = this.keyForSound(sound);
           return (
-            <>
-              <Circle
-                key={`sound-${sound.X}-${sound.Y}`}
-                center={location}
-                color={sound.Color}
-                radius={parseInt(sound.Volume, 10)}
-              />
-              <audio
-                key={`audio-${sound.File}`}
-                ref={this.setupAudio(sound.File)}
-                loop
-              />
-            </>
+            <Sound
+              debug
+              key={key}
+              audioContext={this.audioContext}
+              location={location}
+              color={sound.Color}
+              file={sound.File}
+              analyser={this.analyserForSound(sound)}
+              volume={this.state.volume[key] || 0}
+              paused={this.state.paused}
+            />
           );
         })}
       </>

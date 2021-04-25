@@ -1,55 +1,78 @@
+import { Circle } from "react-leaflet";
 import React from "react";
-import { Howl } from "howler";
 
 export default class Sound extends React.Component {
-  constructor() {
-    super();
-    this.soundFilenames = ["one.mp3", "two.mp3", "three.mp3", "four.mp3"];
-    this.locations = [
-      [3600, 12800],
-      [7200, 12800],
-      [7200, 6400],
-      [3600, 6400]
-    ];
-    this.sounds = this.soundFilenames.map(
-      filename =>
-        new Howl({
-          src: [filename],
-          autoplay: true,
-          loop: true,
-          volume: 0.0
-        })
-    );
-    this.calculate_volumes = (x, y) => {
-      const levels = [];
-      this.sounds.forEach((sound, idx) => {
-        const l = this.locations[idx];
-        const distance = Math.sqrt(
-          (l[0] - x) * (l[0] - x) + (l[1] - y) * (l[1] - y)
-        );
-        let volume = 10000 - distance;
-        if (volume < 0) {
-          volume = 0;
-        }
-        volume /= 10000.0;
-        sound.fade(sound.volume(), volume, 100);
-        console.debug("fading from", sound.volume(), "to", volume, distance);
-        levels.push(volume);
-      });
-      if (this.props.onChange) {
-        this.props.onChange(levels);
+  componentDidUpdate(prevProps) {
+    if (this.props.paused !== prevProps.paused && !this.props.paused) {
+      if (this.audio) {
+        console.log("RESUME PLAY");
+        this.audio.play();
       }
-    };
+    }
+
+    if (this.gain) {
+      if (this.gain.gain.value === this.props.volume) {
+        return;
+      }
+      if (this.props.volume > 0) {
+        this.gain.gain.exponentialRampToValueAtTime(
+          this.props.volume,
+          this.props.audioContext.currentTime + 1 / 50.0
+        );
+      } else {
+        this.gain.gain.value = 0;
+      }
+    }
   }
 
+  setupAudio = mp3 => audio => {
+    if (!audio) return;
+    if (this.track) return;
+
+    this.audio = audio;
+    this.audio.src = mp3;
+    this.audio.loop = true;
+    this.audio.autoplay = true;
+    if (!this.props.paused) {
+      console.log("INIT PLAY");
+      this.audio.play();
+    }
+
+    this.track = this.props.audioContext.createMediaElementSource(audio);
+    this.gain = this.props.audioContext.createGain();
+    this.pan = this.props.audioContext.createStereoPanner();
+
+    this.track
+      .connect(this.gain)
+      .connect(this.pan)
+      .connect(this.props.analyser)
+      .connect(this.props.audioContext.destination);
+
+    this.applyAudioSettings();
+  };
+
+  applyAudioSettings = () => {
+    this.gain.gain.value = this.props.volume;
+  };
+
   render() {
-    console.debug("sound", this.props);
-    this.calculate_volumes(this.props.center_lat, this.props.center_lng);
     return (
-      <div>
-        <p>{this.props.center_lat}</p>
-        <p>{this.props.center_lng}</p>
-      </div>
+      <>
+        {this.props.debug && (
+          <Circle
+            key={`sound-${this.props.location[0]}-${this.props.location[1]}`}
+            center={this.props.location}
+            color={this.props.color}
+            radius={this.props.volume * 200}
+          />
+        )}
+        <audio
+          id={`audio-${this.props.file}`}
+          key={`audio-${this.props.file}`}
+          ref={this.setupAudio(this.props.file)}
+          loop
+        />
+      </>
     );
   }
 }
