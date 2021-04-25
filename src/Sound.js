@@ -5,7 +5,12 @@ export default class Sound extends React.Component {
   constructor() {
     super();
     this.soundFilenames = ["one.mp3", "two.mp3", "three.mp3", "four.mp3"];
-    this.locations = [[3600, 12800], [7200, 12800], [7200, 6400], [3600, 6400]];
+    this.locations = [
+      [3600, 12800],
+      [7200, 12800],
+      [7200, 6400],
+      [3600, 6400]
+    ];
     this.sounds = this.soundFilenames.map(
       filename =>
         new Howl({

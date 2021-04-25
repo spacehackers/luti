@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
+    "d3-fetch": "^2.0.0",
     "history": "^4.10.1",
     "hls.js": "0.13.0",
     "howler": "^2.1.2",

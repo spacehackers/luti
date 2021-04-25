@@ -49,6 +49,7 @@
     "react/no-unescaped-entities": "off",
     "react/prefer-stateless-function": "off",
     "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/media-has-caption": "off"
   }
 }

@@ -10,6 +10,7 @@ import { Map } from "react-leaflet";
 import { withRouter } from "react-router-dom";
 import Info from "./Info";
 
+import Sounds from "./Sounds";
 import Videos from "./Videos";
 import Intro from "./Intro";
 
@@ -213,6 +214,7 @@ class Homepage extends React.Component {
               boundsPad={this.state.boundsPad}
               map={this.state.map}
             />
+            <Sounds map={this.state.map} paused={this.state.introVisible} />
           </Map>
         )}
         {this.state.currentVideo && this.state.videosPlaying > 0 && (
