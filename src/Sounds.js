@@ -96,6 +96,9 @@ export default class Sounds extends React.Component {
   };
 
   render() {
+    if (!this.props.enabled) {
+      return null;
+    }
     return (
       <>
         (this.props.debug && (

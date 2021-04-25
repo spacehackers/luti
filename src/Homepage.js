@@ -214,13 +214,12 @@ class Homepage extends React.Component {
               boundsPad={this.state.boundsPad}
               map={this.state.map}
             />
-            (this.query.sound && (
             <Sounds
               map={this.state.map}
               paused={this.state.introVisible}
               debug={query.debug}
+              enabled={query.sound}
             />
-            ));
           </Map>
         )}
         {this.state.currentVideo && this.state.videosPlaying > 0 && (
