@@ -1,5 +1,8 @@
-import { Circle } from "react-leaflet";
+import L from "leaflet";
+import { Marker, Circle } from "react-leaflet";
 import React from "react";
+
+const mp3_source_prefix = "https://lifeundertheice-audio.s3.amazonaws.com/";
 
 export default class Sound extends React.Component {
   componentDidUpdate(prevProps) {
@@ -30,7 +33,8 @@ export default class Sound extends React.Component {
     if (this.track) return;
 
     this.audio = audio;
-    this.audio.src = mp3;
+    this.audio.crossOrigin = "anonymous";
+    this.audio.src = mp3_source_prefix + mp3;
     this.audio.loop = true;
     this.audio.autoplay = true;
     if (!this.props.paused) {
@@ -56,15 +60,23 @@ export default class Sound extends React.Component {
   };
 
   render() {
+    const text = L.divIcon({
+      html: `<div class="sound-debug">${this.props.file}</div>`,
+      iconSize: "auto"
+    });
+
     return (
       <>
         {this.props.debug && (
-          <Circle
-            key={`sound-${this.props.location[0]}-${this.props.location[1]}`}
-            center={this.props.location}
-            color={this.props.color}
-            radius={this.props.volume * 200}
-          />
+          <>
+            <Circle
+              key={`sound-${this.props.location[0]}-${this.props.location[1]}`}
+              center={this.props.location}
+              color={this.props.color}
+              radius={this.props.volume * 600}
+            />
+            <Marker position={this.props.location} icon={text} />
+          </>
         )}
         <audio
           id={`audio-${this.props.file}`}

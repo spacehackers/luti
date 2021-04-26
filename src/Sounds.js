@@ -4,6 +4,7 @@ import L from "leaflet";
 import { tsv } from "d3-fetch";
 import throttle from "lodash/throttle";
 import Sound from "./Sound";
+import { xy_to_bounds } from "./vid_config";
 
 const debug_sound_source =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vQbyxIWPplJbfSWBRfpSNmho-6LcS1xgEWd8VRLAn3R1dkvWQP3-OHLrFuA4_NgeMk9y3JKzkWzMwWW/pub?gid=0&single=true&output=tsv";
@@ -32,10 +33,13 @@ export default class Sounds extends React.Component {
   componentDidMount() {
     this.mounted = true;
     tsv(debug_sound_source, sound => {
+      const bounds = xy_to_bounds(parseInt(sound.X, 10), parseInt(sound.Y, 10));
+      const llb = L.latLngBounds(bounds);
+      this.latlngs[sound.File] = llb.getCenter();
+      console.log("XY", sound.X, sound.Y, bounds);
       this.setState(prevState => ({
         sounds: [...prevState.sounds, sound]
       }));
-      this.latlngs[sound.File] = new L.LatLng(sound.X, sound.Y);
     });
     this.setState({ paused: this.props.paused });
     if (this.props.map) {
@@ -64,10 +68,7 @@ export default class Sounds extends React.Component {
     const center = bounds.getCenter();
     const radius = L.CRS.Simple.distance(bounds.getNorthWest(), center);
     this.state.sounds.forEach(sound => {
-      const location = new L.LatLng(
-        parseInt(sound.X, 10),
-        parseInt(sound.Y, 10)
-      );
+      const location = this.latlngs[sound.File];
       let v = Math.abs(L.CRS.Simple.distance(center, location)) / radius;
       if (v > 1) {
         v = 1;
@@ -81,8 +82,9 @@ export default class Sounds extends React.Component {
   };
 
   keyForSound = sound => {
-    const location = [parseInt(sound.X, 10), parseInt(sound.Y, 10)];
-    return `sound-${location[0]}-${location[1]}`;
+    console.log(this.latlngs);
+    const location = this.latlngs[sound.File];
+    return `sound-${location.lat}-${location.lng}`;
   };
 
   analyserForSound = sound => {
@@ -103,11 +105,11 @@ export default class Sounds extends React.Component {
       <>
         (this.props.debug && (
         <Control position="topright">
-          <div id="sound-debug">
+          <div className="sound-debug">
             {this.state.sounds.map(sound => (
               <div key={`debug-${this.keyForSound(sound)}`}>
-                {sound.File}: <br />[{parseInt(sound.X, 10)},{" "}
-                {parseInt(sound.Y, 10)}] <br />
+                {sound.File}
+                <br />
                 <div
                   style={{
                     height: "10px",
@@ -125,7 +127,7 @@ export default class Sounds extends React.Component {
         </Control>
         ));
         {this.state.sounds.map(sound => {
-          const location = [parseInt(sound.X, 10), parseInt(sound.Y, 10)];
+          const location = this.latlngs[sound.File];
           const key = this.keyForSound(sound);
           return (
             <Sound
