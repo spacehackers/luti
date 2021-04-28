@@ -9,7 +9,7 @@ import {
   cloudfront_base_url,
   base_url,
   bounds_to_xy,
-  xy_to_bounds
+  xy_to_bounds,
 } from "./vid_config";
 
 export default class Videos extends React.Component {
@@ -19,7 +19,7 @@ export default class Videos extends React.Component {
     this.alreadyIndexedIds = {};
     this.state = {
       canplay: {},
-      visible: true
+      visible: true,
     };
 
     this.getCenterVideo = () => {
@@ -54,7 +54,7 @@ export default class Videos extends React.Component {
         this.setState(prevState => {
           const canplay = {
             ...prevState.canplay,
-            [id]: true
+            [id]: true,
           };
           if (this.props.onVideoStatusChange) {
             this.props.onVideoStatusChange(canplay);
@@ -73,7 +73,7 @@ export default class Videos extends React.Component {
         this.setState(prevState => {
           const canplay = {
             ...prevState.canplay,
-            [id]: false
+            [id]: false,
           };
           if (this.props.onVideoStatusChange) {
             this.props.onVideoStatusChange(canplay);
@@ -110,13 +110,13 @@ export default class Videos extends React.Component {
     };
     this.handleOnMove = _.throttle(handleOnMove, 50, {
       leading: true,
-      trailing: true
+      trailing: true,
     });
 
     this.disableAllVideos = () => {
       console.debug("TIMEOUT: DISABLE ALL VIDEOS");
       this.setState({
-        globalDisable: true
+        globalDisable: true,
       });
     };
 
@@ -124,7 +124,7 @@ export default class Videos extends React.Component {
       if (this.state.globalDisable) {
         console.debug("TIMEOUT ENDED: ENABLE ALL VIDEOS");
         this.setState({
-          globalDisable: false
+          globalDisable: false,
         });
       }
       clearTimeout(this.deadMansSwitch);
@@ -156,7 +156,7 @@ export default class Videos extends React.Component {
           eventName,
           _.throttle(this.resetDeadMansSwitch, 50, {
             leading: true,
-            trailing: true
+            trailing: true,
           })
         )
     );
@@ -175,7 +175,7 @@ export default class Videos extends React.Component {
       "canplay",
       "xy_bounds",
       "visible",
-      "globalDisable"
+      "globalDisable",
     ];
     let updateOk = false;
     updatable_state.forEach(name => {

@@ -13,7 +13,7 @@ const TRANSITION_SPEED = 500;
 const propTypes = {
   title: PropTypes.string.isRequired,
   desc: PropTypes.node.isRequired,
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
 };
 
 export default class Info extends React.Component {
@@ -21,12 +21,12 @@ export default class Info extends React.Component {
     super(props);
 
     this.state = {
-      hidden: true
+      hidden: true,
     };
 
     this.handleClick = debounce(this.handleClick, 500, {
       leading: true,
-      trailing: false
+      trailing: false,
     });
   }
 
@@ -35,16 +35,16 @@ export default class Info extends React.Component {
     body.classList.add("overflow-hidden");
   }
 
-  handleClick = () => {
+  handleClick() {
     this.setState(
       prevState => ({ hidden: !prevState.hidden }),
       () => {
         this.handleOpen();
       }
     );
-  };
+  }
 
-  handleOpen = () => {
+  handleOpen() {
     const map = document.getElementsByClassName("leaflet-container")[0];
 
     if (this.state.hidden) {
@@ -73,11 +73,11 @@ export default class Info extends React.Component {
       "Woah! Check out this microscopic creature I found on Life Under The Ice:";
     const encodedMessage = encodeURIComponent(message);
     const encodedURI = encodeURIComponent(this.props.url);
-    const shareClick = e => {
+    const shareClick = () => {
       navigator
         .share({
           text: message,
-          url: this.props.url
+          url: this.props.url,
         })
         .then(() => {
           console.debug("Thanks for sharing!");
@@ -170,7 +170,7 @@ export default class Info extends React.Component {
           alt=""
         />
       </button>
-    )
+    );
   }
 
   renderInfo() {

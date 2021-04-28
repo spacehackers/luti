@@ -18,7 +18,7 @@ export const hls_config = {
   enableWorker: true,
   capLevelToPlayerSize: true,
   maxBufferSize: 30,
-  maxBufferLength: 5
+  maxBufferLength: 5,
 };
 
 export const vid_config = {
@@ -26,26 +26,22 @@ export const vid_config = {
   autoplay: true,
   playsinline: true,
   loop: true,
-  controls: true
+  controls: true,
 };
 
 export const style = { height: `${img_height}px`, width: `${img_width}px` };
 
-export const bounds_to_xy = bounds => {
-  return {
-    x_bottom_left: Math.floor(bounds.getSouthWest().lng / (img_width - 1)),
-    y_bottom_left: Math.floor(bounds.getSouthWest().lat / (img_height - 1)),
-    x_top_right: Math.floor(bounds.getNorthEast().lng / (img_width - 1)),
-    y_top_right: Math.floor(bounds.getNorthEast().lat / (img_height - 1))
-  };
-};
+export const bounds_to_xy = bounds => ({
+  x_bottom_left: Math.floor(bounds.getSouthWest().lng / (img_width - 1)),
+  y_bottom_left: Math.floor(bounds.getSouthWest().lat / (img_height - 1)),
+  x_top_right: Math.floor(bounds.getNorthEast().lng / (img_width - 1)),
+  y_top_right: Math.floor(bounds.getNorthEast().lat / (img_height - 1)),
+});
 
-export const xy_to_bounds = (x, y) => {
-  return [
-    [(y + 0) * (img_height - 1), (x + 0) * (img_width - 1)],
-    [(y + 1) * (img_height + 0), (x + 1) * (img_width + 0)]
-  ];
-};
+export const xy_to_bounds = (x, y) => [
+  [(y + 0) * (img_height - 1), (x + 0) * (img_width - 1)],
+  [(y + 1) * (img_height + 0), (x + 1) * (img_width + 0)],
+];
 
 export const zoomSettings = () => {
   const screenPixels = window.screen.width * window.screen.height;
@@ -55,13 +51,13 @@ export const zoomSettings = () => {
       minZoom: -1.5,
       initZoom: -1.01,
       maxZoom: 0.1,
-      boundsPad: 0.1
+      boundsPad: 0.1,
     };
   }
   return {
     minZoom: -0.85,
     initZoom: -0.6,
     maxZoom: -0.1,
-    boundsPad: 0.25
+    boundsPad: 0.25,
   };
 };

@@ -14,7 +14,7 @@ export default class Sounds extends React.Component {
     super(props);
     this.state = {
       sounds: [],
-      volume: {}
+      volume: {},
     };
     this.latlngs = {};
     this.analysers = {};
@@ -26,7 +26,7 @@ export default class Sounds extends React.Component {
     };
     this.handleOnMove = throttle(handleOnMove, 50, {
       leading: true,
-      trailing: true
+      trailing: true,
     });
   }
 
@@ -38,7 +38,7 @@ export default class Sounds extends React.Component {
       this.latlngs[sound.File] = llb.getCenter();
       console.log("XY", sound.X, sound.Y, bounds);
       this.setState(prevState => ({
-        sounds: [...prevState.sounds, sound]
+        sounds: [...prevState.sounds, sound],
       }));
     });
     this.setState({ paused: this.props.paused });
@@ -58,7 +58,7 @@ export default class Sounds extends React.Component {
     }
   }
 
-  calculateAudioPositions = () => {
+  calculateAudioPositions() {
     if (!this.props.map) {
       return;
     }
@@ -79,15 +79,15 @@ export default class Sounds extends React.Component {
       volume[this.keyForSound(sound)] = 1 - v;
     });
     this.setState({ volume });
-  };
+  }
 
-  keyForSound = sound => {
+  keyForSound(sound) {
     console.log(this.latlngs);
     const location = this.latlngs[sound.File];
     return `sound-${location.lat}-${location.lng}`;
-  };
+  }
 
-  analyserForSound = sound => {
+  analyserForSound(sound) {
     const key = this.keyForSound(sound);
     if (!(key in this.analysers)) {
       const analyser = this.audioContext.createAnalyser();
@@ -95,7 +95,7 @@ export default class Sounds extends React.Component {
       this.analysers[key] = analyser;
     }
     return this.analysers[key];
-  };
+  }
 
   render() {
     if (!this.props.enabled) {
@@ -114,9 +114,11 @@ export default class Sounds extends React.Component {
                   style={{
                     height: "10px",
                     backgroundColor: sound.Color,
-                    width: `${(
-                      this.state.volume[this.keyForSound(sound)] || 0
-                    ).toFixed(2) * 50}px`
+                    width: `${
+                      (this.state.volume[this.keyForSound(sound)] || 0).toFixed(
+                        2
+                      ) * 50
+                    }px`,
                   }}
                 >
                   &nbsp;

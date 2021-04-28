@@ -28,41 +28,43 @@ export default class Sound extends React.Component {
     }
   }
 
-  setupAudio = mp3 => audio => {
-    if (!audio) return;
-    if (this.track) return;
+  setupAudio(mp3) {
+    return audio => {
+      if (!audio) return;
+      if (this.track) return;
 
-    this.audio = audio;
-    this.audio.crossOrigin = "anonymous";
-    this.audio.src = mp3_source_prefix + mp3;
-    this.audio.loop = true;
-    this.audio.autoplay = true;
-    if (!this.props.paused) {
-      console.log("INIT PLAY");
-      this.audio.play();
-    }
+      this.audio = audio;
+      this.audio.crossOrigin = "anonymous";
+      this.audio.src = mp3_source_prefix + mp3;
+      this.audio.loop = true;
+      this.audio.autoplay = true;
+      if (!this.props.paused) {
+        console.log("INIT PLAY");
+        this.audio.play();
+      }
 
-    this.track = this.props.audioContext.createMediaElementSource(audio);
-    this.gain = this.props.audioContext.createGain();
-    this.pan = this.props.audioContext.createStereoPanner();
+      this.track = this.props.audioContext.createMediaElementSource(audio);
+      this.gain = this.props.audioContext.createGain();
+      this.pan = this.props.audioContext.createStereoPanner();
 
-    this.track
-      .connect(this.gain)
-      .connect(this.pan)
-      .connect(this.props.analyser)
-      .connect(this.props.audioContext.destination);
+      this.track
+        .connect(this.gain)
+        .connect(this.pan)
+        .connect(this.props.analyser)
+        .connect(this.props.audioContext.destination);
 
-    this.applyAudioSettings();
-  };
+      this.applyAudioSettings();
+    };
+  }
 
-  applyAudioSettings = () => {
+  applyAudioSettings() {
     this.gain.gain.value = this.props.volume;
-  };
+  }
 
   render() {
     const text = L.divIcon({
       html: `<div class="sound-debug">${this.props.file}</div>`,
-      iconSize: "auto"
+      iconSize: "auto",
     });
 
     return (
