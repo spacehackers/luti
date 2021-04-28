@@ -50,14 +50,14 @@ const VIDEO_PLAY_TIMEOUT = 10000;
 
 class Homepage extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.startupTime = Date.now();
+    this.startupTime = Date.now()
 
     setTimeout(() => this.forceUpdate(), VIDEO_PLAY_TIMEOUT);
 
     this.calculate_initial_video = (x, y, hash) => {
-      let init_video;
+      let init_video
       if (hash !== undefined) {
         init_video = video_layout.filter(v => v.hash === hash)[0];
       } else if (x === undefined || y === undefined) {
@@ -72,8 +72,8 @@ class Homepage extends React.Component {
 
     this.init_center = () => {
       // offset a little to center the initial tardigrade better on iPhone X screen
-      const center = this.state.initialVideo.bounds().getCenter();
-      return L.latLng(center.lat - 120, center.lng - 100);
+      const center = this.state.initialVideo.bounds().getCenter()
+      return L.latLng(center.lat - 120, center.lng - 100)
     };
 
     L.Map.include(L.LayerIndexMixin);
@@ -107,10 +107,10 @@ class Homepage extends React.Component {
               return { introVisible: false };
             }
             return null;
-          });
+          })
         }, 500);
-      }
-    };
+      };
+    }
 
     this.onVideoChange = currentVideo => {
       this.setState(prevState => {
@@ -134,7 +134,7 @@ class Homepage extends React.Component {
     this.updateVideoStatus = status => {
       const videosPlaying = Object.keys(status).length;
       this.setState({ videosPlaying });
-    };
+    }
   }
 
   render() {
@@ -185,7 +185,12 @@ class Homepage extends React.Component {
           <meta property="og:description" content={helmetData.description} />
           <meta property="og:image" content={helmetData.image} />
         </Helmet>
-        <Intro visible={this.state.introVisible}>{introMessage}</Intro>
+        <Intro
+          visible={this.state.introVisible}
+          displayMode={this.props.displayMode}
+        >
+          {introMessage}
+        </Intro>
         {!this.props.hidden && (
           <Map
             key="map"
@@ -223,10 +228,14 @@ class Homepage extends React.Component {
           </Map>
         )}
         {this.state.currentVideo && this.state.videosPlaying > 0 && (
-          <Info hidden={false} {...this.state.currentVideo.info()} />
+          <Info
+            hidden={false}
+            {...this.state.currentVideo.info()}
+            displayMode={this.props.displayMode}
+          />
         )}
       </>
-    );
+    )
   }
 }
 

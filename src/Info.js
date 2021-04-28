@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { CSSTransition } from "react-transition-group";
+import classNames from "classnames";
 import debounce from "lodash/debounce";
+
+import { CSSTransition } from "react-transition-group";
 
 import "./Info.scss";
 import "./InfoButton.scss";
@@ -57,7 +59,7 @@ export default class Info extends React.Component {
       map.addEventListener("touchstart", this.handleClick);
       map.addEventListener("touchmove", this.handleClick);
     }, 100);
-  };
+  }
 
   getAriaLabel() {
     if (this.state.open) {
@@ -154,16 +156,21 @@ export default class Info extends React.Component {
   }
 
   renderButton() {
+    const img =
+      this.props.displayMode === "dark"
+        ? "/LUTI_WhatsThis5.svg"
+        : "/LUTI_WhatsThis5.svg"; // todo: update with dark mode svg
+
     return (
       <button type="button" className="info-button" onClick={this.handleClick}>
         <img
           className="info-toggle"
-          src="/LUTI_WhatsThis5.svg"
+          src={img}
           aria-label={this.getAriaLabel()}
           alt=""
         />
       </button>
-    );
+    )
   }
 
   renderInfo() {
@@ -180,7 +187,7 @@ export default class Info extends React.Component {
 
   renderInfoWrapper() {
     return (
-      <div className="info-wrapper">
+      <div className={classNames("info-wrapper", this.props.displayMode)}>
         {this.renderInfo()}
         {this.renderSharingButtons()}
       </div>

@@ -9,15 +9,20 @@ $content_height: 315px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #666666;
   font-size: 1.2em;
+
+  color: $page_color;
+
+  &.dark {
+    color: $page_color_dark;
+  }
 
   .wrapper {
     width: 100%;
     max-width: 760px;
     margin: 85px 100px;
     padding: 20px 50px;
-    background-color: #f6f6f6;
+    background-color: $page_background;
 
     @media (max-width: $mobile_breakpoint) {
       margin: 60px 0px;
@@ -25,6 +30,12 @@ $content_height: 315px;
 
     @media (min-width: $large_breakpoint) {
       padding: 30px 120px;
+    }
+  }
+
+  &.dark {
+    .wrapper {
+      background-color: $page_background_dark;
     }
   }
 
@@ -107,12 +118,22 @@ $content_height: 315px;
   }
 
   a {
-    color: lightcoral;
+    color: $link;
     padding: 0 1px;
   }
 
   a:hover {
-    color: indianred;
+    color: $link_hover;
+  }
+
+  &.dark {
+    a {
+      color: $link_dark;
+    }
+
+    a:hover {
+      color: $link_hover_dark;
+    }
   }
 
   .contact {

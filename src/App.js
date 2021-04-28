@@ -3,6 +3,7 @@ import WebFont from "webfontloader";
 import ReactGA from "react-ga";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { DARK_MODE_HASH, LIGHT_MODE_HASH } from "./constants.js";
 
 import Menu from "./Menu";
 import Homepage from "./Homepage";
@@ -13,6 +14,7 @@ import GAListener from "./GAListener";
 import "./App.scss";
 
 const trackingId = "UA-153597890-1";
+
 ReactGA.initialize(trackingId);
 
 export default class App extends React.Component {
@@ -20,7 +22,8 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      hideMap: true
+      hideMap: true,
+      displayMode: LIGHT_MODE_HASH.slice(1)
     };
 
     WebFont.load({
@@ -31,14 +34,16 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    // redirect to home on reload from localhost with hash
-    // great for debugging and maybe a feature?
-    // if (window.location.hash && document.referrer.includes("localhost")) {
-    //   document.location.href = "/"
-    // }
+    const urlHash = window.location.hash
+
+    if (urlHash === DARK_MODE_HASH) {
+      const displayMode = DARK_MODE_HASH.slice(1)
+      this.setState({ displayMode: displayMode })
+      document.body.classList.add(displayMode)
+    }
 
     window.setTimeout(() => {
-      this.setState({ hideMap: false });
+      this.setState({ hideMap: false })
     }, 500);
   }
 
@@ -51,22 +56,25 @@ export default class App extends React.Component {
               path="/videos"
               component={() => {
                 window.location.href =
-                  "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/";
+                  "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/"
                 return null;
               }}
             />
 
             <Route path="/about">
-              <Menu page="about" />
-              <About />
+              <Menu page="about" displayMode={this.state.displayMode} />
+              <About displayMode={this.state.displayMode} />
             </Route>
             <Route path="/thanks">
-              <Menu page="thanks" />
-              <Acknowledgements />
+              <Menu page="thanks" displayMode={this.state.displayMode} />
+              <Acknowledgements displayMode={this.state.displayMode} />
             </Route>
             <Route path="/:x?/:y?/:hash?">
-              <Menu page="home" />
-              <Homepage hidden={this.state.hideMap} />
+              <Menu page="home" displayMode={this.state.displayMode} />
+              <Homepage
+                hidden={this.state.hideMap}
+                displayMode={this.state.displayMode}
+              />
             </Route>
           </Switch>
         </GAListener>

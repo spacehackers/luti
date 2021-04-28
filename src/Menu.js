@@ -1,4 +1,6 @@
 import React from "react"
+import classNames from "classnames"
+
 import { CSSTransition } from "react-transition-group"
 import { TRANSITION_SPEED, MOBILE_BREAKPOINT } from "./constants.js"
 
@@ -90,7 +92,10 @@ export default class Menu extends React.Component {
   renderItem(menuItem, key) {
     const { slug, content } = menuItem
     const hidden = this.hidden(slug) ? "hidden" : ""
-    const href = slug === "home" || slug === "anchor" ? "/" : `/${slug}` // #${hash}`
+    const hash = window.location.hash
+
+    const href =
+      slug === "home" || slug === "anchor" ? `/${hash}` : `/${slug}${hash}`
 
     let selected = slug === this.state.selected ? "selected" : ""
 
@@ -138,7 +143,7 @@ export default class Menu extends React.Component {
     return (
       <nav>
         <CSSTransition in={this.state.open} timeout={TRANSITION_SPEED}>
-          <ul className="menu">
+          <ul className={classNames("menu", this.props.displayMode)}>
             {menuData.map((menuItem, key) => this.renderItem(menuItem, key))}
           </ul>
         </CSSTransition>

@@ -9,7 +9,7 @@ $speed: 600ms;
 $offscreen: -$max-height;
 
 .info-wrapper {
-  background: #f6f6f6;
+  background: $info_wrapper_bg;
   bottom: $offscreen;
   display: flex;
   font-size: 16px;
@@ -20,6 +20,10 @@ $offscreen: -$max-height;
   position: absolute;
   right: 0;
   z-index: $z-index-map + 1; // cover the button too
+
+  &.dark {
+    background: $info_wrapper_bg_dark;
+  }
 
   @media (min-width: $mobile_breakpoint) {
     overflow-y: hidden;
@@ -32,21 +36,33 @@ $offscreen: -$max-height;
   .info-title {
     h1 {
       font-size: 40px;
-      color: #666666;
+      color: $title;
       margin: 0;
     }
 
     flex: 1;
   }
 
+  &.dark {
+    h1 {
+      color: $title_dark;
+    }
+  }
+
   .info-description {
-    color: #888888;
+    color: $description;
     flex: 2;
     font-family: roboto-condensed, sans-serif;
     font-size: 20px;
     font-weight: 300;
     margin-bottom: 20px;
     text-transform: none;
+  }
+
+  &.dark {
+    .info-description {
+      color: $description_dark;
+    }
   }
 
   .share-links,
@@ -68,9 +84,9 @@ $offscreen: -$max-height;
   }
 
   .share-links-mobile button {
-    background-color: #888888;
+    background-color: $share_links_bg_color;
+    color: share_links_color;
     border: 0;
-    color: white;
     font-family: roboto-condensed, sans-serif;
     font-size: 20px;
     font-weight: 400;
@@ -78,6 +94,13 @@ $offscreen: -$max-height;
     padding: 10px;
     text-decoration: none;
     text-transform: none;
+  }
+
+  &.dark {
+    .info-description {
+      background-color: $share_links_bg_color_dark;
+      color: share_links_color_dark;
+    }
   }
 
   .share-links {

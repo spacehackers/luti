@@ -10,9 +10,7 @@ const Intro = props => {
     <div className="intro">
       <CSSTransition in={props.visible} timeout={TRANSITION_SPEED}>
         <h2
-          className={classNames({
-            hidden: !props.visible
-          })}
+          className={classNames(props.displayMode, { hidden: !props.visible })}
         >
           {props.children}
         </h2>
