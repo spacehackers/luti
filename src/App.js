@@ -34,14 +34,9 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    // redirect to home on reload from localhost with hash
-    // great for debugging and maybe a feature?
-    // if (window.location.hash && document.referrer.includes("localhost")) {
-    //   document.location.href = "/"
-    // }
+    const urlHash = window.location.hash
 
-    console.log(window.location.hash)
-    if (window.location.hash === DARK_MODE_HASH) {
+    if (urlHash === DARK_MODE_HASH) {
       const displayMode = DARK_MODE_HASH.slice(1)
       this.setState({ displayMode: displayMode })
       document.body.classList.add(displayMode)
