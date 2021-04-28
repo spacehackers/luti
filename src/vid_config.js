@@ -3,10 +3,10 @@ const _ = require("lodash");
 export const img_height = 1080;
 export const img_width = 1920;
 
-export const x_count = video_layout =>
-  _.max(video_layout.map(l => parseInt(l.x, 10))) + 1;
-export const y_count = video_layout =>
-  _.max(video_layout.map(l => parseInt(l.y, 10))) + 1;
+export const x_count = (video_layout) =>
+  _.max(video_layout.map((l) => parseInt(l.x, 10))) + 1;
+export const y_count = (video_layout) =>
+  _.max(video_layout.map((l) => parseInt(l.y, 10))) + 1;
 
 export const base_url = "https://lifeundertheice.s3.amazonaws.com/";
 export const cloudfront_base_url = "https://d30lzybxi44477.cloudfront.net/";
@@ -31,17 +31,21 @@ export const vid_config = {
 
 export const style = { height: `${img_height}px`, width: `${img_width}px` };
 
-export const bounds_to_xy = bounds => ({
-  x_bottom_left: Math.floor(bounds.getSouthWest().lng / (img_width - 1)),
-  y_bottom_left: Math.floor(bounds.getSouthWest().lat / (img_height - 1)),
-  x_top_right: Math.floor(bounds.getNorthEast().lng / (img_width - 1)),
-  y_top_right: Math.floor(bounds.getNorthEast().lat / (img_height - 1)),
-});
+export const bounds_to_xy = (bounds) => {
+  return {
+    x_bottom_left: Math.floor(bounds.getSouthWest().lng / (img_width - 1)),
+    y_bottom_left: Math.floor(bounds.getSouthWest().lat / (img_height - 1)),
+    x_top_right: Math.floor(bounds.getNorthEast().lng / (img_width - 1)),
+    y_top_right: Math.floor(bounds.getNorthEast().lat / (img_height - 1)),
+  };
+};
 
-export const xy_to_bounds = (x, y) => [
-  [(y + 0) * (img_height - 1), (x + 0) * (img_width - 1)],
-  [(y + 1) * (img_height + 0), (x + 1) * (img_width + 0)],
-];
+export const xy_to_bounds = (x, y) => {
+  return [
+    [(y + 0) * (img_height - 1), (x + 0) * (img_width - 1)],
+    [(y + 1) * (img_height + 0), (x + 1) * (img_width + 0)],
+  ];
+};
 
 export const zoomSettings = () => {
   const screenPixels = window.screen.width * window.screen.height;

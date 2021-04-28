@@ -27,9 +27,9 @@ import {
   zoomSettings,
 } from "./vid_config";
 
-const video_layout = video_layout_data.map(data => new VideoData(data));
+const video_layout = video_layout_data.map((data) => new VideoData(data));
 
-L.LatLngBounds.fromBBoxString = bbox => {
+L.LatLngBounds.fromBBoxString = (bbox) => {
   const [west, south, east, north] = bbox.split(",").map(parseFloat);
   return new L.LatLngBounds(
     new L.LatLng(south, west),
@@ -59,12 +59,12 @@ class Homepage extends React.Component {
     this.calculate_initial_video = (x, y, hash) => {
       let init_video;
       if (hash !== undefined) {
-        init_video = video_layout.filter(v => v.hash === hash)[0];
+        init_video = video_layout.filter((v) => v.hash === hash)[0];
       } else if (x === undefined || y === undefined) {
-        init_video = video_layout.filter(v => v.init_position)[0];
+        init_video = video_layout.filter((v) => v.init_position)[0];
       } else {
         init_video = video_layout.filter(
-          v => v.x === parseInt(x, 10) && v.y === parseInt(y, 10)
+          (v) => v.x === parseInt(x, 10) && v.y === parseInt(y, 10)
         )[0];
       }
       return init_video;
@@ -102,7 +102,7 @@ class Homepage extends React.Component {
 
       if (this.state.introVisible && this.state.videosPlaying > 0) {
         setTimeout(() => {
-          this.setState(prevState => {
+          this.setState((prevState) => {
             if (prevState.introVisible) {
               return { introVisible: false };
             }
@@ -112,8 +112,8 @@ class Homepage extends React.Component {
       }
     };
 
-    this.onVideoChange = currentVideo => {
-      this.setState(prevState => {
+    this.onVideoChange = (currentVideo) => {
+      this.setState((prevState) => {
         if (isEqual(prevState.currentVideo, currentVideo)) {
           return undefined;
         }
@@ -131,7 +131,7 @@ class Homepage extends React.Component {
       });
     };
 
-    this.updateVideoStatus = status => {
+    this.updateVideoStatus = (status) => {
       const videosPlaying = Object.keys(status).length;
       this.setState({ videosPlaying });
     };

@@ -21,26 +21,13 @@ const VIDEO_EVENTS = [
 ];
 
 export default class Video extends React.Component {
-  static showCanplayStatus(video, canplay) {
-    if (canplay) {
-      video.classList.remove("video-loading");
-      video.classList.add("video-playing");
-    } else {
-      video.classList.add("video-loading");
-      video.classList.remove("video-playing");
-    }
-  }
+  loaded = false;
 
-  constructor() {
-    super();
-    this.loaded = false;
+  enabled = false;
 
-    this.enabled = false;
+  hls = undefined;
 
-    this.hls = undefined;
-  }
-
-  cachedHls(m3u8, autocreate) {
+  cachedHls = (m3u8, autocreate) => {
     if (autocreate && this.hls === undefined) {
       const hls = new Hls(hls_config);
       hls.on(Hls.Events.MEDIA_ATTACHED, () => {
@@ -53,38 +40,38 @@ export default class Video extends React.Component {
       this.hls = hls;
     }
     return this.hls;
-  }
+  };
 
-  addVideoListeners(video) {
-    VIDEO_EVENTS.forEach(name =>
+  addVideoListeners = (video) => {
+    VIDEO_EVENTS.forEach((name) =>
       video.addEventListener(name, this.props.eventLogger)
     );
-  }
+  };
 
-  removeVideoListeners(video) {
-    VIDEO_EVENTS.forEach(name =>
+  removeVideoListeners = (video) => {
+    VIDEO_EVENTS.forEach((name) =>
       video.removeEventListener(name, this.props.eventLogger)
     );
-  }
+  };
 
-  disableVideoHls() {
+  disableVideoHls = () => {
     const hls = this.cachedHls(this.props.m3u8, false);
     if (hls) {
       hls.detachMedia();
     }
-  }
+  };
 
-  disableVideoM3u8(ref) {
+  disableVideoM3u8 = (ref) => {
     const video = ref.leafletElement.getElement();
     this.removeVideoListeners(video);
 
     video.pause();
     video.removeAttribute("src");
     video.load();
-  }
+  };
 
   /* eslint-disable no-param-reassign */
-  configureVideo(video) {
+  configureVideo = (video) => {
     video.style.border = "1px solid rgb(0, 0, 0, 0.0)";
     video.width = 1920;
     video.height = 1080;
@@ -99,25 +86,25 @@ export default class Video extends React.Component {
     video.loop = true;
     video.style.objectFit = "cover";
     this.addVideoListeners(video);
-  }
+  };
   /* eslint-enable no-param-reassign */
 
-  enableVideoM3u8(ref) {
+  enableVideoM3u8 = (ref) => {
     const m3u8 = ref.props.m3u8;
     const video = ref.leafletElement.getElement();
 
     video.src = m3u8;
     this.configureVideo(video);
-  }
+  };
 
-  enableVideoHls(ref) {
+  enableVideoHls = (ref) => {
     const m3u8 = ref.props.m3u8;
     const video = ref.leafletElement.getElement();
 
     this.cachedHls(m3u8, true).attachMedia(video);
-  }
+  };
 
-  enableVideo(ref) {
+  enableVideo = (ref) => {
     if (ref === null) return;
     if (this.enabled) {
       return;
@@ -125,7 +112,7 @@ export default class Video extends React.Component {
     this.enabled = true;
 
     const video = ref.leafletElement.getElement();
-    Video.showCanplayStatus(video, this.props.canplay);
+    this.showCanplayStatus(video, this.props.canplay);
     if (video.tagName !== "VIDEO") return;
 
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
@@ -139,9 +126,9 @@ export default class Video extends React.Component {
       return;
     }
     console.debug("NOTHING WORKS TO ENABLE VIDEO");
-  }
+  };
 
-  disableVideo(ref) {
+  disableVideo = (ref) => {
     if (ref === null) return;
     if (!this.enabled) {
       return;
@@ -149,7 +136,7 @@ export default class Video extends React.Component {
     this.enabled = false;
 
     const video = ref.leafletElement.getElement();
-    Video.showCanplayStatus(video, this.props.canplay);
+    this.showCanplayStatus(video, this.props.canplay);
     if (video.tagName !== "VIDEO") return;
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
       console.debug("M3U8 DISABLE VIDEO", video.src);
@@ -162,7 +149,17 @@ export default class Video extends React.Component {
       return;
     }
     console.debug("NOTHING WORKS TO DISABLE VIDEO");
-  }
+  };
+
+  showCanplayStatus = (video, canplay) => {
+    if (canplay) {
+      video.classList.remove("video-loading");
+      video.classList.add("video-playing");
+    } else {
+      video.classList.add("video-loading");
+      video.classList.remove("video-playing");
+    }
+  };
 
   render() {
     if (!this.loaded) {
@@ -198,7 +195,7 @@ export default class Video extends React.Component {
       );
     }
 
-    const callback = ref =>
+    const callback = (ref) =>
       requestAnimationFrame(() =>
         this.props.visible ? this.enableVideo(ref) : this.disableVideo(ref)
       );

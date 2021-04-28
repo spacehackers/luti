@@ -50,7 +50,7 @@ export default class Menu extends React.Component {
     }
   }
 
-  handleKeyUp(e) {
+  handleKeyUp = (e) => {
     if (e.which !== 9) return;
     if (this.state.open) return;
     if (Menu.isMobile()) return;
@@ -73,7 +73,7 @@ export default class Menu extends React.Component {
 
       this.setState({ tabKeyPress: false, navigatingMap: true });
     }
-  }
+  };
 
   getAriaLabel() {
     if (this.state.open) {
@@ -83,7 +83,7 @@ export default class Menu extends React.Component {
   }
 
   hidden(slug) {
-    if (this.state.open || slug === "anchor") return false;
+    if (this.state.open || slug === "anchor") return null;
 
     return true;
   }

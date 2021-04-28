@@ -10,7 +10,7 @@ class PasswordPrompt extends React.Component {
       password: "",
     };
 
-    this.passwordAction = evt => {
+    this.passwordAction = (evt) => {
       evt.preventDefault();
       const timestamp = new Date().getTime();
       const expire = timestamp + 60 * 60 * 24 * 1000 * 30; // 30 days
@@ -50,7 +50,7 @@ class PasswordPrompt extends React.Component {
             Password:
             <input
               type="text"
-              onChange={evt => this.setState({ password: evt.target.value })}
+              onChange={(evt) => this.setState({ password: evt.target.value })}
             />
             <input type="submit" value="submit" />
           </label>

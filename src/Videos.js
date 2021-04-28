@@ -31,7 +31,7 @@ export default class Videos extends React.Component {
       const centerVideoXY = bounds_to_xy(center);
       const centerVideo = _.head(
         this.props.videoLayout.filter(
-          v =>
+          (v) =>
             centerVideoXY.x_bottom_left === v.x &&
             centerVideoXY.y_bottom_left === v.y
         )
@@ -44,14 +44,14 @@ export default class Videos extends React.Component {
 
     this.index = () => {};
 
-    this.eventLogger = id => evt => {
+    this.eventLogger = (id) => (evt) => {
       if (
         !this.state.canplay[id] &&
         (evt.type === "canplay" ||
           evt.type === "canplaythrough" ||
           evt.type === "playing")
       ) {
-        this.setState(prevState => {
+        this.setState((prevState) => {
           const canplay = {
             ...prevState.canplay,
             [id]: true,
@@ -70,7 +70,7 @@ export default class Videos extends React.Component {
           evt.type === "ended" ||
           evt.type === "emptied")
       ) {
-        this.setState(prevState => {
+        this.setState((prevState) => {
           const canplay = {
             ...prevState.canplay,
             [id]: false,
@@ -82,7 +82,7 @@ export default class Videos extends React.Component {
         });
       }
     };
-    this.isVisible = vid => {
+    this.isVisible = (vid) => {
       if (this.state.globalDisable) {
         return false;
       }
@@ -151,7 +151,7 @@ export default class Videos extends React.Component {
     );
     this.resetDeadMansSwitch();
     ["mouseover", "keydown", "scroll", "touchstart", "touchmove"].forEach(
-      eventName =>
+      (eventName) =>
         document.body.addEventListener(
           eventName,
           _.throttle(this.resetDeadMansSwitch, 50, {
@@ -178,7 +178,7 @@ export default class Videos extends React.Component {
       "globalDisable",
     ];
     let updateOk = false;
-    updatable_state.forEach(name => {
+    updatable_state.forEach((name) => {
       if (!_.isEqual(nextState[name], this.state[name])) {
         updateOk = true;
       }

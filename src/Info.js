@@ -35,16 +35,16 @@ export default class Info extends React.Component {
     body.classList.add("overflow-hidden");
   }
 
-  handleClick() {
+  handleClick = () => {
     this.setState(
-      prevState => ({ hidden: !prevState.hidden }),
+      (prevState) => ({ hidden: !prevState.hidden }),
       () => {
         this.handleOpen();
       }
     );
-  }
+  };
 
-  handleOpen() {
+  handleOpen = () => {
     const map = document.getElementsByClassName("leaflet-container")[0];
 
     if (this.state.hidden) {
@@ -59,7 +59,7 @@ export default class Info extends React.Component {
       map.addEventListener("touchstart", this.handleClick);
       map.addEventListener("touchmove", this.handleClick);
     }, 100);
-  }
+  };
 
   getAriaLabel() {
     if (this.state.open) {
