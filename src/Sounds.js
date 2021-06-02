@@ -3,6 +3,7 @@ import Control from "react-leaflet-control";
 import L from "leaflet";
 import { tsv } from "d3-fetch";
 import throttle from "lodash/throttle";
+import { ResonanceAudio } from "resonance-audio";
 import Sound from "./Sound";
 import { xy_to_bounds } from "./vid_config";
 
@@ -18,11 +19,36 @@ export default class Sounds extends React.Component {
     this.state = {
       sounds: [],
       volume: {},
+      position: {},
     };
     this.latlngs = {};
     this.analysers = {};
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     this.audioContext = new AudioContext();
+
+    this.resonance = new ResonanceAudio(this.audioContext);
+    this.resonance.output.connect(this.audioContext.destination);
+
+    const roomDimensions = {
+      width: 3.1,
+      height: 2.5,
+      depth: 3.4,
+    };
+
+    const roomMaterials = {
+      // Room wall materials
+      left: "brick-bare",
+      right: "curtain-heavy",
+      front: "marble",
+      back: "glass-thin",
+      // Room floor
+      down: "grass",
+      // Room ceiling
+      up: "transparent",
+    };
+
+    // Add the room definition to the scene.
+    this.resonance.setRoomProperties(roomDimensions, roomMaterials);
 
     const handleOnMove = () => {
       this.calculateAudioPositions();
@@ -70,11 +96,20 @@ export default class Sounds extends React.Component {
     }
 
     const volume = {};
+    const position = {};
     const bounds = this.props.map.getBounds().pad(0.1);
     const center = bounds.getCenter();
     const radius = L.CRS.Simple.distance(bounds.getNorthWest(), center);
+    const width = bounds.getNorthEast().lng - bounds.getNorthWest().lng;
+    const height = bounds.getNorthEast().lat - bounds.getSouthEast().lat;
     this.state.sounds.forEach((sound) => {
       const location = this.latlngs[sound.File];
+      const px = (2 * (location.lng - center.lng)) / width;
+      const py = (2 * (location.lat - center.lat)) / height;
+      if (sound.File === "C.mp3") {
+        console.log("DX DY", sound.File, width, height, px, py);
+      }
+
       let v = Math.abs(L.CRS.Simple.distance(center, location)) / radius;
       if (v > 1) {
         v = 1;
@@ -83,12 +118,12 @@ export default class Sounds extends React.Component {
         v = 0;
       }
       volume[this.keyForSound(sound)] = 1 - v;
+      position[this.keyForSound(sound)] = { x: px, y: py };
     });
-    this.setState({ volume });
+    this.setState({ volume, position });
   };
 
   keyForSound = (sound) => {
-    console.log(this.latlngs);
     const location = this.latlngs[sound.File];
     return `sound-${location.lat}-${location.lng}`;
   };
@@ -142,11 +177,13 @@ export default class Sounds extends React.Component {
               debug
               key={key}
               audioContext={this.audioContext}
+              resonance={this.resonance}
               location={location}
               color={sound.Color}
               file={sound.File}
               analyser={this.analyserForSound(sound)}
               volume={this.state.volume[key] || 0}
+              position={this.state.position[key] || { x: 0, y: 0 }}
               paused={this.state.paused}
             />
           );

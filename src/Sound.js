@@ -19,12 +19,19 @@ export default class Sound extends React.Component {
       }
       if (this.props.volume > 0) {
         this.gain.gain.exponentialRampToValueAtTime(
-          this.props.volume,
+          this.props.volume / 2,
           this.props.audioContext.currentTime + 1 / 50.0
         );
       } else {
         this.gain.gain.value = 0;
       }
+    }
+    if (this.resonance) {
+      this.resonance.setPosition(
+        this.props.position.x,
+        this.props.position.y + 1,
+        0
+      );
     }
   }
 
@@ -44,13 +51,13 @@ export default class Sound extends React.Component {
 
     this.track = this.props.audioContext.createMediaElementSource(audio);
     this.gain = this.props.audioContext.createGain();
-    this.pan = this.props.audioContext.createStereoPanner();
+    this.resonance = this.props.resonance.createSource();
+    this.resonance.setPosition(0, 0, 0);
 
     this.track
       .connect(this.gain)
-      .connect(this.pan)
       .connect(this.props.analyser)
-      .connect(this.props.audioContext.destination);
+      .connect(this.resonance.input);
 
     this.applyAudioSettings();
   };
