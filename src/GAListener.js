@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import ReactGA from "react-ga";
 import { useHistory } from "react-router-dom";
 
-const sendPageView = location => {
+const sendPageView = (location) => {
   ReactGA.set({ page: location.pathname });
   ReactGA.pageview(location.pathname);
   console.debug("GA|Pageview Sent: ", location.pathname);

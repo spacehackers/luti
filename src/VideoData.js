@@ -28,7 +28,7 @@ export default class VideoData {
           <br />
           {data.magnification}
         </>
-      )
+      ),
     });
   }
 }
