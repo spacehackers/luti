@@ -12,6 +12,9 @@ const debug_sound_source =
 export default class Sounds extends React.Component {
   constructor(props) {
     super(props);
+    if (!this.props.enabled) {
+      return;
+    }
     this.state = {
       sounds: [],
       volume: {},
@@ -31,6 +34,9 @@ export default class Sounds extends React.Component {
   }
 
   componentDidMount() {
+    if (!this.props.enabled) {
+      return;
+    }
     this.mounted = true;
     tsv(debug_sound_source, (sound) => {
       const bounds = xy_to_bounds(parseInt(sound.X, 10), parseInt(sound.Y, 10));
