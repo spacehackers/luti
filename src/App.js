@@ -3,7 +3,7 @@ import WebFont from "webfontloader";
 import ReactGA from "react-ga";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { DARK_MODE_HASH, LIGHT_MODE_HASH } from "./constants.js";
+import { DARK_MODE_HASH, LIGHT_MODE_HASH } from "./constants";
 
 import Menu from "./Menu";
 import Homepage from "./Homepage";
@@ -23,27 +23,27 @@ export default class App extends React.Component {
 
     this.state = {
       hideMap: true,
-      displayMode: LIGHT_MODE_HASH.slice(1)
+      displayMode: LIGHT_MODE_HASH.slice(1),
     };
 
     WebFont.load({
       typekit: {
-        id: "ikz3unr"
-      }
+        id: "ikz3unr",
+      },
     });
   }
 
   componentDidMount() {
-    const urlHash = window.location.hash
+    const urlHash = window.location.hash;
 
     if (urlHash === DARK_MODE_HASH) {
-      const displayMode = DARK_MODE_HASH.slice(1)
-      this.setState({ displayMode: displayMode })
-      document.body.classList.add(displayMode)
+      const displayMode = DARK_MODE_HASH.slice(1);
+      this.setState({ displayMode });
+      document.body.classList.add(displayMode);
     }
 
     window.setTimeout(() => {
-      this.setState({ hideMap: false })
+      this.setState({ hideMap: false });
     }, 500);
   }
 
@@ -56,7 +56,7 @@ export default class App extends React.Component {
               path="/videos"
               component={() => {
                 window.location.href =
-                  "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/"
+                  "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/";
                 return null;
               }}
             />

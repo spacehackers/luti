@@ -17,7 +17,7 @@ const VIDEO_EVENTS = [
   "pause",
   "suspend",
   "emptied",
-  "stalled"
+  "stalled",
 ];
 
 export default class Video extends React.Component {
@@ -42,14 +42,14 @@ export default class Video extends React.Component {
     return this.hls;
   };
 
-  addVideoListeners = video => {
-    VIDEO_EVENTS.forEach(name =>
+  addVideoListeners = (video) => {
+    VIDEO_EVENTS.forEach((name) =>
       video.addEventListener(name, this.props.eventLogger)
     );
   };
 
-  removeVideoListeners = video => {
-    VIDEO_EVENTS.forEach(name =>
+  removeVideoListeners = (video) => {
+    VIDEO_EVENTS.forEach((name) =>
       video.removeEventListener(name, this.props.eventLogger)
     );
   };
@@ -61,7 +61,7 @@ export default class Video extends React.Component {
     }
   };
 
-  disableVideoM3u8 = ref => {
+  disableVideoM3u8 = (ref) => {
     const video = ref.leafletElement.getElement();
     this.removeVideoListeners(video);
 
@@ -71,7 +71,7 @@ export default class Video extends React.Component {
   };
 
   /* eslint-disable no-param-reassign */
-  configureVideo = video => {
+  configureVideo = (video) => {
     video.style.border = "1px solid rgb(0, 0, 0, 0.0)";
     video.width = 1920;
     video.height = 1080;
@@ -89,7 +89,7 @@ export default class Video extends React.Component {
   };
   /* eslint-enable no-param-reassign */
 
-  enableVideoM3u8 = ref => {
+  enableVideoM3u8 = (ref) => {
     const m3u8 = ref.props.m3u8;
     const video = ref.leafletElement.getElement();
 
@@ -97,14 +97,14 @@ export default class Video extends React.Component {
     this.configureVideo(video);
   };
 
-  enableVideoHls = ref => {
+  enableVideoHls = (ref) => {
     const m3u8 = ref.props.m3u8;
     const video = ref.leafletElement.getElement();
 
     this.cachedHls(m3u8, true).attachMedia(video);
   };
 
-  enableVideo = ref => {
+  enableVideo = (ref) => {
     if (ref === null) return;
     if (this.enabled) {
       return;
@@ -128,7 +128,7 @@ export default class Video extends React.Component {
     console.debug("NOTHING WORKS TO ENABLE VIDEO");
   };
 
-  disableVideo = ref => {
+  disableVideo = (ref) => {
     if (ref === null) return;
     if (!this.enabled) {
       return;
@@ -174,11 +174,11 @@ export default class Video extends React.Component {
       <br />
       canplay: ${this.props.canplay} bounds: ${JSON.stringify(
         this.props.bounds
-      )} x,y: ${JSON.stringify(this.props.xy)}`
+      )} x,y: ${JSON.stringify(this.props.xy)}`,
     });
     const textLoc = [
       this.props.bounds[0][0] + 1000,
-      this.props.bounds[0][1] + 100
+      this.props.bounds[0][1] + 100,
     ];
     let debugMarker = <></>;
     if (this.props.debug) {
@@ -195,7 +195,7 @@ export default class Video extends React.Component {
       );
     }
 
-    const callback = ref =>
+    const callback = (ref) =>
       requestAnimationFrame(() =>
         this.props.visible ? this.enableVideo(ref) : this.disableVideo(ref)
       );

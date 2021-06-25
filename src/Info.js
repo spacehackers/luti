@@ -13,7 +13,7 @@ const TRANSITION_SPEED = 500;
 const propTypes = {
   title: PropTypes.string.isRequired,
   desc: PropTypes.node.isRequired,
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
 };
 
 export default class Info extends React.Component {
@@ -21,12 +21,12 @@ export default class Info extends React.Component {
     super(props);
 
     this.state = {
-      hidden: true
+      hidden: true,
     };
 
     this.handleClick = debounce(this.handleClick, 500, {
       leading: true,
-      trailing: false
+      trailing: false,
     });
   }
 
@@ -37,7 +37,7 @@ export default class Info extends React.Component {
 
   handleClick = () => {
     this.setState(
-      prevState => ({ hidden: !prevState.hidden }),
+      (prevState) => ({ hidden: !prevState.hidden }),
       () => {
         this.handleOpen();
       }
@@ -59,7 +59,7 @@ export default class Info extends React.Component {
       map.addEventListener("touchstart", this.handleClick);
       map.addEventListener("touchmove", this.handleClick);
     }, 100);
-  }
+  };
 
   getAriaLabel() {
     if (this.state.open) {
@@ -73,11 +73,11 @@ export default class Info extends React.Component {
       "Woah! Check out this microscopic creature I found on Life Under The Ice:";
     const encodedMessage = encodeURIComponent(message);
     const encodedURI = encodeURIComponent(this.props.url);
-    const shareClick = e => {
+    const shareClick = () => {
       navigator
         .share({
           text: message,
-          url: this.props.url
+          url: this.props.url,
         })
         .then(() => {
           console.debug("Thanks for sharing!");
@@ -170,7 +170,7 @@ export default class Info extends React.Component {
           alt=""
         />
       </button>
-    )
+    );
   }
 
   renderInfo() {
