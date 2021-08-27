@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import Page from "./Page/Page";
 
-const About = props => {
+const About = (props) => {
   const page = "About the Project";
 
   return (

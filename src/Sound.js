@@ -28,7 +28,7 @@ export default class Sound extends React.Component {
     }
   }
 
-  setupAudio = mp3 => audio => {
+  setupAudio = (mp3) => (audio) => {
     if (!audio) return;
     if (this.track) return;
 
@@ -62,7 +62,7 @@ export default class Sound extends React.Component {
   render() {
     const text = L.divIcon({
       html: `<div class="sound-debug">${this.props.file}</div>`,
-      iconSize: "auto"
+      iconSize: "auto",
     });
 
     return (

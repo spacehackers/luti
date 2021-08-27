@@ -9,7 +9,7 @@ import {
   cloudfront_base_url,
   base_url,
   bounds_to_xy,
-  xy_to_bounds
+  xy_to_bounds,
 } from "./vid_config";
 
 export default class Videos extends React.Component {
@@ -19,7 +19,7 @@ export default class Videos extends React.Component {
     this.alreadyIndexedIds = {};
     this.state = {
       canplay: {},
-      visible: true
+      visible: true,
     };
 
     this.getCenterVideo = () => {
@@ -31,7 +31,7 @@ export default class Videos extends React.Component {
       const centerVideoXY = bounds_to_xy(center);
       const centerVideo = _.head(
         this.props.videoLayout.filter(
-          v =>
+          (v) =>
             centerVideoXY.x_bottom_left === v.x &&
             centerVideoXY.y_bottom_left === v.y
         )
@@ -44,17 +44,17 @@ export default class Videos extends React.Component {
 
     this.index = () => {};
 
-    this.eventLogger = id => evt => {
+    this.eventLogger = (id) => (evt) => {
       if (
         !this.state.canplay[id] &&
         (evt.type === "canplay" ||
           evt.type === "canplaythrough" ||
           evt.type === "playing")
       ) {
-        this.setState(prevState => {
+        this.setState((prevState) => {
           const canplay = {
             ...prevState.canplay,
-            [id]: true
+            [id]: true,
           };
           if (this.props.onVideoStatusChange) {
             this.props.onVideoStatusChange(canplay);
@@ -70,10 +70,10 @@ export default class Videos extends React.Component {
           evt.type === "ended" ||
           evt.type === "emptied")
       ) {
-        this.setState(prevState => {
+        this.setState((prevState) => {
           const canplay = {
             ...prevState.canplay,
-            [id]: false
+            [id]: false,
           };
           if (this.props.onVideoStatusChange) {
             this.props.onVideoStatusChange(canplay);
@@ -82,7 +82,7 @@ export default class Videos extends React.Component {
         });
       }
     };
-    this.isVisible = vid => {
+    this.isVisible = (vid) => {
       if (this.state.globalDisable) {
         return false;
       }
@@ -110,13 +110,13 @@ export default class Videos extends React.Component {
     };
     this.handleOnMove = _.throttle(handleOnMove, 50, {
       leading: true,
-      trailing: true
+      trailing: true,
     });
 
     this.disableAllVideos = () => {
       console.debug("TIMEOUT: DISABLE ALL VIDEOS");
       this.setState({
-        globalDisable: true
+        globalDisable: true,
       });
     };
 
@@ -124,7 +124,7 @@ export default class Videos extends React.Component {
       if (this.state.globalDisable) {
         console.debug("TIMEOUT ENDED: ENABLE ALL VIDEOS");
         this.setState({
-          globalDisable: false
+          globalDisable: false,
         });
       }
       clearTimeout(this.deadMansSwitch);
@@ -151,12 +151,12 @@ export default class Videos extends React.Component {
     );
     this.resetDeadMansSwitch();
     ["mouseover", "keydown", "scroll", "touchstart", "touchmove"].forEach(
-      eventName =>
+      (eventName) =>
         document.body.addEventListener(
           eventName,
           _.throttle(this.resetDeadMansSwitch, 50, {
             leading: true,
-            trailing: true
+            trailing: true,
           })
         )
     );
@@ -175,10 +175,10 @@ export default class Videos extends React.Component {
       "canplay",
       "xy_bounds",
       "visible",
-      "globalDisable"
+      "globalDisable",
     ];
     let updateOk = false;
-    updatable_state.forEach(name => {
+    updatable_state.forEach((name) => {
       if (!_.isEqual(nextState[name], this.state[name])) {
         updateOk = true;
       }

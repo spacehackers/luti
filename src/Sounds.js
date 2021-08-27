@@ -12,9 +12,12 @@ const debug_sound_source =
 export default class Sounds extends React.Component {
   constructor(props) {
     super(props);
+    if (!this.props.enabled) {
+      return;
+    }
     this.state = {
       sounds: [],
-      volume: {}
+      volume: {},
     };
     this.latlngs = {};
     this.analysers = {};
@@ -26,19 +29,22 @@ export default class Sounds extends React.Component {
     };
     this.handleOnMove = throttle(handleOnMove, 50, {
       leading: true,
-      trailing: true
+      trailing: true,
     });
   }
 
   componentDidMount() {
+    if (!this.props.enabled) {
+      return;
+    }
     this.mounted = true;
-    tsv(debug_sound_source, sound => {
+    tsv(debug_sound_source, (sound) => {
       const bounds = xy_to_bounds(parseInt(sound.X, 10), parseInt(sound.Y, 10));
       const llb = L.latLngBounds(bounds);
       this.latlngs[sound.File] = llb.getCenter();
       console.log("XY", sound.X, sound.Y, bounds);
-      this.setState(prevState => ({
-        sounds: [...prevState.sounds, sound]
+      this.setState((prevState) => ({
+        sounds: [...prevState.sounds, sound],
       }));
     });
     this.setState({ paused: this.props.paused });
@@ -67,7 +73,7 @@ export default class Sounds extends React.Component {
     const bounds = this.props.map.getBounds().pad(0.1);
     const center = bounds.getCenter();
     const radius = L.CRS.Simple.distance(bounds.getNorthWest(), center);
-    this.state.sounds.forEach(sound => {
+    this.state.sounds.forEach((sound) => {
       const location = this.latlngs[sound.File];
       let v = Math.abs(L.CRS.Simple.distance(center, location)) / radius;
       if (v > 1) {
@@ -81,13 +87,13 @@ export default class Sounds extends React.Component {
     this.setState({ volume });
   };
 
-  keyForSound = sound => {
+  keyForSound = (sound) => {
     console.log(this.latlngs);
     const location = this.latlngs[sound.File];
     return `sound-${location.lat}-${location.lng}`;
   };
 
-  analyserForSound = sound => {
+  analyserForSound = (sound) => {
     const key = this.keyForSound(sound);
     if (!(key in this.analysers)) {
       const analyser = this.audioContext.createAnalyser();
@@ -106,7 +112,7 @@ export default class Sounds extends React.Component {
         (this.props.debug && (
         <Control position="topright">
           <div className="sound-debug">
-            {this.state.sounds.map(sound => (
+            {this.state.sounds.map((sound) => (
               <div key={`debug-${this.keyForSound(sound)}`}>
                 {sound.File}
                 <br />
@@ -114,9 +120,11 @@ export default class Sounds extends React.Component {
                   style={{
                     height: "10px",
                     backgroundColor: sound.Color,
-                    width: `${(
-                      this.state.volume[this.keyForSound(sound)] || 0
-                    ).toFixed(2) * 50}px`
+                    width: `${
+                      (this.state.volume[this.keyForSound(sound)] || 0).toFixed(
+                        2
+                      ) * 50
+                    }px`,
                   }}
                 >
                   &nbsp;
@@ -126,7 +134,7 @@ export default class Sounds extends React.Component {
           </div>
         </Control>
         ));
-        {this.state.sounds.map(sound => {
+        {this.state.sounds.map((sound) => {
           const location = this.latlngs[sound.File];
           const key = this.keyForSound(sound);
           return (

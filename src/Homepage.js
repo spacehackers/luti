@@ -24,12 +24,12 @@ import {
   y_count,
   img_width,
   img_height,
-  zoomSettings
+  zoomSettings,
 } from "./vid_config";
 
-const video_layout = video_layout_data.map(data => new VideoData(data));
+const video_layout = video_layout_data.map((data) => new VideoData(data));
 
-L.LatLngBounds.fromBBoxString = bbox => {
+L.LatLngBounds.fromBBoxString = (bbox) => {
   const [west, south, east, north] = bbox.split(",").map(parseFloat);
   return new L.LatLngBounds(
     new L.LatLng(south, west),
@@ -39,32 +39,32 @@ L.LatLngBounds.fromBBoxString = bbox => {
 
 const map_bounds = [
   [0, 0],
-  [y_count(video_layout) * img_height, x_count(video_layout) * img_width]
+  [y_count(video_layout) * img_height, x_count(video_layout) * img_width],
 ];
 
 const propTypes = {
-  hidden: PropTypes.bool
+  hidden: PropTypes.bool,
 };
 
 const VIDEO_PLAY_TIMEOUT = 10000;
 
 class Homepage extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.startupTime = Date.now()
+    this.startupTime = Date.now();
 
     setTimeout(() => this.forceUpdate(), VIDEO_PLAY_TIMEOUT);
 
     this.calculate_initial_video = (x, y, hash) => {
-      let init_video
+      let init_video;
       if (hash !== undefined) {
-        init_video = video_layout.filter(v => v.hash === hash)[0];
+        init_video = video_layout.filter((v) => v.hash === hash)[0];
       } else if (x === undefined || y === undefined) {
-        init_video = video_layout.filter(v => v.init_position)[0];
+        init_video = video_layout.filter((v) => v.init_position)[0];
       } else {
         init_video = video_layout.filter(
-          v => v.x === parseInt(x, 10) && v.y === parseInt(y, 10)
+          (v) => v.x === parseInt(x, 10) && v.y === parseInt(y, 10)
         )[0];
       }
       return init_video;
@@ -72,8 +72,8 @@ class Homepage extends React.Component {
 
     this.init_center = () => {
       // offset a little to center the initial tardigrade better on iPhone X screen
-      const center = this.state.initialVideo.bounds().getCenter()
-      return L.latLng(center.lat - 120, center.lng - 100)
+      const center = this.state.initialVideo.bounds().getCenter();
+      return L.latLng(center.lat - 120, center.lng - 100);
     };
 
     L.Map.include(L.LayerIndexMixin);
@@ -84,7 +84,7 @@ class Homepage extends React.Component {
       interacting: false,
       videosPlaying: 0,
       initialVideo: this.calculate_initial_video(x, y, hash),
-      currentVideo: this.calculate_initial_video(x, y, hash)
+      currentVideo: this.calculate_initial_video(x, y, hash),
     };
 
     this.handleOnMove = () => {
@@ -102,18 +102,18 @@ class Homepage extends React.Component {
 
       if (this.state.introVisible && this.state.videosPlaying > 0) {
         setTimeout(() => {
-          this.setState(prevState => {
+          this.setState((prevState) => {
             if (prevState.introVisible) {
               return { introVisible: false };
             }
             return null;
-          })
+          });
         }, 500);
-      };
-    }
+      }
+    };
 
-    this.onVideoChange = currentVideo => {
-      this.setState(prevState => {
+    this.onVideoChange = (currentVideo) => {
+      this.setState((prevState) => {
         if (isEqual(prevState.currentVideo, currentVideo)) {
           return undefined;
         }
@@ -127,14 +127,14 @@ class Homepage extends React.Component {
       this.setState({
         map: leafletElement,
         introVisible: true,
-        boundsPad: zoomSettings().boundsPad
+        boundsPad: zoomSettings().boundsPad,
       });
     };
 
-    this.updateVideoStatus = status => {
+    this.updateVideoStatus = (status) => {
       const videosPlaying = Object.keys(status).length;
       this.setState({ videosPlaying });
-    }
+    };
   }
 
   render() {
@@ -166,13 +166,13 @@ class Homepage extends React.Component {
       title: "Life Under the Ice",
       description:
         "An exploratory tour through the microscopic world of Antarctica. Each microbe tells a story of the weird and whimsical life in Antarctica that is otherwise invisible to the naked eye.",
-      image: "https://lifeundertheice.org/TwitterCard_Tardigrade.jpg"
+      image: "https://lifeundertheice.org/TwitterCard_Tardigrade.jpg",
     };
     if (this.state.currentVideo && !this.state.currentVideo.init_position) {
       helmetData = {
         title: `${this.state.currentVideo.title} - Life Under The Ice`,
         image: this.state.currentVideo.screenshot,
-        description: this.state.currentVideo.location
+        description: this.state.currentVideo.location,
       };
     }
     return (
@@ -235,7 +235,7 @@ class Homepage extends React.Component {
           />
         )}
       </>
-    )
+    );
   }
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import Page from "./Page/Page";
 
-const Acknowledgements = props => {
+const Acknowledgements = (props) => {
   const page = "Acknowledgements";
 
   return (
