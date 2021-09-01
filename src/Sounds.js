@@ -57,9 +57,11 @@ export default class Sounds extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.paused !== prevProps.paused) {
       setTimeout(() => {
-        console.log("RESUME AUDIO");
-        this.audioContext.resume();
-        this.setState({ paused: false });
+        if (this.audioContext) {
+          console.log("RESUME AUDIO");
+          this.audioContext.resume();
+          this.setState({ paused: false });
+        }
       }, 100);
     }
   }
