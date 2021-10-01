@@ -49,202 +49,282 @@
   },
   {
     "filename": "Dark_Edit_020720_LakeFryxellMicrobialMat_NikonE200_4x_DF_Nematode",
+    "x": 6,
+    "y": 0,
+    "title": "Dark_Edit_020720_LakeFryxellMicrobialMat_NikonE200_4x_DF_Nematode",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_Nostoc",
     "x": 0,
     "y": 1,
-    "title": "Dark_Edit_020720_LakeFryxellMicrobialMat_NikonE200_4x_DF_Nematode",
+    "title": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_Nostoc",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_Rotifer",
+    "x": 1,
+    "y": 1,
+    "title": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_Rotifer",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_RotiferAndDeadTardigrade_01",
+    "x": 2,
+    "y": 1,
+    "title": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_RotiferAndDeadTardigrade_01",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_RotiferAndDeadTardigrade_02",
+    "x": 3,
+    "y": 1,
+    "title": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_RotiferAndDeadTardigrade_02",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade_01_01",
+    "x": 4,
+    "y": 1,
+    "title": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade_01_01",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade_01_02",
+    "x": 5,
+    "y": 1,
+    "title": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade_01_02",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade_02",
+    "x": 6,
+    "y": 1,
+    "title": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade_02",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_20x_DF_Tardigrade",
+    "x": 0,
+    "y": 2,
+    "title": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_20x_DF_Tardigrade",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_4x_DF_ExplodedNostoc",
     "x": 1,
-    "y": 1,
+    "y": 2,
     "title": "Dark_Edit_021920_LakeFryxellMicrobialMat_NikonE200_4x_DF_ExplodedNostoc",
     "location": "",
     "magnification": ""
   },
   {
-    "filename": "Dark_Edit_486A3173",
+    "filename": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_10x_DF_Nostoc_01",
     "x": 2,
-    "y": 1,
+    "y": 2,
+    "title": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_10x_DF_Nostoc_01",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_MAIN_020620_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade",
+    "x": 3,
+    "y": 2,
+    "title": "Dark_Edit_MAIN_020620_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade",
+    "location": "",
+    "magnification": "",
+    "init_position": true
+  },
+  {
+    "filename": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_10x_DF_Nostoc_02",
+    "x": 4,
+    "y": 2,
+    "title": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_10x_DF_Nostoc_02",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_10x_DF_Rotifer_01",
+    "x": 5,
+    "y": 2,
+    "title": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_10x_DF_Rotifer_01",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_10x_DF_Rotifer_02",
+    "x": 6,
+    "y": 2,
+    "title": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_10x_DF_Rotifer_02",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_20x_DF_ExplodedNostoc_01",
+    "x": 0,
+    "y": 3,
+    "title": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_20x_DF_ExplodedNostoc_01",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_40x_DF_NostocBacteria_01",
+    "x": 1,
+    "y": 3,
+    "title": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_40x_DF_NostocBacteria_01",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_40x_DF_Nostoc_01",
+    "x": 2,
+    "y": 3,
+    "title": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_40x_DF_Nostoc_01",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_40x_DF_RotiferTun_01",
+    "x": 3,
+    "y": 3,
+    "title": "Dark_Edit_022120_LakeFryxellMicrobialMat_NikonE200_40x_DF_RotiferTun_01",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_1",
+    "x": 4,
+    "y": 3,
+    "title": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_1",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_2",
+    "x": 5,
+    "y": 3,
+    "title": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_2",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_3",
+    "x": 6,
+    "y": 3,
+    "title": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_3",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_3_02",
+    "x": 0,
+    "y": 4,
+    "title": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_3_02",
+    "location": "",
+    "magnification": ""
+  },
+  {
+    "filename": "Dark_Edit_486A3173",
+    "x": 1,
+    "y": 4,
     "title": "Dark_Edit_486A3173",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_486A3175",
-    "x": 3,
-    "y": 1,
+    "x": 2,
+    "y": 4,
     "title": "Dark_Edit_486A3175",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_486A3177",
-    "x": 4,
-    "y": 1,
+    "x": 3,
+    "y": 4,
     "title": "Dark_Edit_486A3177",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_486A3178",
-    "x": 5,
-    "y": 1,
+    "x": 4,
+    "y": 4,
     "title": "Dark_Edit_486A3178",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_486A3181_Part1_RotiferMouth",
-    "x": 0,
-    "y": 2,
+    "x": 5,
+    "y": 4,
     "title": "Dark_Edit_486A3181_Part1_RotiferMouth",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_486A3181_Part2_PregnantRotifer",
-    "x": 1,
-    "y": 2,
+    "x": 6,
+    "y": 4,
     "title": "Dark_Edit_486A3181_Part2_PregnantRotifer",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_486A3189_Part1_Tardigrade",
-    "x": 2,
-    "y": 2,
+    "x": 0,
+    "y": 5,
     "title": "Dark_Edit_486A3189_Part1_Tardigrade",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_486A3189_Part2_TwoTardigrades",
-    "x": 3,
-    "y": 2,
+    "x": 1,
+    "y": 5,
     "title": "Dark_Edit_486A3189_Part2_TwoTardigrades",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_486A3189_Part3_PregnantRotifer",
-    "x": 4,
-    "y": 2,
+    "x": 2,
+    "y": 5,
     "title": "Dark_Edit_486A3189_Part3_PregnantRotifer",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_486A3191",
-    "x": 5,
-    "y": 2,
+    "x": 3,
+    "y": 5,
     "title": "Dark_Edit_486A3191",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_486A3193",
-    "x": 0,
-    "y": 3,
+    "x": 4,
+    "y": 5,
     "title": "Dark_Edit_486A3193",
     "location": "",
     "magnification": ""
   },
   {
-    "filename": "Dark_Edit_MAIN_020620_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade",
-    "x": 1,
-    "y": 3,
-    "title": "Dark_Edit_MAIN_020620_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade",
-    "location": "",
-    "magnification": ""
-  },
-  {
-    "filename": "Edit_486A3173",
-    "x": 2,
-    "y": 3,
-    "title": "Edit_486A3173",
-    "location": "",
-    "magnification": ""
-  },
-  {
-    "filename": "Edit_486A3175",
-    "x": 3,
-    "y": 3,
-    "init_position": true,
-    "title": "Edit_486A3175",
-    "location": "",
-    "magnification": ""
-  },
-  {
-    "filename": "Edit_486A3177",
-    "x": 4,
-    "y": 3,
-    "title": "Edit_486A3177",
-    "location": "",
-    "magnification": ""
-  },
-  {
-    "filename": "Edit_486A3178",
+    "filename": "Dark_LUTI_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_NostocClusterThing",
     "x": 5,
-    "y": 3,
-    "title": "Edit_486A3178",
-    "location": "",
-    "magnification": ""
-  },
-  {
-    "filename": "Edit_486A3181_Part1_RotiferMouth",
-    "x": 0,
-    "y": 4,
-    "title": "Edit_486A3181_Part1_RotiferMouth",
-    "location": "",
-    "magnification": ""
-  },
-  {
-    "filename": "Edit_486A3181_Part2_PregnantRotifer",
-    "x": 1,
-    "y": 4,
-    "title": "Edit_486A3181_Part2_PregnantRotifer",
-    "location": "",
-    "magnification": ""
-  },
-  {
-    "filename": "Edit_486A3189_Part1_Tardigrade",
-    "x": 2,
-    "y": 4,
-    "title": "Edit_486A3189_Part1_Tardigrade",
-    "location": "",
-    "magnification": ""
-  },
-  {
-    "filename": "Edit_486A3189_Part2_TwoTardigrades",
-    "x": 3,
-    "y": 4,
-    "title": "Edit_486A3189_Part2_TwoTardigrades",
-    "location": "",
-    "magnification": ""
-  },
-  {
-    "filename": "Edit_486A3189_Part3_PregnantRotifer",
-    "x": 4,
-    "y": 4,
-    "title": "Edit_486A3189_Part3_PregnantRotifer",
-    "location": "",
-    "magnification": ""
-  },
-  {
-    "filename": "Edit_486A3191",
-    "x": 5,
-    "y": 4,
-    "title": "Edit_486A3191",
-    "location": "",
-    "magnification": ""
-  },
-  {
-    "filename": "Edit_486A3193",
-    "x": 0,
     "y": 5,
-    "title": "Edit_486A3193",
+    "title": "Dark_LUTI_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_NostocClusterThing",
     "location": "",
     "magnification": ""
   }
