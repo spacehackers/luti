@@ -240,8 +240,17 @@
     "magnification": ""
   },
   {
-    "filename": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_4_Pt3",
+    "filename": "Dark_Edit_MAIN_020620_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade",
     "x": 2,
+    "y": 4,
+    "title": "Dark_Edit_MAIN_020620_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade",
+    "location": "",
+    "magnification": "",
+    "init_position": true
+  },
+  {
+    "filename": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_4_Pt3",
+    "x": 3,
     "y": 4,
     "title": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_4_Pt3",
     "location": "",
@@ -249,7 +258,7 @@
   },
   {
     "filename": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_5",
-    "x": 3,
+    "x": 4,
     "y": 4,
     "title": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_5",
     "location": "",
@@ -257,7 +266,7 @@
   },
   {
     "filename": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_6",
-    "x": 4,
+    "x": 5,
     "y": 4,
     "title": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_6",
     "location": "",
@@ -265,7 +274,7 @@
   },
   {
     "filename": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_7",
-    "x": 5,
+    "x": 6,
     "y": 4,
     "title": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_7",
     "location": "",
@@ -273,15 +282,15 @@
   },
   {
     "filename": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_20x_DF_ISO800_Rotifers_1",
-    "x": 6,
-    "y": 4,
+    "x": 0,
+    "y": 5,
     "title": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_20x_DF_ISO800_Rotifers_1",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_20x_DF_ISO800_Rotifers_3",
-    "x": 0,
+    "x": 1,
     "y": 5,
     "title": "Dark_Edit_031521_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_20x_DF_ISO800_Rotifers_3",
     "location": "",
@@ -289,7 +298,7 @@
   },
   {
     "filename": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_DeadRotifer_2",
-    "x": 1,
+    "x": 2,
     "y": 5,
     "title": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_DeadRotifer_2",
     "location": "",
@@ -297,7 +306,7 @@
   },
   {
     "filename": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_DeadTardigrade_1",
-    "x": 2,
+    "x": 3,
     "y": 5,
     "title": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_DeadTardigrade_1",
     "location": "",
@@ -305,7 +314,7 @@
   },
   {
     "filename": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_DeadTardigrade_DAPI_FITC_ISO25600_1",
-    "x": 3,
+    "x": 4,
     "y": 5,
     "title": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_DeadTardigrade_DAPI_FITC_ISO25600_1",
     "location": "",
@@ -313,7 +322,7 @@
   },
   {
     "filename": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_1",
-    "x": 4,
+    "x": 5,
     "y": 5,
     "title": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_1",
     "location": "",
@@ -321,7 +330,7 @@
   },
   {
     "filename": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_2",
-    "x": 5,
+    "x": 6,
     "y": 5,
     "title": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_2",
     "location": "",
@@ -329,15 +338,15 @@
   },
   {
     "filename": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_3",
-    "x": 6,
-    "y": 5,
+    "x": 0,
+    "y": 6,
     "title": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_3",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_4",
-    "x": 0,
+    "x": 1,
     "y": 6,
     "title": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_4",
     "location": "",
@@ -345,7 +354,7 @@
   },
   {
     "filename": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_5",
-    "x": 1,
+    "x": 2,
     "y": 6,
     "title": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_5",
     "location": "",
@@ -353,7 +362,7 @@
   },
   {
     "filename": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_6",
-    "x": 2,
+    "x": 3,
     "y": 6,
     "title": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_6",
     "location": "",
@@ -361,7 +370,7 @@
   },
   {
     "filename": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_20x_DF_ISO800_Rotifers_1",
-    "x": 3,
+    "x": 4,
     "y": 6,
     "title": "Dark_Edit_031621_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_20x_DF_ISO800_Rotifers_1",
     "location": "",
@@ -369,7 +378,7 @@
   },
   {
     "filename": "Dark_Edit_031721_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_PregnantRotifer_1",
-    "x": 4,
+    "x": 5,
     "y": 6,
     "title": "Dark_Edit_031721_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_PregnantRotifer_1",
     "location": "",
@@ -377,7 +386,7 @@
   },
   {
     "filename": "Dark_Edit_031721_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_PregnantRotifer_2",
-    "x": 5,
+    "x": 6,
     "y": 6,
     "title": "Dark_Edit_031721_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_PregnantRotifer_2",
     "location": "",
@@ -385,15 +394,15 @@
   },
   {
     "filename": "Dark_Edit_031721_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_PregnantRotifer_3",
-    "x": 6,
-    "y": 6,
+    "x": 0,
+    "y": 7,
     "title": "Dark_Edit_031721_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_PregnantRotifer_3",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_031721_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_1",
-    "x": 0,
+    "x": 1,
     "y": 7,
     "title": "Dark_Edit_031721_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_10x_DF_ISO800_Rotifers_1",
     "location": "",
@@ -401,7 +410,7 @@
   },
   {
     "filename": "Dark_Edit_031721_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_20x_DF_ISO800_DeadPregnantRotifer_1",
-    "x": 1,
+    "x": 2,
     "y": 7,
     "title": "Dark_Edit_031721_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_20x_DF_ISO800_DeadPregnantRotifer_1",
     "location": "",
@@ -409,7 +418,7 @@
   },
   {
     "filename": "Dark_Edit_031721_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_20x_DF_ISO800_PregnantRotifer_1",
-    "x": 2,
+    "x": 3,
     "y": 7,
     "title": "Dark_Edit_031721_HjorthHill169PondSediment1b20192020_NikonE200_DE25TMT_20x_DF_ISO800_PregnantRotifer_1",
     "location": "",
@@ -417,7 +426,7 @@
   },
   {
     "filename": "Dark_Edit_486A3173",
-    "x": 3,
+    "x": 4,
     "y": 7,
     "title": "Dark_Edit_486A3173",
     "location": "",
@@ -425,7 +434,7 @@
   },
   {
     "filename": "Dark_Edit_486A3175",
-    "x": 4,
+    "x": 5,
     "y": 7,
     "title": "Dark_Edit_486A3175",
     "location": "",
@@ -433,7 +442,7 @@
   },
   {
     "filename": "Dark_Edit_486A3177",
-    "x": 5,
+    "x": 6,
     "y": 7,
     "title": "Dark_Edit_486A3177",
     "location": "",
@@ -441,15 +450,15 @@
   },
   {
     "filename": "Dark_Edit_486A3178",
-    "x": 6,
-    "y": 7,
+    "x": 0,
+    "y": 8,
     "title": "Dark_Edit_486A3178",
     "location": "",
     "magnification": ""
   },
   {
     "filename": "Dark_Edit_486A3181_Part1_RotiferMouth",
-    "x": 0,
+    "x": 1,
     "y": 8,
     "title": "Dark_Edit_486A3181_Part1_RotiferMouth",
     "location": "",
@@ -457,7 +466,7 @@
   },
   {
     "filename": "Dark_Edit_486A3181_Part2_PregnantRotifer",
-    "x": 1,
+    "x": 2,
     "y": 8,
     "title": "Dark_Edit_486A3181_Part2_PregnantRotifer",
     "location": "",
@@ -465,7 +474,7 @@
   },
   {
     "filename": "Dark_Edit_486A3189_Part1_Tardigrade",
-    "x": 2,
+    "x": 3,
     "y": 8,
     "title": "Dark_Edit_486A3189_Part1_Tardigrade",
     "location": "",
@@ -473,7 +482,7 @@
   },
   {
     "filename": "Dark_Edit_486A3189_Part2_TwoTardigrades",
-    "x": 3,
+    "x": 4,
     "y": 8,
     "title": "Dark_Edit_486A3189_Part2_TwoTardigrades",
     "location": "",
@@ -481,7 +490,7 @@
   },
   {
     "filename": "Dark_Edit_486A3189_Part3_PregnantRotifer",
-    "x": 4,
+    "x": 5,
     "y": 8,
     "title": "Dark_Edit_486A3189_Part3_PregnantRotifer",
     "location": "",
@@ -489,7 +498,7 @@
   },
   {
     "filename": "Dark_Edit_486A3191",
-    "x": 5,
+    "x": 6,
     "y": 8,
     "title": "Dark_Edit_486A3191",
     "location": "",
@@ -497,20 +506,11 @@
   },
   {
     "filename": "Dark_Edit_486A3193",
-    "x": 6,
-    "y": 8,
+    "x": 0,
+    "y": 9,
     "title": "Dark_Edit_486A3193",
     "location": "",
     "magnification": ""
-  },
-  {
-    "filename": "Dark_Edit_MAIN_020620_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade",
-    "x": 0,
-    "y": 9,
-    "title": "Dark_Edit_MAIN_020620_LakeFryxellMicrobialMat_NikonE200_10x_DF_Tardigrade",
-    "location": "",
-    "magnification": "",
-    "init_position": true
   },
   {
     "filename": "Dark_LUTI_021920_LakeFryxellMicrobialMat_NikonE200_10x_DF_NostocClusterThing",
