@@ -4,11 +4,10 @@ import Tuna from "tunajs";
 const Chorus = (props) => {
   const tuna = new Tuna(props.audioContext);
   const chorusNode = useRef(
-    new tuna.Overdrive({
-      outputGain: -9.154, // -42 to 0 in dB
-      drive: 0.197, // 0 to 1
-      curveAmount: 0.979, // 0 to 1
-      algorithmIndex: 0, // 0 to 5, selects one of the drive algorithms
+    new tuna.Chorus({
+      rate: 1.5,
+      feedback: 0.2,
+      delay: 0.0045,
       bypass: 0,
     })
   );
@@ -31,8 +30,8 @@ const Chorus = (props) => {
     );
     props.connectNode(chorusNode.current, props.destination);
 
-    props.updateNodes((draft) => {
-      draft[props.id] = chorusNode.current;
+    props.setNodes((n) => {
+      return { ...n, [props.id]: chorusNode.current };
     });
   }, [props]);
   return null;

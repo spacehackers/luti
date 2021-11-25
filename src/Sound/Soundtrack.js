@@ -57,8 +57,8 @@ export default (props) => {
       audioNode.current.connect(gain.current);
       gain.current.connect(pan.current);
       props.connectNode(pan.current, props.destination);
-      props.updateNodes((draft) => {
-        draft[props.id] = audioNode;
+      props.setNodes((n) => {
+        return { ...n, [props.id]: audioNode.current };
       });
     };
     f();

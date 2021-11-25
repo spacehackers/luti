@@ -24,8 +24,8 @@ const Group = (props) => {
     );
     props.connectNode(inputNode.current, props.destination);
 
-    props.updateNodes((draft) => {
-      draft[props.id] = inputNode.current;
+    props.setNodes((n) => {
+      return { ...n, [props.id]: inputNode.current };
     });
   }, [props]);
   if (props.children) {

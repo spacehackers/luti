@@ -14,7 +14,7 @@ const Sounds = (props) => {
     setPlaying(audioContext.state === "running");
   };
   const [audio, updateAudio] = useImmer([]);
-  const [nodes, updateNodes] = useImmer({
+  const [nodes, setNodes] = useState({
     destination: audioContext.destination,
   });
   const connectNode = (node, id) => {
@@ -57,7 +57,7 @@ const Sounds = (props) => {
             connectNode,
             audioContext,
             nodes,
-            updateNodes,
+            setNodes,
             updateAudio,
             playing,
           })

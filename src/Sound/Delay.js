@@ -51,8 +51,8 @@ const Delay = (props) => {
     props.connectNode(delayPan.current, props.destination);
     props.connectNode(inputNode.current, props.destination);
 
-    props.updateNodes((draft) => {
-      draft[props.id] = inputNode.current;
+    props.setNodes((n) => {
+      return { ...n, [props.id]: inputNode.current };
     });
   }, [props]);
   return null;
