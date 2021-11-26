@@ -15,9 +15,15 @@ const fetchTrack = async (audioContext, sampleSource, url) => {
 };
 
 export default (props) => {
-  const audioNode = useRef(props.audioContext.createBufferSource());
-  const gain = useRef(props.audioContext.createGain());
-  const pan = useRef(props.audioContext.createStereoPanner());
+  const audioNode = useRef();
+  const gain = useRef();
+  const pan = useRef();
+
+  useEffect(() => {
+    audioNode.current = props.audioContext.createBufferSource();
+    gain.current = props.audioContext.createGain();
+    pan.current = props.audioContext.createStereoPanner();
+  }, [props.audioContext]);
 
   useEffect(() => {
     gain.current.gain.value = props.gain || 1.0;
@@ -27,41 +33,40 @@ export default (props) => {
     pan.current.pan.value = props.pan || 0.0;
   }, [props.pan]);
 
+  const {
+    audioContext,
+    src,
+    setAudio,
+    id,
+    nodes,
+    destination,
+    setNodes,
+  } = props;
   useEffect(() => {
-    if (props.id in props.nodes) {
+    if (id in nodes) {
       return;
     }
-    if (
-      props.destination !== undefined &&
-      !(props.destination in props.nodes)
-    ) {
+    if (!destination) {
       return;
     }
     const f = async () => {
-      if (
-        !(await fetchTrack(props.audioContext, audioNode.current, props.src))
-      ) {
+      if (!(await fetchTrack(audioContext, audioNode.current, src))) {
         return;
       }
 
-      props.updateAudio((draft) => {
-        draft.push(audioNode.current);
+      setAudio((a) => {
+        return [...a, audioNode.current];
       });
 
-      console.log(
-        "SETTING UP TRACK",
-        props.id,
-        "CONNECTED TO",
-        props.destination
-      );
-      audioNode.current.connect(gain.current);
-      gain.current.connect(pan.current);
-      props.connectNode(pan.current, props.destination);
-      props.setNodes((n) => {
-        return { ...n, [props.id]: audioNode.current };
+      setNodes((n) => {
+        console.log("SETTING UP TRACK", id, "CONNECTED TO", destination);
+        audioNode.current.connect(gain.current);
+        gain.current.connect(pan.current);
+        pan.current.connect(destination);
+        return { ...n, [id]: audioNode.current };
       });
     };
     f();
-  }, [props]);
+  }, [audioContext, src, setAudio, id, nodes, destination, setNodes]);
   return null;
 };

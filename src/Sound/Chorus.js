@@ -2,38 +2,33 @@ import { useRef, useEffect } from "react";
 import Tuna from "tunajs";
 
 const Chorus = (props) => {
-  const tuna = new Tuna(props.audioContext);
-  const chorusNode = useRef(
-    new tuna.Chorus({
+  const chorusNode = useRef();
+
+  useEffect(() => {
+    const tuna = new Tuna(props.audioContext);
+    chorusNode.current = new tuna.Chorus({
       rate: 1.5,
       feedback: 0.2,
       delay: 0.0045,
       bypass: 0,
-    })
-  );
-
-  useEffect(() => {
-    if (props.id in props.nodes) {
-      return;
-    }
-    if (
-      props.destination !== undefined &&
-      !(props.destination in props.nodes)
-    ) {
-      return;
-    }
-    console.log(
-      "SETTING UP CHORUS",
-      props.id,
-      "CONNECTED TO",
-      props.destination
-    );
-    props.connectNode(chorusNode.current, props.destination);
-
-    props.setNodes((n) => {
-      return { ...n, [props.id]: chorusNode.current };
     });
-  }, [props]);
+  }, [props.audioContext]);
+
+  const { id, nodes, destination, setNodes } = props;
+  useEffect(() => {
+    if (id in nodes) {
+      return;
+    }
+    if (!destination) {
+      return;
+    }
+
+    setNodes((n) => {
+      console.log("SETTING UP CHORUS", id, "CONNECTED TO", destination);
+      chorusNode.current.connect(destination);
+      return { ...n, [id]: chorusNode.current };
+    });
+  }, [id, nodes, destination, setNodes]);
   return null;
 };
 

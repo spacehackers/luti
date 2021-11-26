@@ -1,60 +1,62 @@
 import { useRef, useEffect } from "react";
 
 const Delay = (props) => {
-  const inputNode = useRef(props.audioContext.createGain());
+  const inputNode = useRef();
+  const delayNode = useRef();
+  const delayPan = useRef();
+  const delayGain = useRef();
+  const feedbackGain = useRef();
 
-  const delayNode = useRef(props.audioContext.createDelay());
+  useEffect(() => {
+    inputNode.current = props.audioContext.createGain();
+    delayNode.current = props.audioContext.createDelay();
+    delayPan.current = props.audioContext.createStereoPanner();
+    delayGain.current = props.audioContext.createGain();
+    feedbackGain.current = props.audioContext.createGain();
+  }, [props.audioContext]);
+
   useEffect(() => {
     delayNode.current.delayTime.value = props.delay || 0;
   }, [props.delay]);
 
-  const delayPan = useRef(props.audioContext.createStereoPanner());
   useEffect(() => {
     delayPan.current.pan.value = props.pan || 1;
   }, [props.pan]);
 
-  const delayGain = useRef(props.audioContext.createGain());
   useEffect(() => {
     delayGain.current.gain.value = props.gain || 1;
   }, [props.gain]);
 
-  const feedbackGain = useRef(props.audioContext.createGain());
   useEffect(() => {
     feedbackGain.current.gain.value = props.feedback || 0;
   }, [props.feedback]);
 
+  const { id, nodes, destination, setNodes } = props;
   useEffect(() => {
-    if (props.id in props.nodes) {
+    if (id in nodes) {
       return;
     }
-    if (
-      props.destination !== undefined &&
-      !(props.destination in props.nodes)
-    ) {
+    if (!destination) {
       return;
     }
-    console.log(
-      "SETTING UP DELAY",
-      props.id,
-      "CONNECTED TO",
-      props.destination
-    );
-    inputNode.current.connect(delayNode.current);
 
-    delayNode.current.connect(feedbackGain.current);
-    feedbackGain.current.connect(delayNode.current);
+    setNodes((n) => {
+      console.log("SETTING UP DELAY", id, "CONNECTED TO", destination);
+      inputNode.current.connect(delayNode.current);
 
-    delayNode.current.connect(delayGain.current);
+      delayNode.current.connect(feedbackGain.current);
+      feedbackGain.current.connect(delayNode.current);
 
-    delayGain.current.connect(delayPan.current);
+      delayNode.current.connect(delayGain.current);
 
-    props.connectNode(delayPan.current, props.destination);
-    props.connectNode(inputNode.current, props.destination);
+      delayGain.current.connect(delayPan.current);
 
-    props.setNodes((n) => {
-      return { ...n, [props.id]: inputNode.current };
+      delayPan.current.connect(destination);
+      inputNode.current.connect(destination);
+
+      return { ...n, [id]: inputNode.current };
     });
-  }, [props]);
+  }, [id, nodes, destination, setNodes]);
   return null;
 };
 

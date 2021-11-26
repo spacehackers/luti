@@ -1,37 +1,40 @@
 import React, { useRef, useEffect } from "react";
 
 const Group = (props) => {
-  const inputNode = useRef(props.audioContext.createGain());
+  const inputNode = useRef();
+
+  useEffect(() => {
+    inputNode.current = props.audioContext.createGain();
+  }, [props.audioContext]);
+
   useEffect(() => {
     inputNode.current.gain.value = props.gain || 1;
   }, [props.gain]);
 
+  const { id, nodes, destination, setNodes } = props;
   useEffect(() => {
-    if (props.id in props.nodes) {
+    if (id in nodes) {
       return;
     }
-    if (
-      props.destination !== undefined &&
-      !(props.destination in props.nodes)
-    ) {
+    if (!destination) {
       return;
     }
-    console.log(
-      "SETTING UP GROUP",
-      props.id,
-      "CONNECTED TO",
-      props.destination
-    );
-    props.connectNode(inputNode.current, props.destination);
 
-    props.setNodes((n) => {
-      return { ...n, [props.id]: inputNode.current };
+    setNodes((n) => {
+      console.log("SETTING UP GROUP", id, "CONNECTED TO", destination);
+      inputNode.current.connect(destination);
+      return { ...n, [id]: inputNode.current };
     });
-  }, [props]);
+  }, [id, nodes, destination, setNodes]);
+
   if (props.children) {
     return React.Children.map(props.children, (child) => {
       const childProps = { ...props };
-      childProps.destination = props.id;
+      if ("destination" in child.props) {
+        childProps.destination = props.nodes[child.props.destination];
+      } else {
+        childProps.destination = props.destination;
+      }
       delete childProps.children;
       delete childProps.id;
       return React.cloneElement(child, childProps);

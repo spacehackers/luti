@@ -1,5 +1,4 @@
-import { useImmer } from "use-immer";
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import WAAClock from "waaclock";
 
 const audioContext = new AudioContext();
@@ -9,59 +8,55 @@ audioClock.start();
 const Sounds = (props) => {
   const [playing, setPlaying] = useState(false);
   const [startTime, setStartTime] = useState(0); // eslint-disable-line no-unused-vars
-  audioContext.onstatechange = () => {
+  audioContext.onstatechange = useCallback(() => {
     console.log("AUDIO STATUS", audioContext.state);
     setPlaying(audioContext.state === "running");
-  };
-  const [audio, updateAudio] = useImmer([]);
+  }, []);
+  const [audio, setAudio] = useState([]);
   const [nodes, setNodes] = useState({
     destination: audioContext.destination,
   });
-  const connectNode = (node, id) => {
-    if (id === undefined) {
-      console.log("CONNECTING", node, "TO OUTPUT");
-      node.connect(nodes.destination);
-      return;
+
+  useEffect(() => {
+    if (playing) {
+      const time = audioContext.currentTime;
+      setStartTime(time);
+      const barLength = 2.011416666666667;
+      let i = 0;
+      audio.forEach((a) => {
+        audioClock.callbackAtTime((e) => {
+          console.log("START", a, audioContext.currentTime, e.deadline);
+          a.start(e.deadline);
+        }, time + 0.5 + i * barLength);
+        i += 1;
+      });
     }
-    if (!(id in nodes)) {
-      console.log("ERROR: node id unknown", id);
-      return;
-    }
-    console.log("CONNECTING", node, "TO", nodes[id]);
-    node.connect(nodes[id]);
-  };
+  }, [audio, playing]);
+
   return (
     <div>
       <button
         type="button"
         onClick={() => {
           audioContext.resume();
-          const time = audioContext.currentTime;
-          setStartTime(time);
-          const barLength = 2.011416666666667;
-          let i = 0;
-          audio.forEach((a) => {
-            audioClock.callbackAtTime((e) => {
-              console.log("START", a, audioContext.currentTime, e.deadline);
-              a.start(e.deadline);
-            }, time + 0.5 + i * barLength);
-            i += 1;
-          });
+          setPlaying(true);
         }}
       >
         audio
       </button>
       <div>
-        {React.Children.map(props.children, (child) =>
-          React.cloneElement(child, {
-            connectNode,
+        {React.Children.map(props.children, (child) => {
+          const destinationId = child.props.destination || "destination";
+          const destination = nodes[destinationId];
+          return React.cloneElement(child, {
+            destination,
             audioContext,
             nodes,
             setNodes,
-            updateAudio,
+            setAudio,
             playing,
-          })
-        )}
+          });
+        })}
       </div>
     </div>
   );
