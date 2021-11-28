@@ -8,6 +8,9 @@ const fetchTrack = async (audioContext, sampleSource, url) => {
     sampleSource.buffer = audioBuffer; // eslint-disable-line no-param-reassign
     sampleSource.loopEnd = audioBuffer.duration; // eslint-disable-line no-param-reassign
     sampleSource.loop = true; // eslint-disable-line no-param-reassign
+    sampleSource.src = url; // eslint-disable-line no-param-reassign
+
+    console.log("LOADED", url, audioBuffer.duration);
     return true;
   } catch {
     return false;
@@ -26,7 +29,7 @@ export default (props) => {
   }, [props.audioContext]);
 
   useEffect(() => {
-    gain.current.gain.value = props.gain || 1.0;
+    gain.current.gain.value = props.gain || 0.0;
   }, [props.gain]);
 
   useEffect(() => {

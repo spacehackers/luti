@@ -8,7 +8,7 @@ const Group = (props) => {
   }, [props.audioContext]);
 
   useEffect(() => {
-    inputNode.current.gain.value = props.gain || 1;
+    inputNode.current.gain.value = props.gain || 0;
   }, [props.gain]);
 
   const { id, nodes, destination, setNodes } = props;

@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, {
+  useRef,
+  useState,
+  useMemo,
+  useEffect,
+  useCallback,
+} from "react";
 import WAAClock from "waaclock";
 
 const audioContext = new AudioContext();
@@ -6,6 +12,7 @@ const audioClock = new WAAClock(audioContext, { toleranceEarly: 0.1 });
 audioClock.start();
 
 const Sounds = (props) => {
+  const barTimer = useRef(null);
   const [playing, setPlaying] = useState(false);
   const [startTime, setStartTime] = useState(0); // eslint-disable-line no-unused-vars
   audioContext.onstatechange = useCallback(() => {
@@ -17,21 +24,33 @@ const Sounds = (props) => {
     destination: audioContext.destination,
   });
 
-  useEffect(() => {
-    if (playing) {
-      const time = audioContext.currentTime;
-      setStartTime(time);
-      const barLength = 2.011416666666667;
-      let i = 0;
-      audio.forEach((a) => {
-        audioClock.callbackAtTime((e) => {
-          console.log("START", a, audioContext.currentTime, e.deadline);
-          a.start(e.deadline);
-        }, time + 0.5 + i * barLength);
-        i += 1;
+  const playNextAudio = useCallback(
+    (e) => {
+      if (audio.length === 0) return;
+      setAudio((a) => {
+        const [next, ...rest] = a;
+        if (next) {
+          console.log("STARTING", next, e.deadline);
+          next.start(e.deadline);
+        }
+        return rest;
       });
+    },
+    [audio]
+  );
+
+  const barLength = useMemo(() => props.barLength, [props]);
+  useEffect(() => {
+    if (playing && barTimer.current === null) {
+      console.log("SETTING UP BAR TIMER");
+      barTimer.current = audioClock
+        .callbackAtTime(playNextAudio, audioContext.currentTime + barLength)
+        .repeat(barLength);
+    } else if (!playing && barTimer.current) {
+      barTimer.current.clear();
+      barTimer.current = null;
     }
-  }, [audio, playing]);
+  }, [playNextAudio, playing, barLength]);
 
   return (
     <div>

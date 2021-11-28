@@ -20,11 +20,11 @@ const Delay = (props) => {
   }, [props.delay]);
 
   useEffect(() => {
-    delayPan.current.pan.value = props.pan || 1;
+    delayPan.current.pan.value = props.pan || 0;
   }, [props.pan]);
 
   useEffect(() => {
-    delayGain.current.gain.value = props.gain || 1;
+    delayGain.current.gain.value = props.gain || 0;
   }, [props.gain]);
 
   useEffect(() => {
