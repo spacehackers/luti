@@ -33,7 +33,7 @@ const Group = (props) => {
       if ("destination" in child.props) {
         childProps.destination = props.nodes[child.props.destination];
       } else {
-        childProps.destination = props.destination;
+        childProps.destination = inputNode.current;
       }
       delete childProps.children;
       delete childProps.id;
