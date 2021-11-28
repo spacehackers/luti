@@ -47,7 +47,7 @@ const Sidechain = (props) => {
     setNodes((n) => {
       console.log("SETTING UP SIDECHAIN", id, "CONNECTED TO", destination);
       inputNode.current.connect(destination);
-      // sidechainInputNode.current.connect(destination);
+      sidechainInputNode.current.connect(destination);
       return { ...n, [id]: sidechainInputNode.current };
     });
   }, [id, nodes, destination, setNodes]);
