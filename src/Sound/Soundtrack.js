@@ -22,7 +22,10 @@ const THROTTLE_TIME = 0.25;
 const setAudioParamValueForContext = (audioContext) =>
   throttle((param, value) => {
     console.log("SET", param, "TO", value);
-    param.setValueAtTime(value, audioContext.currentTime + THROTTLE_TIME);
+    param.linearRampToValueAtTime(
+      value,
+      audioContext.currentTime + THROTTLE_TIME
+    );
   }, 1000 * THROTTLE_TIME);
 
 export default (props) => {
