@@ -7,22 +7,29 @@ import React, {
 } from "react";
 import WAAClock from "waaclock";
 
-const audioContext = new AudioContext();
-const audioClock = new WAAClock(audioContext, { toleranceEarly: 0.1 });
-audioClock.start();
-
 const Sounds = (props) => {
+  const audioContext = useRef(null);
+  const audioClock = useRef(null);
+
   const barTimer = useRef(null);
   const [playing, setPlaying] = useState(false);
-  const [startTime, setStartTime] = useState(0); // eslint-disable-line no-unused-vars
-  audioContext.onstatechange = useCallback(() => {
-    console.log("AUDIO STATUS", audioContext.state);
-    setPlaying(audioContext.state === "running");
-  }, []);
   const [audio, setAudio] = useState([]);
-  const [nodes, setNodes] = useState({
-    destination: audioContext.destination,
-  });
+  const [nodes, setNodes] = useState({});
+
+  useEffect(() => {
+    audioContext.current = new AudioContext();
+    audioClock.current = new WAAClock(audioContext.current, {
+      toleranceEarly: 0.1,
+    });
+    audioClock.current.start();
+    audioContext.current.onstatechange = () => {
+      console.log("AUDIO STATUS", audioContext.current.state);
+      setPlaying(audioContext.current.state === "running");
+    };
+    setNodes({
+      destination: audioContext.current.destination,
+    });
+  }, []);
 
   const playNextAudio = useCallback(
     (e) => {
@@ -43,8 +50,11 @@ const Sounds = (props) => {
   useEffect(() => {
     if (playing && barTimer.current === null) {
       console.log("SETTING UP BAR TIMER");
-      barTimer.current = audioClock
-        .callbackAtTime(playNextAudio, audioContext.currentTime + barLength)
+      barTimer.current = audioClock.current
+        .callbackAtTime(
+          playNextAudio,
+          audioContext.current.currentTime + barLength
+        )
         .repeat(barLength);
     } else if (!playing && barTimer.current) {
       barTimer.current.clear();
@@ -52,12 +62,13 @@ const Sounds = (props) => {
     }
   }, [playNextAudio, playing, barLength]);
 
+  if (!audioContext.current) return null;
   return (
     <div>
       <button
         type="button"
         onClick={() => {
-          audioContext.resume();
+          audioContext.current.resume();
           setPlaying(true);
         }}
       >
@@ -69,7 +80,7 @@ const Sounds = (props) => {
           const destination = nodes[destinationId];
           return React.cloneElement(child, {
             destination,
-            audioContext,
+            audioContext: audioContext.current,
             nodes,
             setNodes,
             setAudio,

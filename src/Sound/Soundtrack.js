@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo } from "react";
+import throttle from "lodash/throttle";
 
 const fetchTrack = async (audioContext, sampleSource, url) => {
   const response = await fetch(url);
@@ -17,10 +18,21 @@ const fetchTrack = async (audioContext, sampleSource, url) => {
   }
 };
 
+const THROTTLE_TIME = 0.25;
+const setAudioParamValueForContext = (audioContext) =>
+  throttle((param, value) => {
+    console.log("SET", param, "TO", value);
+    param.setValueAtTime(value, audioContext.currentTime + THROTTLE_TIME);
+  }, 1000 * THROTTLE_TIME);
+
 export default (props) => {
   const audioNode = useRef();
   const gain = useRef();
   const pan = useRef();
+  const setAudioParamValue = useMemo(
+    () => setAudioParamValueForContext(props.audioContext),
+    [props.audioContext]
+  );
 
   useEffect(() => {
     audioNode.current = props.audioContext.createBufferSource();
@@ -29,12 +41,12 @@ export default (props) => {
   }, [props.audioContext]);
 
   useEffect(() => {
-    gain.current.gain.value = props.gain || 0.0;
-  }, [props.gain]);
+    setAudioParamValue(gain.current.gain, props.gain || 0.0);
+  }, [props.gain, setAudioParamValue]);
 
   useEffect(() => {
-    pan.current.pan.value = props.pan || 0.0;
-  }, [props.pan]);
+    setAudioParamValue(pan.current.pan, props.pan || 0.0);
+  }, [props.pan, setAudioParamValue]);
 
   const {
     audioContext,
