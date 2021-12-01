@@ -28,15 +28,25 @@ const Group = (props) => {
   }, [id, nodes, destination, setNodes]);
 
   if (props.children) {
+    const inheritedProps = [
+      "audioContext",
+      "nodes",
+      "setNodes",
+      "setAudio",
+      "playing",
+      "gains",
+    ];
     return React.Children.map(props.children, (child) => {
-      const childProps = { ...props };
+      const childProps = {
+        destination: inputNode.current,
+        gain: props.gains[child.props.id] || child.props.gain,
+      };
       if ("destination" in child.props) {
         childProps.destination = props.nodes[child.props.destination];
-      } else {
-        childProps.destination = inputNode.current;
       }
-      delete childProps.children;
-      delete childProps.id;
+      inheritedProps.forEach((p) => {
+        childProps[p] = props[p];
+      });
       return React.cloneElement(child, childProps);
     });
   }

@@ -10,7 +10,9 @@ import { Map } from "react-leaflet";
 import { withRouter } from "react-router-dom";
 import Info from "./Info";
 
-import Sounds from "./Sounds";
+import Sounds from "./Sound/Sounds";
+import Sidechain from "./Sound/Sidechain";
+import Soundtrack from "./Sound/Soundtrack";
 import Videos from "./Videos";
 import Intro from "./Intro";
 
@@ -219,12 +221,6 @@ class Homepage extends React.Component {
               boundsPad={this.state.boundsPad}
               map={this.state.map}
             />
-            <Sounds
-              map={this.state.map}
-              paused={this.state.introVisible}
-              debug={query.debug}
-              enabled={query.sound}
-            />
           </Map>
         )}
         {this.state.currentVideo && this.state.videosPlaying > 0 && (
@@ -234,6 +230,25 @@ class Homepage extends React.Component {
             displayMode={this.props.displayMode}
           />
         )}
+        <Sounds barLength={2} map={this.state.map}>
+          <Sidechain id="sidechain" gain={1}>
+            <Soundtrack
+              id="pads"
+              key="pads"
+              src="/edith-no-percussion.mp3"
+              X={5}
+              Y={8}
+            />
+          </Sidechain>
+          <Soundtrack
+            id="drums"
+            key="drums"
+            src="/edith-with-percussion.mp3"
+            destination="sidechain"
+            X={6}
+            Y={8}
+          />
+        </Sounds>
       </>
     );
   }

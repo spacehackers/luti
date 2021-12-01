@@ -21,7 +21,6 @@ const fetchTrack = async (audioContext, sampleSource, url) => {
 const THROTTLE_TIME = 0.25;
 const setAudioParamValueForContext = (audioContext) =>
   throttle((param, value) => {
-    console.log("SET", param, "TO", value);
     param.linearRampToValueAtTime(
       value,
       audioContext.currentTime + THROTTLE_TIME

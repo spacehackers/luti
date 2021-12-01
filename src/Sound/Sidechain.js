@@ -59,9 +59,13 @@ const Sidechain = (props) => {
       "setNodes",
       "setAudio",
       "playing",
+      "gains",
     ];
     return React.Children.map(props.children, (child) => {
-      const childProps = { destination: inputNode.current };
+      const childProps = {
+        destination: inputNode.current,
+        gain: props.gains[child.props.id] || child.props.gain,
+      };
       if ("destination" in child.props) {
         childProps.destination = props.nodes[child.props.destination];
       }
