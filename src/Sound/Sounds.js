@@ -27,6 +27,7 @@ const recursivelyFindXYChildren = (children) => {
 
 const calculateAudioPositions = (map, XY) => {
   if (!map) {
+    console.log("No map, can't calculateAudioPositions");
     return {};
   }
   const volume = {};
@@ -55,7 +56,7 @@ const Sounds = (props) => {
 
   const barTimer = useRef(null);
   const [playing, setPlaying] = useState(false);
-  const [audio, setAudio] = useState([]); // eslint-disable-line no-unused-vars
+  const [playQueue, setPlayQueue] = useState([]); // eslint-disable-line no-unused-vars
   const [nodes, setNodes] = useState({});
 
   const [XY, setXY] = useState({});
@@ -63,6 +64,7 @@ const Sounds = (props) => {
 
   const handleOnMove = throttle(
     () => {
+      console.log("handleOnMove");
       setGains(calculateAudioPositions(props.map, XY));
     },
     250,
@@ -106,16 +108,34 @@ const Sounds = (props) => {
     });
   }, []);
 
-  const playNextAudio = useCallback((e) => {
-    setAudio((a) => {
-      const [next, ...rest] = a;
-      if (next) {
-        console.log("STARTING", next, e.deadline);
-        next.start(e.deadline);
-      }
-      return rest;
-    });
-  }, []);
+  const playNextAudio = useCallback(
+    (e) => {
+      setPlayQueue((a) => {
+        const [next, ...rest] = a;
+        if (next) {
+          try {
+            next.start(e.deadline);
+            console.log(
+              "handleOnMove after timeout",
+              e.toleranceEarly + e.toleranceLate
+            );
+            setTimeout(handleOnMove, e.toleranceEarly + e.toleranceLate);
+            handleOnMove();
+            console.log("STARTING", next, e.deadline);
+          } catch {
+            next.onended = () => {
+              next.disconnect();
+              console.log("STOPPED AND DISCONNECTED", next, e.deadline);
+            };
+            console.log("STOPPING", next, e.deadline);
+            next.stop(e.deadline);
+          }
+        }
+        return rest;
+      });
+    },
+    [handleOnMove]
+  );
 
   const barLength = useMemo(() => props.barLength, [props]);
   useEffect(() => {
@@ -147,6 +167,7 @@ const Sounds = (props) => {
       </button>
       <div>
         {React.Children.map(props.children, (child) => {
+          if (child === null) return null;
           const destinationId = child.props.destination || "destination";
           const destination = nodes[destinationId];
           return React.cloneElement(child, {
@@ -154,7 +175,7 @@ const Sounds = (props) => {
             audioContext: audioContext.current,
             nodes,
             setNodes,
-            setAudio,
+            setPlayQueue,
             playing,
             gains,
             gain: gains[child.props.id] || child.props.gain,

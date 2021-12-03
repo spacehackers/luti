@@ -32,7 +32,7 @@ const Group = (props) => {
       "audioContext",
       "nodes",
       "setNodes",
-      "setAudio",
+      "setPlayQueue",
       "playing",
       "gains",
     ];

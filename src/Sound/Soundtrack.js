@@ -1,5 +1,6 @@
 import { useRef, useEffect, useMemo } from "react";
 import throttle from "lodash/throttle";
+import omit from "lodash/omit";
 
 const fetchTrack = async (audioContext, sampleSource, url) => {
   const response = await fetch(url);
@@ -14,6 +15,7 @@ const fetchTrack = async (audioContext, sampleSource, url) => {
     console.log("LOADED", url, audioBuffer.duration);
     return true;
   } catch {
+    console.log("ACCIDENTALLY DOUBLE-LOADED", url);
     return false;
   }
 };
@@ -29,6 +31,7 @@ const setAudioParamValueForContext = (audioContext) =>
 
 export default (props) => {
   const audioNode = useRef();
+  const audioLoaded = useRef(false);
   const gain = useRef();
   const pan = useRef();
   const setAudioParamValue = useMemo(
@@ -53,7 +56,7 @@ export default (props) => {
   const {
     audioContext,
     src,
-    setAudio,
+    setPlayQueue,
     id,
     nodes,
     destination,
@@ -66,12 +69,15 @@ export default (props) => {
     if (!destination) {
       return;
     }
+    if (audioLoaded.current) {
+      return;
+    }
     const f = async () => {
       if (!(await fetchTrack(audioContext, audioNode.current, src))) {
         return;
       }
 
-      setAudio((a) => {
+      setPlayQueue((a) => {
         return [...a, audioNode.current];
       });
 
@@ -83,7 +89,18 @@ export default (props) => {
         return { ...n, [id]: audioNode.current };
       });
     };
+    audioLoaded.current = true;
     f();
-  }, [audioContext, src, setAudio, id, nodes, destination, setNodes]);
+  }, [audioContext, src, setPlayQueue, id, nodes, destination, setNodes]);
+  useEffect(() => {
+    return () => {
+      setPlayQueue((a) => {
+        return [...a, audioNode.current];
+      });
+      audioLoaded.current = false;
+      setNodes((a) => omit(a, id));
+      console.log("CLEANUP", src);
+    };
+  }, [setPlayQueue, setNodes, id, src]);
   return null;
 };

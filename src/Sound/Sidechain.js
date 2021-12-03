@@ -57,7 +57,7 @@ const Sidechain = (props) => {
       "audioContext",
       "nodes",
       "setNodes",
-      "setAudio",
+      "setPlayQueue",
       "playing",
       "gains",
     ];
