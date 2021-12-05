@@ -25,75 +25,21 @@ const recursivelyFindXYChildren = (children) => {
   return xy;
 };
 
-const calculateAudioPositions = (map, XY) => {
-  if (!map) {
-    console.log("No map, can't calculateAudioPositions");
-    return {};
-  }
-  const volume = {};
-  const bounds = map.getBounds().pad(0.1);
-  const center = bounds.getCenter();
-  const radius = L.CRS.Simple.distance(bounds.getNorthWest(), center);
-  Object.keys(XY).forEach((id) => {
-    const location = XY[id];
-    let v = Math.abs(L.CRS.Simple.distance(center, location)) / radius;
-    if (v > 1) {
-      v = 1;
-    }
-    if (v < 0) {
-      v = 0;
-    }
-    volume[id] = 1 - v;
-  });
-  console.log("HANDLE AUDIO POSITIONS", volume);
-  return volume;
-};
-
 const Sounds = (props) => {
   const audioContext = useRef(null);
   const audioClock = useRef(null);
-  const handlerSetup = useRef(false);
-
+  const moveHandlerHasBeenSetup = useRef(false);
+  const map = useRef(null);
   const barTimer = useRef(null);
+  const XY = useRef({});
+
   const [playing, setPlaying] = useState(false);
   const [playQueue, setPlayQueue] = useState([]); // eslint-disable-line no-unused-vars
   const [nodes, setNodes] = useState({});
-
-  const [XY, setXY] = useState({});
   const [gains, setGains] = useState({});
 
-  const handleOnMove = throttle(
-    () => {
-      console.log("handleOnMove");
-      setGains(calculateAudioPositions(props.map, XY));
-    },
-    250,
-    {
-      leading: true,
-      trailing: true,
-    }
-  );
-
   useEffect(() => {
-    if (!props.map) return;
-    if (handlerSetup.current) return;
-    handlerSetup.current = true;
-    console.log("SETUP ONMOVE");
-    handleOnMove();
-    props.map.addEventListener("move", () => {
-      if (audioContext.current.state !== "running") {
-        console.log("----> PLAY!");
-        audioContext.current.resume();
-      }
-      handleOnMove();
-    });
-  });
-
-  useEffect(() => {
-    setXY(recursivelyFindXYChildren(props.children));
-  }, [setXY, props.children]);
-
-  useEffect(() => {
+    // Web Audio Context one-time setup
     audioContext.current = new AudioContext();
     audioClock.current = new WAAClock(audioContext.current, {
       toleranceEarly: 0.1,
@@ -108,7 +54,58 @@ const Sounds = (props) => {
     });
   }, []);
 
+  useEffect(() => {
+    // Cache copy of map object
+    if (props.map) {
+      map.current = props.map;
+    }
+  }, [props.map]);
+
+  const handleOnMove = useCallback(() => {
+    const volume = {};
+    const bounds = map.current.getBounds().pad(0.1);
+    const center = bounds.getCenter();
+    const radius = L.CRS.Simple.distance(bounds.getNorthWest(), center);
+    Object.keys(XY.current).forEach((id) => {
+      const location = XY.current[id];
+      let v = Math.abs(L.CRS.Simple.distance(center, location)) / radius;
+      if (v > 1) {
+        v = 1;
+      }
+      if (v < 0) {
+        v = 0;
+      }
+      volume[id] = 1 - v;
+    });
+    console.log("AUDIO POSITIONS", volume);
+    setGains(volume);
+  }, []);
+
+  useEffect(() => {
+    // One-time map move handler setup
+    if (!map.current) return;
+    if (moveHandlerHasBeenSetup.current) return;
+    moveHandlerHasBeenSetup.current = true;
+
+    const hom = throttle(handleOnMove, 250, { leading: true, trailing: true });
+    map.current.addEventListener("move", () => {
+      if (audioContext.current.state !== "running") {
+        console.log("----> PLAY!");
+        audioContext.current.resume();
+      }
+      if (audioContext.current.state === "running") {
+        hom();
+      }
+    });
+  });
+
+  useEffect(() => {
+    // Recalculate cached ID -> XY lookup table when children change
+    XY.current = recursivelyFindXYChildren(props.children);
+  }, [props.children]);
+
   const playNextAudio = useCallback(
+    // to be called once per bar by the audio clock
     (e) => {
       setPlayQueue((a) => {
         const [next, ...rest] = a;
@@ -120,9 +117,8 @@ const Sounds = (props) => {
               e.toleranceEarly + e.toleranceLate
             );
             setTimeout(handleOnMove, e.toleranceEarly + e.toleranceLate);
-            handleOnMove();
             console.log("STARTING", next, e.deadline);
-          } catch {
+          } catch (err) {
             next.onended = () => {
               next.disconnect();
               console.log("STOPPED AND DISCONNECTED", next, e.deadline);
@@ -167,7 +163,7 @@ const Sounds = (props) => {
       </button>
       <div>
         {React.Children.map(props.children, (child) => {
-          if (child === null) return null;
+          if (!React.isValidElement(child)) return child;
           const destinationId = child.props.destination || "destination";
           const destination = nodes[destinationId];
           return React.cloneElement(child, {
