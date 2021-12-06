@@ -10,9 +10,7 @@ import { Map } from "react-leaflet";
 import { withRouter } from "react-router-dom";
 import Info from "./Info";
 
-import Sounds from "./Sound/Sounds";
-import Sidechain from "./Sound/Sidechain";
-import Soundtrack from "./Sound/Soundtrack";
+import SoundsLayout from "./Sound/SoundsLayout";
 import Videos from "./Videos";
 import Intro from "./Intro";
 
@@ -230,25 +228,10 @@ class Homepage extends React.Component {
             displayMode={this.props.displayMode}
           />
         )}
-        <Sounds barLength={2} map={this.state.map}>
-          <Sidechain id="sidechain" gain={1}>
-            <Soundtrack
-              id="pads"
-              key="pads"
-              src="/edith-no-percussion.mp3"
-              X={5}
-              Y={8}
-            />
-          </Sidechain>
-          <Soundtrack
-            id="drums"
-            key="drums"
-            src="/edith-with-percussion.mp3"
-            destination="sidechain"
-            X={6}
-            Y={8}
-          />
-        </Sounds>
+        <SoundsLayout
+          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQbyxIWPplJbfSWBRfpSNmho-6LcS1xgEWd8VRLAn3R1dkvWQP3-OHLrFuA4_NgeMk9y3JKzkWzMwWW/pub?gid=0&single=true&output=tsv"
+          map={this.state.map}
+        />
       </>
     );
   }
