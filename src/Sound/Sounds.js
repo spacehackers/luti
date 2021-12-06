@@ -82,7 +82,7 @@ const Sounds = (props) => {
   }, []);
 
   useEffect(() => {
-    // One-time map move handler setup
+    // One-time map event handler setup
     if (!map.current) return;
     if (moveHandlerHasBeenSetup.current) return;
     moveHandlerHasBeenSetup.current = true;
@@ -94,6 +94,18 @@ const Sounds = (props) => {
         audioContext.current.resume();
       }
       if (audioContext.current.state === "running") {
+        hom();
+      }
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        const volume = {};
+        Object.keys(XY.current).forEach((id) => {
+          volume[id] = 0.0;
+        });
+        setGains(volume);
+      } else {
         hom();
       }
     });
@@ -112,10 +124,6 @@ const Sounds = (props) => {
         if (next) {
           try {
             next.start(e.deadline);
-            console.log(
-              "handleOnMove after timeout",
-              e.toleranceEarly + e.toleranceLate
-            );
             setTimeout(handleOnMove, e.toleranceEarly + e.toleranceLate);
             console.log("STARTING", next, e.deadline);
           } catch (err) {
@@ -126,8 +134,9 @@ const Sounds = (props) => {
             console.log("STOPPING", next, e.deadline);
             next.stop(e.deadline);
           }
+          return rest;
         }
-        return rest;
+        return a;
       });
     },
     [handleOnMove]
@@ -174,7 +183,7 @@ const Sounds = (props) => {
             setPlayQueue,
             playing,
             gains,
-            gain: gains[child.props.id] || child.props.gain,
+            gain: gains[child.props.id] || child.props.gain, // multiply?
           });
         })}
       </div>
