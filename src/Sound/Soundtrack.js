@@ -1,6 +1,6 @@
 import { useRef, useEffect, useMemo } from "react";
 import throttle from "lodash/throttle";
-import omit from "lodash/omit";
+import useSound from "./useSound";
 
 const fetchTrack = async (audioContext, sampleSource, url) => {
   const response = await fetch(url);
@@ -29,44 +29,45 @@ const setAudioParamValueForContext = (audioContext) =>
     );
   }, 1000 * THROTTLE_TIME);
 
-export default (props) => {
+export default ({ src, id, destination, gain, pan }) => {
   const audioNode = useRef();
   const audioLoaded = useRef(false);
-  const gain = useRef();
-  const pan = useRef();
+  const gainNode = useRef();
+  const panNode = useRef();
+  const {
+    audioContext,
+    nodes,
+    removeNode,
+    registerNode,
+    playAudio,
+    cancelAudio,
+    connectNodeToId,
+  } = useSound();
+
   const setAudioParamValue = useMemo(
-    () => setAudioParamValueForContext(props.audioContext),
-    [props.audioContext]
+    () => setAudioParamValueForContext(audioContext),
+    [audioContext]
   );
 
   useEffect(() => {
-    audioNode.current = props.audioContext.createBufferSource();
-    gain.current = props.audioContext.createGain();
-    pan.current = props.audioContext.createStereoPanner();
-  }, [props.audioContext]);
+    audioNode.current = audioContext.createBufferSource();
+    gainNode.current = audioContext.createGain();
+    panNode.current = audioContext.createStereoPanner();
+  }, [audioContext]);
 
   useEffect(() => {
-    setAudioParamValue(gain.current.gain, props.gain || 0.0);
-  }, [props.gain, setAudioParamValue]);
+    setAudioParamValue(gainNode.current.gain, gain || 0.0);
+  }, [gain, setAudioParamValue]);
 
   useEffect(() => {
-    setAudioParamValue(pan.current.pan, props.pan || 0.0);
-  }, [props.pan, setAudioParamValue]);
+    setAudioParamValue(panNode.current.pan, pan || 0.0);
+  }, [pan, setAudioParamValue]);
 
-  const {
-    audioContext,
-    src,
-    setPlayQueue,
-    id,
-    nodes,
-    destination,
-    setNodes,
-  } = props;
   useEffect(() => {
     if (id in nodes) {
       return;
     }
-    if (!destination) {
+    if (!(destination in nodes)) {
       return;
     }
     if (audioLoaded.current) {
@@ -77,30 +78,33 @@ export default (props) => {
         return;
       }
 
-      setPlayQueue((a) => {
-        return [...a, audioNode.current];
-      });
+      playAudio(audioNode.current);
 
-      setNodes((n) => {
-        console.log("SETTING UP TRACK", id, "CONNECTED TO", destination);
-        audioNode.current.connect(gain.current);
-        gain.current.connect(pan.current);
-        pan.current.connect(destination);
-        return { ...n, [id]: audioNode.current };
-      });
+      console.log("SETTING UP TRACK", id, "CONNECTED TO", destination);
+      audioNode.current.connect(gainNode.current);
+      gainNode.current.connect(panNode.current);
+      connectNodeToId(panNode.current, destination);
+      registerNode(id, audioNode.current);
     };
     audioLoaded.current = true;
     f();
-  }, [audioContext, src, setPlayQueue, id, nodes, destination, setNodes]);
+  }, [
+    audioContext,
+    connectNodeToId,
+    destination,
+    id,
+    nodes,
+    playAudio,
+    registerNode,
+    src,
+  ]);
   useEffect(() => {
     return () => {
-      setPlayQueue((a) => {
-        return [...a, audioNode.current];
-      });
+      cancelAudio(audioNode.current);
+      removeNode(id);
       audioLoaded.current = false;
-      setNodes((a) => omit(a, id));
       console.log("CLEANUP", src);
     };
-  }, [setPlayQueue, setNodes, id, src]);
+  }, [cancelAudio, removeNode, id, src]);
   return null;
 };

@@ -1,14 +1,8 @@
-import React, {
-  useRef,
-  useState,
-  useMemo,
-  useEffect,
-  useCallback,
-} from "react";
-import WAAClock from "waaclock";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import throttle from "lodash/throttle";
 import L from "leaflet";
 import { xy_to_bounds } from "../vid_config";
+import useSound from "./useSound";
 
 const recursivelyFindXYChildren = (children) => {
   const xy = {};
@@ -26,33 +20,13 @@ const recursivelyFindXYChildren = (children) => {
 };
 
 const Sounds = (props) => {
-  const audioContext = useRef(null);
-  const audioClock = useRef(null);
   const moveHandlerHasBeenSetup = useRef(false);
   const map = useRef(null);
-  const barTimer = useRef(null);
   const XY = useRef({});
 
-  const [playing, setPlaying] = useState(false);
-  const [playQueue, setPlayQueue] = useState([]); // eslint-disable-line no-unused-vars
-  const [nodes, setNodes] = useState({});
   const [gains, setGains] = useState({});
 
-  useEffect(() => {
-    // Web Audio Context one-time setup
-    audioContext.current = new AudioContext();
-    audioClock.current = new WAAClock(audioContext.current, {
-      toleranceEarly: 0.1,
-    });
-    audioClock.current.start();
-    audioContext.current.onstatechange = () => {
-      console.log("AUDIO STATUS", audioContext.current.state);
-      setPlaying(audioContext.current.state === "running");
-    };
-    setNodes({
-      destination: audioContext.current.destination,
-    });
-  }, []);
+  const { audioContext, setOnPlay, setBarLength } = useSound();
 
   useEffect(() => {
     // Cache copy of map object
@@ -61,7 +35,7 @@ const Sounds = (props) => {
     }
   }, [props.map]);
 
-  const handleOnMove = useCallback(() => {
+  const recalculateAudioPositions = useCallback(() => {
     const volume = {};
     const bounds = map.current.getBounds().pad(0.1);
     const center = bounds.getCenter();
@@ -82,18 +56,26 @@ const Sounds = (props) => {
   }, []);
 
   useEffect(() => {
+    setOnPlay(recalculateAudioPositions);
+    setBarLength(props.barLength);
+  }, [setOnPlay, recalculateAudioPositions, setBarLength, props.barLength]);
+
+  useEffect(() => {
     // One-time map event handler setup
     if (!map.current) return;
     if (moveHandlerHasBeenSetup.current) return;
     moveHandlerHasBeenSetup.current = true;
 
-    const hom = throttle(handleOnMove, 250, { leading: true, trailing: true });
+    const hom = throttle(recalculateAudioPositions, 250, {
+      leading: true,
+      trailing: true,
+    });
     map.current.addEventListener("move", () => {
-      if (audioContext.current.state !== "running") {
+      if (audioContext.state !== "running") {
         console.log("----> PLAY!");
-        audioContext.current.resume();
+        audioContext.resume();
       }
-      if (audioContext.current.state === "running") {
+      if (audioContext.state === "running") {
         hom();
       }
     });
@@ -116,78 +98,19 @@ const Sounds = (props) => {
     XY.current = recursivelyFindXYChildren(props.children);
   }, [props.children]);
 
-  const playNextAudio = useCallback(
-    // to be called once per bar by the audio clock
-    (e) => {
-      setPlayQueue((a) => {
-        const [next, ...rest] = a;
-        if (next) {
-          try {
-            next.start(e.deadline);
-            setTimeout(handleOnMove, e.toleranceEarly + e.toleranceLate);
-            console.log("STARTING", next, e.deadline);
-          } catch (err) {
-            next.onended = () => {
-              next.disconnect();
-              console.log("STOPPED AND DISCONNECTED", next, e.deadline);
-            };
-            console.log("STOPPING", next, e.deadline);
-            next.stop(e.deadline);
-          }
-          return rest;
-        }
-        return a;
-      });
-    },
-    [handleOnMove]
-  );
-
-  const barLength = useMemo(() => props.barLength, [props]);
-  useEffect(() => {
-    if (playing && barTimer.current === null) {
-      console.log("SETTING UP BAR TIMER");
-      barTimer.current = audioClock.current
-        .callbackAtTime(
-          playNextAudio,
-          audioContext.current.currentTime + barLength
-        )
-        .repeat(barLength);
-    } else if (!playing && barTimer.current) {
-      barTimer.current.clear();
-      barTimer.current = null;
-    }
-  }, [playNextAudio, playing, barLength]);
-
-  if (!audioContext.current) return null;
+  if (!audioContext) return null;
   return (
-    <div>
-      <button
-        type="button"
-        onClick={() => {
-          audioContext.current.resume();
-          setPlaying(true);
-        }}
-      >
-        audio
-      </button>
-      <div>
-        {React.Children.map(props.children, (child) => {
-          if (!React.isValidElement(child)) return child;
-          const destinationId = child.props.destination || "destination";
-          const destination = nodes[destinationId];
-          return React.cloneElement(child, {
-            destination,
-            audioContext: audioContext.current,
-            nodes,
-            setNodes,
-            setPlayQueue,
-            playing,
-            gains,
-            gain: gains[child.props.id] || child.props.gain, // multiply?
-          });
-        })}
-      </div>
-    </div>
+    <>
+      {React.Children.map(props.children, (child) => {
+        if (!React.isValidElement(child)) return child;
+        const destination = child.props.destination || "destination";
+        return React.cloneElement(child, {
+          destination,
+          gains,
+          gain: gains[child.props.id] || child.props.gain, // multiply?
+        });
+      })}
+    </>
   );
 };
 

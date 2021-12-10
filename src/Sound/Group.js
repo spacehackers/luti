@@ -1,53 +1,33 @@
 import React, { useRef, useEffect } from "react";
+import useSound from "./useSound";
 
-const Group = (props) => {
+const Group = ({ id, destination, gains, gain, children }) => {
   const inputNode = useRef();
+  const { audioContext, connectNodeToId, registerNode, nodes } = useSound();
 
   useEffect(() => {
-    inputNode.current = props.audioContext.createGain();
-  }, [props.audioContext]);
+    inputNode.current = audioContext.createGain();
+  }, [audioContext]);
 
   useEffect(() => {
-    inputNode.current.gain.value = props.gain || 0;
-  }, [props.gain]);
+    inputNode.current.gain.value = gain || 0;
+  }, [gain]);
 
-  const { id, nodes, destination, setNodes } = props;
   useEffect(() => {
-    if (id in nodes) {
-      return;
-    }
-    if (!destination) {
-      return;
-    }
+    if (id in nodes || !(destination in nodes)) return;
 
-    setNodes((n) => {
-      console.log("SETTING UP GROUP", id, "CONNECTED TO", destination);
-      inputNode.current.connect(destination);
-      return { ...n, [id]: inputNode.current };
-    });
-  }, [id, nodes, destination, setNodes]);
+    console.log("SETTING UP GROUP", id, "CONNECTED TO", destination);
+    connectNodeToId(inputNode.current, destination);
+    registerNode(id, inputNode.current);
+  }, [id, nodes, destination, connectNodeToId, registerNode]);
 
-  if (props.children) {
-    const inheritedProps = [
-      "audioContext",
-      "nodes",
-      "setNodes",
-      "setPlayQueue",
-      "playing",
-      "gains",
-    ];
-    return React.Children.map(props.children, (child) => {
-      const childProps = {
-        destination: inputNode.current,
-        gain: props.gains[child.props.id] || child.props.gain,
-      };
-      if ("destination" in child.props) {
-        childProps.destination = props.nodes[child.props.destination];
-      }
-      inheritedProps.forEach((p) => {
-        childProps[p] = props[p];
+  if (children) {
+    return React.Children.map(children, (child) => {
+      return React.cloneElement(child, {
+        destination: child.props.destination || id,
+        gain: gains[child.props.id] || child.props.gain,
+        gains,
       });
-      return React.cloneElement(child, childProps);
     });
   }
   return null;

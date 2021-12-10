@@ -26,6 +26,7 @@
     "react-transition-group": "^4.3.0",
     "sass": "^1.38.2",
     "tunajs": "^1.0.15",
+    "use-between": "^1.0.1",
     "waaclock": "^0.5.3",
     "webfontloader": "^1.6.28"
   },
