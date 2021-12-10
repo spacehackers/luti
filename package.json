@@ -28,6 +28,7 @@
     "tunajs": "^1.0.15",
     "use-between": "^1.0.1",
     "waaclock": "^0.5.3",
+    "webaudio-oscilloscope": "^3.2.1",
     "webfontloader": "^1.6.28"
   },
   "scripts": {

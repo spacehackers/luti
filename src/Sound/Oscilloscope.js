@@ -1,44 +1,35 @@
 import React, { useCallback, useRef, useEffect } from "react";
 import { Oscilloscope } from "webaudio-oscilloscope";
+import useSound from "./useSound";
 
-const Osc = (props) => {
+const Osc = ({ id, destination, height, width }) => {
+  const { audioContext, nodes, registerNode, connectNodeToId } = useSound();
+
   const inputNode = useRef();
   const osc = useRef();
 
   const setupOsc = useCallback(
     (cvs) => {
-      console.log("OSC SETUP", props.audioContext);
-      inputNode.current = props.audioContext.createGain();
-      osc.current = new Oscilloscope(
-        props.audioContext,
-        inputNode.current,
-        cvs
-      );
+      console.log("OSC SETUP", audioContext);
+      inputNode.current = audioContext.createGain();
+      osc.current = new Oscilloscope(audioContext, inputNode.current, cvs);
       osc.current.start();
     },
-    [props.audioContext]
+    [audioContext]
   );
 
-  const { id, nodes, destination, setNodes } = props;
   useEffect(() => {
-    if (id in nodes) {
-      return;
-    }
-    if (!destination) {
-      return;
-    }
+    if (id in nodes || !(destination in nodes)) return;
 
-    setNodes((n) => {
-      console.log("SETTING UP OSC", id, "CONNECTED TO", destination);
-      inputNode.current.connect(destination);
-      return { ...n, [id]: inputNode.current };
-    });
-  }, [id, nodes, destination, setNodes]);
+    console.log("SETTING UP OSC", id, "CONNECTED TO", destination);
+    connectNodeToId(inputNode.current, destination);
+    registerNode(id, inputNode.current);
+  }, [id, nodes, connectNodeToId, destination, registerNode]);
   return (
     <canvas
-      id={props.id}
+      id={id}
       className="osc"
-      style={{ height: props.height || 160, width: props.width || 240 }}
+      style={{ height: height || 160, width: width || 240 }}
       ref={setupOsc}
     />
   );

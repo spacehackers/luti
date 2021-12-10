@@ -11428,6 +11428,11 @@
   dependencies:
     "minimalistic-assert" "^1.0.0"
 
+"webaudio-oscilloscope@^3.2.1":
+  "integrity" "sha512-yacR1TI0j6Sg0JVCYtK067bWangPQTHkOmE8pfrDp8Znv83QgfRdIVnQGz2ciYZnR2LphFOE+iLRCjhzIObemA=="
+  "resolved" "https://registry.npmjs.org/webaudio-oscilloscope/-/webaudio-oscilloscope-3.2.1.tgz"
+  "version" "3.2.1"
+
 "webfontloader@^1.6.28":
   "integrity" "sha1-23hhKSU8tujq5UwvsF+HCvZnW64="
   "resolved" "https://registry.npmjs.org/webfontloader/-/webfontloader-1.6.28.tgz"

@@ -1,78 +1,57 @@
 import React, { useRef, useEffect } from "react";
+import useSound from "./useSound";
 
-const Sidechain = (props) => {
+const Sidechain = ({ id, destination, release, gains, gain, children }) => {
+  const { audioContext, connectNodeToId, registerNode, nodes } = useSound();
+
   const inputNode = useRef();
   const sidechainInputNode = useRef();
   const sidechainWaveshaperNode = useRef();
   const followerNode = useRef();
 
   useEffect(() => {
-    inputNode.current = props.audioContext.createGain();
-  }, [props.audioContext]);
+    inputNode.current = audioContext.createGain();
+    sidechainInputNode.current = audioContext.createGain();
 
-  useEffect(() => {
-    inputNode.current.gain.value = props.gain || 0;
-  }, [props.gain]);
-
-  useEffect(() => {
-    sidechainInputNode.current = props.audioContext.createGain();
-
-    sidechainWaveshaperNode.current = props.audioContext.createWaveShaper();
+    sidechainWaveshaperNode.current = audioContext.createWaveShaper();
     const curve = new Float32Array(65536);
     for (let i = -32768; i < 32768; i++)
       curve[i + 32768] = -((i > 0 ? i : -i) / 32768);
     sidechainWaveshaperNode.current.curve = curve;
 
-    followerNode.current = props.audioContext.createBiquadFilter();
+    followerNode.current = audioContext.createBiquadFilter();
     followerNode.current.type = "lowpass";
 
     sidechainInputNode.current.connect(sidechainWaveshaperNode.current);
     sidechainWaveshaperNode.current.connect(followerNode.current);
     followerNode.current.connect(inputNode.current.gain);
-  }, [props.audioContext]);
+  }, [audioContext]);
 
   useEffect(() => {
-    followerNode.current.frequency.value = props.release || 10.0;
-  }, [props.release]);
+    inputNode.current.gain.value = gain || 0;
+  }, [gain]);
 
-  const { id, nodes, destination, setNodes } = props;
   useEffect(() => {
-    if (id in nodes) {
-      return;
-    }
-    if (!destination) {
-      return;
-    }
+    followerNode.current.frequency.value = release || 10.0;
+  }, [release]);
 
-    setNodes((n) => {
-      console.log("SETTING UP SIDECHAIN", id, "CONNECTED TO", destination);
-      inputNode.current.connect(destination);
-      sidechainInputNode.current.connect(destination);
-      return { ...n, [id]: sidechainInputNode.current };
-    });
-  }, [id, nodes, destination, setNodes]);
+  useEffect(() => {
+    if (id in nodes || !(destination in nodes)) return;
 
-  if (props.children) {
-    const inheritedProps = [
-      "audioContext",
-      "nodes",
-      "setNodes",
-      "setPlayQueue",
-      "playing",
-      "gains",
-    ];
-    return React.Children.map(props.children, (child) => {
-      const childProps = {
-        destination: inputNode.current,
-        gain: props.gains[child.props.id] || child.props.gain,
-      };
-      if ("destination" in child.props) {
-        childProps.destination = props.nodes[child.props.destination];
-      }
-      inheritedProps.forEach((p) => {
-        childProps[p] = props[p];
+    console.log("SETTING UP GROUP", id, "CONNECTED TO", destination);
+    connectNodeToId(inputNode.current, destination);
+    connectNodeToId(sidechainInputNode.current, destination);
+    registerNode(id, sidechainInputNode.current);
+    registerNode(`sidechain-group-${id}`, inputNode.current);
+  }, [id, nodes, destination, connectNodeToId, registerNode]);
+
+  if (children) {
+    return React.Children.map(children, (child) => {
+      return React.cloneElement(child, {
+        destination: child.props.destination || `sidechain-group-${id}`,
+        gain: gains[child.props.id] || child.props.gain,
+        gains,
       });
-      return React.cloneElement(child, childProps);
     });
   }
 

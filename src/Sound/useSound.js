@@ -51,21 +51,23 @@ const useSound = () => {
     // to be called once per bar by the audio clock
     (e) => {
       setPlayQueue((a) => {
-        const [next, ...rest] = a;
-        if (next) {
-          try {
-            next.start(e.deadline);
-            setTimeout(onPlay.current, e.toleranceEarly + e.toleranceLate);
-            console.log("STARTING", next, e.deadline);
-          } catch (err) {
-            next.onended = () => {
-              next.disconnect();
-              console.log("STOPPED AND DISCONNECTED", next, e.deadline);
-            };
-            console.log("STOPPING", next, e.deadline);
-            next.stop(e.deadline);
-          }
-          return rest;
+        if (a.length > 0) {
+          a.forEach((next) => {
+            try {
+              next.start(e.deadline);
+              setTimeout(onPlay.current, e.toleranceEarly + e.toleranceLate);
+              console.log("STARTING", next, e.deadline);
+            } catch (err) {
+              // eslint-disable-next-line no-param-reassign
+              next.onended = () => {
+                next.disconnect();
+                console.log("STOPPED AND DISCONNECTED", next, e.deadline);
+              };
+              console.log("STOPPING", next, e.deadline);
+              next.stop(e.deadline);
+            }
+          });
+          return [];
         }
         return a;
       });
