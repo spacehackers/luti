@@ -3,6 +3,18 @@ import { useBetween } from "use-between";
 import WAAClock from "waaclock";
 import omit from "lodash/omit";
 
+function unlockAudioContext(audioCtx) {
+  if (audioCtx.state !== "suspended") return;
+  const b = document.body;
+  const events = ["touchstart", "touchend", "mousedown", "keydown"];
+  const unlock = () => {
+    audioCtx.resume().then(() => {
+      events.forEach((e) => b.removeEventListener(e, unlock));
+    });
+  };
+  events.forEach((e) => b.addEventListener(e, unlock, false));
+}
+
 const useSound = () => {
   const audioContext = useRef(null);
   const audioClock = useRef(null);
@@ -94,6 +106,7 @@ const useSound = () => {
   useEffect(() => {
     // Web Audio Context one-time setup
     audioContext.current = new AudioContext();
+    unlockAudioContext(audioContext.current);
     audioClock.current = new WAAClock(audioContext.current, {
       toleranceEarly: 0.1,
     });
