@@ -31,7 +31,12 @@ const SoundsLayout = ({ map, src }) => {
   }
   return (
     <Sounds barLength={3.0769} map={map}>
-      <Reverb src="/IMreverbs/Nice Drum Room.wav" lowCut={200} id="reverb" />
+      <Reverb
+        src="/IMreverbs/Nice Drum Room.wav"
+        lowCut={200}
+        id="reverb"
+        gain={0.5}
+      />
       {layout.map((l) => {
         let destination = null;
         if (l.Reverb > 0) {
