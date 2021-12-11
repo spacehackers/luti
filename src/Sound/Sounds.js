@@ -36,6 +36,17 @@ const Sounds = (props) => {
   }, [props.map]);
 
   const recalculateAudioPositions = useCallback(() => {
+    if (audioContext.state !== "running") {
+      console.log("----> PLAY!");
+      audioContext
+        .resume()
+        .then(() => {
+          console.log("RESUME AUDIO");
+          recalculateAudioPositions();
+        })
+        .catch((e) => console.log("RESUME ERROR", e));
+      return;
+    }
     const volume = {};
     const bounds = map.current.getBounds().pad(0.1);
     const center = bounds.getCenter();
@@ -53,7 +64,7 @@ const Sounds = (props) => {
     });
     console.log("AUDIO POSITIONS", volume);
     setGains(volume);
-  }, []);
+  }, [audioContext]);
 
   useEffect(() => {
     setOnPlay(recalculateAudioPositions);
@@ -70,15 +81,7 @@ const Sounds = (props) => {
       leading: true,
       trailing: true,
     });
-    map.current.addEventListener("move", () => {
-      if (audioContext.state !== "running") {
-        console.log("----> PLAY!");
-        audioContext.resume();
-      }
-      if (audioContext.state === "running") {
-        hom();
-      }
-    });
+    map.current.addEventListener("move", hom);
 
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
