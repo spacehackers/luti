@@ -84,7 +84,7 @@ export default ({ X, Y, src, id, destination, gain, pan }) => {
       audioNode.current.connect(gainNode.current);
       gainNode.current.connect(panNode.current);
       // connectNodeToId(panNode.current, destination);
-      connectNodeToSpatial(audioNode.current, X, Y);
+      connectNodeToSpatial(audioNode.current, X, Y, gain);
       registerNode(id, audioNode.current);
     };
     audioLoaded.current = true;
@@ -95,6 +95,7 @@ export default ({ X, Y, src, id, destination, gain, pan }) => {
     destination,
     X,
     Y,
+    gain,
     id,
     nodes,
     playAudio,

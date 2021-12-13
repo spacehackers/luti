@@ -19,7 +19,7 @@ const SoundsLayout = ({ map, src }) => {
           : parseFloat(sound.Reverb),
         X: parseFloat(sound.X),
         Y: parseFloat(sound.Y),
-        Volume: parseFloat(sound.Volume, 10),
+        gain: parseFloat(sound.Volume) / 10,
       }));
       setLayout(sounds.filter((s) => s.File !== ""));
     };
@@ -49,6 +49,7 @@ const SoundsLayout = ({ map, src }) => {
             src={mp3_source_prefix + l.File}
             X={l.X}
             Y={l.Y}
+            gain={l.gain}
             destination={destination}
           />
         );
