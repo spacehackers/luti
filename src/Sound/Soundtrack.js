@@ -29,7 +29,7 @@ const setAudioParamValueForContext = (audioContext) =>
     );
   }, 1000 * THROTTLE_TIME);
 
-export default ({ src, id, destination, gain, pan }) => {
+export default ({ X, Y, src, id, destination, gain, pan }) => {
   const audioNode = useRef();
   const audioLoaded = useRef(false);
   const gainNode = useRef();
@@ -41,7 +41,7 @@ export default ({ src, id, destination, gain, pan }) => {
     registerNode,
     playAudio,
     cancelAudio,
-    connectNodeToId,
+    connectNodeToSpatial,
   } = useSound();
 
   const setAudioParamValue = useMemo(
@@ -83,15 +83,18 @@ export default ({ src, id, destination, gain, pan }) => {
       console.log("SETTING UP TRACK", id, "CONNECTED TO", destination);
       audioNode.current.connect(gainNode.current);
       gainNode.current.connect(panNode.current);
-      connectNodeToId(panNode.current, destination);
+      // connectNodeToId(panNode.current, destination);
+      connectNodeToSpatial(audioNode.current, X, Y);
       registerNode(id, audioNode.current);
     };
     audioLoaded.current = true;
     f();
   }, [
     audioContext,
-    connectNodeToId,
+    connectNodeToSpatial,
     destination,
+    X,
+    Y,
     id,
     nodes,
     playAudio,

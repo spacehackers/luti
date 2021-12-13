@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import throttle from "lodash/throttle";
 import L from "leaflet";
-import { xy_to_bounds } from "../vid_config";
+import { bounds_to_xy_precise, xy_to_bounds } from "../vid_config";
 import useSound from "./useSound";
+
+const RESONANCE_AUDIO = true;
 
 const recursivelyFindXYChildren = (children) => {
   const xy = {};
@@ -26,7 +28,7 @@ const Sounds = (props) => {
 
   const [gains, setGains] = useState({});
 
-  const { audioContext, setOnPlay, setBarLength } = useSound();
+  const { audioContext, audioScene, setOnPlay, setBarLength } = useSound();
 
   useEffect(() => {
     // Cache copy of map object
@@ -36,6 +38,14 @@ const Sounds = (props) => {
   }, [props.map]);
 
   const recalculateAudioPositions = useCallback(() => {
+    if (RESONANCE_AUDIO) {
+      const xy = bounds_to_xy_precise(map.current.getBounds());
+      const x = (xy.x_bottom_left + xy.x_top_right) / 2.0;
+      const y = (xy.y_bottom_left + xy.y_top_right) / 2.0;
+      audioScene.setListenerPosition(x * 5, y * 5, 0);
+      console.log("LISTENER POSITION", x, y, 0);
+      return;
+    }
     const volume = {};
     const bounds = map.current.getBounds().pad(0.1);
     const center = bounds.getCenter();
@@ -53,7 +63,7 @@ const Sounds = (props) => {
     });
     console.log("AUDIO POSITIONS", volume);
     setGains(volume);
-  }, []);
+  }, [audioScene]);
 
   useEffect(() => {
     setOnPlay(recalculateAudioPositions);
@@ -66,7 +76,7 @@ const Sounds = (props) => {
     if (moveHandlerHasBeenSetup.current) return;
     moveHandlerHasBeenSetup.current = true;
 
-    const hom = throttle(recalculateAudioPositions, 250, {
+    const hom = throttle(recalculateAudioPositions, 25, {
       leading: true,
       trailing: true,
     });

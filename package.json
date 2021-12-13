@@ -24,6 +24,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^4.0.3",
     "react-transition-group": "^4.3.0",
+    "resonance-audio": "^1.0.0",
     "sass": "^1.38.2",
     "tunajs": "^1.0.15",
     "use-between": "^1.0.1",

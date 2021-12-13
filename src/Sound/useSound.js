@@ -2,6 +2,7 @@ import { useRef, useCallback, useState, useEffect } from "react";
 import { useBetween } from "use-between";
 import WAAClock from "waaclock";
 import omit from "lodash/omit";
+import { ResonanceAudio } from "resonance-audio";
 
 function unlockAudioContext(audioCtx) {
   if (audioCtx.state !== "suspended") return;
@@ -17,6 +18,7 @@ function unlockAudioContext(audioCtx) {
 
 const useSound = () => {
   const audioContext = useRef(null);
+  const audioScene = useRef(null);
   const audioClock = useRef(null);
   const barTimer = useRef(null);
 
@@ -37,6 +39,15 @@ const useSound = () => {
 
   const registerNode = useCallback((id, node) => {
     setNodes((ns) => ({ ...ns, [id]: node }));
+  }, []);
+
+  const connectNodeToSpatial = useCallback((node, X, Y, gain) => {
+    const source = audioScene.current.createSource({
+      position: [5 * (X + 0.5), 5 * (Y + 0.5), 0],
+      maxDistance: 25,
+      gain,
+    });
+    node.connect(source.input);
   }, []);
 
   const connectNodeToId = useCallback(
@@ -115,6 +126,9 @@ const useSound = () => {
       console.log("AUDIO STATUS", audioContext.current.state);
       setPlaying(audioContext.current.state === "running");
     };
+
+    audioScene.current = new ResonanceAudio(audioContext.current);
+    audioScene.current.output.connect(audioContext.current.destination);
     setNodes({
       destination: audioContext.current.destination,
     });
@@ -122,6 +136,7 @@ const useSound = () => {
 
   return {
     audioContext: audioContext.current,
+    audioScene: audioScene.current,
     nodes,
     registerNode,
     removeNode,
@@ -130,6 +145,7 @@ const useSound = () => {
     playAudio,
     cancelAudio,
     connectNodeToId,
+    connectNodeToSpatial,
   };
 };
 
