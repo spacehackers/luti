@@ -10,24 +10,11 @@
       "jsx": true
     }
   },
-  "extends": [
-    "airbnb",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["airbnb", "plugin:prettier/recommended"],
   "rules": {
-    "quotes": [
-      2,
-      "double"
-    ],
-    "semi": [
-      2,
-      "always"
-    ],
-    "no-restricted-syntax": [
-      "error",
-      "LabeledStatement",
-      "WithStatement"
-    ],
+    "quotes": [2, "double"],
+    "semi": [2, "always"],
+    "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
     "camelcase": "off",
     "comma-dangle": "off",
     "import/no-named-as-default": "off",
