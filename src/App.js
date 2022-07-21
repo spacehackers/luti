@@ -5,7 +5,7 @@ import ReactGA from "react-ga";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { DARK_MODE_HASH, LIGHT_MODE_HASH } from "./constants";
 
-import Menu from "./Menu";
+import Menu from "./components/Menu";
 import Homepage from "./Homepage";
 import About from "./About";
 import Acknowledgements from "./Acknowledgements";

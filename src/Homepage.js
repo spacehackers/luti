@@ -8,11 +8,11 @@ import { Helmet } from "react-helmet";
 import L from "leaflet";
 import { Map } from "react-leaflet";
 import { withRouter } from "react-router-dom";
-import InfoBox from "./InfoBox";
+import Intro from "./components/Intro";
+import InfoBox from "./components/InfoBox";
 
 import Sounds from "./Sounds";
 import Videos from "./Videos";
-import Intro from "./Intro";
 
 import VideoData from "./VideoData";
 
