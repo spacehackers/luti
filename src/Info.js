@@ -62,10 +62,11 @@ export default class Info extends React.Component {
   };
 
   getAriaLabel() {
+    // #todo include microbe name
     if (this.state.open) {
-      return "click for info";
+      return "what's this? click for more info about this microbe";
     }
-    return "close info";
+    return "close info box";
   }
 
   renderSharingButtons() {
