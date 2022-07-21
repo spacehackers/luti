@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet";
 import L from "leaflet";
 import { Map } from "react-leaflet";
 import { withRouter } from "react-router-dom";
-import Info from "./Info";
+import InfoBox from "./InfoBox";
 
 import Sounds from "./Sounds";
 import Videos from "./Videos";
@@ -228,7 +228,7 @@ class Homepage extends React.Component {
           </Map>
         )}
         {this.state.currentVideo && this.state.videosPlaying > 0 && (
-          <Info
+          <InfoBox
             hidden={false}
             {...this.state.currentVideo.info()}
             displayMode={this.props.displayMode}

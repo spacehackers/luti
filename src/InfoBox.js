@@ -5,16 +5,10 @@ import debounce from "lodash/debounce";
 
 import { CSSTransition } from "react-transition-group";
 
-import "./Info.scss";
+import "./InfoBox.scss";
 import "./InfoButton.scss";
 
 const TRANSITION_SPEED = 500;
-
-const propTypes = {
-  title: PropTypes.string.isRequired,
-  desc: PropTypes.node.isRequired,
-  url: PropTypes.string.isRequired,
-};
 
 export default class Info extends React.Component {
   constructor(props) {
@@ -94,6 +88,7 @@ export default class Info extends React.Component {
         </div>
       );
     }
+
     return (
       <div className="share-links">
         <a
@@ -207,4 +202,8 @@ export default class Info extends React.Component {
   }
 }
 
-Info.propTypes = propTypes;
+Info.propTypes = {
+  title: PropTypes.string.isRequired,
+  desc: PropTypes.node.isRequired,
+  url: PropTypes.string.isRequired,
+};
