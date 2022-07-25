@@ -1,11 +1,11 @@
 import React from "react";
 import classNames from "classnames";
 import { CSSTransition } from "react-transition-group";
-import { TRANSITION_SPEED } from "./constants";
+import { TRANSITION_SPEED } from "../constants";
 
 import "./Intro.scss";
 
-const Intro = (props) => {
+export default function Intro(props) {
   return (
     <div className="intro">
       <CSSTransition in={props.visible} timeout={TRANSITION_SPEED}>
@@ -17,6 +17,4 @@ const Intro = (props) => {
       </CSSTransition>
     </div>
   );
-};
-
-export default Intro;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 
 import { CSSTransition } from "react-transition-group";
-import { TRANSITION_SPEED, MOBILE_BREAKPOINT } from "./constants";
+import { TRANSITION_SPEED, MOBILE_BREAKPOINT } from "../constants";
 
 import "./Menu.scss";
 
