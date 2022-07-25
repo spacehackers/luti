@@ -14,6 +14,7 @@ $offscreen: -$max-height;
   display: flex;
   font-size: 16px;
   height: $overlay-height;
+  min-height: 6em;
   left: 0;
   max-height: 500px;
   padding: $padding;
