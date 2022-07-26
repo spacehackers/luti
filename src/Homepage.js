@@ -137,6 +137,17 @@ class Homepage extends React.Component {
     };
   }
 
+  componentDidMount() {
+    window.setTimeout(() => {
+      // move to useEffect
+      L.control
+        .zoom({
+          position: "bottomright",
+        })
+        .addTo(this.state.map);
+    }, 1000);
+  }
+
   render() {
     const query = queryString.parse(this.props.location.search);
 
@@ -207,6 +218,7 @@ class Homepage extends React.Component {
             attributionControl={false}
             bounceAtZoomLimits={false}
             ref={this.onMapLoad}
+            zoomControl={false}
           >
             <Videos
               debug={query.debug}
