@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
@@ -13,6 +13,17 @@ const TRANSITION_SPEED = 500;
 
 export default function InfoBox({ desc, displayMode, title, url }) {
   const [hidden, setHidden] = useState(true);
+
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const intro = document.querySelector(".leaflet-control-zoom"); // this except use the new buttons
+    const height = ref.current.clientHeight;
+
+    if (!height || !intro) return;
+
+    intro.style.marginBottom = hidden ? "80px" : `${height + 64}px`;
+  }, [hidden]);
 
   useEffect(() => {
     const body = document.body;
@@ -45,7 +56,7 @@ export default function InfoBox({ desc, displayMode, title, url }) {
           displayMode={displayMode}
           handleClick={() => setHidden(!hidden)}
         />
-        <div className={classNames("info-wrapper", displayMode)}>
+        <div ref={ref} className={classNames("info-wrapper", displayMode)}>
           <div className="info-title">
             <h1>{title}</h1>
           </div>
