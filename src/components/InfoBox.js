@@ -22,7 +22,13 @@ export default function InfoBox({ desc, displayMode, title, url }) {
 
     if (!height || !intro) return;
 
-    intro.style.marginBottom = hidden ? "80px" : `${height + 64}px`;
+    if (hidden) {
+      intro.style.transition = "margin 300ms";
+      intro.style.marginBottom = "80px"; // .leaflet-bottom .leaflet-control in App.scss
+    } else {
+      intro.style.transition = "margin 300ms 200ms";
+      intro.style.marginBottom = `${height + 64}px`;
+    }
   }, [hidden]);
 
   useEffect(() => {
