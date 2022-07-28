@@ -61,26 +61,20 @@ body {
 }
 
 // customize zoom button styles
+$background-size: 64px;
 $border-radius: 6px;
 
 .leaflet-bottom .leaflet-control {
   margin-right: 20px;
   margin-bottom: 80px;
 }
-
-
 .leaflet-container .leaflet-bar {
   border: unset;
 }
-
 .leaflet-container .leaflet-bar a {
   border-bottom: none;
   background-color: unset;
-
- 
 }
-
-$background-size: 64px;
 .leaflet-touch .leaflet-bar a:first-child {
   border-top-left-radius: $border-radius;
   border-top-right-radius: $border-radius;
@@ -97,6 +91,10 @@ $background-size: 64px;
   background-size: $background-size;
   background-position: bottom -11px left -15px;
 }
+.leaflet-touch .leaflet-bar a:hover {
+  filter: contrast(95%);
+}
+
 .leaflet-control-attribution {
   display: none;
 }
