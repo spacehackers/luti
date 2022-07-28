@@ -53,16 +53,37 @@ body {
   }
 }
 
+// hides zoom controls in mobile
 .leaflet-control-container {
   @media (max-width: $mobile_breakpoint) {
     display: none;
   }
 }
 
+// customize zoom button styles
+$border-radius: 6px;
+
+.leaflet-container .leaflet-bar {
+  border: unset;
+}
 .leaflet-bottom .leaflet-control {
   margin-bottom: 80px;
 }
-
+.leaflet-touch .leaflet-bar {
+  background-color: #F6F6F6;
+}
+.leaflet-container .leaflet-bar a {
+  color: #AAAAAA;
+  font-weight: 900;
+}
+.leaflet-touch .leaflet-bar a:first-child {
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+.leaflet-touch .leaflet-bar a:last-child {
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+}
 
 .leaflet-control-attribution {
   display: none;
