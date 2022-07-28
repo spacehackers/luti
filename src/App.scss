@@ -61,7 +61,6 @@ body {
 }
 
 // customize zoom button styles
-$background-size: 64px;
 $border-radius: 6px;
 
 .leaflet-bottom .leaflet-control {
@@ -75,20 +74,20 @@ $border-radius: 6px;
   border-bottom: none;
   background-color: unset;
 }
+
+.leaflet-touch .leaflet-bar a {
+  background-size: 64px;
+}
 .leaflet-touch .leaflet-bar a:first-child {
   border-top-left-radius: $border-radius;
   border-top-right-radius: $border-radius;
 
-  background-image: url(http://localhost:3000//LUTI_Zoom_Icon.svg);
-  background-size: $background-size;
   background-position: top -10px left -15px;
 }
 .leaflet-touch .leaflet-bar a:last-child {
   border-bottom-left-radius: $border-radius;
   border-bottom-right-radius: $border-radius;
 
-  background-image: url(http://localhost:3000//LUTI_Zoom_Icon.svg);
-  background-size: $background-size;
   background-position: bottom -11px left -15px;
 }
 .leaflet-touch .leaflet-bar a:hover {
