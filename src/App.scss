@@ -63,28 +63,40 @@ body {
 // customize zoom button styles
 $border-radius: 6px;
 
+.leaflet-bottom .leaflet-control {
+  margin-right: 20px;
+  margin-bottom: 80px;
+}
+
+
 .leaflet-container .leaflet-bar {
   border: unset;
 }
-.leaflet-bottom .leaflet-control {
-  margin-bottom: 80px;
-}
-.leaflet-touch .leaflet-bar {
-  background-color: #F6F6F6;
-}
+
 .leaflet-container .leaflet-bar a {
-  color: #AAAAAA;
-  font-weight: 900;
+  border-bottom: none;
+  background-color: unset;
+
+ 
 }
+
+$background-size: 64px;
 .leaflet-touch .leaflet-bar a:first-child {
   border-top-left-radius: $border-radius;
   border-top-right-radius: $border-radius;
+
+  background-image: url(http://localhost:3000//LUTI_Zoom_Icon.svg);
+  background-size: $background-size;
+  background-position: top -10px left -15px;
 }
 .leaflet-touch .leaflet-bar a:last-child {
   border-bottom-left-radius: $border-radius;
   border-bottom-right-radius: $border-radius;
-}
 
+  background-image: url(http://localhost:3000//LUTI_Zoom_Icon.svg);
+  background-size: $background-size;
+  background-position: bottom -11px left -15px;
+}
 .leaflet-control-attribution {
   display: none;
 }

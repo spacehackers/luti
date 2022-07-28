@@ -142,6 +142,8 @@ class Homepage extends React.Component {
       // move to useEffect
       L.control
         .zoom({
+          zoomInText: "",
+          zoomOutText: "",
           position: "bottomright",
         })
         .addTo(this.state.map);
