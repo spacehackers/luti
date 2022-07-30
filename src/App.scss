@@ -79,6 +79,11 @@ $border-radius: 6px;
 .leaflet-touch .leaflet-bar a {
   background-size: 64px;
 }
+
+.leaflet-touch .leaflet-bar a {
+  background-image: url("images/LUTI_Zoom_Icon.svg");
+}
+
 .leaflet-touch .leaflet-bar a:first-child {
   border-top-left-radius: $border-radius;
   border-top-right-radius: $border-radius;

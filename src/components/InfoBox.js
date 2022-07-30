@@ -17,18 +17,6 @@ export default function InfoBox({ desc, displayMode, title, url }) {
   const ref = useRef(null);
 
   useEffect(() => {
-    const controlLinks = document.querySelectorAll(
-      ".leaflet-touch .leaflet-bar a"
-    );
-    if (!controlLinks || controlLinks.length !== 2) return;
-
-    const backgroundImage = "url(/LUTI_Zoom_Icon.svg)";
-
-    controlLinks[0].style.backgroundImage = backgroundImage;
-    controlLinks[1].style.backgroundImage = backgroundImage;
-  }, []);
-
-  useEffect(() => {
     const intro = document.querySelector(".leaflet-control-zoom");
     const height = ref.current.clientHeight;
 
