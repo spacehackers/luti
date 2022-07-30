@@ -13,28 +13,42 @@ const TRANSITION_SPEED = 500;
 
 export default function InfoBox({ desc, displayMode, title, url }) {
   const [closed, setClosed] = useState(true);
+  const [spaceKeyPressed, setSpaceKeyPressed] = useState(false);
 
   const ref = useRef(null);
 
-  const setKeyboardUser = (e) => {
+  const handleKeyUp = (e) => {
     const body = document.body;
 
     if (e.keyCode === 9) {
       body.classList.add("using-keyboard");
     }
+
+    if (e.keyCode === 32) {
+      if (document.activeElement.classList.contains("leaflet-container")) {
+        setSpaceKeyPressed(true);
+      }
+    }
   };
+
+  useEffect(() => {
+    if (spaceKeyPressed) {
+      setClosed(!closed);
+    }
+  }, [spaceKeyPressed]);
 
   useEffect(() => {
     const map = document.getElementsByClassName("leaflet-container")[0];
 
-    map.addEventListener("keyup", setKeyboardUser);
+    map.addEventListener("keyup", handleKeyUp);
 
     return () => {
-      map.removeEventListener("keyup", setKeyboardUser);
+      map.removeEventListener("keyup", handleKeyUp);
     };
   }, []);
 
   useEffect(() => {
+    setSpaceKeyPressed(false);
     const intro = document.querySelector(".leaflet-control-zoom");
     const height = ref.current.clientHeight;
 
@@ -49,21 +63,18 @@ export default function InfoBox({ desc, displayMode, title, url }) {
     }
   }, [closed]);
 
+  const handleMapClick = () => {
+    setClosed(true);
+  };
+
   useEffect(() => {
     const body = document.body;
     body.classList.add("overflow-hidden");
 
     const map = document.getElementsByClassName("leaflet-container")[0];
 
-    const handleMapClick = () => {
-      setClosed(!closed);
-    };
-
     if (closed) {
       document.querySelector(".leaflet-container").focus();
-      map.removeEventListener("click", handleMapClick);
-      map.removeEventListener("touchstart", handleMapClick);
-      map.removeEventListener("touchmove", handleMapClick);
     } else {
       map.addEventListener("click", handleMapClick);
       map.addEventListener("touchstart", handleMapClick);
