@@ -241,9 +241,9 @@ class Homepage extends React.Component {
             />
           </Map>
         )}
+
         {this.state.currentVideo && this.state.videosPlaying > 0 && (
           <InfoBox
-            hidden={false}
             {...this.state.currentVideo.info()}
             displayMode={this.props.displayMode}
           />

@@ -56,10 +56,10 @@ export default function InfoBox({ desc, displayMode, title, url }) {
 
     if (closed) {
       intro.style.transition = "margin 300ms";
-      intro.style.marginBottom = "80px"; // .leaflet-bottom .leaflet-control in App.scss
+      intro.style.marginBottom = "32px"; // .leaflet-bottom .leaflet-control in App.scss
     } else {
       intro.style.transition = "margin 300ms 200ms";
-      intro.style.marginBottom = `${height + 64}px`;
+      intro.style.marginBottom = `${height + 24}px`;
     }
   }, [closed]);
 
