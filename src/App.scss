@@ -100,6 +100,10 @@ $border-radius: 6px;
   background-position: bottom -11px left -15px;
 }
 
+button.sound {
+  background-image: url("images/LUTI_Speaker_Icon_Bright_On.svg");
+}
+
 .leaflet-touch .leaflet-bar a:hover {
   filter: contrast(95%);
 }

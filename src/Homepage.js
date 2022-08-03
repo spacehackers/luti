@@ -8,6 +8,8 @@ import { Helmet } from "react-helmet";
 import L from "leaflet";
 import { Map } from "react-leaflet";
 import { withRouter } from "react-router-dom";
+
+import Controls from "./components/Controls";
 import Intro from "./components/Intro";
 import InfoBox from "./components/InfoBox";
 
@@ -150,6 +152,16 @@ class Homepage extends React.Component {
     }, 1000);
   }
 
+  // these have to move to App.scss, but realz move them to useContext
+  // see slack dm for reducer.js and context.js
+  toggleSound = (e) => {
+    console.log("toggleSound", e);
+  };
+
+  toggleDarkMode = (e) => {
+    console.log("toggleDarkMode", e);
+  };
+
   render() {
     const query = queryString.parse(this.props.location.search);
 
@@ -198,12 +210,21 @@ class Homepage extends React.Component {
           <meta property="og:description" content={helmetData.description} />
           <meta property="og:image" content={helmetData.image} />
         </Helmet>
+
         <Intro
           visible={this.state.introVisible}
           displayMode={this.props.displayMode}
         >
           {introMessage}
         </Intro>
+
+        <Controls
+          displayMode={this.props.displayMode}
+          soundEnabled={query.sound}
+          toggleSound={this.toggleSound}
+          toggleDarkMode={this.toggleDarkMode}
+        />
+
         {!this.props.hidden && (
           <Map
             key="map"

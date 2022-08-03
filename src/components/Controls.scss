@@ -1,0 +1,23 @@
+@import "../shared";
+
+.controls {
+    bottom: 110px;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    right: 28px; 
+    z-index: 50;
+
+    button {
+        background-position: top -9px left -14px;
+        background-size: 200%;
+        border-radius: 6px;
+        border: unset;
+        box-shadow: -6px 7px 15px #242424;
+        cursor: pointer;
+        height: 2.2em;
+        overflow: hidden;
+        width: 2.2em;
+    }
+    
+}
