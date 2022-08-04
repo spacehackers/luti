@@ -6,7 +6,7 @@ const Acknowledgements = (props) => {
   const page = "Acknowledgements";
 
   return (
-    <Page displayMode={props.displayMode}>
+    <Page darkMode={props.darkMode}>
       {/* edit below */}
 
       <Helmet>

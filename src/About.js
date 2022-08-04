@@ -6,7 +6,7 @@ const About = (props) => {
   const page = "About the Project";
 
   return (
-    <Page displayMode={props.displayMode}>
+    <Page darkMode={props.darkMode}>
       {/* edit below */}
 
       <Helmet>

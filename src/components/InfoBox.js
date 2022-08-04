@@ -11,7 +11,7 @@ import "./InfoBox.scss";
 
 const TRANSITION_SPEED = 500;
 
-export default function InfoBox({ desc, displayMode, title, url }) {
+export default function InfoBox({ desc, darkMode, title, url }) {
   const [hidden, setHidden] = useState(true);
 
   useEffect(() => {
@@ -42,10 +42,16 @@ export default function InfoBox({ desc, displayMode, title, url }) {
     <CSSTransition in={!hidden} timeout={TRANSITION_SPEED}>
       <div>
         <InfoButton
-          displayMode={displayMode}
+          darkMode={darkMode}
           handleClick={() => setHidden(!hidden)}
         />
-        <div className={classNames("info-wrapper", displayMode)}>
+        <div
+          className={classNames(
+            "info-wrapper",
+            { dark: darkMode },
+            { light: !darkMode }
+          )}
+        >
           <div className="info-title">
             <h1>{title}</h1>
           </div>

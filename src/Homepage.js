@@ -187,7 +187,7 @@ class Homepage extends React.Component {
         </Helmet>
         <Intro
           visible={this.state.introVisible}
-          displayMode={this.props.displayMode}
+          darkMode={this.props.displayMode === "dark"}
         >
           {introMessage}
         </Intro>
@@ -231,7 +231,7 @@ class Homepage extends React.Component {
           <InfoBox
             hidden={false}
             {...this.state.currentVideo.info()}
-            displayMode={this.props.displayMode}
+            darkMode={this.props.displayMode === "dark"}
           />
         )}
       </>
