@@ -101,6 +101,9 @@ $border-radius: 6px;
 }
 
 button.sound {
+  background-image: url("images/LUTI_Speaker_Icon_Dark_Off.svg");
+}
+button.darkMode {
   background-image: url("images/LUTI_Speaker_Icon_Bright_On.svg");
 }
 

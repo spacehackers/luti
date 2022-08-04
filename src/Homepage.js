@@ -152,16 +152,6 @@ class Homepage extends React.Component {
     }, 1000);
   }
 
-  // these have to move to App.scss, but realz move them to useContext
-  // see slack dm for reducer.js and context.js
-  toggleSound = (e) => {
-    console.log("toggleSound", e);
-  };
-
-  toggleDarkMode = (e) => {
-    console.log("toggleDarkMode", e);
-  };
-
   render() {
     const query = queryString.parse(this.props.location.search);
 
@@ -221,8 +211,8 @@ class Homepage extends React.Component {
         <Controls
           displayMode={this.props.displayMode}
           soundEnabled={query.sound}
-          toggleSound={this.toggleSound}
-          toggleDarkMode={this.toggleDarkMode}
+          toggleSound={this.props.toggleSound}
+          toggleDarkMode={this.props.toggleDarkMode}
         />
 
         {!this.props.hidden && (

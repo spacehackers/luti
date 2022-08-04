@@ -47,6 +47,16 @@ export default class App extends React.Component {
     }, 500);
   }
 
+  // move these to useContext maybe
+  // see slack dm for reducer.js and context.js
+  toggleSound = (e) => {
+    console.log("toggleSound", e);
+  };
+
+  toggleDarkMode = (e) => {
+    console.log("toggleDarkMode", e);
+  };
+
   render() {
     return (
       <Router>
@@ -74,6 +84,8 @@ export default class App extends React.Component {
               <Homepage
                 hidden={this.state.hideMap}
                 displayMode={this.state.displayMode}
+                toggleSound={this.toggleSound}
+                toggleDarkMode={this.toggleDarkMode}
               />
             </Route>
           </Switch>

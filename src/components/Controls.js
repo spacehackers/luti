@@ -10,15 +10,26 @@ import "./Controls.scss";
 //   toggleSound,
 //   toggleDarkMode,
 // }) {
-export default function Controls({ toggleDarkMode }) {
+export default function Controls({ toggleDarkMode, toggleSound }) {
   return (
     <div className="controls">
-      <button
-        onClick={toggleDarkMode}
-        type="button"
-        className="sound"
-        label="toggle sound"
-      />
+      <div>
+        <button
+          onClick={toggleSound}
+          type="button"
+          className="sound"
+          label="toggle sound"
+        />
+      </div>
+
+      <div>
+        <button
+          onClick={toggleDarkMode}
+          type="button"
+          className="darkMode"
+          label="toggle dark mode"
+        />
+      </div>
     </div>
   );
 }
