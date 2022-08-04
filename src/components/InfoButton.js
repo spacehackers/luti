@@ -2,9 +2,9 @@ import React from "react";
 
 import "./InfoButton.scss";
 
-export default function InfoButton({ displayMode, handleClick }) {
+export default function InfoButton({ darkMode, handleClick }) {
   const img =
-    displayMode === "dark" ? "/LUTI_WhatsThis5.svg" : "/LUTI_WhatsThis5.svg"; // todo: update with dark mode svg
+    darkMode === true ? "/LUTI_WhatsThis5.svg" : "/LUTI_WhatsThis5.svg"; // todo: update with dark mode svg
 
   const ariaLabel = "What's this?";
 

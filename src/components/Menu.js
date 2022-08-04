@@ -142,7 +142,13 @@ export default class Menu extends React.Component {
     return (
       <nav>
         <CSSTransition in={this.state.open} timeout={TRANSITION_SPEED}>
-          <ul className={classNames("menu", this.props.displayMode)}>
+          <ul
+            className={classNames(
+              "menu",
+              { dark: this.props.darkMode },
+              { light: !this.props.darkMode }
+            )}
+          >
             {menuData.map((menuItem, key) => this.renderItem(menuItem, key))}
           </ul>
         </CSSTransition>

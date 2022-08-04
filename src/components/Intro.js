@@ -9,9 +9,7 @@ export default function Intro(props) {
   return (
     <div className="intro">
       <CSSTransition in={props.visible} timeout={TRANSITION_SPEED}>
-        <h2
-          className={classNames(props.displayMode, { hidden: !props.visible })}
-        >
+        <h2 className={classNames(props.darkMode, { hidden: !props.visible })}>
           {props.children}
         </h2>
       </CSSTransition>

@@ -11,9 +11,10 @@ import "./InfoBox.scss";
 
 const TRANSITION_SPEED = 500;
 
-export default function InfoBox({ desc, displayMode, title, url }) {
+export default function InfoBox({ desc, darkMode, title, url }) {
   const [closed, setClosed] = useState(true);
   const [spaceKeyPressed, setSpaceKeyPressed] = useState(false);
+  const [hidden, setHidden] = useState(true);
 
   const ref = useRef(null);
 
@@ -92,10 +93,16 @@ export default function InfoBox({ desc, displayMode, title, url }) {
     <CSSTransition in={!closed} timeout={TRANSITION_SPEED}>
       <div>
         <InfoButton
-          displayMode={displayMode}
-          handleClick={() => setClosed(!closed)}
+          darkMode={darkMode}
+          handleClick={() => setHidden(!hidden)}
         />
-        <div ref={ref} className={classNames("info-wrapper", displayMode)}>
+        <div
+          className={classNames(
+            "info-wrapper",
+            { dark: darkMode },
+            { light: !darkMode }
+          )}
+        >
           <div className="info-title">
             <h1>{title}</h1>
           </div>

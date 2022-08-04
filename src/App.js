@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import WebFont from "webfontloader";
 import ReactGA from "react-ga";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { DARK_MODE_HASH, LIGHT_MODE_HASH } from "./constants";
+import { DARK_MODE_HASH } from "./constants";
+
+// import SettingsContext from "../context";
 
 import Menu from "./components/Menu";
 import Homepage from "./Homepage";
@@ -17,80 +19,59 @@ const trackingId = "UA-153597890-1";
 
 ReactGA.initialize(trackingId);
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
+// const {
+//   state: { darkMode: false, soundOn: true },
+//   dispatch,
+// } = useContext(SettingsContext);
 
-    this.state = {
-      hideMap: true,
-      displayMode: LIGHT_MODE_HASH.slice(1),
-    };
+export default function App() {
+  const [hideMap, setHideMap] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const urlHash = window.location.hash;
+
+    if (urlHash === `#${DARK_MODE_HASH}`) {
+      setDarkMode(true);
+      document.body.classList.add(DARK_MODE_HASH);
+    }
 
     WebFont.load({
       typekit: {
         id: "ikz3unr",
       },
     });
-  }
 
-  componentDidMount() {
-    const urlHash = window.location.hash;
+    setHideMap(false);
+  }, []);
 
-    if (urlHash === DARK_MODE_HASH) {
-      const displayMode = DARK_MODE_HASH.slice(1);
-      this.setState({ displayMode });
-      document.body.classList.add(displayMode);
-    }
+  return (
+    <Router>
+      <GAListener>
+        <Switch>
+          <Route
+            path="/videos"
+            component={() => {
+              window.location.href =
+                "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/";
+              return null;
+            }}
+          />
 
-    window.setTimeout(() => {
-      this.setState({ hideMap: false });
-    }, 500);
-  }
-
-  // move these to useContext maybe
-  // see slack dm for reducer.js and context.js
-  toggleSound = (e) => {
-    console.log("toggleSound", e);
-  };
-
-  toggleDarkMode = (e) => {
-    console.log("toggleDarkMode", e);
-  };
-
-  render() {
-    return (
-      <Router>
-        <GAListener>
-          <Switch>
-            <Route
-              path="/videos"
-              component={() => {
-                window.location.href =
-                  "//www.youtube.com/channel/UCsQ5-o7tNvSxfAl8YjplKnw/";
-                return null;
-              }}
-            />
-
-            <Route path="/about">
-              <Menu page="about" displayMode={this.state.displayMode} />
-              <About displayMode={this.state.displayMode} />
-            </Route>
-            <Route path="/thanks">
-              <Menu page="thanks" displayMode={this.state.displayMode} />
-              <Acknowledgements displayMode={this.state.displayMode} />
-            </Route>
-            <Route path="/:x?/:y?/:hash?">
-              <Menu page="home" displayMode={this.state.displayMode} />
-              <Homepage
-                hidden={this.state.hideMap}
-                displayMode={this.state.displayMode}
-                toggleSound={this.toggleSound}
-                toggleDarkMode={this.toggleDarkMode}
-              />
-            </Route>
-          </Switch>
-        </GAListener>
-      </Router>
-    );
-  }
+          <Route path="/about">
+            <Menu page="about" darkMode={darkMode} />
+            <About darkMode={darkMode} />
+          </Route>
+          <Route path="/thanks">
+            <Menu page="thanks" darkMode={darkMode} />
+            <Acknowledgements darkMode={darkMode} />
+          </Route>
+          <Route path="/:x?/:y?/:hash?">
+            <Menu page="home" darkMode={darkMode} />
+            <Homepage hidden={hideMap} darkMode={darkMode} />
+          </Route>
+        </Switch>
+      </GAListener>
+    </Router>
+  );
 }

@@ -203,7 +203,7 @@ class Homepage extends React.Component {
 
         <Intro
           visible={this.state.introVisible}
-          displayMode={this.props.displayMode}
+          darkMode={this.props.displayMode === "dark"}
         >
           {introMessage}
         </Intro>
@@ -256,7 +256,7 @@ class Homepage extends React.Component {
         {this.state.currentVideo && this.state.videosPlaying > 0 && (
           <InfoBox
             {...this.state.currentVideo.info()}
-            displayMode={this.props.displayMode}
+            darkMode={this.props.displayMode === "dark"}
           />
         )}
       </>
