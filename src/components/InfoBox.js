@@ -63,15 +63,23 @@ export default function InfoBox({ desc, title, url }) {
 
   useEffect(() => {
     const zoomButtons = document.querySelector(".leaflet-control-zoom");
+    const controlButtons = document.querySelector(".controls");
     if (!infoBoxHeight || !zoomButtons) return;
 
+    let transition;
+    let marginBottom;
     if (closed) {
-      zoomButtons.style.transition = "margin 300ms";
-      zoomButtons.style.marginBottom = "32px"; // .leaflet-bottom .leaflet-control in App.scss
+      transition = "margin 300ms";
+      marginBottom = "32px";
     } else {
-      zoomButtons.style.transition = "margin 300ms 200ms";
-      zoomButtons.style.marginBottom = `${infoBoxHeight + 24}px`;
+      transition = "margin 300ms 200ms";
+      marginBottom = `${infoBoxHeight + 24}px`;
     }
+
+    zoomButtons.style.transition = transition;
+    zoomButtons.style.marginBottom = marginBottom; // .leaflet-bottom .leaflet-control in App.scss
+    controlButtons.style.transition = transition;
+    controlButtons.style.marginBottom = marginBottom; // .leaflet-bottom .leaflet-control in App.scss
   }, [closed, infoBoxHeight]);
 
   useEffect(() => {
