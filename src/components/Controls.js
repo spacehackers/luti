@@ -19,14 +19,14 @@ export default function Controls() {
         }}
         type="button"
         className="sound"
-        label="toggle sound"
+        aria-label={`turn ${sound ? "off" : "on"} sound`}
       />
 
       <button
         onClick={() => dispatch({ type: "DARK_MODE", payload: !darkMode })}
         type="button"
         className="darkMode"
-        label="toggle dark mode"
+        aria-label={`turn ${darkMode ? "off" : "on"} dark mode`}
       />
     </div>
   );
