@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
+
 import SettingsContext from "./context";
 
 import "./Controls.scss";
 
 export default function Controls() {
   const { state, dispatch } = useContext(SettingsContext);
-  const { darkMode, sound } = state;
+  const { darkMode, sound, newButtonsFlag } = state;
+
+  if (!newButtonsFlag) return null;
 
   return (
     <div className="controls">

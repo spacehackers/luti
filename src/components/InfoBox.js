@@ -14,7 +14,7 @@ const TRANSITION_SPEED = 500;
 
 export default function InfoBox({ desc, title, url }) {
   const { state, dispatch } = useContext(SettingsContext);
-  const { darkMode, infoBoxHeight } = state;
+  const { darkMode, infoBoxHeight, newButtonsFlag } = state;
 
   const [closed, setClosed] = useState(true);
   const [spaceKeyPressed, setSpaceKeyPressed] = useState(false);
@@ -83,8 +83,11 @@ export default function InfoBox({ desc, title, url }) {
 
     zoomButtons.style.transition = transition;
     zoomButtons.style.marginBottom = margins.zoomButtons;
-    controlButtons.style.transition = transition;
-    controlButtons.style.marginBottom = margins.controlButtons;
+
+    if (newButtonsFlag) {
+      controlButtons.style.transition = transition;
+      controlButtons.style.marginBottom = margins.controlButtons;
+    }
   }, [closed, infoBoxHeight]);
 
   useEffect(() => {

@@ -47,6 +47,10 @@ export default function App() {
       dispatch({ type: "SOUND", payload: true });
     }
 
+    if (query.buttons === "true" || query.buttons === "on") {
+      dispatch({ type: "BUTTONS_FLAG", payload: true });
+    }
+
     setHideMap(false);
   }, []);
 

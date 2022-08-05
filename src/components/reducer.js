@@ -9,6 +9,9 @@ export default function reducer(state, action) {
     case "INFO_BOX_HEIGHT":
       return { ...state, infoBoxHeight: action.payload };
 
+    case "BUTTONS_FLAG":
+      return { ...state, newButtonsFlag: action.payload };
+
     default:
       return state;
   }
