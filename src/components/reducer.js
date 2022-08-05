@@ -6,6 +6,9 @@ export default function reducer(state, action) {
     case "SOUND":
       return { ...state, sound: action.payload };
 
+    case "INFO_BOX_HEIGHT":
+      return { ...state, infoBoxHeight: action.payload };
+
     default:
       return state;
   }

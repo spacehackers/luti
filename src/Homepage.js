@@ -246,10 +246,7 @@ class Homepage extends React.Component {
         )}
 
         {this.state.currentVideo && this.state.videosPlaying > 0 && (
-          <InfoBox
-            {...this.state.currentVideo.info()}
-            darkMode={this.props.displayMode === "dark"}
-          />
+          <InfoBox {...this.state.currentVideo.info()} />
         )}
       </>
     );

@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
 import { CSSTransition } from "react-transition-group";
 
+import SettingsContext from "./context";
 import InfoButton from "./InfoButton";
 import ShareButtons from "./ShareButtons";
 
@@ -11,7 +12,10 @@ import "./InfoBox.scss";
 
 const TRANSITION_SPEED = 500;
 
-export default function InfoBox({ desc, darkMode, title, url }) {
+export default function InfoBox({ desc, title, url }) {
+  const { state, dispatch } = useContext(SettingsContext);
+  const { darkMode, infoBoxHeight } = state;
+
   const [closed, setClosed] = useState(true);
   const [spaceKeyPressed, setSpaceKeyPressed] = useState(false);
 
@@ -29,6 +33,10 @@ export default function InfoBox({ desc, darkMode, title, url }) {
         setSpaceKeyPressed(true);
       }
     }
+  };
+
+  const handleMapClick = () => {
+    setClosed(true);
   };
 
   useEffect(() => {
@@ -49,23 +57,22 @@ export default function InfoBox({ desc, darkMode, title, url }) {
 
   useEffect(() => {
     setSpaceKeyPressed(false);
-    const zoomButtons = document.querySelector(".leaflet-control-zoom");
     const height = ref.current.clientHeight;
+    dispatch({ type: "INFO_BOX_HEIGHT", payload: height });
+  }, [closed]);
 
-    if (!height || !zoomButtons) return;
+  useEffect(() => {
+    const zoomButtons = document.querySelector(".leaflet-control-zoom");
+    if (!infoBoxHeight || !zoomButtons) return;
 
     if (closed) {
       zoomButtons.style.transition = "margin 300ms";
       zoomButtons.style.marginBottom = "32px"; // .leaflet-bottom .leaflet-control in App.scss
     } else {
       zoomButtons.style.transition = "margin 300ms 200ms";
-      zoomButtons.style.marginBottom = `${height + 24}px`;
+      zoomButtons.style.marginBottom = `${infoBoxHeight + 24}px`;
     }
-  }, [closed]);
-
-  const handleMapClick = () => {
-    setClosed(true);
-  };
+  }, [closed, infoBoxHeight]);
 
   useEffect(() => {
     const body = document.body;
