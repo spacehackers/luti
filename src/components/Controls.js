@@ -1,21 +1,20 @@
-// import React, { useEffect, useRef, useState } from "react";
-import React from "react";
-// import PropTypes from "prop-types";
+import React, { useContext } from "react";
+import SettingsContext from "./context";
 
 import "./Controls.scss";
 
-// export default function Controls({
-//   displayMode,
-//   soundEnabled,
-//   toggleSound,
-//   toggleDarkMode,
-// }) {
-export default function Controls({ toggleDarkMode, toggleSound }) {
+export default function Controls() {
+  const { state, dispatch } = useContext(SettingsContext);
+  const { darkMode, sound } = state;
+
   return (
     <div className="controls">
       <div>
         <button
-          onClick={toggleSound}
+          onClick={(e) => {
+            e.preventDefault();
+            dispatch({ type: "SOUND", payload: !sound });
+          }}
           type="button"
           className="sound"
           label="toggle sound"
@@ -24,7 +23,7 @@ export default function Controls({ toggleDarkMode, toggleSound }) {
 
       <div>
         <button
-          onClick={toggleDarkMode}
+          onClick={() => dispatch({ type: "DARK_MODE", payload: !darkMode })}
           type="button"
           className="darkMode"
           label="toggle dark mode"
@@ -33,5 +32,3 @@ export default function Controls({ toggleDarkMode, toggleSound }) {
     </div>
   );
 }
-
-Controls.propTypes = {};

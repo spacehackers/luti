@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useReducer, useState } from "react";
 import WebFont from "webfontloader";
 import ReactGA from "react-ga";
+import queryString from "query-string";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { DARK_MODE_HASH } from "./constants";
@@ -8,6 +9,7 @@ import { DARK_MODE_HASH } from "./constants";
 import SettingsContext from "./components/context";
 import settingsReducer from "./components/reducer";
 
+import Controls from "./components/Controls";
 import Menu from "./components/Menu";
 import Homepage from "./Homepage";
 import About from "./About";
@@ -24,25 +26,43 @@ export default function App() {
   const initialState = useContext(SettingsContext);
   const [state, dispatch] = useReducer(settingsReducer, initialState);
 
-  const { darkMode } = state;
+  const { darkMode, sound } = state;
 
   const [hideMap, setHideMap] = useState(true);
 
   useEffect(() => {
-    const urlHash = window.location.hash;
-
-    if (urlHash === `#${DARK_MODE_HASH}`) {
-      dispatch({ type: "DARK_MODE", payload: true });
-    }
-
     WebFont.load({
       typekit: {
         id: "ikz3unr",
       },
     });
 
+    const urlHash = window.location.hash;
+    if (urlHash === `#${DARK_MODE_HASH}`) {
+      dispatch({ type: "DARK_MODE", payload: true });
+    }
+
+    const query = queryString.parse(window.location.search);
+    if (query.sound === "true" || query.sound === "on") {
+      dispatch({ type: "SOUND", payload: true });
+    }
+
     setHideMap(false);
   }, []);
+
+  useEffect(() => {
+    window.location.hash = darkMode ? "dark" : "";
+  }, [darkMode]);
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    queryParams.set("sound", sound);
+
+    const mode = darkMode ? "dark" : "";
+    const newUrl = `?${queryParams.toString()}#${mode}`;
+
+    window.history.pushState({ path: newUrl }, "", newUrl);
+  }, [sound]);
 
   return (
     <SettingsContext.Provider value={{ state, dispatch }}>
@@ -68,7 +88,13 @@ export default function App() {
             </Route>
             <Route path="/:x?/:y?/:hash?">
               <Menu page="home" darkMode={darkMode} />
-              <Homepage hidden={hideMap} darkMode={darkMode} />
+              <Controls />
+              <Homepage
+                key="1"
+                enabled={state.sound}
+                hidden={hideMap}
+                darkMode={darkMode}
+              />
             </Route>
           </Switch>
         </GAListener>

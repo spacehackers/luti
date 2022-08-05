@@ -14,7 +14,6 @@ const TRANSITION_SPEED = 500;
 export default function InfoBox({ desc, darkMode, title, url }) {
   const [closed, setClosed] = useState(true);
   const [spaceKeyPressed, setSpaceKeyPressed] = useState(false);
-  const [hidden, setHidden] = useState(true);
 
   const ref = useRef(null);
 
@@ -50,17 +49,17 @@ export default function InfoBox({ desc, darkMode, title, url }) {
 
   useEffect(() => {
     setSpaceKeyPressed(false);
-    const intro = document.querySelector(".leaflet-control-zoom");
+    const zoomButtons = document.querySelector(".leaflet-control-zoom");
     const height = ref.current.clientHeight;
 
-    if (!height || !intro) return;
+    if (!height || !zoomButtons) return;
 
     if (closed) {
-      intro.style.transition = "margin 300ms";
-      intro.style.marginBottom = "32px"; // .leaflet-bottom .leaflet-control in App.scss
+      zoomButtons.style.transition = "margin 300ms";
+      zoomButtons.style.marginBottom = "32px"; // .leaflet-bottom .leaflet-control in App.scss
     } else {
-      intro.style.transition = "margin 300ms 200ms";
-      intro.style.marginBottom = `${height + 24}px`;
+      zoomButtons.style.transition = "margin 300ms 200ms";
+      zoomButtons.style.marginBottom = `${height + 24}px`;
     }
   }, [closed]);
 
@@ -94,9 +93,10 @@ export default function InfoBox({ desc, darkMode, title, url }) {
       <div>
         <InfoButton
           darkMode={darkMode}
-          handleClick={() => setHidden(!hidden)}
+          handleClick={() => setClosed(!closed)}
         />
         <div
+          ref={ref}
           className={classNames(
             "info-wrapper",
             { dark: darkMode },

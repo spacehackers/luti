@@ -12,13 +12,16 @@ const debug_sound_source =
 export default class Sounds extends React.Component {
   constructor(props) {
     super(props);
-    if (!this.props.enabled) {
-      return;
-    }
+
     this.state = {
       sounds: [],
       volume: {},
     };
+
+    if (!this.props.enabled) {
+      return;
+    }
+
     this.latlngs = {};
     this.analysers = {};
     const AudioContext = window.AudioContext || window.webkitAudioContext;

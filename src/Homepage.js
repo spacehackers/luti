@@ -9,7 +9,6 @@ import L from "leaflet";
 import { Map } from "react-leaflet";
 import { withRouter } from "react-router-dom";
 
-import Controls from "./components/Controls";
 import Intro from "./components/Intro";
 import InfoBox from "./components/InfoBox";
 
@@ -208,13 +207,6 @@ class Homepage extends React.Component {
           {introMessage}
         </Intro>
 
-        <Controls
-          displayMode={this.props.displayMode}
-          soundEnabled={query.sound}
-          toggleSound={this.props.toggleSound}
-          toggleDarkMode={this.props.toggleDarkMode}
-        />
-
         {!this.props.hidden && (
           <Map
             key="map"
@@ -248,7 +240,7 @@ class Homepage extends React.Component {
               map={this.state.map}
               paused={this.state.introVisible}
               debug={query.debug}
-              enabled={query.sound}
+              enabled={this.props.enabled}
             />
           </Map>
         )}
