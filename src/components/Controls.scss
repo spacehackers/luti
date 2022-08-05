@@ -1,12 +1,16 @@
 @import "../shared";
 
 .controls {
-    bottom: 110px;
+    bottom: 98px;
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
     position: fixed;
     right: 28px; 
-    z-index: 50;
+    z-index: 401;
+
+  
 
     button {
         background-position: top -11px left -18px;
@@ -14,10 +18,14 @@
         border-radius: 6px;
         border: unset;
         box-shadow: -6px 7px 15px #242424;
+        position: relative;
         cursor: pointer;
         height: 2.2em;
         overflow: hidden;
         width: 2.2em;
     }
-    
+
+    :first-child {
+        margin-bottom: 4px;
+    }    
 }

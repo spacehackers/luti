@@ -67,19 +67,24 @@ export default function InfoBox({ desc, title, url }) {
     if (!infoBoxHeight || !zoomButtons) return;
 
     let transition;
-    let marginBottom;
+    let margins = {};
     if (closed) {
       transition = "margin 300ms";
-      marginBottom = "32px";
+      margins = { zoomButtons: "32px", controlButtons: "0px" };
     } else {
       transition = "margin 300ms 200ms";
-      marginBottom = `${infoBoxHeight + 24}px`;
+      const zoomButtonMargin = `${infoBoxHeight + 32}px`;
+      const controlButtonMargin = `${infoBoxHeight}px`;
+      margins = {
+        zoomButtons: zoomButtonMargin,
+        controlButtons: controlButtonMargin,
+      };
     }
 
     zoomButtons.style.transition = transition;
-    zoomButtons.style.marginBottom = marginBottom; // .leaflet-bottom .leaflet-control in App.scss
+    zoomButtons.style.marginBottom = margins.zoomButtons;
     controlButtons.style.transition = transition;
-    controlButtons.style.marginBottom = marginBottom; // .leaflet-bottom .leaflet-control in App.scss
+    controlButtons.style.marginBottom = margins.controlButtons;
   }, [closed, infoBoxHeight]);
 
   useEffect(() => {

@@ -18,7 +18,7 @@ $offscreen: -$max-height;
   left: 0;
   max-height: 500px;
   padding: $padding;
-  position: absolute;
+  position: fixed;
   right: 0;
   z-index: $z-index-map + 1; // cover the button too
 

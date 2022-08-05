@@ -9,26 +9,22 @@ export default function Controls() {
 
   return (
     <div className="controls">
-      <div>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            dispatch({ type: "SOUND", payload: !sound });
-          }}
-          type="button"
-          className="sound"
-          label="toggle sound"
-        />
-      </div>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          dispatch({ type: "SOUND", payload: !sound });
+        }}
+        type="button"
+        className="sound"
+        label="toggle sound"
+      />
 
-      <div>
-        <button
-          onClick={() => dispatch({ type: "DARK_MODE", payload: !darkMode })}
-          type="button"
-          className="darkMode"
-          label="toggle dark mode"
-        />
-      </div>
+      <button
+        onClick={() => dispatch({ type: "DARK_MODE", payload: !darkMode })}
+        type="button"
+        className="darkMode"
+        label="toggle dark mode"
+      />
     </div>
   );
 }
