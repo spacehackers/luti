@@ -1,16 +1,13 @@
 @import "../shared";
 
 .controls {
-    bottom: 98px;
+    bottom: 130px;
     display: flex;
     flex-direction: column;
     margin: 0;
     padding: 0;
     position: fixed;
     right: 28px; 
-    z-index: 401;
-
-  
 
     button {
         background-position: top -11px left -18px;

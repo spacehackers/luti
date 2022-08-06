@@ -12,6 +12,8 @@ import { withRouter } from "react-router-dom";
 import Intro from "./components/Intro";
 import InfoBox from "./components/InfoBox";
 
+import Controls from "./components/Controls";
+
 import Sounds from "./Sounds";
 import Videos from "./Videos";
 
@@ -225,6 +227,7 @@ class Homepage extends React.Component {
             ref={this.onMapLoad}
             zoomControl={false}
           >
+            <Controls />
             <Videos
               debug={query.debug}
               spinnerTest={query.spinnerTest}

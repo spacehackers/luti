@@ -9,7 +9,6 @@ import { DARK_MODE_HASH } from "./constants";
 import SettingsContext from "./components/context";
 import settingsReducer from "./components/reducer";
 
-import Controls from "./components/Controls";
 import Menu from "./components/Menu";
 import Homepage from "./Homepage";
 import About from "./About";
@@ -29,6 +28,10 @@ export default function App() {
   const { darkMode, sound } = state;
 
   const [hideMap, setHideMap] = useState(true);
+
+  useEffect(() => {
+    window.location.hash = darkMode ? "dark" : "";
+  }, [darkMode]);
 
   useEffect(() => {
     WebFont.load({
@@ -55,10 +58,6 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    window.location.hash = darkMode ? "dark" : "";
-  }, [darkMode]);
-
-  useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     queryParams.set("sound", sound);
 
@@ -81,7 +80,6 @@ export default function App() {
                 return null;
               }}
             />
-
             <Route path="/about">
               <Menu page="about" darkMode={darkMode} />
               <About darkMode={darkMode} />
@@ -92,7 +90,6 @@ export default function App() {
             </Route>
             <Route path="/:x?/:y?/:hash?">
               <Menu page="home" darkMode={darkMode} />
-              <Controls />
               <Homepage
                 key="1"
                 enabled={state.sound}

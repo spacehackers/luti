@@ -63,6 +63,16 @@ body {
 // customize zoom button styles
 $border-radius: 6px;
 
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  position: relative;
+  z-index: 1;
+}
+
+.leaflet-control {
+  z-index: unset;
+}
+
 .leaflet-container {
   position: relative;
 }
