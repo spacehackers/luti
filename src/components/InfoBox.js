@@ -39,6 +39,25 @@ export default function InfoBox({ desc, title, url }) {
     setClosed(true);
   };
 
+  const infoBoxStyles = () => {
+    let transition;
+    let margins = {};
+    if (closed) {
+      transition = "margin 300ms";
+      margins = { zoomButtons: "32px", controlButtons: "0px" };
+    } else {
+      transition = "margin 300ms 200ms";
+      const zoomButtonMargin = `${infoBoxHeight + 32}px`;
+      const controlButtonMargin = `${infoBoxHeight}px`;
+      margins = {
+        zoomButtons: zoomButtonMargin,
+        controlButtons: controlButtonMargin,
+      };
+    }
+
+    return { margins, transition };
+  };
+
   useEffect(() => {
     if (spaceKeyPressed) {
       setClosed(!closed);
@@ -66,20 +85,7 @@ export default function InfoBox({ desc, title, url }) {
     const controlButtons = document.querySelector(".controls");
     if (!infoBoxHeight || !zoomButtons) return;
 
-    let transition;
-    let margins = {};
-    if (closed) {
-      transition = "margin 300ms";
-      margins = { zoomButtons: "32px", controlButtons: "0px" };
-    } else {
-      transition = "margin 300ms 200ms";
-      const zoomButtonMargin = `${infoBoxHeight + 32}px`;
-      const controlButtonMargin = `${infoBoxHeight}px`;
-      margins = {
-        zoomButtons: zoomButtonMargin,
-        controlButtons: controlButtonMargin,
-      };
-    }
+    const { margins, transition } = infoBoxStyles();
 
     zoomButtons.style.transition = transition;
     zoomButtons.style.marginBottom = margins.zoomButtons;
