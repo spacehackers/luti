@@ -114,11 +114,19 @@ $border-radius: 6px;
   background-position: bottom -11px left -15px;
 }
 
-button.sound {
+
+button.sound.off {
+  background-image: url("images/LUTI_Speaker_Icon_Bright_On.svg");
+}
+button.sound.on {
   background-image: url("images/LUTI_Speaker_Icon_Dark_Off.svg");
 }
-button.darkMode {
-  background-image: url("images/LUTI_Speaker_Icon_Bright_On.svg");
+
+button.darkMode.off {
+  background-image: url("images/LUTI_LightBulb_Icon_Bright_On.svg");
+}
+button.darkMode.on {
+  background-image: url("images/LUTI_LightBulb_Icon_Dark_Off.svg");
 }
 
 .leaflet-touch .leaflet-bar a:hover {

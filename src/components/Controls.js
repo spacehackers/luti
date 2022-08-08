@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import classNames from "classnames";
 
 import Control from "react-leaflet-control";
 import SettingsContext from "./context";
@@ -20,14 +21,18 @@ export default function Controls() {
             dispatch({ type: "SOUND", payload: !sound });
           }}
           type="button"
-          className="sound"
+          className={classNames("sound", { on: sound }, { off: !sound })}
           aria-label={`turn ${sound ? "off" : "on"} sound`}
         />
 
         <button
           onClick={() => dispatch({ type: "DARK_MODE", payload: !darkMode })}
           type="button"
-          className="darkMode"
+          className={classNames(
+            "darkMode",
+            { on: darkMode },
+            { off: !darkMode }
+          )}
           aria-label={`turn ${darkMode ? "off" : "on"} dark mode`}
         />
       </div>
