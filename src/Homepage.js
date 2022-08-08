@@ -191,6 +191,7 @@ class Homepage extends React.Component {
         description: this.state.currentVideo.location,
       };
     }
+
     return (
       <>
         <Helmet>
@@ -240,6 +241,7 @@ class Homepage extends React.Component {
               map={this.state.map}
             />
             <Sounds
+              key={`sounds-${this.props.enabled}`}
               map={this.state.map}
               paused={this.state.introVisible}
               debug={query.debug}
