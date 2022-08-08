@@ -16,16 +16,6 @@ export default function Controls() {
     <Control position="bottomright">
       <div className="controls">
         <button
-          onClick={(e) => {
-            e.preventDefault();
-            dispatch({ type: "SOUND", payload: !sound });
-          }}
-          type="button"
-          className={classNames("sound", { on: sound }, { off: !sound })}
-          aria-label={`turn ${sound ? "off" : "on"} sound`}
-        />
-
-        <button
           onClick={() => dispatch({ type: "DARK_MODE", payload: !darkMode })}
           type="button"
           className={classNames(
@@ -34,6 +24,16 @@ export default function Controls() {
             { off: !darkMode }
           )}
           aria-label={`turn ${darkMode ? "off" : "on"} dark mode`}
+        />
+
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            dispatch({ type: "SOUND", payload: !sound });
+          }}
+          type="button"
+          className={classNames("sound", { on: sound }, { off: !sound })}
+          aria-label={`turn ${sound ? "off" : "on"} sound`}
         />
       </div>
     </Control>
