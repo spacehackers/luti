@@ -66,8 +66,8 @@ $border-radius: 6px;
 .leaflet-bottom.leaflet-right {
   position: fixed;
 }
-.leaflet-bottom .leaflet-control {
-  box-shadow: -6px 7px 15px #242424;
+.leaflet-bottom > .leaflet-control {
+  box-shadow: $box-shadow;
   margin-right: 28px;
   margin-bottom: 32px;
 }
