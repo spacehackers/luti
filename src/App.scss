@@ -53,12 +53,64 @@ body {
   }
 }
 
+// hides zoom controls in mobile
 .leaflet-control-container {
   @media (max-width: $mobile_breakpoint) {
     display: none;
   }
 }
 
+// customize zoom button styles
+$border-radius: 6px;
+
+.leaflet-bottom.leaflet-right {
+  position: fixed;
+}
+.leaflet-bottom > .leaflet-control {
+  box-shadow: $box-shadow;
+  margin-right: 28px;
+  margin-bottom: 32px;
+}
+.leaflet-container .leaflet-bar {
+  border: unset;
+}
+.leaflet-container .leaflet-bar a {
+  border-bottom: none;
+  background-color: unset;
+}
+
+.leaflet-touch .leaflet-bar a {
+  background-size: 64px;
+}
+
+.leaflet-touch .leaflet-bar a {
+  background-image: url("images/LUTI_Zoom_Icon.svg");
+}
+
+.leaflet-touch .leaflet-bar a:first-child {
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+
+  background-position: top -10px left -15px;
+}
+.leaflet-touch .leaflet-bar a:last-child {
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+
+  background-position: bottom -11px left -15px;
+}
+
+.leaflet-touch .leaflet-bar a:hover {
+  filter: contrast(95%);
+}
+.leaflet-touch .leaflet-bar a.leaflet-disabled {
+  filter: contrast(220%) brightness(0.9);
+
+  :hover {
+    filter: contrast(220%);
+
+  }
+}
 .leaflet-control-attribution {
   display: none;
 }
