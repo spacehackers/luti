@@ -16,7 +16,7 @@
     "magnification": "Magnified 50x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 3,
     "y": 1,
     "title": "Nothing to see here",
@@ -40,7 +40,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 6,
     "y": 1,
     "title": "Nothing to see here",
@@ -56,7 +56,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 8,
     "y": 1,
     "title": "Nothing to see here",
@@ -72,7 +72,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 10,
     "y": 1,
     "title": "Nothing to see here",
@@ -88,7 +88,7 @@
     "magnification": "Magnified HEREx."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 1,
     "y": 2,
     "title": "Nothing to see here",
@@ -112,7 +112,7 @@
     "magnification": "Magnified 10x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 4,
     "y": 2,
     "title": "Nothing to see here",
@@ -152,7 +152,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 9,
     "y": 2,
     "title": "Nothing to see here",
@@ -160,7 +160,7 @@
     "magnification": ""
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 10,
     "y": 2,
     "title": "Nothing to see here",
@@ -184,7 +184,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 2,
     "y": 3,
     "title": "Nothing to see here",
@@ -208,7 +208,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 5,
     "y": 3,
     "title": "Nothing to see here",
@@ -232,7 +232,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 8,
     "y": 3,
     "title": "Nothing to see here",
@@ -248,7 +248,7 @@
     "magnification": "Magnified 100x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 10,
     "y": 3,
     "title": "Nothing to see here",
@@ -264,7 +264,7 @@
     "magnification": "Magnified HEREx."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 1,
     "y": 4,
     "title": "Nothing to see here",
@@ -312,7 +312,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 7,
     "y": 4,
     "title": "Nothing to see here",
@@ -376,7 +376,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 4,
     "y": 5,
     "title": "Nothing to see here",
@@ -416,7 +416,7 @@
     "magnification": "Magnified 50x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 9,
     "y": 5,
     "title": "Nothing to see here",
@@ -424,7 +424,7 @@
     "magnification": ""
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 10,
     "y": 5,
     "title": "Nothing to see here",
@@ -440,7 +440,7 @@
     "magnification": "Magnified HEREx."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 1,
     "y": 6,
     "title": "Nothing to see here",
@@ -512,7 +512,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 10,
     "y": 6,
     "title": "Nothing to see here",
@@ -536,7 +536,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 2,
     "y": 7,
     "title": "Nothing to see here",
@@ -576,7 +576,7 @@
     "magnification": "Magnified 50x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 7,
     "y": 7,
     "title": "Nothing to see here",
@@ -688,7 +688,7 @@
     "magnification": "Magnified 100x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 10,
     "y": 8,
     "title": "Nothing to see here",
@@ -761,7 +761,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 8,
     "y": 9,
     "title": "Nothing to see here",
@@ -777,7 +777,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 10,
     "y": 9,
     "title": "Nothing to see here",
@@ -793,7 +793,7 @@
     "magnification": "Magnified 200x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 1,
     "y": 10,
     "title": "Nothing to see here",
@@ -857,7 +857,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 9,
     "y": 10,
     "title": "Nothing to see here",
@@ -897,7 +897,7 @@
     "magnification": "Magnified 10x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 3,
     "y": 11,
     "title": "Nothing to see here",
@@ -953,7 +953,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 10,
     "y": 11,
     "title": "Nothing to see here",
@@ -969,7 +969,7 @@
     "magnification": "Magnified 200x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 1,
     "y": 12,
     "title": "Nothing to see here",
@@ -1001,7 +1001,7 @@
     "magnification": "Magnified 20x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 5,
     "y": 12,
     "title": "Nothing to see here",
@@ -1025,7 +1025,7 @@
     "magnification": "Magnified 50x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 8,
     "y": 12,
     "title": "Nothing to see here",
@@ -1041,7 +1041,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 10,
     "y": 12,
     "title": "Nothing to see here",
@@ -1073,7 +1073,7 @@
     "magnification": "Magnified 50x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 3,
     "y": 13,
     "title": "Nothing to see here",
@@ -1121,7 +1121,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 9,
     "y": 13,
     "title": "Nothing to see here",
@@ -1153,7 +1153,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 2,
     "y": 14,
     "title": "Nothing to see here",
@@ -1193,7 +1193,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 7,
     "y": 14,
     "title": "Nothing to see here",
@@ -1217,7 +1217,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 10,
     "y": 14,
     "title": "Nothing to see here",
@@ -1233,7 +1233,7 @@
     "magnification": "Magnified 200x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 1,
     "y": 15,
     "title": "Nothing to see here",
@@ -1257,7 +1257,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 4,
     "y": 15,
     "title": "Nothing to see here",
@@ -1273,7 +1273,7 @@
     "magnification": "Magnified 50x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 6,
     "y": 15,
     "title": "Nothing to see here",
@@ -1305,7 +1305,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 10,
     "y": 15,
     "title": "Nothing to see here",
@@ -1321,7 +1321,7 @@
     "magnification": "Magnified 200x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 1,
     "y": 16,
     "title": "Nothing to see here",
@@ -1329,7 +1329,7 @@
     "magnification": ""
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 2,
     "y": 16,
     "title": "Nothing to see here",
@@ -1337,7 +1337,7 @@
     "magnification": ""
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 3,
     "y": 16,
     "title": "Nothing to see here",
@@ -1353,7 +1353,7 @@
     "magnification": "Magnified 25x."
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 5,
     "y": 16,
     "title": "Nothing to see here",
@@ -1361,7 +1361,7 @@
     "magnification": ""
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 6,
     "y": 16,
     "title": "Nothing to see here",
@@ -1369,7 +1369,7 @@
     "magnification": ""
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 7,
     "y": 16,
     "title": "Nothing to see here",
@@ -1377,7 +1377,7 @@
     "magnification": ""
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 8,
     "y": 16,
     "title": "Nothing to see here",
@@ -1385,7 +1385,7 @@
     "magnification": ""
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 9,
     "y": 16,
     "title": "Nothing to see here",
@@ -1393,7 +1393,7 @@
     "magnification": ""
   },
   {
-    "filename": "Black.jpg",
+    "filename": "Black",
     "x": 10,
     "y": 16,
     "title": "Nothing to see here",
@@ -1497,7 +1497,7 @@
     "magnification": "Magnified 200x."
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 0,
     "title": "",
@@ -1505,7 +1505,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 1,
     "y": 0,
     "title": "",
@@ -1513,7 +1513,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 2,
     "y": 0,
     "title": "",
@@ -1521,7 +1521,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 3,
     "y": 0,
     "title": "",
@@ -1529,7 +1529,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 4,
     "y": 0,
     "title": "",
@@ -1537,7 +1537,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 5,
     "y": 0,
     "title": "",
@@ -1545,7 +1545,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 6,
     "y": 0,
     "title": "",
@@ -1553,7 +1553,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 7,
     "y": 0,
     "title": "",
@@ -1561,7 +1561,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 8,
     "y": 0,
     "title": "",
@@ -1569,7 +1569,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 9,
     "y": 0,
     "title": "",
@@ -1577,7 +1577,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 10,
     "y": 0,
     "title": "",
@@ -1585,7 +1585,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 11,
     "y": 0,
     "title": "",
@@ -1593,7 +1593,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 1,
     "title": "",
@@ -1601,7 +1601,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 2,
     "title": "",
@@ -1609,7 +1609,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 3,
     "title": "",
@@ -1617,7 +1617,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 4,
     "title": "",
@@ -1625,7 +1625,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 5,
     "title": "",
@@ -1633,7 +1633,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 6,
     "title": "",
@@ -1641,7 +1641,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 7,
     "title": "",
@@ -1649,7 +1649,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 8,
     "title": "",
@@ -1657,7 +1657,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 9,
     "title": "",
@@ -1665,7 +1665,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 10,
     "title": "",
@@ -1673,7 +1673,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 11,
     "title": "",
@@ -1681,7 +1681,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 12,
     "title": "",
@@ -1689,7 +1689,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 13,
     "title": "",
@@ -1697,7 +1697,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 14,
     "title": "",
@@ -1705,7 +1705,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 15,
     "title": "",
@@ -1713,7 +1713,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 16,
     "title": "",
@@ -1721,7 +1721,7 @@
     "magnification": ""
   },
   {
-    "filename": "",
+    "filename": "Black",
     "x": 0,
     "y": 17,
     "title": "",
