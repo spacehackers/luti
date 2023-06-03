@@ -1,3 +1,5 @@
+import { StatusBar } from "@capacitor/status-bar";
+
 import React from "react";
 import WebFont from "webfontloader";
 import ReactGA from "react-ga";
@@ -25,6 +27,8 @@ export default class App extends React.Component {
       hideMap: true,
       displayMode: LIGHT_MODE_HASH.slice(1),
     };
+
+    StatusBar.hide();
 
     WebFont.load({
       typekit: {

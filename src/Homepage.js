@@ -76,8 +76,6 @@ class Homepage extends React.Component {
       return L.latLng(center.lat - 120, center.lng - 100);
     };
 
-    L.Map.include(L.LayerIndexMixin);
-
     const { x, y, hash } = props.match.params;
     this.state = {
       introVisible: false,

@@ -6,6 +6,7 @@ import Video from "./Video";
 
 import {
   vid_config,
+  file_url,
   cloudfront_base_url,
   base_url,
   bounds_to_xy,
@@ -101,6 +102,7 @@ export default class Videos extends React.Component {
     };
 
     const handleOnMove = () => {
+      if (this.zooming) return;
       const bounds = this.props.map.getBounds();
       const xy_bounds = bounds_to_xy(bounds.pad(this.props.boundsPad));
       if (!_.isEqual(xy_bounds, this.state.xy_bounds)) {
@@ -139,6 +141,13 @@ export default class Videos extends React.Component {
 
   componentDidMount() {
     if (this.props.map) {
+      this.props.map.on("zoomstart", () => {
+        this.zooming = true;
+      });
+      this.props.map.on("zoomend", () => {
+        this.zooming = false;
+        this.handleOnMove();
+      });
       this.props.map.addEventListener("move", this.handleOnMove);
       this.handleOnMove();
     }
@@ -195,9 +204,13 @@ export default class Videos extends React.Component {
     this.props.videoLayout.forEach((vid, idx) => {
       const id = `${vid.filename}-${idx}`;
       const visible = this.isVisible(vid);
-      const m3u8 = this.props.useCloudfront
+      let m3u8 = this.props.useCloudfront
         ? `${cloudfront_base_url}${vid.filename}-playlist.m3u8`
         : `${base_url}${vid.filename}-playlist.m3u8`;
+
+      const cap_m3u8 = `${file_url}${vid.filename}-playlist.m3u8`;
+      console.log("CAPACITOR", cap_m3u8);
+      m3u8 = cap_m3u8;
       videos.push(
         <Video
           m3u8={m3u8}

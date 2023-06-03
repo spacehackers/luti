@@ -9,6 +9,7 @@ export const y_count = (video_layout) =>
   _.max(video_layout.map((l) => parseInt(l.y, 10))) + 1;
 
 export const base_url = "https://lifeundertheice.s3.amazonaws.com/";
+export const file_url = "capacitor://localhost/luti-s3/";
 export const cloudfront_base_url = "https://d30lzybxi44477.cloudfront.net/";
 
 export const init_zoom = -1.6;
