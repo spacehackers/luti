@@ -31,6 +31,15 @@ export const vid_config = {
 
 export const style = { height: `${img_height}px`, width: `${img_width}px` };
 
+export const bounds_to_xy_precise = (bounds) => {
+  return {
+    x_bottom_left: bounds.getSouthWest().lng / (img_width - 1),
+    y_bottom_left: bounds.getSouthWest().lat / (img_height - 1),
+    x_top_right: bounds.getNorthEast().lng / (img_width - 1),
+    y_top_right: bounds.getNorthEast().lat / (img_height - 1),
+  };
+};
+
 export const bounds_to_xy = (bounds) => {
   return {
     x_bottom_left: Math.floor(bounds.getSouthWest().lng / (img_width - 1)),

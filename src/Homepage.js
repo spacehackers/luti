@@ -11,7 +11,7 @@ import { withRouter } from "react-router-dom";
 import Intro from "./components/Intro";
 import InfoBox from "./components/InfoBox";
 
-import Sounds from "./Sounds";
+import SoundsLayout from "./Sound/SoundsLayout";
 import Videos from "./Videos";
 
 import VideoData from "./VideoData";
@@ -219,12 +219,6 @@ class Homepage extends React.Component {
               boundsPad={this.state.boundsPad}
               map={this.state.map}
             />
-            <Sounds
-              map={this.state.map}
-              paused={this.state.introVisible}
-              debug={query.debug}
-              enabled={query.sound}
-            />
           </Map>
         )}
         {this.state.currentVideo && this.state.videosPlaying > 0 && (
@@ -234,6 +228,10 @@ class Homepage extends React.Component {
             displayMode={this.props.displayMode}
           />
         )}
+        <SoundsLayout
+          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQbyxIWPplJbfSWBRfpSNmho-6LcS1xgEWd8VRLAn3R1dkvWQP3-OHLrFuA4_NgeMk9y3JKzkWzMwWW/pub?gid=0&single=true&output=tsv"
+          map={this.state.map}
+        />
       </>
     );
   }

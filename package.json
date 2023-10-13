@@ -24,7 +24,12 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^4.0.3",
     "react-transition-group": "^4.3.0",
+    "resonance-audio": "^1.0.0",
     "sass": "^1.38.2",
+    "tunajs": "^1.0.15",
+    "use-between": "^1.0.1",
+    "waaclock": "^0.5.3",
+    "webaudio-oscilloscope": "^3.2.1",
     "webfontloader": "^1.6.28"
   },
   "scripts": {
@@ -56,7 +61,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.2.1",
     "prettier-eslint": "^12.0.0"
   }

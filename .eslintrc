@@ -10,6 +10,9 @@
       "jsx": true
     }
   },
+  "plugins": [
+    "react-hooks"
+  ],
   "extends": [
     "airbnb",
     "plugin:prettier/recommended"
@@ -45,6 +48,9 @@
     "react/prefer-stateless-function": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
-    "jsx-a11y/media-has-caption": "off"
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "jsx-a11y/media-has-caption": "off",
+    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['draft'] }]
   }
 }
