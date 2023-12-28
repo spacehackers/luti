@@ -7,6 +7,7 @@ import Video from "./Video";
 import {
   vid_config,
   cloudfront_base_url,
+  offline_url,
   base_url,
   bounds_to_xy,
   xy_to_bounds,
@@ -188,6 +189,7 @@ export default class Videos extends React.Component {
   }
 
   render() {
+    const { offline } = this.props;
     if (!this.props.map) {
       return null;
     }
@@ -195,9 +197,13 @@ export default class Videos extends React.Component {
     this.props.videoLayout.forEach((vid, idx) => {
       const id = `${vid.filename}-${idx}`;
       const visible = this.isVisible(vid);
-      const m3u8 = this.props.useCloudfront
+      let m3u8 = this.props.useCloudfront
         ? `${cloudfront_base_url}${vid.filename}-playlist.m3u8`
         : `${base_url}${vid.filename}-playlist.m3u8`;
+      if (offline) {
+        m3u8 = `${offline_url}${vid.filename}-playlist.m3u8`;
+      }
+
       videos.push(
         <Video
           m3u8={m3u8}

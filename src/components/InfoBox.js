@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-
 import { CSSTransition } from "react-transition-group";
+import { Online } from "../Offline";
 
 import InfoButton from "./InfoButton";
 import ShareButtons from "./ShareButtons";
@@ -50,7 +50,9 @@ export default function InfoBox({ desc, displayMode, title, url }) {
             <h1>{title}</h1>
           </div>
           <div className="info-description">{desc}</div>
-          <ShareButtons url={url} />
+          <Online>
+            <ShareButtons url={url} />
+          </Online>
         </div>
       </div>
     </CSSTransition>

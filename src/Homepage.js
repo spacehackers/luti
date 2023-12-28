@@ -137,10 +137,14 @@ class Homepage extends React.Component {
 
   render() {
     const query = queryString.parse(this.props.location.search);
+    const offline = !!query.offline;
 
     let introMessage = "Drag To Discover New Creatures";
     if (this.state.videosPlaying === 0) {
-      if (Date.now() - this.startupTime > VIDEO_PLAY_TIMEOUT) {
+      introMessage = "Loading Microbes...";
+      if (offline) {
+        introMessage = "Looking For Microbes...";
+      } else if (Date.now() - this.startupTime > VIDEO_PLAY_TIMEOUT) {
         introMessage = (
           <div className="connection-problem">
             <span
@@ -156,8 +160,6 @@ class Homepage extends React.Component {
             Please find a faster connection.
           </div>
         );
-      } else {
-        introMessage = "Loading Microbes...";
       }
     }
     let helmetData = {
@@ -207,6 +209,7 @@ class Homepage extends React.Component {
             ref={this.onMapLoad}
           >
             <Videos
+              offline={offline}
               debug={query.debug}
               spinnerTest={query.spinnerTest}
               showLoadingProblem={query.loading}
