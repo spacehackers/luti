@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import Page from "./Page/Page";
+import { Online } from "./Offline";
 
 const About = (props) => {
   const page = "About the Project";
@@ -113,117 +114,119 @@ const About = (props) => {
         before.
       </p>
 
-      <div className="embeds_wrapper">
-        <figure className="figure-group" role="group">
-          <figure>
-            <iframe
-              title="How to get to Antarctica - Episode 1"
-              className="youtube_embed"
-              src="https://www.youtube.com/embed/VJZIgFO-dFg"
-              frameBorder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-            <figcaption>
+      <Online>
+        <div className="embeds_wrapper">
+          <figure className="figure-group" role="group">
+            <figure>
+              <iframe
+                title="How to get to Antarctica - Episode 1"
+                className="youtube_embed"
+                src="https://www.youtube.com/embed/VJZIgFO-dFg"
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+              <figcaption>
+                Ariel spent 5 weeks in Antarctica to film microbes living under
+                the ice. Here's how she got there.
+              </figcaption>
+            </figure>
+
+            <div className="caption" aria-hidden="true">
               Ariel spent 5 weeks in Antarctica to film microbes living under
               the ice. Here's how she got there.
-            </figcaption>
-          </figure>
+            </div>
 
-          <div className="caption" aria-hidden="true">
-            Ariel spent 5 weeks in Antarctica to film microbes living under the
-            ice. Here's how she got there.
-          </div>
+            <figure>
+              <iframe
+                title="Antarctica under the ice - Episode 2"
+                className="youtube_embed"
+                src="https://www.youtube.com/embed/u9aHl-qssHI"
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+              <figcaption>
+                Ariel joined Antarctic divers in going deep under the sea ice to
+                explore the weird wonders of the Southern Ocean.
+              </figcaption>
+            </figure>
 
-          <figure>
-            <iframe
-              title="Antarctica under the ice - Episode 2"
-              className="youtube_embed"
-              src="https://www.youtube.com/embed/u9aHl-qssHI"
-              frameBorder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-            <figcaption>
+            <div className="caption" aria-hidden="true">
               Ariel joined Antarctic divers in going deep under the sea ice to
               explore the weird wonders of the Southern Ocean.
-            </figcaption>
-          </figure>
+            </div>
 
-          <div className="caption" aria-hidden="true">
-            Ariel joined Antarctic divers in going deep under the sea ice to
-            explore the weird wonders of the Southern Ocean.
-          </div>
+            <figure>
+              <iframe
+                title="Camping in Antarctica - Episode 3"
+                className="youtube_embed"
+                src="https://www.youtube.com/embed/d7TMawjKG5k"
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+              <figcaption>
+                Here's what it was like to camp outside in the Antarctic Dry
+                Valleys next to the natural phenomenon known as Blood Falls.
+              </figcaption>
+            </figure>
 
-          <figure>
-            <iframe
-              title="Camping in Antarctica - Episode 3"
-              className="youtube_embed"
-              src="https://www.youtube.com/embed/d7TMawjKG5k"
-              frameBorder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-            <figcaption>
+            <div className="caption" aria-hidden="true">
               Here's what it was like to camp outside in the Antarctic Dry
               Valleys next to the natural phenomenon known as Blood Falls.
-            </figcaption>
-          </figure>
+            </div>
 
-          <div className="caption" aria-hidden="true">
-            Here's what it was like to camp outside in the Antarctic Dry Valleys
-            next to the natural phenomenon known as Blood Falls.
-          </div>
+            <figure>
+              <iframe
+                title="Extremophiles of Antarctica - Episode 4"
+                className="youtube_embed"
+                src="https://www.youtube.com/embed/hImxHVhlan4"
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+              <figcaption>
+                Some of the extremophiles Ariel sought to film with her
+                microscopes live embedded INSIDE glaciers. Ariel climbed on to
+                the top of a glacier in search for tardigrades and shared what
+                it was like to camp at Lake Hoare next to Canada Glacier.
+              </figcaption>
+            </figure>
 
-          <figure>
-            <iframe
-              title="Extremophiles of Antarctica - Episode 4"
-              className="youtube_embed"
-              src="https://www.youtube.com/embed/hImxHVhlan4"
-              frameBorder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-            <figcaption>
+            <div className="caption" aria-hidden="true">
               Some of the extremophiles Ariel sought to film with her
               microscopes live embedded INSIDE glaciers. Ariel climbed on to the
               top of a glacier in search for tardigrades and shared what it was
               like to camp at Lake Hoare next to Canada Glacier.
-            </figcaption>
-          </figure>
+            </div>
 
-          <div className="caption" aria-hidden="true">
-            Some of the extremophiles Ariel sought to film with her microscopes
-            live embedded INSIDE glaciers. Ariel climbed on to the top of a
-            glacier in search for tardigrades and shared what it was like to
-            camp at Lake Hoare next to Canada Glacier.
-          </div>
+            <figure>
+              <iframe
+                title="Antarctica robot road trip - Episode 5"
+                className="youtube_embed"
+                src="https://www.youtube.com/embed/PcZxLJ9RbLM"
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+              <figcaption>
+                While in Antarctica, Ariel went on a day-long road trip across
+                the sea ice with a team that uses a robot called Icefin to
+                explore the seafloor. One day, robots like Icefin may help us
+                explore the icy moons in our solar system, such as Europa.
+              </figcaption>
+            </figure>
 
-          <figure>
-            <iframe
-              title="Antarctica robot road trip - Episode 5"
-              className="youtube_embed"
-              src="https://www.youtube.com/embed/PcZxLJ9RbLM"
-              frameBorder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-            <figcaption>
+            <div className="caption" aria-hidden="true">
               While in Antarctica, Ariel went on a day-long road trip across the
               sea ice with a team that uses a robot called Icefin to explore the
               seafloor. One day, robots like Icefin may help us explore the icy
               moons in our solar system, such as Europa.
-            </figcaption>
+            </div>
           </figure>
-
-          <div className="caption" aria-hidden="true">
-            While in Antarctica, Ariel went on a day-long road trip across the
-            sea ice with a team that uses a robot called Icefin to explore the
-            seafloor. One day, robots like Icefin may help us explore the icy
-            moons in our solar system, such as Europa.
-          </div>
-        </figure>
-      </div>
+        </div>
+      </Online>
 
       <div className="disclosure">
         <p>
