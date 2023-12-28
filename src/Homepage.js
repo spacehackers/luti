@@ -195,6 +195,7 @@ class Homepage extends React.Component {
           <Map
             key="map"
             crs={L.CRS.Simple}
+            zoomControl={!offline}
             zoomSnap={0}
             zoomDelta={0.25}
             zoom={zoomSettings().initZoom}
