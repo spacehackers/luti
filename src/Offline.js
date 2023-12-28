@@ -1,6 +1,11 @@
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
+export const isOffline = () => {
+  const query = window.location.search;
+  return !!new URLSearchParams(query).get("offline");
+};
+
 function useQuery() {
   const { search } = useLocation();
 
