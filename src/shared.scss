@@ -51,11 +51,6 @@ $zoom_btn_color_dark: teal;
   font-style: normal;
   font-weight: 400;
   text-transform: uppercase;
-
-  @font-face {
-    font-family: "antarctican-headline", "Trebuchet MS", Helvetica, sans-serif;
-    src: "https://use.typekit.net/ikz3unr.css%E2%80%9C%3E";
-  }
 }
 
 @mixin luti_font_dark() {
@@ -63,9 +58,4 @@ $zoom_btn_color_dark: teal;
   font-style: normal;
   font-weight: 400;
   text-transform: uppercase;
-
-  @font-face {
-    font-family: "antarctican-headline", "Trebuchet MS", Helvetica, sans-serif;
-    src: "https://use.typekit.net/ikz3unr.css%E2%80%9C%3E";
-  }
 }

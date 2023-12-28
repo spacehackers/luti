@@ -3,6 +3,18 @@
 $img_width: 1920px;
 $img_height: 1080px;
 
+@font-face {
+  font-family: "antarctican-headline";
+  src: url("/fonts/AntarcticanHeadline-Semibold.woff2") format("woff2");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "antarctican-headline";
+  src: url("/fonts/AntarcticanHeadline-Book.woff2") format("woff2");
+  font-weight: 400;
+}
+
 body {
   font-family: "antarctican-headline", "Trebuchet MS", Helvetica, sans-serif;
   font-weight: 400;

@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import isEqual from "lodash/isEqual";
 import queryString from "query-string";
-import ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 
 import L from "leaflet";
@@ -118,7 +117,6 @@ class Homepage extends React.Component {
           return undefined;
         }
         console.debug("Center microbe is ", currentVideo.url);
-        ReactGA.pageview(currentVideo.analyticsUrl);
         return { currentVideo };
       });
     };
