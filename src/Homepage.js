@@ -16,7 +16,8 @@ import Videos from "./Videos";
 
 import VideoData from "./VideoData";
 
-import video_layout_data from "./layout.json";
+import light_video_layout_data from "./layout.json";
+import dark_video_layout_data from "./dark_layout.json";
 // import video_layout_data from './debug_layout';
 
 import {
@@ -27,8 +28,6 @@ import {
   zoomSettings,
 } from "./vid_config";
 
-const video_layout = video_layout_data.map((data) => new VideoData(data));
-
 L.LatLngBounds.fromBBoxString = (bbox) => {
   const [west, south, east, north] = bbox.split(",").map(parseFloat);
   return new L.LatLngBounds(
@@ -36,11 +35,6 @@ L.LatLngBounds.fromBBoxString = (bbox) => {
     new L.LatLng(north, east)
   );
 };
-
-const map_bounds = [
-  [0, 0],
-  [y_count(video_layout) * img_height, x_count(video_layout) * img_width],
-];
 
 const propTypes = {
   hidden: PropTypes.bool,
@@ -56,7 +50,7 @@ class Homepage extends React.Component {
 
     setTimeout(() => this.forceUpdate(), VIDEO_PLAY_TIMEOUT);
 
-    this.calculate_initial_video = (x, y, hash) => {
+    this.calculate_initial_video = (x, y, hash, video_layout) => {
       let init_video;
       if (hash !== undefined) {
         init_video = video_layout.filter((v) => v.hash === hash)[0];
@@ -79,12 +73,24 @@ class Homepage extends React.Component {
     L.Map.include(L.LayerIndexMixin);
 
     const { x, y, hash } = props.match.params;
+    const video_state = this.calculateVideoLayout(props.displayMode);
     this.state = {
       introVisible: false,
       interacting: false,
       videosPlaying: 0,
-      initialVideo: this.calculate_initial_video(x, y, hash),
-      currentVideo: this.calculate_initial_video(x, y, hash),
+      initialVideo: this.calculate_initial_video(
+        x,
+        y,
+        hash,
+        video_state.video_layout
+      ),
+      currentVideo: this.calculate_initial_video(
+        x,
+        y,
+        hash,
+        video_state.video_layout
+      ),
+      ...video_state,
     };
 
     this.handleOnMove = () => {
@@ -136,6 +142,31 @@ class Homepage extends React.Component {
       this.setState({ videosPlaying });
     };
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.displayMode !== prevProps.displayMode) {
+      console.log("SWITCHING TO", this.props.displayMode);
+      this.setState(this.calculateVideoLayout(this.props.displayMode));
+    }
+  }
+
+  calculateVideoLayout = (mode) => {
+    let video_layout = light_video_layout_data.map(
+      (data) => new VideoData(data)
+    );
+    if (mode === "dark") {
+      video_layout = dark_video_layout_data.map((data) => new VideoData(data));
+    }
+
+    const map_bounds = [
+      [0, 0],
+      [y_count(video_layout) * img_height, x_count(video_layout) * img_width],
+    ];
+    return {
+      video_layout,
+      map_bounds,
+    };
+  };
 
   render() {
     const query = queryString.parse(this.props.location.search);
@@ -203,7 +234,7 @@ class Homepage extends React.Component {
             center={this.init_center()}
             keyboardPanDelta={150}
             onMove={this.handleOnMove}
-            maxBounds={map_bounds}
+            maxBounds={this.state.map_bounds}
             attributionControl={false}
             bounceAtZoomLimits={false}
             ref={this.onMapLoad}
@@ -213,7 +244,7 @@ class Homepage extends React.Component {
               spinnerTest={query.spinnerTest}
               showLoadingProblem={query.loading}
               useCloudfront={!!query.cloudfront}
-              videoLayout={video_layout}
+              videoLayout={this.state.video_layout}
               onVideoChange={this.onVideoChange}
               onVideoStatusChange={this.updateVideoStatus}
               boundsPad={this.state.boundsPad}
