@@ -36,7 +36,7 @@ export default function ShareButtons({ url }) {
         href={`https://facebook.com/sharer/sharer.php?u=${encodedURI}&title=${encodedMessage}`}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label=""
+        aria-label="Facebook share"
       >
         <div className="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small">
           <div
@@ -55,7 +55,7 @@ export default function ShareButtons({ url }) {
         href={`https://twitter.com/intent/tweet/?text=${encodedMessage}&url=${encodedURI}`}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label=""
+        aria-label="Twitter share"
       >
         <div className="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
           <div
@@ -74,7 +74,7 @@ export default function ShareButtons({ url }) {
         href={`mailto:?subject=${encodedMessage}&body=${encodedURI}`}
         target="_self"
         rel="noopener"
-        aria-label=""
+        aria-label="Email share"
       >
         <div className="resp-sharing-button resp-sharing-button--email resp-sharing-button--small">
           <div
