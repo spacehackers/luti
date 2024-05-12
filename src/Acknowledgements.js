@@ -42,8 +42,8 @@ const Acknowledgements = (props) => {
           transparent in detailing just how much “it takes a village” for
           someone to accomplish their dreams.
         </em>
-        <br />– <a href="https://arielwaldman.com">Ariel Waldman</a>, creator of{" "}
-        <em>Life Under the Ice</em>
+        <br /><strong>– <a href="https://arielwaldman.com">Ariel Waldman</a>, creator of{" "}
+        <em>Life Under the Ice</em></strong>
       </p>
       <br />
       <p>
