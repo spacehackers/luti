@@ -70,9 +70,9 @@ const About = (props) => {
 
       <div className="contact">
         <p>
-          If you would like to get in touch regarding{" "}
+          <strong>If you would like to get in touch regarding{" "}
           <em>Life Under the Ice</em>, email{" "}
-          <a href="mailto:ariel@arielwaldman.com">ariel@arielwaldman.com</a>.
+          <a href="mailto:ariel@arielwaldman.com">ariel@arielwaldman.com</a>.</strong>
         </p>
       </div>
 
