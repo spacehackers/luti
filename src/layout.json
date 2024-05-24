@@ -3,7 +3,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 0,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -11,15 +11,15 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 1,
     "y": 0,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
   {
-    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
+    "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x__12_v2",
     "x": 2,
     "y": 0,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -27,7 +27,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 3,
     "y": 0,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -35,7 +35,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 4,
     "y": 0,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -43,7 +43,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 5,
     "y": 0,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -51,7 +51,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 6,
     "y": 0,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -59,7 +59,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 7,
     "y": 0,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -67,7 +67,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 8,
     "y": 0,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -75,7 +75,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 9,
     "y": 0,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -83,7 +83,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 0,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -91,7 +91,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 1,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -107,7 +107,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 2,
     "y": 1,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -115,7 +115,7 @@
     "filename": "111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_04",
     "x": 3,
     "y": 1,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -123,7 +123,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 4,
     "y": 1,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -147,7 +147,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 7,
     "y": 1,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -163,7 +163,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 9,
     "y": 1,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -171,7 +171,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 1,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -179,7 +179,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 2,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -187,7 +187,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 1,
     "y": 2,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -211,7 +211,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 4,
     "y": 2,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -219,7 +219,7 @@
     "filename": "111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_Bacteria_02",
     "x": 5,
     "y": 2,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in a microbial mat in the upland ponds near Lake Bonney in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -227,7 +227,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 6,
     "y": 2,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -243,7 +243,7 @@
     "filename": "111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_Bacteria_01",
     "x": 8,
     "y": 2,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in a microbial mat in the upland ponds near Lake Bonney in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -259,7 +259,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 2,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -267,7 +267,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 3,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -291,7 +291,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 3,
     "y": 3,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -307,7 +307,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 5,
     "y": 3,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -331,7 +331,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 8,
     "y": 3,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -339,7 +339,7 @@
     "filename": "111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_14",
     "x": 9,
     "y": 3,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -347,7 +347,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 3,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -355,7 +355,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 4,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -363,7 +363,7 @@
     "filename": "111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_17",
     "x": 1,
     "y": 4,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -371,7 +371,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 2,
     "y": 4,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -403,7 +403,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 6,
     "y": 4,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -411,7 +411,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 7,
     "y": 4,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -427,7 +427,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 9,
     "y": 4,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -435,7 +435,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 4,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -443,7 +443,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 5,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -451,7 +451,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 1,
     "y": 5,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -499,7 +499,7 @@
     "filename": "111718_LakeBonneyUplandPondsMicrobialMat_NikonE200_100x_Bacteria_04",
     "x": 7,
     "y": 5,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in a microbial mat in the upland ponds near Lake Bonney in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -507,7 +507,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 8,
     "y": 5,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -523,7 +523,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 5,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -531,7 +531,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 6,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -547,7 +547,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 2,
     "y": 6,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -587,7 +587,7 @@
     "filename": "112118_CanadaGlacierCryoconite2_NikonE200_100x_Bacteria_01",
     "x": 7,
     "y": 6,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in a cryoconite hole inside Canada Glacier in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -603,7 +603,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 9,
     "y": 6,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -611,7 +611,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 6,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -619,7 +619,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 7,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -627,7 +627,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 1,
     "y": 7,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -651,7 +651,7 @@
     "filename": "111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12",
     "x": 4,
     "y": 7,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -699,7 +699,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 7,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -707,7 +707,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 8,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -780,7 +780,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 9,
     "y": 8,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -788,7 +788,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 8,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -796,7 +796,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 9,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -804,7 +804,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 1,
     "y": 9,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -876,7 +876,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 9,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -884,7 +884,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 10,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -892,7 +892,7 @@
     "filename": "111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_05",
     "x": 1,
     "y": 10,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -900,7 +900,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 2,
     "y": 10,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -956,7 +956,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 9,
     "y": 10,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -964,7 +964,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 10,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -972,7 +972,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 11,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -980,7 +980,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 1,
     "y": 11,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -996,7 +996,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 3,
     "y": 11,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1036,7 +1036,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 8,
     "y": 11,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1052,7 +1052,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 11,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1060,7 +1060,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 12,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1076,7 +1076,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 2,
     "y": 12,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1084,7 +1084,7 @@
     "filename": "111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_09",
     "x": 3,
     "y": 12,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1108,7 +1108,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 6,
     "y": 12,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1116,7 +1116,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 7,
     "y": 12,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1132,7 +1132,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 9,
     "y": 12,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1140,7 +1140,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 12,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1148,7 +1148,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 13,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1156,7 +1156,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 1,
     "y": 13,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1180,7 +1180,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 4,
     "y": 13,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1212,7 +1212,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 8,
     "y": 13,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1228,7 +1228,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 13,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1236,7 +1236,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 14,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1252,7 +1252,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 2,
     "y": 14,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1260,7 +1260,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 3,
     "y": 14,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1276,7 +1276,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 5,
     "y": 14,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1284,7 +1284,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 6,
     "y": 14,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1292,7 +1292,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 7,
     "y": 14,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1300,7 +1300,7 @@
     "filename": "111718_LakeBonneySnowOutflowDirt_NikonE200_100x_Bacteria_02",
     "x": 8,
     "y": 14,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the snow surrounding Lake Bonney in the Dry Valleys in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1308,7 +1308,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 9,
     "y": 14,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1316,7 +1316,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 14,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1324,7 +1324,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 15,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1332,7 +1332,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 1,
     "y": 15,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1340,7 +1340,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 2,
     "y": 15,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1356,7 +1356,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 4,
     "y": 15,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1388,7 +1388,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 8,
     "y": 15,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1404,7 +1404,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 15,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1412,7 +1412,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 0,
     "y": 16,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1420,7 +1420,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 1,
     "y": 16,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1428,7 +1428,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 2,
     "y": 16,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1436,7 +1436,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 3,
     "y": 16,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1444,7 +1444,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 4,
     "y": 16,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1452,7 +1452,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 5,
     "y": 16,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1460,7 +1460,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 6,
     "y": 16,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1468,7 +1468,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 7,
     "y": 16,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1476,7 +1476,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 8,
     "y": 16,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1484,7 +1484,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 9,
     "y": 16,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   },
@@ -1492,7 +1492,7 @@
     "filename": "Blank_Texture_111518_BloodFallsOuterConeDust_NikonE200_100x_Bacteria_12_v2",
     "x": 10,
     "y": 16,
-    "title": "Bacteria",
+    "title: Bacteria + Debris",
     "location": "Discovered in the red dust surrounding Blood Falls at Lake Bonney in Antarctica.",
     "magnification": "Magnified 200x."
   }
