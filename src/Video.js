@@ -29,6 +29,22 @@ export default class Video extends React.Component {
 
   imageFailed = false;
 
+  getVideoElement = (overlay) => {
+    if (!overlay) {
+      return null;
+    }
+    if (typeof overlay.getElement === "function") {
+      return overlay.getElement();
+    }
+    if (
+      overlay.leafletElement &&
+      typeof overlay.leafletElement.getElement === "function"
+    ) {
+      return overlay.leafletElement.getElement();
+    }
+    return null;
+  };
+
   ensurePlayback = (video) => {
     if (!video) {
       return;
@@ -94,7 +110,10 @@ export default class Video extends React.Component {
   };
 
   disableVideoM3u8 = (ref) => {
-    const video = ref.leafletElement.getElement();
+    const video = this.getVideoElement(ref);
+    if (!video) {
+      return;
+    }
     this.removeVideoListeners(video);
 
     video.pause();
@@ -126,16 +145,22 @@ export default class Video extends React.Component {
   /* eslint-enable no-param-reassign */
 
   enableVideoM3u8 = (ref) => {
-    const m3u8 = ref.props.m3u8;
-    const video = ref.leafletElement.getElement();
+    const { m3u8 } = this.props;
+    const video = this.getVideoElement(ref);
+    if (!video) {
+      return;
+    }
 
     video.src = m3u8;
     this.configureVideo(video);
   };
 
   enableVideoHls = (ref) => {
-    const m3u8 = ref.props.m3u8;
-    const video = ref.leafletElement.getElement();
+    const { m3u8 } = this.props;
+    const video = this.getVideoElement(ref);
+    if (!video) {
+      return;
+    }
 
     this.cachedHls(m3u8, true).attachMedia(video);
   };
@@ -150,7 +175,10 @@ export default class Video extends React.Component {
     }
     this.enabled = true;
 
-    const video = ref.leafletElement.getElement();
+    const video = this.getVideoElement(ref);
+    if (!video) {
+      return;
+    }
     this.showCanplayStatus(video, this.props.canplay);
     if (video.tagName !== "VIDEO") return;
 
@@ -174,7 +202,10 @@ export default class Video extends React.Component {
     }
     this.enabled = false;
 
-    const video = ref.leafletElement.getElement();
+    const video = this.getVideoElement(ref);
+    if (!video) {
+      return;
+    }
     this.showCanplayStatus(video, this.props.canplay);
     if (video.tagName !== "VIDEO") return;
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
@@ -250,9 +281,11 @@ export default class Video extends React.Component {
             url={this.props.stillUrl}
             errorOverlayUrl=""
             opacity={1}
-            onError={() => {
-              this.imageFailed = true;
-              this.forceUpdate();
+            eventHandlers={{
+              error: () => {
+                this.imageFailed = true;
+                this.forceUpdate();
+              },
             }}
           />
           {debugMarker}
@@ -260,12 +293,14 @@ export default class Video extends React.Component {
       );
     }
 
-    const callback = (ref) =>
+    const callback = (ref) => {
+      this.overlayRef = ref;
       requestAnimationFrame(() =>
         this.props.renderMode === "video"
           ? this.enableVideo(ref)
           : this.disableVideo(ref)
       );
+    };
 
     return (
       <>

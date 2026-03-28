@@ -1,8 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { expect } = require("@playwright/test");
 
-async function waitForHomepage(page) {
-  await page.goto("/", { waitUntil: "domcontentloaded" });
+async function waitForHomepage(page, options = {}) {
+  if (!options.skipGoto) {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+  }
   await expect(
     page.getByRole("link", { name: "LIFE UNDER THE ICE" })
   ).toBeVisible();
@@ -16,15 +18,19 @@ async function waitForHomepage(page) {
   ).toBeVisible();
 }
 
-async function waitForAboutPage(page) {
-  await page.goto("/about", { waitUntil: "domcontentloaded" });
+async function waitForAboutPage(page, options = {}) {
+  if (!options.skipGoto) {
+    await page.goto("/about", { waitUntil: "domcontentloaded" });
+  }
   await expect(
     page.getByRole("heading", { name: "About the Project" })
   ).toBeVisible();
 }
 
-async function waitForThanksPage(page) {
-  await page.goto("/thanks", { waitUntil: "domcontentloaded" });
+async function waitForThanksPage(page, options = {}) {
+  if (!options.skipGoto) {
+    await page.goto("/thanks", { waitUntil: "domcontentloaded" });
+  }
   await expect(
     page.getByRole("heading", { name: "Acknowledgements" })
   ).toBeVisible();

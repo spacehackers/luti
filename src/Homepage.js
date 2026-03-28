@@ -6,10 +6,11 @@ import ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 
 import L from "leaflet";
-import { Map } from "react-leaflet";
+import { MapContainer } from "react-leaflet";
 import { useLocation, useParams } from "react-router-dom";
 import Intro from "./components/Intro";
 import InfoBox from "./components/InfoBox";
+import MapLifecycleBridge from "./components/MapLifecycleBridge";
 
 import Sounds from "./Sounds";
 import Videos from "./Videos";
@@ -69,9 +70,6 @@ class Homepage extends React.Component {
       const center = this.state.initialVideo.bounds().getCenter();
       return L.latLng(center.lat - 120, center.lng - 100);
     };
-
-    L.Map.include(L.LayerIndexMixin);
-
     const { x, y, hash } = props.params;
     const video_state = this.calculateVideoLayout(props.displayMode);
     this.state = {
@@ -95,9 +93,8 @@ class Homepage extends React.Component {
 
     this.handleOnMove = () => {
       // we're only using this move listener to do some initial removal of UI elements
-      // so we remove it once that job is done
+      // so we stop mutating state once that job is done
       if (this.state.interacting && !this.state.introVisible) {
-        this.state.map.removeEventListener("move", this.handleOnMove);
         return;
       }
 
@@ -130,12 +127,11 @@ class Homepage extends React.Component {
     };
 
     this.onMapLoad = (ref) => {
-      if (!ref) {
+      if (!ref || this.state.map === ref) {
         return;
       }
-      const { leafletElement } = ref;
       this.setState({
-        map: leafletElement,
+        map: ref,
         introVisible: true,
         boundsPad: zoomSettings().boundsPad,
       });
@@ -228,7 +224,7 @@ class Homepage extends React.Component {
           {introMessage}
         </Intro>
         {!this.props.hidden && (
-          <Map
+          <MapContainer
             key="map"
             crs={L.CRS.Simple}
             zoomSnap={0}
@@ -238,12 +234,14 @@ class Homepage extends React.Component {
             maxZoom={zoomSettings().maxZoom}
             center={this.init_center()}
             keyboardPanDelta={150}
-            onMove={this.handleOnMove}
             maxBounds={this.state.map_bounds}
             attributionControl={false}
             bounceAtZoomLimits={false}
-            ref={this.onMapLoad}
           >
+            <MapLifecycleBridge
+              onMapReady={this.onMapLoad}
+              onMove={this.handleOnMove}
+            />
             <Videos
               debug={query.debug}
               spinnerTest={query.spinnerTest}
@@ -262,7 +260,7 @@ class Homepage extends React.Component {
               debug={query.debug}
               enabled={query.sound}
             />
-          </Map>
+          </MapContainer>
         )}
         {this.state.currentVideo && this.state.videosPlaying > 0 && (
           <InfoBox

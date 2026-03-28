@@ -43,7 +43,6 @@ export default class Videos extends React.Component {
         this.props.onVideoChange(centerVideo);
       }
     };
-    this.getCenterVideo();
 
     this.index = () => {};
 
@@ -145,13 +144,19 @@ export default class Videos extends React.Component {
         MINUTES_OF_NO_INTERACTION_BEFORE_VIDEOS_DISABLED * 60 * 1000
       );
     };
+
+    this.attachMapListeners = (map) => {
+      if (!map || this.attachedMap === map) {
+        return;
+      }
+      map.addEventListener("move", this.handleOnMove);
+      this.attachedMap = map;
+      this.handleOnMove();
+    };
   }
 
   componentDidMount() {
-    if (this.props.map) {
-      this.props.map.addEventListener("move", this.handleOnMove);
-      this.handleOnMove();
-    }
+    this.attachMapListeners(this.props.map);
     document.addEventListener(
       "visibilitychange",
       () => {
@@ -176,11 +181,6 @@ export default class Videos extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (!this.props.map && nextProps.map) {
-      console.debug("LATE ARRIVING MAP");
-      nextProps.map.addEventListener("move", this.handleOnMove);
-      this.handleOnMove();
-    }
     if (!_.isEqual(nextProps, this.props)) {
       return true;
     }
@@ -198,6 +198,12 @@ export default class Videos extends React.Component {
     });
     // console.debug("PREVENTED RENDER", nextState);
     return updateOk;
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.map && this.props.map) {
+      this.attachMapListeners(this.props.map);
+    }
   }
 
   render() {

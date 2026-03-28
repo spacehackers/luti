@@ -13,7 +13,7 @@
     "history": "^4.10.1",
     "hls.js": "^1.6.15",
     "howler": "^2.1.2",
-    "leaflet": "^1.5.1",
+    "leaflet": "^1.9.4",
     "lodash": "^4.17.15",
     "object-hash": "^2.0.1",
     "prop-types": "^15.7.2",
@@ -23,7 +23,7 @@
     "react-dom": "^19.2.0",
     "react-ga": "^2.7.0",
     "react-helmet": "^5.2.1",
-    "react-leaflet": "^2.4.0",
+    "react-leaflet": "^5.0.0",
     "react-leaflet-control": "^2.1.2",
     "react-router-dom": "^6.30.1",
     "react-scripts": "^5.0.1",
@@ -32,6 +32,7 @@
     "webfontloader": "^1.6.28"
   },
   "scripts": {
+    "postinstall": "node scripts/patch-react-scripts-sourcemaps.mjs",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
