@@ -170,9 +170,10 @@ class Homepage extends React.Component {
 
   render() {
     const query = queryString.parse(this.props.location.search);
+    const forceStillMode = !!query.stillMode;
 
     let introMessage = "Drag To Discover New Creatures";
-    if (this.state.videosPlaying === 0) {
+    if (!forceStillMode && this.state.videosPlaying === 0) {
       if (Date.now() - this.startupTime > VIDEO_PLAY_TIMEOUT) {
         introMessage = (
           <div className="connection-problem">
@@ -242,6 +243,7 @@ class Homepage extends React.Component {
             <Videos
               debug={query.debug}
               spinnerTest={query.spinnerTest}
+              forceStillMode={forceStillMode}
               showLoadingProblem={query.loading}
               useCloudfront={!!query.cloudfront}
               videoLayout={this.state.video_layout}
