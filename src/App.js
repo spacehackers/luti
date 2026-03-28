@@ -15,7 +15,9 @@ import "./App.scss";
 
 const trackingId = "UA-153597890-1";
 
-ReactGA.initialize(trackingId);
+if (process.env.NODE_ENV !== "test") {
+  ReactGA.initialize(trackingId);
+}
 
 export default class App extends React.Component {
   constructor(props) {

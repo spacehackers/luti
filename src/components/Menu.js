@@ -27,6 +27,7 @@ export default class Menu extends React.Component {
       tabKeyPress: false,
       navigatingMap: false,
     };
+    this.menuRef = React.createRef();
   }
 
   componentDidMount() {
@@ -141,8 +142,15 @@ export default class Menu extends React.Component {
   render() {
     return (
       <nav>
-        <CSSTransition in={this.state.open} timeout={TRANSITION_SPEED}>
-          <ul className={classNames("menu", this.props.displayMode)}>
+        <CSSTransition
+          in={this.state.open}
+          timeout={TRANSITION_SPEED}
+          nodeRef={this.menuRef}
+        >
+          <ul
+            ref={this.menuRef}
+            className={classNames("menu", this.props.displayMode)}
+          >
             {menuData.map((menuItem, key) => this.renderItem(menuItem, key))}
           </ul>
         </CSSTransition>

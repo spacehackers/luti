@@ -129,7 +129,11 @@ class Homepage extends React.Component {
       });
     };
 
-    this.onMapLoad = ({ leafletElement }) => {
+    this.onMapLoad = (ref) => {
+      if (!ref) {
+        return;
+      }
+      const { leafletElement } = ref;
       this.setState({
         map: leafletElement,
         introVisible: true,
