@@ -22,6 +22,9 @@ export default class Videos extends React.Component {
       visible: true,
     };
 
+    this.isIdleStillMode = () =>
+      !!this.props.forceStillMode || !!this.state.globalDisable;
+
     this.getCenterVideo = () => {
       if (!this.props.map) {
         return;
@@ -83,9 +86,6 @@ export default class Videos extends React.Component {
       }
     };
     this.isVisible = (vid) => {
-      if (this.state.globalDisable) {
-        return false;
-      }
       if (!this.state.visible) {
         return false;
       }
@@ -98,6 +98,16 @@ export default class Videos extends React.Component {
         vid.y >= this.state.xy_bounds.y_bottom_left &&
         vid.y <= this.state.xy_bounds.y_top_right
       );
+    };
+
+    this.getRenderMode = (vid) => {
+      if (!this.isVisible(vid)) {
+        return "hidden";
+      }
+      if (this.isIdleStillMode()) {
+        return "still";
+      }
+      return "video";
     };
 
     const handleOnMove = () => {
@@ -146,6 +156,9 @@ export default class Videos extends React.Component {
       "visibilitychange",
       () => {
         this.setState({ visible: !document.hidden });
+        if (!document.hidden && !this.props.forceStillMode) {
+          this.resetDeadMansSwitch();
+        }
       },
       false
     );
@@ -194,13 +207,14 @@ export default class Videos extends React.Component {
     const videos = [];
     this.props.videoLayout.forEach((vid, idx) => {
       const id = `${vid.filename}-${idx}`;
-      const visible = this.isVisible(vid);
+      const renderMode = this.getRenderMode(vid);
       const m3u8 = this.props.useCloudfront
         ? `${cloudfront_base_url}${vid.filename}-playlist.m3u8`
         : `${base_url}${vid.filename}-playlist.m3u8`;
       videos.push(
         <Video
           m3u8={m3u8}
+          stillUrl={`${base_url}${vid.filename}.jpg`}
           id={id}
           key={id}
           eventLogger={this.eventLogger(id)}
@@ -211,7 +225,8 @@ export default class Videos extends React.Component {
           debug={this.props.debug}
           spinnerTest={this.props.spinnerTest}
           indexFunc={this.index}
-          visible={visible}
+          visible={renderMode !== "hidden"}
+          renderMode={renderMode}
           {...vid_config}
         />
       );

@@ -27,6 +27,8 @@ export default class Video extends React.Component {
 
   hls = undefined;
 
+  imageFailed = false;
+
   ensurePlayback = (video) => {
     if (!video) {
       return;
@@ -97,6 +99,8 @@ export default class Video extends React.Component {
 
     video.pause();
     video.removeAttribute("src");
+    delete video.dataset.videoId;
+    delete video.dataset.tileMode;
     video.load();
   };
 
@@ -138,6 +142,9 @@ export default class Video extends React.Component {
 
   enableVideo = (ref) => {
     if (ref === null) return;
+    if (this.props.renderMode !== "video") {
+      return;
+    }
     if (this.enabled) {
       return;
     }
@@ -227,9 +234,37 @@ export default class Video extends React.Component {
       );
     }
 
+    if (this.props.renderMode === "hidden") {
+      return null;
+    }
+
+    if (this.props.renderMode === "still" && !this.imageFailed) {
+      if (this.enabled && this.overlayRef) {
+        this.disableVideo(this.overlayRef);
+      }
+      return (
+        <>
+          <ImageOverlay
+            bounds={this.props.bounds}
+            key={`still-${this.props.id}`}
+            url={this.props.stillUrl}
+            errorOverlayUrl=""
+            opacity={1}
+            onError={() => {
+              this.imageFailed = true;
+              this.forceUpdate();
+            }}
+          />
+          {debugMarker}
+        </>
+      );
+    }
+
     const callback = (ref) =>
       requestAnimationFrame(() =>
-        this.props.visible ? this.enableVideo(ref) : this.disableVideo(ref)
+        this.props.renderMode === "video"
+          ? this.enableVideo(ref)
+          : this.disableVideo(ref)
       );
 
     return (
