@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 
 import L from "leaflet";
 import { Map } from "react-leaflet";
-import { withRouter } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Intro from "./components/Intro";
 import InfoBox from "./components/InfoBox";
 
@@ -72,7 +72,7 @@ class Homepage extends React.Component {
 
     L.Map.include(L.LayerIndexMixin);
 
-    const { x, y, hash } = props.match.params;
+    const { x, y, hash } = props.params;
     const video_state = this.calculateVideoLayout(props.displayMode);
     this.state = {
       introVisible: false,
@@ -279,4 +279,9 @@ class Homepage extends React.Component {
 Homepage.propTypes = propTypes;
 Homepage.defaultProps = { hidden: true };
 
-export default withRouter(Homepage);
+export default function HomepageRoute(props) {
+  const params = useParams();
+  const location = useLocation();
+
+  return <Homepage {...props} params={params} location={location} />;
+}
