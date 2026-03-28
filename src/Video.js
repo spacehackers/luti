@@ -27,12 +27,23 @@ export default class Video extends React.Component {
 
   hls = undefined;
 
+  ensurePlayback = (video) => {
+    if (!video) {
+      return;
+    }
+    const playAttempt = video.play();
+    if (playAttempt && typeof playAttempt.catch === "function") {
+      playAttempt.catch(() => {});
+    }
+  };
+
   cachedHls = (m3u8, autocreate) => {
     if (autocreate && this.hls === undefined) {
       const hls = new Hls(hls_config);
       hls.on(Hls.Events.MEDIA_ATTACHED, () => {
         hls.loadSource(m3u8);
         this.configureVideo(hls.media);
+        this.ensurePlayback(hls.media);
       });
       hls.on(Hls.Events.MEDIA_DETACHED, () => {
         this.removeVideoListeners(hls.media);
@@ -42,15 +53,34 @@ export default class Video extends React.Component {
     return this.hls;
   };
 
+  createVideoEventHandler = (name) => {
+    if (!this.videoEventHandlers) {
+      this.videoEventHandlers = {};
+    }
+    if (!this.videoEventHandlers[name]) {
+      this.videoEventHandlers[name] = (evt) => {
+        if (
+          evt.type === "canplay" ||
+          evt.type === "canplaythrough" ||
+          evt.type === "loadeddata"
+        ) {
+          this.ensurePlayback(evt.target);
+        }
+        this.props.eventLogger(evt);
+      };
+    }
+    return this.videoEventHandlers[name];
+  };
+
   addVideoListeners = (video) => {
     VIDEO_EVENTS.forEach((name) =>
-      video.addEventListener(name, this.props.eventLogger)
+      video.addEventListener(name, this.createVideoEventHandler(name))
     );
   };
 
   removeVideoListeners = (video) => {
     VIDEO_EVENTS.forEach((name) =>
-      video.removeEventListener(name, this.props.eventLogger)
+      video.removeEventListener(name, this.createVideoEventHandler(name))
     );
   };
 
@@ -84,8 +114,10 @@ export default class Video extends React.Component {
     video.playsInline = true;
     video.muted = true;
     video.loop = true;
+    video.autoplay = true;
     video.style.objectFit = "cover";
     this.addVideoListeners(video);
+    this.ensurePlayback(video);
   };
   /* eslint-enable no-param-reassign */
 
