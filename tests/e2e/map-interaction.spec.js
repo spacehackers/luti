@@ -44,6 +44,7 @@ test.describe("map interaction", () => {
 
     const map = page.locator(".leaflet-container").first();
     const pane = page.locator(".leaflet-map-pane").first();
+    const infoTitle = page.locator(".info-title h1");
     await expect(map).toBeVisible();
     await expect(pane).toHaveCount(1);
     const box = await map.boundingBox();
@@ -52,14 +53,15 @@ test.describe("map interaction", () => {
     const initialTransform = await pane.evaluate(
       (element) => getComputedStyle(element).transform
     );
+    const initialTitle = await infoTitle.textContent();
 
     await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
     await page.mouse.down();
     await page.mouse.move(
-      box.x + box.width / 2 + 320,
-      box.y + box.height / 2 + 200,
+      box.x + box.width / 2 + 700,
+      box.y + box.height / 2 + 450,
       {
-        steps: 20,
+        steps: 30,
       }
     );
     await page.mouse.up();
@@ -69,9 +71,42 @@ test.describe("map interaction", () => {
         pane.evaluate((element) => getComputedStyle(element).transform)
       )
       .not.toBe(initialTransform);
+    await expect.poll(() => infoTitle.textContent()).not.toBe(initialTitle);
+
+    await expect
+      .poll(async () => {
+        const sample = await sampleVisibleVideos(page);
+        if (sample.length === 0) {
+          return false;
+        }
+        return sample.every(
+          (video) =>
+            video.paused === false &&
+            video.readyState >= 2 &&
+            video.videoWidth > 0 &&
+            video.videoHeight > 0
+        );
+      })
+      .toBe(true);
 
     const firstSample = await sampleVisibleVideos(page);
     await page.waitForTimeout(1500);
+    await expect
+      .poll(async () => {
+        const sample = await sampleVisibleVideos(page);
+        if (sample.length === 0) {
+          return false;
+        }
+        return sample.every(
+          (video) =>
+            video.paused === false &&
+            video.readyState >= 2 &&
+            video.videoWidth > 0 &&
+            video.videoHeight > 0
+        );
+      })
+      .toBe(true);
+
     const secondSample = await sampleVisibleVideos(page);
 
     const advancingVideos = secondSample.filter(

@@ -20,6 +20,7 @@ export default class Videos extends React.Component {
     this.state = {
       canplay: {},
       visible: true,
+      centerXY: null,
     };
 
     this.isIdleStillMode = () =>
@@ -109,12 +110,30 @@ export default class Videos extends React.Component {
       return "video";
     };
 
+    this.getStartupPriority = (vid) => {
+      if (!this.state.centerXY) {
+        return 0;
+      }
+      return (
+        Math.abs(vid.x - this.state.centerXY.x) +
+        Math.abs(vid.y - this.state.centerXY.y)
+      );
+    };
+
     const handleOnMove = () => {
       const bounds = this.props.map.getBounds();
+      const centerXYBounds = bounds_to_xy(bounds.getCenter().toBounds(1));
+      const centerXY = {
+        x: centerXYBounds.x_bottom_left,
+        y: centerXYBounds.y_bottom_left,
+      };
       const xy_bounds = bounds_to_xy(bounds.pad(this.props.boundsPad));
-      if (!_.isEqual(xy_bounds, this.state.xy_bounds)) {
+      if (
+        !_.isEqual(xy_bounds, this.state.xy_bounds) ||
+        !_.isEqual(centerXY, this.state.centerXY)
+      ) {
         this.getCenterVideo();
-        this.setState({ xy_bounds });
+        this.setState({ xy_bounds, centerXY });
       }
     };
     this.handleOnMove = _.throttle(handleOnMove, 50, {
@@ -187,6 +206,7 @@ export default class Videos extends React.Component {
     const updatable_state = [
       "canplay",
       "xy_bounds",
+      "centerXY",
       "visible",
       "globalDisable",
     ];
@@ -233,6 +253,7 @@ export default class Videos extends React.Component {
           indexFunc={this.index}
           visible={renderMode !== "hidden"}
           renderMode={renderMode}
+          startupPriority={this.getStartupPriority(vid)}
           {...vid_config}
         />
       );
