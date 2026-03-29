@@ -20,6 +20,7 @@ export default class Videos extends React.Component {
     this.state = {
       canplay: {},
       visible: true,
+      centerXY: null,
     };
 
     this.isIdleStillMode = () =>
@@ -43,7 +44,6 @@ export default class Videos extends React.Component {
         this.props.onVideoChange(centerVideo);
       }
     };
-    this.getCenterVideo();
 
     this.index = () => {};
 
@@ -110,12 +110,30 @@ export default class Videos extends React.Component {
       return "video";
     };
 
+    this.getStartupPriority = (vid) => {
+      if (!this.state.centerXY) {
+        return 0;
+      }
+      return (
+        Math.abs(vid.x - this.state.centerXY.x) +
+        Math.abs(vid.y - this.state.centerXY.y)
+      );
+    };
+
     const handleOnMove = () => {
       const bounds = this.props.map.getBounds();
+      const centerXYBounds = bounds_to_xy(bounds.getCenter().toBounds(1));
+      const centerXY = {
+        x: centerXYBounds.x_bottom_left,
+        y: centerXYBounds.y_bottom_left,
+      };
       const xy_bounds = bounds_to_xy(bounds.pad(this.props.boundsPad));
-      if (!_.isEqual(xy_bounds, this.state.xy_bounds)) {
+      if (
+        !_.isEqual(xy_bounds, this.state.xy_bounds) ||
+        !_.isEqual(centerXY, this.state.centerXY)
+      ) {
         this.getCenterVideo();
-        this.setState({ xy_bounds });
+        this.setState({ xy_bounds, centerXY });
       }
     };
     this.handleOnMove = _.throttle(handleOnMove, 50, {
@@ -138,20 +156,24 @@ export default class Videos extends React.Component {
         });
       }
       clearTimeout(this.deadMansSwitch);
-
-      const MINUTES_OF_NO_INTERACTION_BEFORE_VIDEOS_DISABLED = 10;
       this.deadMansSwitch = setTimeout(
         this.disableAllVideos,
-        MINUTES_OF_NO_INTERACTION_BEFORE_VIDEOS_DISABLED * 60 * 1000
+        this.props.idleTimeoutMs || 10 * 60 * 1000
       );
+    };
+
+    this.attachMapListeners = (map) => {
+      if (!map || this.attachedMap === map) {
+        return;
+      }
+      map.addEventListener("move", this.handleOnMove);
+      this.attachedMap = map;
+      this.handleOnMove();
     };
   }
 
   componentDidMount() {
-    if (this.props.map) {
-      this.props.map.addEventListener("move", this.handleOnMove);
-      this.handleOnMove();
-    }
+    this.attachMapListeners(this.props.map);
     document.addEventListener(
       "visibilitychange",
       () => {
@@ -176,17 +198,13 @@ export default class Videos extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (!this.props.map && nextProps.map) {
-      console.debug("LATE ARRIVING MAP");
-      nextProps.map.addEventListener("move", this.handleOnMove);
-      this.handleOnMove();
-    }
     if (!_.isEqual(nextProps, this.props)) {
       return true;
     }
     const updatable_state = [
       "canplay",
       "xy_bounds",
+      "centerXY",
       "visible",
       "globalDisable",
     ];
@@ -198,6 +216,12 @@ export default class Videos extends React.Component {
     });
     // console.debug("PREVENTED RENDER", nextState);
     return updateOk;
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.map && this.props.map) {
+      this.attachMapListeners(this.props.map);
+    }
   }
 
   render() {
@@ -227,6 +251,7 @@ export default class Videos extends React.Component {
           indexFunc={this.index}
           visible={renderMode !== "hidden"}
           renderMode={renderMode}
+          startupPriority={this.getStartupPriority(vid)}
           {...vid_config}
         />
       );

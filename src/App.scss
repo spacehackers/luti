@@ -34,6 +34,29 @@ body {
   }
 }
 
+@media (hover: none), (pointer: coarse) {
+  html,
+  body,
+  #root,
+  a,
+  button,
+  h1,
+  h2,
+  h3,
+  p,
+  span,
+  div,
+  img,
+  video,
+  .leaflet-container,
+  .leaflet-pane,
+  .leaflet-control-container {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
 .overflow-hidden {
   overflow: hidden;
 }

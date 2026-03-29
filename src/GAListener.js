@@ -1,19 +1,19 @@
 import { useEffect } from "react";
 import ReactGA from "react-ga";
-import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const sendPageView = (location) => {
-  ReactGA.set({ page: location.pathname });
-  ReactGA.pageview(location.pathname);
-  console.debug("GA|Pageview Sent: ", location.pathname);
+  const page = `${location.pathname}${location.search}${location.hash}`;
+  ReactGA.set({ page });
+  ReactGA.pageview(page);
+  console.debug("GA|Pageview Sent: ", page);
 };
 
 const GAListener = ({ children }) => {
-  const history = useHistory();
+  const location = useLocation();
   useEffect(() => {
-    sendPageView(history.location);
-    return history.listen(sendPageView);
-  }, [history]);
+    sendPageView(location);
+  }, [location]);
 
   return children;
 };

@@ -6,10 +6,11 @@ import ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 
 import L from "leaflet";
-import { Map } from "react-leaflet";
-import { withRouter } from "react-router-dom";
+import { MapContainer } from "react-leaflet";
+import { useLocation, useParams } from "react-router-dom";
 import Intro from "./components/Intro";
 import InfoBox from "./components/InfoBox";
+import MapLifecycleBridge from "./components/MapLifecycleBridge";
 
 import Sounds from "./Sounds";
 import Videos from "./Videos";
@@ -69,10 +70,7 @@ class Homepage extends React.Component {
       const center = this.state.initialVideo.bounds().getCenter();
       return L.latLng(center.lat - 120, center.lng - 100);
     };
-
-    L.Map.include(L.LayerIndexMixin);
-
-    const { x, y, hash } = props.match.params;
+    const { x, y, hash } = props.params;
     const video_state = this.calculateVideoLayout(props.displayMode);
     this.state = {
       introVisible: false,
@@ -95,9 +93,8 @@ class Homepage extends React.Component {
 
     this.handleOnMove = () => {
       // we're only using this move listener to do some initial removal of UI elements
-      // so we remove it once that job is done
+      // so we stop mutating state once that job is done
       if (this.state.interacting && !this.state.introVisible) {
-        this.state.map.removeEventListener("move", this.handleOnMove);
         return;
       }
 
@@ -129,9 +126,12 @@ class Homepage extends React.Component {
       });
     };
 
-    this.onMapLoad = ({ leafletElement }) => {
+    this.onMapLoad = (ref) => {
+      if (!ref || this.state.map === ref) {
+        return;
+      }
       this.setState({
-        map: leafletElement,
+        map: ref,
         introVisible: true,
         boundsPad: zoomSettings().boundsPad,
       });
@@ -171,6 +171,7 @@ class Homepage extends React.Component {
   render() {
     const query = queryString.parse(this.props.location.search);
     const forceStillMode = !!query.stillMode;
+    const idleTimeoutMs = query.idleMs ? parseInt(query.idleMs, 10) : undefined;
 
     let introMessage = "Drag To Discover New Creatures";
     if (!forceStillMode && this.state.videosPlaying === 0) {
@@ -224,7 +225,7 @@ class Homepage extends React.Component {
           {introMessage}
         </Intro>
         {!this.props.hidden && (
-          <Map
+          <MapContainer
             key="map"
             crs={L.CRS.Simple}
             zoomSnap={0}
@@ -234,16 +235,19 @@ class Homepage extends React.Component {
             maxZoom={zoomSettings().maxZoom}
             center={this.init_center()}
             keyboardPanDelta={150}
-            onMove={this.handleOnMove}
             maxBounds={this.state.map_bounds}
             attributionControl={false}
             bounceAtZoomLimits={false}
-            ref={this.onMapLoad}
           >
+            <MapLifecycleBridge
+              onMapReady={this.onMapLoad}
+              onMove={this.handleOnMove}
+            />
             <Videos
               debug={query.debug}
               spinnerTest={query.spinnerTest}
               forceStillMode={forceStillMode}
+              idleTimeoutMs={idleTimeoutMs}
               showLoadingProblem={query.loading}
               useCloudfront={!!query.cloudfront}
               videoLayout={this.state.video_layout}
@@ -258,7 +262,7 @@ class Homepage extends React.Component {
               debug={query.debug}
               enabled={query.sound}
             />
-          </Map>
+          </MapContainer>
         )}
         {this.state.currentVideo && this.state.videosPlaying > 0 && (
           <InfoBox
@@ -275,4 +279,9 @@ class Homepage extends React.Component {
 Homepage.propTypes = propTypes;
 Homepage.defaultProps = { hidden: true };
 
-export default withRouter(Homepage);
+export default function HomepageRoute(props) {
+  const params = useParams();
+  const location = useLocation();
+
+  return <Homepage {...props} params={params} location={location} />;
+}

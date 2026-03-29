@@ -17,7 +17,8 @@ export const hls_config = {
   debug: false,
   enableWorker: true,
   capLevelToPlayerSize: true,
-  maxBufferSize: 30,
+  lowLatencyMode: false,
+  maxBufferSize: 30 * 1000 * 1000,
   maxBufferLength: 5,
 };
 

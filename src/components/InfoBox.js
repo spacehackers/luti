@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
@@ -13,6 +13,7 @@ const TRANSITION_SPEED = 500;
 
 export default function InfoBox({ desc, displayMode, title, url }) {
   const [hidden, setHidden] = useState(true);
+  const wrapperRef = useRef(null);
 
   useEffect(() => {
     const body = document.body;
@@ -39,8 +40,8 @@ export default function InfoBox({ desc, displayMode, title, url }) {
   }, [hidden]);
 
   return (
-    <CSSTransition in={!hidden} timeout={TRANSITION_SPEED}>
-      <div>
+    <CSSTransition in={!hidden} timeout={TRANSITION_SPEED} nodeRef={wrapperRef}>
+      <div ref={wrapperRef}>
         <InfoButton
           displayMode={displayMode}
           handleClick={() => setHidden(!hidden)}

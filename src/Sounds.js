@@ -1,5 +1,4 @@
 import React from "react";
-import Control from "react-leaflet-control";
 import L from "leaflet";
 import { tsv } from "d3-fetch";
 import throttle from "lodash/throttle";
@@ -111,8 +110,7 @@ export default class Sounds extends React.Component {
     }
     return (
       <>
-        (this.props.debug && (
-        <Control position="topright">
+        {this.props.debug && (
           <div className="sound-debug">
             {this.state.sounds.map((sound) => (
               <div key={`debug-${this.keyForSound(sound)}`}>
@@ -134,8 +132,7 @@ export default class Sounds extends React.Component {
               </div>
             ))}
           </div>
-        </Control>
-        ));
+        )}
         {this.state.sounds.map((sound) => {
           const location = this.latlngs[sound.File];
           const key = this.keyForSound(sound);
