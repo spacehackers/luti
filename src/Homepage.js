@@ -171,6 +171,7 @@ class Homepage extends React.Component {
   render() {
     const query = queryString.parse(this.props.location.search);
     const forceStillMode = !!query.stillMode;
+    const idleTimeoutMs = query.idleMs ? parseInt(query.idleMs, 10) : undefined;
 
     let introMessage = "Drag To Discover New Creatures";
     if (!forceStillMode && this.state.videosPlaying === 0) {
@@ -246,6 +247,7 @@ class Homepage extends React.Component {
               debug={query.debug}
               spinnerTest={query.spinnerTest}
               forceStillMode={forceStillMode}
+              idleTimeoutMs={idleTimeoutMs}
               showLoadingProblem={query.loading}
               useCloudfront={!!query.cloudfront}
               videoLayout={this.state.video_layout}

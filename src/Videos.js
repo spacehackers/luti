@@ -156,11 +156,9 @@ export default class Videos extends React.Component {
         });
       }
       clearTimeout(this.deadMansSwitch);
-
-      const MINUTES_OF_NO_INTERACTION_BEFORE_VIDEOS_DISABLED = 10;
       this.deadMansSwitch = setTimeout(
         this.disableAllVideos,
-        MINUTES_OF_NO_INTERACTION_BEFORE_VIDEOS_DISABLED * 60 * 1000
+        this.props.idleTimeoutMs || 10 * 60 * 1000
       );
     };
 

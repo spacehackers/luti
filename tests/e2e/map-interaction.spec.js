@@ -1,6 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { test, expect } = require("@playwright/test");
-const { sampleVisibleVideos } = require("./helpers/media");
+const {
+  expectVisibleVideosReady,
+  sampleVisibleVideos,
+} = require("./helpers/media");
 const { waitForHomepage } = require("./helpers/page");
 
 test.describe("map interaction", () => {
@@ -26,6 +29,7 @@ test.describe("map interaction", () => {
       page.getByRole("heading", { name: /TARDIGRADE/i })
     ).toBeVisible();
 
+    await expectVisibleVideosReady(page);
     await page.waitForTimeout(1500);
     const secondSample = await sampleVisibleVideos(page);
     const advancingVideos = secondSample.filter(
@@ -73,39 +77,11 @@ test.describe("map interaction", () => {
       .not.toBe(initialTransform);
     await expect.poll(() => infoTitle.textContent()).not.toBe(initialTitle);
 
-    await expect
-      .poll(async () => {
-        const sample = await sampleVisibleVideos(page);
-        if (sample.length === 0) {
-          return false;
-        }
-        return sample.every(
-          (video) =>
-            video.paused === false &&
-            video.readyState >= 2 &&
-            video.videoWidth > 0 &&
-            video.videoHeight > 0
-        );
-      })
-      .toBe(true);
+    await expectVisibleVideosReady(page);
 
     const firstSample = await sampleVisibleVideos(page);
     await page.waitForTimeout(1500);
-    await expect
-      .poll(async () => {
-        const sample = await sampleVisibleVideos(page);
-        if (sample.length === 0) {
-          return false;
-        }
-        return sample.every(
-          (video) =>
-            video.paused === false &&
-            video.readyState >= 2 &&
-            video.videoWidth > 0 &&
-            video.videoHeight > 0
-        );
-      })
-      .toBe(true);
+    await expectVisibleVideosReady(page);
 
     const secondSample = await sampleVisibleVideos(page);
 
