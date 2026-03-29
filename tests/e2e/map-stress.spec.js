@@ -1,6 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { test, expect } = require("@playwright/test");
-const { sampleVisibleVideos } = require("./helpers/media");
+const {
+  expectNoEmptyVisibleVideoShells,
+  expectVisibleVideosReady,
+} = require("./helpers/media");
 const { waitForHomepage } = require("./helpers/page");
 
 async function dragMap(page, dx, dy) {
@@ -20,24 +23,6 @@ async function dragMap(page, dx, dy) {
   await page.mouse.up();
 }
 
-async function expectVisibleVideosReady(page) {
-  await expect
-    .poll(async () => {
-      const sample = await sampleVisibleVideos(page);
-      if (sample.length === 0) {
-        return false;
-      }
-      return sample.every(
-        (video) =>
-          video.paused === false &&
-          video.readyState >= 2 &&
-          video.videoWidth > 0 &&
-          video.videoHeight > 0
-      );
-    })
-    .toBe(true);
-}
-
 test("repeated map drags keep visible videos alive", async ({ page }) => {
   await waitForHomepage(page);
 
@@ -52,6 +37,7 @@ test("repeated map drags keep visible videos alive", async ({ page }) => {
   for (const [dx, dy] of drags) {
     await dragMap(page, dx, dy);
     await expectVisibleVideosReady(page);
+    await expectNoEmptyVisibleVideoShells(page);
   }
   /* eslint-enable no-await-in-loop */
 });

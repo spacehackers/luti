@@ -86,10 +86,15 @@ async function expectVisibleVideosReady(page) {
     .toBe(true);
 }
 
+async function expectNoEmptyVisibleVideoShells(page) {
+  await expect.poll(() => countVisibleEmptyVideoShells(page)).toBe(0);
+}
+
 module.exports = {
   countVideos,
   countVisibleEmptyVideoShells,
   countVisibleVideos,
+  expectNoEmptyVisibleVideoShells,
   expectVisibleVideosReady,
   sampleVisibleVideos,
 };

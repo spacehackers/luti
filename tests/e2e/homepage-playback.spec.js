@@ -1,6 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { test, expect } = require("@playwright/test");
-const { countVideos, sampleVisibleVideos } = require("./helpers/media");
+const {
+  countVideos,
+  expectNoEmptyVisibleVideoShells,
+  sampleVisibleVideos,
+} = require("./helpers/media");
 const { waitForHomepage } = require("./helpers/page");
 
 test.describe("homepage playback", () => {
@@ -10,6 +14,7 @@ test.describe("homepage playback", () => {
     await waitForHomepage(page);
 
     await expect.poll(() => countVideos(page)).toBeGreaterThan(0);
+    await expectNoEmptyVisibleVideoShells(page);
     await expect
       .poll(async () => {
         const sample = await sampleVisibleVideos(page);

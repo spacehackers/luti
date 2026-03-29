@@ -2,6 +2,7 @@
 const { test, expect } = require("@playwright/test");
 const {
   countVisibleVideos,
+  expectNoEmptyVisibleVideoShells,
   expectVisibleVideosReady,
 } = require("./helpers/media");
 const { createRequestRecorder } = require("./helpers/network");
@@ -24,6 +25,7 @@ test.describe("idle wake", () => {
 
     await page.mouse.move(300, 300);
     await expectVisibleVideosReady(page);
+    await expectNoEmptyVisibleVideoShells(page);
     await expect.poll(() => countVisibleVideos(page)).toBeGreaterThan(0);
 
     expect(requests.findBySubstring(".ts").length).toBeGreaterThan(

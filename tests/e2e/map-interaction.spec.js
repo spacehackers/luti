@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { test, expect } = require("@playwright/test");
 const {
+  expectNoEmptyVisibleVideoShells,
   expectVisibleVideosReady,
   sampleVisibleVideos,
 } = require("./helpers/media");
@@ -30,6 +31,7 @@ test.describe("map interaction", () => {
     ).toBeVisible();
 
     await expectVisibleVideosReady(page);
+    await expectNoEmptyVisibleVideoShells(page);
     await page.waitForTimeout(1500);
     const secondSample = await sampleVisibleVideos(page);
     const advancingVideos = secondSample.filter(
@@ -78,10 +80,12 @@ test.describe("map interaction", () => {
     await expect.poll(() => infoTitle.textContent()).not.toBe(initialTitle);
 
     await expectVisibleVideosReady(page);
+    await expectNoEmptyVisibleVideoShells(page);
 
     const firstSample = await sampleVisibleVideos(page);
     await page.waitForTimeout(1500);
     await expectVisibleVideosReady(page);
+    await expectNoEmptyVisibleVideoShells(page);
 
     const secondSample = await sampleVisibleVideos(page);
 
